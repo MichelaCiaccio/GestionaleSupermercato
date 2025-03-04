@@ -3,6 +3,7 @@ package com.example.supermarket.service;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertThrows;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -15,6 +16,8 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.example.supermarket.entity.User;
+
+import jakarta.persistence.EntityNotFoundException;
 
 @ExtendWith(MockitoExtension.class)
 public class UserServiceTest {
@@ -38,6 +41,18 @@ public class UserServiceTest {
         assertEquals(ret.getOperatorCode(), user.getOperatorCode());
         verify(userService, times(1)).findByOperatorCode(operatorCode);
 
+    }
+
+    @Test
+    void testFindByOperatorCodeException() {
+        String operatorCode = "code";
+
+        when(userService.findByOperatorCode(operatorCode))
+                .thenThrow(new EntityNotFoundException("User with operator code " +
+                        operatorCode + " not found"));
+
+        assertThrows(EntityNotFoundException.class, () -> userService.findByOperatorCode(operatorCode));
+        verify(userService, times(1)).findByOperatorCode(operatorCode);
     }
 
     @Test
