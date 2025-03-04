@@ -106,26 +106,26 @@ public class UserServiceTest {
 
     }
 
-    // @Test
-    // void testFindAll() {
+    @Test
+    void testFindAll() {
 
-    // // GIVEN
-    // Iterable<User> users = List.of(
-    // new User("Codice-1", "Nome", "Cognome", "test@email.com", "ruolo",
-    // "password"),
-    // new User("Codice-2", "Nome", "Cognome", "test@email.com", "Ruolo",
-    // "password"));
+        // GIVEN
+        List<User> users = List.of(
+                new User("Codice-1", "Nome", "Cognome", "test@email.com", "ruolo",
+                        "password"),
+                new User("Codice-2", "Nome", "Cognome", "test@email.com", "Ruolo",
+                        "password"));
 
-    // // WHEN
-    // when(userService.findAll()).thenReturn(users);
-    // Iterable<User> ret = userService.findAll();
+        // WHEN
+        when(userService.findAll()).thenReturn(users);
+        List<User> ret = userService.findAll();
 
-    // // VERIFY
-    // assertNotNull(ret);
-    // assertEquals(2, ((Collection<?>) ret).size());
-    // verify(userService, times(1)).findAll();
+        // VERIFY
+        assertNotNull(ret);
+        assertEquals(2, ret.size());
+        verify(userService, times(1)).findAll();
 
-    // }
+    }
 
     @Test
     void testDeleteAll() {
@@ -160,4 +160,5 @@ public class UserServiceTest {
         User deleteUser = userService.findByOperatorCode(operatorCode);
         assertNull(deleteUser);
     }
+
 }
