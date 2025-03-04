@@ -5,6 +5,7 @@ import java.util.Comparator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.example.supermarket.entity.User;
@@ -24,7 +25,7 @@ public class UserService {
 
     public User findByOperatorCode(String operatorCode) {
         if (!userRepository.existsById(operatorCode)) {
-            throw new EntityNotFoundException("There are no Users");
+            throw new EntityNotFoundException("User with operator code " + operatorCode + " not found");
         }
         return userRepository.findByOperatorCode(operatorCode);
     }
@@ -54,7 +55,8 @@ public class UserService {
     }
 
     public List<User> findAll() {
-        Iterable<User> iterableUsers = userRepository.findAll();
+        Sort sort = Sort.by("role");
+        Iterable<User> iterableUsers = userRepository.findAll(sort);
         List<User> users = new ArrayList<>();
         iterableUsers.forEach(users::add);
         if (users.isEmpty()) {
@@ -65,10 +67,17 @@ public class UserService {
     }
 
     public void deleteAll() {
+        List<User> users = userRepository.findAll();
+        if (users.isEmpty()) {
+            throw new EntityNotFoundException("There are no Users to delete ");
+        }
         userRepository.deleteAll();
     }
 
     public void deleteByOperatorCode(String operatorCode) {
+        if (!userRepository.existsById(operatorCode)) {
+            throw new EntityNotFoundException("User with operator code " + operatorCode + " not found");
+        }
         userRepository.deleteById(operatorCode);
     }
 

@@ -60,29 +60,20 @@ public class UserController {
     }
 
     @GetMapping("/role/")
-    public List<User> findByROle(@RequestParam String role) throws EntityNotFoundException {
+    public List<User> findByROle(@RequestParam String role) {
         return userService.findByRole(role);
     }
 
     @DeleteMapping("/all/delete")
     public ResponseEntity<String> deleteAllUser() {
-        if (userRepository.count() > 0) {
-            userService.deleteAll();
-            return ResponseEntity.ok("All Users have been deleted");
-        }
-
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("There's no Users");
+        userService.deleteAll();
+        return ResponseEntity.ok("All users have been deleted");
     }
 
     @DeleteMapping("/delete/")
     public ResponseEntity<String> deleteByOperatorCode(@RequestParam String operatorCode) {
-        if (userRepository.existsById(operatorCode)) {
-            userService.deleteByOperatorCode(operatorCode);
-            return ResponseEntity.ok("Delete Successfully");
-        }
-
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
-
+        userService.deleteByOperatorCode(operatorCode);
+        return ResponseEntity.ok("Delete Successfully");
     }
 
 }
