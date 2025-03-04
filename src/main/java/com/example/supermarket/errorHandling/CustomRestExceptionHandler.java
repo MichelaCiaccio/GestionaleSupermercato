@@ -39,7 +39,7 @@ public class CustomRestExceptionHandler extends ResponseEntityExceptionHandler {
             errors.add(error.getObjectName() + ": " + error.getDefaultMessage());
         }
 
-        // Si costruisce un oggetto ApiErrror e si restituisce la risposta
+        // Creo un oggetto ApiErrror e si restituisce la risposta
         // personalizzata
         ApiError apiError = new ApiError(HttpStatus.BAD_REQUEST, ex.getLocalizedMessage(), errors);
         return handleExceptionInternal(
@@ -52,8 +52,10 @@ public class CustomRestExceptionHandler extends ResponseEntityExceptionHandler {
         // Recupero il nome della classe dell'eccezione
         logger.info("Exception class " + ex.getClass().getName());
 
+        // Compongo il messaggio di errore
         String errorMessage = ex.getClass().getName() + " Entity not found at " + request.getDescription(false);
 
+        // Creo un oggetto ApiError e restituisco il messaggio personalizzato
         ApiError apiError = new ApiError(HttpStatus.NOT_FOUND, ex.getLocalizedMessage(), errorMessage);
         return new ResponseEntity<Object>(apiError, new HttpHeaders(), apiError.getStatus());
 

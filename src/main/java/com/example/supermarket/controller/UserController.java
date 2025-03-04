@@ -39,49 +39,29 @@ public class UserController {
     }
 
     @GetMapping("/all")
-    public List<User> getAllUser() {
-        List<User> users = userService.findAll();
-        if (users.isEmpty()) {
-            throw new EntityNotFoundException("There are no Users");
-        }
-        return users;
-
-    }
-
-    @GetMapping("/name/")
-    public List<User> findByName(@RequestParam String name) {
-        List<User> users = userService.findByName(name);
-        if (users.isEmpty()) {
-            throw new EntityNotFoundException("Users with name " + name + " not found");
-        }
-        return users;
+    public List<User> getAllUser() throws EntityNotFoundException {
+        return userService.findAll();
     }
 
     @GetMapping("/operatorCode/")
-    public User findByOperatorCode(@RequestParam String operatorCode) {
-        if (!userRepository.existsById(operatorCode)) {
-            throw new EntityNotFoundException("User with Operator Code: " + operatorCode + " not found");
-        }
-
+    public User findByOperatorCode(@RequestParam String operatorCode) throws EntityNotFoundException {
         return userService.findByOperatorCode(operatorCode);
     }
 
+    @GetMapping("/name/")
+    public List<User> findByName(@RequestParam String name) throws EntityNotFoundException {
+        return userService.findByName(name);
+    }
+
     @GetMapping("/surname/")
-    public List<User> findBySurname(@RequestParam String surname) {
-        List<User> users = userService.findBySurname(surname);
-        if (users.isEmpty()) {
-            throw new EntityNotFoundException("Users with surname " + surname + " not found");
-        }
-        return users;
+    public List<User> findBySurname(@RequestParam String surname) throws EntityNotFoundException {
+        return userService.findBySurname(surname);
+
     }
 
     @GetMapping("/role/")
-    public List<User> findByROle(@RequestParam String role) {
-        List<User> users = userService.findByRole(role);
-        if (users.isEmpty()) {
-            throw new EntityNotFoundException("Users with role " + role + " not found");
-        }
-        return users;
+    public List<User> findByROle(@RequestParam String role) throws EntityNotFoundException {
+        return userService.findByRole(role);
     }
 
     @DeleteMapping("/all/delete")
