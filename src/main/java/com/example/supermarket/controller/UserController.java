@@ -46,7 +46,11 @@ public class UserController {
 
     @GetMapping("/name/")
     public List<User> findByName(@RequestParam String name) {
-        return userService.findByName(name);
+        List<User> users = userService.findByName(name);
+        if (users.isEmpty()) {
+            throw new EntityNotFoundException("Users with name " + name + " not found");
+        }
+        return users;
     }
 
     @GetMapping("/operatorCode/")
