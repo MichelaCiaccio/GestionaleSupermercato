@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -32,11 +31,7 @@ public class UserController {
     private UserRepository userRepository;
 
     @PostMapping("/add")
-    public ResponseEntity<?> createNewUser(@Valid @ModelAttribute User user, BindingResult bindingResult) {
-
-        if (bindingResult.hasErrors()) {
-            return ResponseEntity.badRequest().body(bindingResult.getAllErrors());
-        }
+    public ResponseEntity<?> createNewUser(@Valid @ModelAttribute User user) {
 
         userService.save(user);
         return ResponseEntity.ok("User save successfully");
