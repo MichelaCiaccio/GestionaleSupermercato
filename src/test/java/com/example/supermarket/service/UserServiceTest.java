@@ -45,12 +45,15 @@ public class UserServiceTest {
 
     @Test
     void testFindByOperatorCodeException() {
+        // GIVEN
         String operatorCode = "code";
 
+        // WHEN
         when(userService.findByOperatorCode(operatorCode))
                 .thenThrow(new EntityNotFoundException("User with operator code " +
                         operatorCode + " not found"));
 
+        // VERIFY
         assertThrows(EntityNotFoundException.class, () -> userService.findByOperatorCode(operatorCode));
         verify(userService, times(1)).findByOperatorCode(operatorCode);
     }
@@ -73,6 +76,21 @@ public class UserServiceTest {
         assertEquals(2, ret.size());
         assertEquals(name, ret.get(0).getName());
         assertEquals(name, ret.get(1).getName());
+        verify(userService, times(1)).findByName(name);
+
+    }
+
+    @Test
+    void testFindByNameException() {
+        // GIVEN
+        String name = "nome";
+
+        // WHEN
+        when(userService.findByName(name))
+                .thenThrow(new EntityNotFoundException("Users with name " + name + " not found"));
+
+        // VERIFY
+        assertThrows(EntityNotFoundException.class, () -> userService.findByName(name));
         verify(userService, times(1)).findByName(name);
 
     }
