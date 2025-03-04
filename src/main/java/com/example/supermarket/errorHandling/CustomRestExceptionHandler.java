@@ -1,4 +1,4 @@
-package com.example.supermarket.error;
+package com.example.supermarket.errorHandling;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,8 +11,11 @@ import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
+
+import jakarta.persistence.EntityNotFoundException;
 
 @ControllerAdvice
 public class CustomRestExceptionHandler extends ResponseEntityExceptionHandler {
@@ -41,6 +44,19 @@ public class CustomRestExceptionHandler extends ResponseEntityExceptionHandler {
         ApiError apiError = new ApiError(HttpStatus.BAD_REQUEST, ex.getLocalizedMessage(), errors);
         return handleExceptionInternal(
                 ex, apiError, headers, apiError.getStatus(), request);
+    }
+
+    @ExceptionHandler({ EntityNotFoundException.class })
+    public ResponseEntity<Object> handleEntityNotFound(EntityNotFoundException ex, WebRequest request) {
+
+        // Recupero il nome della classe dell'eccezione
+        logger.info("Exception class " + ex.getClass().getName());
+
+        String errorMessage = ex.getClass().getName() + " Entity not found at " + request.getDescription(false);
+
+        ApiError apiError = new ApiError(HttpStatus.NOT_FOUND, ex.getLocalizedMessage(), errorMessage);
+        return new ResponseEntity<Object>(apiError, new HttpHeaders(), apiError.getStatus());
+
     }
 
 }

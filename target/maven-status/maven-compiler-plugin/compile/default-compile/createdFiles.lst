@@ -17,6 +17,4 @@ com/example/supermarket/service/CategoryService.class
 com/example/supermarket/repo/ProductRepository.class
 com/example/supermarket/entity/ProductSale.class
 com/example/supermarket/controller/UserController.class
-com/example/supermarket/error/ApiError.class
 com/example/supermarket/repo/UserRepository.class
-com/example/supermarket/error/CustomRestExceptionHandler.class

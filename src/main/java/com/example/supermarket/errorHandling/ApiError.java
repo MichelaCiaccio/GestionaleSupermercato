@@ -1,4 +1,4 @@
-package com.example.supermarket.error;
+package com.example.supermarket.errorHandling;
 
 import java.util.Arrays;
 import java.util.List;

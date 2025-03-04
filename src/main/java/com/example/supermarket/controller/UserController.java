@@ -14,6 +14,7 @@ import com.example.supermarket.entity.User;
 import com.example.supermarket.repo.UserRepository;
 import com.example.supermarket.service.UserService;
 
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -50,6 +51,10 @@ public class UserController {
 
     @GetMapping("/operatorCode/")
     public User findByOperatorCode(@RequestParam String operatorCode) {
+        if (!userRepository.existsById(operatorCode)) {
+            throw new EntityNotFoundException("User with Operator Code: " + operatorCode + " not found");
+        }
+
         return userService.findByOperatorCode(operatorCode);
     }
 
