@@ -39,7 +39,7 @@ public class UserController {
     }
 
     @GetMapping("/all")
-    public Iterable<User> getAllUser() {
+    public List<User> getAllUser() {
         return userService.findAll();
 
     }

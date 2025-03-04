@@ -1,9 +1,10 @@
 package com.example.supermarket.service;
 
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.example.supermarket.entity.User;
@@ -35,8 +36,12 @@ public class UserService {
         return userRepository.findByRole(role);
     }
 
-    public Iterable<User> findAll() {
-        return userRepository.findAll(Sort.by("role"));
+    public List<User> findAll() {
+        Iterable<User> iterableUsers = userRepository.findAll();
+        List<User> users = new ArrayList<>();
+        iterableUsers.forEach(users::add);
+        users.sort(Comparator.comparing(o -> o.getRole()));
+        return users;
     }
 
     public void deleteAll() {
