@@ -118,6 +118,21 @@ public class UserServiceTest {
     }
 
     @Test
+    void testFindBySurnameException() {
+        // GIVEN
+        String surname = "nome";
+
+        // WHEN
+        when(userService.findBySurname(surname))
+                .thenThrow(new EntityNotFoundException("Users with surname " + surname + " not found"));
+
+        // VERIFY
+        assertThrows(EntityNotFoundException.class, () -> userService.findBySurname(surname));
+        verify(userService, times(1)).findBySurname(surname);
+
+    }
+
+    @Test
     void testFindByRole() {
 
         // GIVEN
