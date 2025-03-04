@@ -73,7 +73,11 @@ public class UserController {
 
     @GetMapping("/role/")
     public List<User> findByROle(@RequestParam String role) {
-        return userService.findByRole(role);
+        List<User> users = userService.findByRole(role);
+        if (users.isEmpty()) {
+            throw new EntityNotFoundException("Users with role " + role + " not found");
+        }
+        return users;
     }
 
     @DeleteMapping("/all/delete")
