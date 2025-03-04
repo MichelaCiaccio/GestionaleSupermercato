@@ -64,7 +64,11 @@ public class UserController {
 
     @GetMapping("/surname/")
     public List<User> findBySurname(@RequestParam String surname) {
-        return userService.findBySurname(surname);
+        List<User> users = userService.findBySurname(surname);
+        if (users.isEmpty()) {
+            throw new EntityNotFoundException("Users with surname " + surname + " not found");
+        }
+        return users;
     }
 
     @GetMapping("/role/")
