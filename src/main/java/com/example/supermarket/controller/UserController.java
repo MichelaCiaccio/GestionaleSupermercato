@@ -40,7 +40,11 @@ public class UserController {
 
     @GetMapping("/all")
     public List<User> getAllUser() {
-        return userService.findAll();
+        List<User> users = userService.findAll();
+        if (users.isEmpty()) {
+            throw new EntityNotFoundException("There are no Users");
+        }
+        return users;
 
     }
 
