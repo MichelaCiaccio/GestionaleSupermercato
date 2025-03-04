@@ -120,7 +120,7 @@ public class UserServiceTest {
     @Test
     void testFindBySurnameException() {
         // GIVEN
-        String surname = "nome";
+        String surname = "cognome";
 
         // WHEN
         when(userService.findBySurname(surname))
@@ -150,6 +150,21 @@ public class UserServiceTest {
         assertEquals(2, ret.size());
         assertEquals(role, ret.get(0).getRole());
         assertEquals(role, ret.get(1).getRole());
+        verify(userService, times(1)).findByRole(role);
+
+    }
+
+    @Test
+    void testFindByRoleException() {
+        // GIVEN
+        String role = "ruolo";
+
+        // WHEN
+        when(userService.findByRole(role))
+                .thenThrow(new EntityNotFoundException("Users with role " + role + " not found"));
+
+        // VERIFY
+        assertThrows(EntityNotFoundException.class, () -> userService.findByRole(role));
         verify(userService, times(1)).findByRole(role);
 
     }
