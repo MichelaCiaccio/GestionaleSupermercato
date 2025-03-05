@@ -4,7 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-import com.example.supermarket.entity.Category;
 import com.example.supermarket.entity.Product;
 
 import java.util.Optional;
@@ -17,9 +16,9 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
 
     List<Product> findByName(String name);
 
-    List<Product> findByCategory(Category category);
+    List<Product> findByCategoryName(String categoryName);
 
-    List<Product> findBySellPrice(double sellPrice);
+    List<Product> findBySellingPrice(double sellingPrice);
 
     @Query("select p from Product p join p.stocks s join s.supplier sup where sup.name= :supplierName")
     List<Product> findBySupplierName(@Param("supplierName") String supplierName);
