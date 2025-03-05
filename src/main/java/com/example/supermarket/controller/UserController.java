@@ -28,7 +28,6 @@ public class UserController {
 
     @PostMapping("/add")
     public ResponseEntity<?> createNewUser(@Valid @ModelAttribute User user) {
-
         userService.save(user);
         return ResponseEntity.ok("User save successfully");
     }

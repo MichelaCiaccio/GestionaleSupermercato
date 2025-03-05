@@ -5,6 +5,7 @@ import java.util.Comparator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -20,7 +21,12 @@ public class UserService {
     private UserRepository userRepository;
 
     public void save(User user) {
+        String operatorCode = user.getOperatorCode();
+        if (userRepository.existsById(operatorCode)) {
+            throw new DataIntegrityViolationException("User with operator code " + operatorCode + "already exists");
+        }
         userRepository.save(user);
+
     }
 
     public User findByOperatorCode(String operatorCode) {

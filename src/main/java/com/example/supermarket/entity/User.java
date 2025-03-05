@@ -2,6 +2,7 @@ package com.example.supermarket.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -14,7 +15,7 @@ import lombok.RequiredArgsConstructor;
 public class User {
 
     @Id
-    @NotNull
+    @NotNull(message = "The operator code is required")
     private String operatorCode;
 
     @NotNull(message = "The name is required")
