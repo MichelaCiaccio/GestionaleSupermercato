@@ -2,12 +2,10 @@ package com.example.supermarket.service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.Locale.Category;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.example.supermarket.entity.Product;
-import com.example.supermarket.entity.User;
 import com.example.supermarket.repo.ProductRepository;
 
 import jakarta.persistence.EntityNotFoundException;
