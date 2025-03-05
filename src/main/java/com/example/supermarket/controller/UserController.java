@@ -32,7 +32,7 @@ public class UserController {
     public ResponseEntity<?> createNewUser(@Valid @ModelAttribute User user) {
         try {
             userService.save(user);
-            return ResponseEntity.ok("User save successfully");
+            return ResponseEntity.status(HttpStatus.CREATED).body("User successfully created");
         } catch (DataIntegrityViolationException e) {
             return ResponseEntity.status(HttpStatus.CONFLICT).body("User already exists");
         }
