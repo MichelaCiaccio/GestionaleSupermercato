@@ -191,6 +191,15 @@ public class UserServiceTest {
     }
 
     @Test
+    void testFindAllException() {
+
+        when(userService.findAll()).thenThrow(new EntityNotFoundException("There are no Users"));
+
+        assertThrows(EntityNotFoundException.class, () -> userService.findAll());
+        verify(userService, times(1)).findAll();
+    }
+
+    @Test
     void testDeleteAll() {
 
         List<User> users = List.of(
