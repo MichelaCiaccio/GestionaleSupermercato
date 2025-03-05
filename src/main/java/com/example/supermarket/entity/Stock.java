@@ -1,6 +1,6 @@
 package com.example.supermarket.entity;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -25,10 +25,10 @@ public class Stock {
     private int quantity;
 
     @NotNull
-    private LocalDateTime deliverDate;
+    private LocalDate deliverDate;
 
     @NotNull
-    private LocalDateTime expirationDate;
+    private LocalDate expirationDate;
 
     @ManyToOne
     @JoinColumn(name = "product_id")
