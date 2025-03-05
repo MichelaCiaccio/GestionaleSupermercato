@@ -11,7 +11,6 @@ com/example/supermarket/entity/User.class
 com/example/supermarket/service/UserService.class
 com/example/supermarket/entity/Stock.class
 com/example/supermarket/entity/Category.class
-com/example/supermarket/repo/JpaRepository.class
 com/example/supermarket/entity/Supplier.class
 com/example/supermarket/service/CategoryService.class
 com/example/supermarket/repo/ProductRepository.class

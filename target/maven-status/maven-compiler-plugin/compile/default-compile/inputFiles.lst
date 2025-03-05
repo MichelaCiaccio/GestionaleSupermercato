@@ -14,7 +14,6 @@
 /home/utente/Scaricati/GestionaleSupermercato/src/main/java/com/example/supermarket/errorHandling/ApiError.java
 /home/utente/Scaricati/GestionaleSupermercato/src/main/java/com/example/supermarket/errorHandling/CustomRestExceptionHandler.java
 /home/utente/Scaricati/GestionaleSupermercato/src/main/java/com/example/supermarket/repo/CategoryRepository.java
-/home/utente/Scaricati/GestionaleSupermercato/src/main/java/com/example/supermarket/repo/JpaRepository.java
 /home/utente/Scaricati/GestionaleSupermercato/src/main/java/com/example/supermarket/repo/ProductRepository.java
 /home/utente/Scaricati/GestionaleSupermercato/src/main/java/com/example/supermarket/repo/UserRepository.java
 /home/utente/Scaricati/GestionaleSupermercato/src/main/java/com/example/supermarket/service/CategoryService.java
