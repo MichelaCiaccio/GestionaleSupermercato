@@ -1,5 +1,6 @@
 package com.example.supermarket.service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -52,4 +53,27 @@ public class ProductService {
         return products;
     }
 
+    public List<Product> findBySupplierName(String supplierName) {
+        List<Product> products = findBySupplierName(supplierName);
+        if (products.isEmpty()) {
+            throw new EntityNotFoundException("No product has a supplier with a name" + supplierName);
+        }
+        return products;
+    }
+
+    public List<Product> findByExpirationDate(LocalDate expirationDate) {
+        List<Product> products = productRepository.findByStocks_ExpirationDate(expirationDate);
+        if (products.isEmpty()) {
+            throw new EntityNotFoundException("No product has expiration date equals to " + expirationDate);
+        }
+        return products;
+    }
+
+    public List<Product> findByStockQuantity(int quantity) {
+        List<Product> products = productRepository.findByStocks_Quantity(quantity);
+        if (products.isEmpty()) {
+            throw new EntityNotFoundException("No product is available in quantity equals to " + quantity);
+        }
+        return products;
+    }
 }
