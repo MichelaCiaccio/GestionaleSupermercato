@@ -3,6 +3,8 @@ package com.example.supermarket.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,8 +30,12 @@ public class UserController {
 
     @PostMapping("/add")
     public ResponseEntity<?> createNewUser(@Valid @ModelAttribute User user) {
-        userService.save(user);
-        return ResponseEntity.ok("User save successfully");
+        try {
+            userService.save(user);
+            return ResponseEntity.ok("User save successfully");
+        } catch (DataIntegrityViolationException e) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("User already exists");
+        }
     }
 
     @GetMapping("/all")
