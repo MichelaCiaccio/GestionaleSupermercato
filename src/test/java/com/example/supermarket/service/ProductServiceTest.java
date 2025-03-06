@@ -130,6 +130,21 @@ public class ProductServiceTest {
     @Test
     void testFindBySellingPrice() {
 
+        // GIVEN
+        double sellingPrice = 15.24;
+        List<Product> products = List.of(
+                new Product(1, "Nome", sellingPrice, null, new HashSet<>()),
+                new Product(2, "Nome", sellingPrice, null, new HashSet<>()));
+
+        // WHEN
+        when(productService.findBySellingPrice(sellingPrice)).thenReturn(products);
+        List<Product> ret = productService.findBySellingPrice(sellingPrice);
+
+        // VERIFY
+        assertEquals(products, ret);
+        assertEquals(2, ret.size());
+        assertNotNull(ret);
+        verify(productService, times(1)).findBySellingPrice(sellingPrice);
     }
 
     @Test
