@@ -3,4 +3,5 @@
 /home/utente/Scaricati/GestionaleSupermercato/src/test/java/com/example/supermarket/TestcontainersConfiguration.java
 /home/utente/Scaricati/GestionaleSupermercato/src/test/java/com/example/supermarket/service/CategoryServiceTest.java
 /home/utente/Scaricati/GestionaleSupermercato/src/test/java/com/example/supermarket/service/HashCodeServiceTest.java
+/home/utente/Scaricati/GestionaleSupermercato/src/test/java/com/example/supermarket/service/ProductServiceTest.java
 /home/utente/Scaricati/GestionaleSupermercato/src/test/java/com/example/supermarket/service/UserServiceTest.java

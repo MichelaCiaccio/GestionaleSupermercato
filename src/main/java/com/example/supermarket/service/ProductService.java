@@ -20,7 +20,7 @@ public class ProductService {
     private ProductRepository productRepository;
 
     public void save(Product product) {
-        if (findById(product.getId()).isPresent()) {
+        if (productRepository.existsById(product.getId())) {
             throw new DataIntegrityViolationException("Product with id " + product.getId() + " already exists");
         }
         productRepository.save(product);
