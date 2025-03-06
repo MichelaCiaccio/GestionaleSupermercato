@@ -17,7 +17,7 @@ public class ProductService {
     private ProductRepository productRepository;
 
     public void save(Product product) {
-        if(findById(product.getId()).isEmpty()){
+        if (findById(product.getId()).isEmpty()) {
             productRepository.save(product);
         }
 
@@ -48,7 +48,7 @@ public class ProductService {
         return products;
     }
 
-    public List<Product> findByCategory(String categoryName) {
+    public List<Product> findByCategoryName(String categoryName) {
         List<Product> products = productRepository.findByCategoryName(categoryName);
         if (products.isEmpty()) {
             throw new EntityNotFoundException("No product has a category with the name " + categoryName);
@@ -89,14 +89,14 @@ public class ProductService {
     }
 
     public void deleteById(int id) {
-        if(findById(id).isEmpty()){
+        if (findById(id).isEmpty()) {
             throw new EntityNotFoundException("No product with this id to delete");
         }
         productRepository.deleteById(id);
     }
 
     public void deleteAll() {
-        if(findAll().isEmpty()){
+        if (findAll().isEmpty()) {
             throw new EntityNotFoundException("There are no products to delete");
         }
         productRepository.deleteAll();

@@ -2,11 +2,13 @@ package com.example.supermarket.service;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.Assert.assertNull;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
@@ -15,7 +17,10 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+
 import com.example.supermarket.entity.Product;
+
+import jakarta.persistence.EntityNotFoundException;
 
 @ExtendWith(MockitoExtension.class)
 public class ProductServiceTest {
@@ -79,16 +84,6 @@ public class ProductServiceTest {
     }
 
     @Test
-    void testFindByCategory() {
-
-    }
-
-    @Test
-    void testFindByExpirationDate() {
-
-    }
-
-    @Test
     void testFindById() {
 
         // GIVEN
@@ -104,6 +99,60 @@ public class ProductServiceTest {
         assertNotNull(ret);
         verify(productService, times(1)).findById(id);
 
+    }
+
+    @Test
+    void testFindByIdException() {
+        // GIVEN
+        int id = 1;
+
+        // WHEN
+        when(productService.findById(id)).thenThrow(new EntityNotFoundException("Product with is" + id + " not found"));
+
+        // VERIFY
+        assertThrows(EntityNotFoundException.class, () -> productService.findById(id));
+        verify(productService, times(1)).findById(id);
+
+    }
+
+    @Test
+    void testfindByCategoryName() {
+
+        // GIVEN
+        String categoryName = "Categoria-A";
+        List<Product> products = List.of(
+                new Product(1, "Nome", 22, null, new HashSet<>()),
+                new Product(2, "Nome", 22, null, new HashSet<>()));
+
+        // WHEN
+        when(productService.findByCategoryName(categoryName)).thenReturn(products);
+        List<Product> ret = productService.findByCategoryName(categoryName);
+
+        // VERIFY
+        assertEquals(products, ret);
+        assertNotNull(ret);
+        assertEquals(2, ret.size());
+        verify(productService, times(1)).findByCategoryName(categoryName);
+    }
+
+    @Test
+    void testFindByExpirationDate() {
+
+        // GIVEN
+        LocalDate expirationDate = LocalDate.now();
+        List<Product> products = List.of(
+                new Product(1, "Nome", 22, null, new HashSet<>()),
+                new Product(2, "Nome", 22, null, new HashSet<>()));
+
+        // WHEN
+        when(productService.findByExpirationDate(expirationDate)).thenReturn(products);
+        List<Product> ret = productService.findByExpirationDate(expirationDate);
+
+        // VERIFY
+        assertEquals(products, ret);
+        assertNotNull(ret);
+        assertEquals(2, ret.size());
+        verify(productService, times(1)).findByExpirationDate(expirationDate);
     }
 
     @Test
@@ -150,11 +199,42 @@ public class ProductServiceTest {
     @Test
     void testFindByStockQuantity() {
 
+        // GIVEN
+        int quantity = 15;
+        List<Product> products = List.of(
+                new Product(1, "Nome", 22, null, new HashSet<>()),
+                new Product(2, "Nome", 22, null, new HashSet<>()));
+
+        // WHEN
+        when(productService.findByStockQuantity(quantity)).thenReturn(products);
+        List<Product> ret = productService.findByStockQuantity(quantity);
+
+        // VERIFY
+        assertEquals(products, ret);
+        assertNotNull(ret);
+        assertEquals(2, ret.size());
+        verify(productService, times(1)).findByStockQuantity(quantity);
+
     }
 
     @Test
     void testFindBySupplierName() {
 
+        // GIVEN
+        String supplierName = "Nome Fornitore";
+        List<Product> products = List.of(
+                new Product(1, "Nome", 22, null, new HashSet<>()),
+                new Product(2, "Nome", 22, null, new HashSet<>()));
+
+        // WHEN
+        when(productService.findBySupplierName(supplierName)).thenReturn(products);
+        List<Product> ret = productService.findBySupplierName(supplierName);
+
+        // VERIFY
+        assertEquals(products, ret);
+        assertNotNull(ret);
+        assertEquals(2, ret.size());
+        verify(productService, times(1)).findBySupplierName(supplierName);
     }
 
     @Test
