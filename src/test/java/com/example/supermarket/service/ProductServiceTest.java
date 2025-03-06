@@ -91,10 +91,39 @@ public class ProductServiceTest {
     @Test
     void testFindById() {
 
+        // GIVEN
+        int id = 1;
+        Product product = new Product(id, "Nome", 12, null, new HashSet<>());
+
+        // WHEN
+        when(productService.findById(id)).thenReturn(Optional.of(product));
+        Optional<Product> ret = productService.findById(id);
+
+        // VERIFY
+        assertEquals(product.getId(), ret.get().getId());
+        assertNotNull(ret);
+        verify(productService, times(1)).findById(id);
+
     }
 
     @Test
     void testFindByName() {
+
+        // GIVEN
+        String name = "nome";
+        List<Product> products = List.of(
+                new Product(1, name, 12, null, new HashSet<>()),
+                new Product(2, name, 15, null, new HashSet<>()));
+
+        // WHEN
+        when(productService.findByName(name)).thenReturn(products);
+        List<Product> ret = productService.findByName(name);
+
+        // VERIFY
+        assertEquals(products, ret);
+        assertNotNull(ret);
+        assertEquals(2, ret.size());
+        verify(productService, times(1)).findByName(name);
 
     }
 
