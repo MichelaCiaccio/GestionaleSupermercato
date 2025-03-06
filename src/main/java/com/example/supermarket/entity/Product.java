@@ -11,14 +11,14 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.NotNull;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.RequiredArgsConstructor;
 
 @Entity
-@Getter
-@Setter
-@NoArgsConstructor
+@Data
+@AllArgsConstructor
+@RequiredArgsConstructor
 public class Product {
 
     @Id
