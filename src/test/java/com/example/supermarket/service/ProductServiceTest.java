@@ -23,6 +23,15 @@ public class ProductServiceTest {
 
     @Test
     void testDeleteAll() {
+    }
+
+    @Test
+    void testDeleteById() {
+
+    }
+
+    @Test
+    void testFindAll() {
         // GIVEN
         List<Product> products = List.of(
                 new Product(1, "Nome", 12, null, new HashSet<>()),
@@ -36,16 +45,6 @@ public class ProductServiceTest {
         assertNotNull(ret);
         assertEquals(2, ret.size());
         verify(productService, times(1)).findAll();
-    }
-
-    @Test
-    void testDeleteById() {
-
-    }
-
-    @Test
-    void testFindAll() {
-
     }
 
     @Test
