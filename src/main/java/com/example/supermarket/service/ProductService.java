@@ -20,6 +20,14 @@ public class ProductService {
         productRepository.save(product);
     }
 
+    public List<Product> findAll() {
+        List<Product> products = productRepository.findAll();
+        if (products.isEmpty()) {
+            throw new EntityNotFoundException("There are no products");
+        }
+        return products;
+    }
+
     public Optional<Product> findById(Integer id) {
         Optional<Product> product = productRepository.findById(id);
         if (!product.isPresent()) {
@@ -76,4 +84,15 @@ public class ProductService {
         }
         return products;
     }
+
+    public void deleteById(int id) {
+        this.findById(id);
+        productRepository.deleteById(id);
+    }
+
+    public void deleteAll() {
+        this.findAll();
+        productRepository.deleteAll();
+    }
+
 }
