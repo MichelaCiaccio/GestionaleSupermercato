@@ -17,7 +17,10 @@ public class ProductService {
     private ProductRepository productRepository;
 
     public void save(Product product) {
-        productRepository.save(product);
+        if(findById(product.getId()).isEmpty()){
+            productRepository.save(product);
+        }
+
     }
 
     public List<Product> findAll() {
@@ -30,7 +33,7 @@ public class ProductService {
 
     public Optional<Product> findById(Integer id) {
         Optional<Product> product = productRepository.findById(id);
-        if (!product.isPresent()) {
+        if (product.isEmpty()) {
             throw new EntityNotFoundException("Product with id " + id + " not found");
         }
         return product;
@@ -86,12 +89,16 @@ public class ProductService {
     }
 
     public void deleteById(int id) {
-        this.findById(id);
+        if(findById(id).isEmpty()){
+            throw new EntityNotFoundException("No product with this id to delete");
+        }
         productRepository.deleteById(id);
     }
 
     public void deleteAll() {
-        this.findAll();
+        if(findAll().isEmpty()){
+            throw new EntityNotFoundException("There are no products to delete");
+        }
         productRepository.deleteAll();
     }
 
