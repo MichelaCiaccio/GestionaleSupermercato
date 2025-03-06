@@ -29,7 +29,7 @@ public class Stock {
     private int quantity;
 
     @NotNull
-    private LocalDate deliverDate;
+    private LocalDate deliveryDate;
 
     @NotNull
     private LocalDate expirationDate;

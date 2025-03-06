@@ -5,22 +5,25 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.stereotype.Service;
 
 import com.example.supermarket.entity.Product;
 import com.example.supermarket.repo.ProductRepository;
 
 import jakarta.persistence.EntityNotFoundException;
 
+@Service
 public class ProductService {
 
     @Autowired
     private ProductRepository productRepository;
 
     public void save(Product product) {
-        if (findById(product.getId()).isEmpty()) {
-            productRepository.save(product);
+        if (findById(product.getId()).isPresent()) {
+            throw new DataIntegrityViolationException("Product with id " + product.getId() + " already exists");
         }
-
+        productRepository.save(product);
     }
 
     public List<Product> findAll() {

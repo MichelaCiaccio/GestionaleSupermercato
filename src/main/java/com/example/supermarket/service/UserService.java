@@ -23,7 +23,7 @@ public class UserService {
     public void save(User user) {
         String operatorCode = user.getOperatorCode();
         if (userRepository.existsById(operatorCode)) {
-            throw new DataIntegrityViolationException("User with operator code " + operatorCode + "already exists");
+            throw new DataIntegrityViolationException("User with operator code " + operatorCode + " already exists");
         }
         userRepository.save(user);
 

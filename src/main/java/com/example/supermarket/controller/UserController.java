@@ -34,7 +34,7 @@ public class UserController {
             userService.save(user);
             return ResponseEntity.status(HttpStatus.CREATED).body("User successfully created");
         } catch (DataIntegrityViolationException e) {
-            return ResponseEntity.status(HttpStatus.CONFLICT).body("User already exists");
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());
         }
     }
 
