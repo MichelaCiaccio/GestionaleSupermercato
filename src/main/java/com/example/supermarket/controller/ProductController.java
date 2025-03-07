@@ -44,7 +44,7 @@ public class ProductController {
     }
 
     @GetMapping("/id/")
-    public Optional<Product> getMethodName(@RequestParam int id) {
+    public Optional<Product> findById(@RequestParam int id) {
         return productService.findById(id);
     }
 
