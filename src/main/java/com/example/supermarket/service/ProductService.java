@@ -40,6 +40,9 @@ public class ProductService {
     }
 
     public List<Product> findByName(String name) {
+        if (name.trim().isEmpty()) {
+            throw new IllegalArgumentException("Name field is required for the search");
+        }
         List<Product> products = productRepository.findByName(name);
         if (products.isEmpty()) {
             throw new EntityNotFoundException("Product with name " + name + " not found");

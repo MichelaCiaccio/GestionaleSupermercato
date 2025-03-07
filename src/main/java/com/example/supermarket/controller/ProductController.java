@@ -48,4 +48,9 @@ public class ProductController {
         return productService.findById(id);
     }
 
+    @GetMapping("/name/")
+    public List<Product> findByName(@RequestParam String name) {
+        return productService.findByName(name);
+    }
+
 }
