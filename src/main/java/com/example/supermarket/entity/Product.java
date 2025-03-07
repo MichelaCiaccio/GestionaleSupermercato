@@ -25,10 +25,10 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-    @NotNull
+    @NotNull(message = "The name is required")
     private String name;
 
-    @NotNull
+    @NotNull(message = "The selling price is required")
     private double sellingPrice;
 
     @ManyToOne

@@ -9,6 +9,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
@@ -20,15 +21,15 @@ import lombok.RequiredArgsConstructor;
 public class Category {
 
     @Id
-    @NotNull
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-    @NotNull
+    @NotNull(message = "The name is required")
     @Column(unique = true)
     private String name;
 
     @OneToMany(mappedBy = "category")
-    @NotNull
+    @Size(min = 1, message = "The category must contain at least one product")
+    @NotNull(message = "The products list must not be null")
     private Set<Product> products;
 }
