@@ -1,4 +1,5 @@
 /home/utente/Scaricati/GestionaleSupermercato/src/main/java/com/example/supermarket/SupermarketApplication.java
+/home/utente/Scaricati/GestionaleSupermercato/src/main/java/com/example/supermarket/controller/CategoryController.java
 /home/utente/Scaricati/GestionaleSupermercato/src/main/java/com/example/supermarket/controller/ProductController.java
 /home/utente/Scaricati/GestionaleSupermercato/src/main/java/com/example/supermarket/controller/UserController.java
 /home/utente/Scaricati/GestionaleSupermercato/src/main/java/com/example/supermarket/entity/Category.java
@@ -16,6 +17,7 @@
 /home/utente/Scaricati/GestionaleSupermercato/src/main/java/com/example/supermarket/errorHandling/CustomRestExceptionHandler.java
 /home/utente/Scaricati/GestionaleSupermercato/src/main/java/com/example/supermarket/repo/CategoryRepository.java
 /home/utente/Scaricati/GestionaleSupermercato/src/main/java/com/example/supermarket/repo/ProductRepository.java
+/home/utente/Scaricati/GestionaleSupermercato/src/main/java/com/example/supermarket/repo/StockService.java
 /home/utente/Scaricati/GestionaleSupermercato/src/main/java/com/example/supermarket/repo/UserRepository.java
 /home/utente/Scaricati/GestionaleSupermercato/src/main/java/com/example/supermarket/service/CategoryService.java
 /home/utente/Scaricati/GestionaleSupermercato/src/main/java/com/example/supermarket/service/HashCodeService.java

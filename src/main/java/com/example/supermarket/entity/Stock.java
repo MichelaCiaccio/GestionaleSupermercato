@@ -22,7 +22,6 @@ import lombok.RequiredArgsConstructor;
 public class Stock {
 
     @Id
-    @NotNull
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
