@@ -5,11 +5,16 @@ import org.springframework.stereotype.Repository;
 
 import com.example.supermarket.entity.Category;
 
+import java.util.List;
+import java.util.Optional;
+
 @Repository
 public interface CategoryRepository extends JpaRepository<Category, Integer> {
 
-    Category findById(int id);
+    List<Category> findAll();
 
-    Category findByName(String name);
+    Optional<Category> findById(Integer id);
+
+    Optional<Category> findByName(String name);
 
 }

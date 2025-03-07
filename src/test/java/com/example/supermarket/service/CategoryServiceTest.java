@@ -5,6 +5,8 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import java.util.Optional;
+
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
@@ -28,10 +30,10 @@ public class CategoryServiceTest {
         category.setId(id);
 
         // WHEN
-        when(categoryRepository.findById(id)).thenReturn(category);
-        Category ret = categoryRepository.findById(id);
+        when(categoryRepository.findById(id)).thenReturn(Optional.of(category));
+        Optional<Category> ret = categoryRepository.findById(id);
 
-        assertEquals(ret.getId(), category.getId());
+        assertEquals(ret.get().getId(), category.getId());
         verify(categoryRepository, times(1)).findById(id);
     }
 }
