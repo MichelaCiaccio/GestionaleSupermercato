@@ -4,7 +4,7 @@ services:
     container_name: 'supermarket-mysql'
     image: 'mysql:latest'
     environment:
-      - 'MYSQL_DATABASE=supermarket_db'
+      - 'MYSQL_DATABASE=supermercato_db'
       - 'MYSQL_PASSWORD=secret'
       - 'MYSQL_ROOT_PASSWORD=verysecret'
       - 'MYSQL_USER=myuser'
