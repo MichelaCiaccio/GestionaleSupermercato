@@ -2,6 +2,7 @@ package com.example.supermarket.entity;
 
 import java.util.Set;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -24,6 +25,7 @@ public class Category {
     private Integer id;
 
     @NotNull
+    @Column(unique = true)
     private String name;
 
     @OneToMany(mappedBy = "category")
