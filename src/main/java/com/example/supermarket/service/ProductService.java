@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import com.example.supermarket.entity.Product;
@@ -20,9 +19,6 @@ public class ProductService {
     private ProductRepository productRepository;
 
     public void save(Product product) {
-        if (productRepository.existsById(product.getId())) {
-            throw new DataIntegrityViolationException("Product with id " + product.getId() + " already exists");
-        }
         productRepository.save(product);
     }
 
@@ -68,7 +64,7 @@ public class ProductService {
     }
 
     public List<Product> findBySupplierName(String supplierName) {
-        List<Product> products = findBySupplierName(supplierName);
+        List<Product> products = productRepository.findBySupplierName(supplierName);
         if (products.isEmpty()) {
             throw new EntityNotFoundException("No product has a supplier with a name" + supplierName);
         }
