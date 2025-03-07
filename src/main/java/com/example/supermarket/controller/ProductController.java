@@ -25,7 +25,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-//TODO improve headers feoihfeiofj
+//TODO improve headers
 @RestController
 @RequestMapping(path = "/product/")
 public class ProductController {
@@ -39,7 +39,7 @@ public class ProductController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<?> createNewProdutct(@Valid @ModelAttribute Product product) {
+    public ResponseEntity<?> createNewProduct(@Valid @ModelAttribute Product product) {
         try {
             productService.save(product);
             return ResponseEntity.status(HttpStatus.CREATED).body("Product save successfully");

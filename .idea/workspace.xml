@@ -4,53 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7c4caa73-20ab-4765-9784-19538829fb77" name="Changes" comment="">
+    <list default="true" id="7c4caa73-20ab-4765-9784-19538829fb77" name="Changes" comment="test">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/controller/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/controller/ProductController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/supermarket/SupermarketApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/supermarket/SupermarketApplication.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/supermarket/controller/ProductController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/supermarket/controller/ProductController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/supermarket/controller/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/supermarket/controller/UserController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/supermarket/db/migration/V1__create_initial_tables.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/supermarket/db/migration/V2__Add_receiptCode_column_to_receipt.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/supermarket/entity/Category.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/supermarket/entity/Category.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/supermarket/entity/Deal.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/supermarket/entity/Deal.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/supermarket/entity/Discount.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/supermarket/entity/Discount.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/supermarket/entity/Product.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/supermarket/entity/Product.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/supermarket/entity/ProductSale.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/supermarket/entity/ProductSale.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/supermarket/entity/Receipt.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/supermarket/entity/Receipt.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/supermarket/entity/Sale.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/supermarket/entity/Sale.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/supermarket/entity/Stock.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/supermarket/entity/Stock.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/supermarket/entity/Supplier.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/supermarket/entity/Supplier.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/supermarket/entity/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/supermarket/entity/User.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/supermarket/entity/enums/DealType.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/supermarket/entity/enums/DealType.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/supermarket/errorHandling/ApiError.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/supermarket/errorHandling/ApiError.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/supermarket/errorHandling/CustomRestExceptionHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/supermarket/errorHandling/CustomRestExceptionHandler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/supermarket/repo/CategoryRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/supermarket/repo/CategoryRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/supermarket/repo/ProductRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/supermarket/repo/ProductRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/supermarket/repo/UserRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/supermarket/repo/UserRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/supermarket/service/CategoryService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/supermarket/service/CategoryService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/supermarket/service/HashCodeService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/supermarket/service/HashCodeService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/supermarket/service/ProductService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/supermarket/service/ProductService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/supermarket/service/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/supermarket/service/UserService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/supermarket-0.0.1-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/supermarket-0.0.1-SNAPSHOT.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/supermarket-0.0.1-SNAPSHOT.jar.original" beforeDir="false" afterPath="$PROJECT_DIR$/target/supermarket-0.0.1-SNAPSHOT.jar.original" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-com.example.supermarket.SupermarketApplicationTests.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-com.example.supermarket.SupermarketApplicationTests.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-com.example.supermarket.service.CategoryServiceTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-com.example.supermarket.service.CategoryServiceTest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-com.example.supermarket.service.HashCodeServiceTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-com.example.supermarket.service.HashCodeServiceTest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-com.example.supermarket.service.UserServiceTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-com.example.supermarket.service.UserServiceTest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/surefire-reports/com.example.supermarket.SupermarketApplicationTests.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/com.example.supermarket.SupermarketApplicationTests.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/surefire-reports/com.example.supermarket.service.CategoryServiceTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/com.example.supermarket.service.CategoryServiceTest.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/surefire-reports/com.example.supermarket.service.UserServiceTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/com.example.supermarket.service.UserServiceTest.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/example/supermarket/SupermarketApplicationTests.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/example/supermarket/SupermarketApplicationTests.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/example/supermarket/TestSupermarketApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/example/supermarket/TestSupermarketApplication.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/example/supermarket/TestcontainersConfiguration.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/example/supermarket/TestcontainersConfiguration.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/example/supermarket/service/CategoryServiceTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/example/supermarket/service/CategoryServiceTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/example/supermarket/service/HashCodeServiceTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/example/supermarket/service/HashCodeServiceTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/example/supermarket/service/ProductServiceTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/example/supermarket/service/ProductServiceTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/example/supermarket/service/UserServiceTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/example/supermarket/service/UserServiceTest.class" afterDir="false" />
+    </list>
+    <list id="6499c595-af5e-4d71-8893-8354dc300f9f" name="No commit" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,6 +36,19 @@
     &quot;accountId&quot;: &quot;8815fa48-527b-49b8-9366-8dda84346fa2&quot;
   }
 }</component>
+  <component name="LineStatusTrackerManager">
+    <file path="$PROJECT_DIR$/.idea/workspace.xml">
+      <ranges>
+        <range start1="6" end1="7" start2="6" end2="7" changelist="6499c595-af5e-4d71-8893-8354dc300f9f" />
+        <range start1="8" end1="53" start2="8" end2="8" changelist="6499c595-af5e-4d71-8893-8354dc300f9f" />
+        <range start1="54" end1="54" start2="9" end2="12" changelist="7c4caa73-20ab-4765-9784-19538829fb77" />
+        <range start1="104" end1="105" start2="62" end2="63" changelist="6499c595-af5e-4d71-8893-8354dc300f9f" />
+        <range start1="124" end1="124" start2="82" end2="83" changelist="7c4caa73-20ab-4765-9784-19538829fb77" />
+        <range start1="129" end1="129" start2="88" end2="97" changelist="6499c595-af5e-4d71-8893-8354dc300f9f" />
+        <range start1="130" end1="130" start2="98" end2="102" changelist="6499c595-af5e-4d71-8893-8354dc300f9f" />
+      </ranges>
+    </file>
+  </component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
@@ -102,7 +74,7 @@
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "reference.settingsdialog.IDE.editor.colors.VCS"
+    "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable"
   }
 }]]></component>
   <component name="RunManager">
@@ -122,11 +94,25 @@
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="7c4caa73-20ab-4765-9784-19538829fb77" name="Changes" comment="" />
+      <changelist id="6499c595-af5e-4d71-8893-8354dc300f9f" name="No commit" comment="" />
       <created>1741276131044</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1741276131044</updated>
     </task>
+    <task id="LOCAL-00001" summary="test">
+      <option name="closed" value="true" />
+      <created>1741348037760</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1741348037760</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="test" />
+    <option name="LAST_COMMIT_MESSAGE" value="test" />
   </component>
 </project>
