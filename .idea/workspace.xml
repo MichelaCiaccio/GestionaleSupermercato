@@ -5,12 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7c4caa73-20ab-4765-9784-19538829fb77" name="Changes" comment="test">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/controller/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/controller/ProductController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/repo/CategoryRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/repo/CategoryRepository.java" afterDir="false" />
     </list>
-    <list id="6499c595-af5e-4d71-8893-8354dc300f9f" name="No commit" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list id="6499c595-af5e-4d71-8893-8354dc300f9f" name="No commit" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -36,19 +33,6 @@
     &quot;accountId&quot;: &quot;8815fa48-527b-49b8-9366-8dda84346fa2&quot;
   }
 }</component>
-  <component name="LineStatusTrackerManager">
-    <file path="$PROJECT_DIR$/.idea/workspace.xml">
-      <ranges>
-        <range start1="6" end1="7" start2="6" end2="7" changelist="6499c595-af5e-4d71-8893-8354dc300f9f" />
-        <range start1="8" end1="53" start2="8" end2="8" changelist="6499c595-af5e-4d71-8893-8354dc300f9f" />
-        <range start1="54" end1="54" start2="9" end2="12" changelist="7c4caa73-20ab-4765-9784-19538829fb77" />
-        <range start1="104" end1="105" start2="62" end2="63" changelist="6499c595-af5e-4d71-8893-8354dc300f9f" />
-        <range start1="124" end1="124" start2="82" end2="83" changelist="7c4caa73-20ab-4765-9784-19538829fb77" />
-        <range start1="129" end1="129" start2="88" end2="97" changelist="6499c595-af5e-4d71-8893-8354dc300f9f" />
-        <range start1="130" end1="130" start2="98" end2="102" changelist="6499c595-af5e-4d71-8893-8354dc300f9f" />
-      </ranges>
-    </file>
-  </component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
@@ -110,6 +94,17 @@
     </task>
     <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="test" />
