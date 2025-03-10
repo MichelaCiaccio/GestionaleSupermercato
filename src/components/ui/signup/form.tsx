@@ -10,10 +10,9 @@ import {
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { DarkModeToggle } from '../dark-mode-toggle';
-import { ChangePasswordButton } from './change-password-button';
 import Link from 'next/link';
 
-export function LoginForm({
+export function SignUpForm({
   className,
   ...props
 }: React.ComponentPropsWithoutRef<'div'>) {
@@ -22,9 +21,9 @@ export function LoginForm({
       <Card>
         <CardHeader className="flex flex-row justify-between gap-4">
           <div className="flex flex-col gap-1.5">
-            <CardTitle className="text-2xl">Login</CardTitle>
+            <CardTitle className="text-2xl">Sign Up</CardTitle>
             <CardDescription>
-              Enter your email below to login to your account
+              Enter your operator code to register your new account!
             </CardDescription>
           </div>
           <DarkModeToggle />
@@ -33,29 +32,22 @@ export function LoginForm({
           <form>
             <div className="flex flex-col gap-6">
               <div className="grid gap-2">
-                <Label htmlFor="email">Email</Label>
+                <Label htmlFor="op-code">Operator Code</Label>
                 <Input
-                  id="email"
-                  type="email"
-                  placeholder="m@example.com"
+                  id="op-code"
+                  type="text"
+                  placeholder="e.g. ak923ihfaofdas"
                   required
                 />
               </div>
-              <div className="grid gap-2">
-                <div className="flex items-center">
-                  <Label htmlFor="password">Password</Label>
-                </div>
-                <Input id="password" type="password" required />
-                <ChangePasswordButton />
-              </div>
               <Button type="submit" className="w-full">
-                Login
+                Sign Up
               </Button>
             </div>
             <div className="mt-4 text-center text-sm">
-              Do you have an operator code?{' '}
-              <Link href="/signup" className="underline underline-offset-4">
-                Sign up
+              Already registered?{' '}
+              <Link href="/login" className="underline underline-offset-4">
+                Login
               </Link>
             </div>
           </form>
