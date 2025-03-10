@@ -1,1 +1,1 @@
-# GestionaleSupermercato
+# GestionaleSupermercato - Frontend
