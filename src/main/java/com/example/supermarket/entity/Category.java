@@ -1,5 +1,6 @@
 package com.example.supermarket.entity;
 
+import java.util.List;
 import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -31,9 +32,4 @@ public class Category {
     @Column(unique = true)
     private String name;
 
-    @OneToMany(mappedBy = "category")
-    @Size(min = 1, message = "The category must contain at least one product")
-    @Nullable
-    @JsonManagedReference
-    private Set<Product> products;
 }

@@ -33,8 +33,8 @@ public class CategoryServiceTest {
 
         // GIVEN
         List<Category> categories = List.of(
-                new Category(1, "Fruits", new HashSet<>()),
-                new Category(2, "Vegetables", new HashSet<>()));
+                new Category(1, "Fruits"),
+                new Category(2, "Vegetables"));
 
         // WHEN
         when(categoryService.findAll()).thenReturn(categories);
@@ -63,7 +63,7 @@ public class CategoryServiceTest {
 
         // GIVEN
         int id = 1;
-        Category category = new Category(1, "Fruits", new HashSet<>());
+        Category category = new Category(1, "Fruits");
 
         // WHEN
         when(categoryService.findById(id)).thenReturn(category);
@@ -97,8 +97,8 @@ public class CategoryServiceTest {
 
         // GIVEN
         List<Category> categories = List.of(
-                new Category(1, "Fruits", new HashSet<>()),
-                new Category(2, "Vegetables", new HashSet<>()));
+                new Category(1, "Fruits"),
+                new Category(2, "Vegetables"));
 
         // WHEN
         when(categoryService.findAll()).thenReturn(categories);
@@ -126,7 +126,7 @@ public class CategoryServiceTest {
 
         // GIVEN
         int id = 1;
-        Category category = new Category(1, "Fruits", new HashSet<>());
+        Category category = new Category(1, "Fruits");
 
         // WHEN
         when(categoryService.findById(id)).thenReturn(category);
@@ -159,7 +159,7 @@ public class CategoryServiceTest {
 
         // GIVEN
         String name = "Categoria";
-        Category category = new Category(1, name, new HashSet<>());
+        Category category = new Category(1, name);
 
         // WHEN
         when(categoryService.findByName(name)).thenReturn(category);
@@ -191,7 +191,7 @@ public class CategoryServiceTest {
     void testSave() {
 
         // GIVEN
-        Category category = new Category(1, "Categoria", new HashSet<>());
+        Category category = new Category(1, "Categoria");
 
         // WHEN
         categoryService.save(category);

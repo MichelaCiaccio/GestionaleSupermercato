@@ -43,7 +43,7 @@ public class ProductController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<?> createNewProduct(@Valid @ModelAttribute Product product) {
+    public ResponseEntity<?> createNewProduct(@Valid @RequestBody Product product) {
         try {
             productService.save(product);
             return ResponseEntity.status(HttpStatus.CREATED).body("Product save successfully");

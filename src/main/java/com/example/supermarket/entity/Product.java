@@ -1,5 +1,6 @@
 package com.example.supermarket.entity;
 
+import java.math.BigDecimal;
 import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
@@ -13,6 +14,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import lombok.AllArgsConstructor;
@@ -33,17 +35,15 @@ public class Product {
     private String name;
 
     @NotNull(message = "The selling price is required")
-    @Positive(message = "The selling price must be more than 0")
-    private double sellingPrice;
+    private BigDecimal sellingPrice;
 
     @ManyToOne
     @JoinColumn(name = "category_id")
     @Nullable
-    @JsonBackReference
     private Category category;
 
     @OneToMany(mappedBy = "product")
-    @NotNull
+    @Nullable
     private Set<Stock> stocks;
 
 }
