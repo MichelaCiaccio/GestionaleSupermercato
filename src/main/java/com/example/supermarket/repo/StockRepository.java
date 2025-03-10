@@ -18,7 +18,7 @@ public interface StockRepository extends JpaRepository<Stock, Integer> {
 
     List<Stock> findByProductName(String name);
 
-    List<Stock> findBySupplier(Supplier supplier);
+    List<Stock> findBySupplierName(String namej);
 
     List<Stock> findByProductAndSupplier(Product product, Supplier supplier);
 

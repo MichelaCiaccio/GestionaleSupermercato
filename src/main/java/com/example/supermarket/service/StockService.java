@@ -19,7 +19,7 @@ public class StockService {
     public List<Stock> findAll() {
         List<Stock> stocks = stockRepository.findAll();
         if (stocks.isEmpty()) {
-            throw new EntityNotFoundException("Thera are no stocks");
+            throw new EntityNotFoundException("There are no stocks");
         }
         return stocks;
     }
@@ -31,4 +31,16 @@ public class StockService {
         }
         return stocks;
     }
+
+
+    public List<Stock> findBySupplierName(String name){
+            List<Stock> stocks = stockRepository.findBySupplierName(name);
+            if(stocks.isEmpty()){
+                 throw new EntityNotFoundException("There are no stocks from supplier with name " + name);
+            }
+            return  stocks;
+        }
+
+
+
 }
