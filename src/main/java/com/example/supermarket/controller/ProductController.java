@@ -23,6 +23,8 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @RestController
@@ -45,6 +47,17 @@ public class ProductController {
         } catch (DataIntegrityViolationException e) {
             return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());
         }
+    }
+
+    @PutMapping(path = "/id/")
+    public ResponseEntity<?> updateProduct(@RequestParam int id, @RequestBody Product modProduct) {
+        Product product = productService.findById(id).get();
+        product.setName(modProduct.getName());
+        product.setSellingPrice(modProduct.getSellingPrice());
+        product.setStocks(modProduct.getStocks());
+        product.setCategory(modProduct.getCategory());
+        productService.save(product);
+        return ResponseEntity.ok(product.getName() + " saved successfully");
     }
 
     @GetMapping("/id/")

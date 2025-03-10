@@ -2,6 +2,9 @@ package com.example.supermarket.entity;
 
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+import io.micrometer.common.lang.Nullable;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -30,6 +33,7 @@ public class Category {
 
     @OneToMany(mappedBy = "category")
     @Size(min = 1, message = "The category must contain at least one product")
-    @NotNull(message = "The products list must not be null")
+    @Nullable
+    @JsonManagedReference
     private Set<Product> products;
 }

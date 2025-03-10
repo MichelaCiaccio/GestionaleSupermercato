@@ -2,8 +2,11 @@ package com.example.supermarket.entity;
 
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import io.micrometer.common.lang.Nullable;
 import jakarta.persistence.Entity;
+
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -34,6 +37,7 @@ public class Product {
     @ManyToOne
     @JoinColumn(name = "category_id")
     @Nullable
+    @JsonBackReference
     private Category category;
 
     @OneToMany(mappedBy = "product")
