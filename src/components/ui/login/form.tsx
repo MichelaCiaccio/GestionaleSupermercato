@@ -10,6 +10,7 @@ import {
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { DarkModeToggle } from '../dark-mode-toggle';
+import { ChangePasswordButton } from './change-password-button';
 
 export function LoginForm({
   className,
@@ -44,12 +45,7 @@ export function LoginForm({
                   <Label htmlFor="password">Password</Label>
                 </div>
                 <Input id="password" type="password" required />
-                <a
-                  href="#"
-                  className="inline-block text-sm underline-offset-4 hover:underline"
-                >
-                  Forgot your password?
-                </a>
+                <ChangePasswordButton />
               </div>
               <Button type="submit" className="w-full">
                 Login
