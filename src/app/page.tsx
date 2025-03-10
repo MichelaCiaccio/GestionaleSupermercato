@@ -1,3 +1,3 @@
 export default function Home() {
-  return <div>Hello world!</div>;
+  return null; // Since '/' will be redirected to login, we don't render anything
 }
