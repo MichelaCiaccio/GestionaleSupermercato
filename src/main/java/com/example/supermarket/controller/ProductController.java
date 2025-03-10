@@ -27,7 +27,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
-//TODO 
+//TO DO 
 // Migliorare gli header delle richieste
 // Mostrare le categorie nella findAll dei product
 @RestController
