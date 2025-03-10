@@ -14,6 +14,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
@@ -32,6 +33,7 @@ public class Product {
     private String name;
 
     @NotNull(message = "The selling price is required")
+    @Positive(message = "The selling price must be more than 0")
     private double sellingPrice;
 
     @ManyToOne

@@ -53,14 +53,13 @@ public class ProductController {
     }
 
     @PutMapping(path = "/id/")
-    public ResponseEntity<?> updateProduct(@RequestParam int id, @RequestBody Product modProduct) {
-        Product product = productService.findById(id).get();
-        product.setName(modProduct.getName());
-        product.setSellingPrice(modProduct.getSellingPrice());
-        product.setStocks(modProduct.getStocks());
-        product.setCategory(modProduct.getCategory());
-        productService.save(product);
-        return ResponseEntity.ok(product.getName() + " saved successfully");
+    public ResponseEntity<?> updateProduct(@Valid @RequestBody Product modProduct, @RequestParam int id) {
+        try {
+            productService.updateProduct(id, modProduct);
+            return ResponseEntity.ok(modProduct.getName() + " updated successfully");
+        } catch (DataIntegrityViolationException e) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).body((e.getMessage()));
+        }
     }
 
     @GetMapping("/id/")
