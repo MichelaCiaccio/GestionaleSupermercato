@@ -7,7 +7,9 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.supermarket.entity.Category;
 import com.example.supermarket.entity.Product;
+import com.example.supermarket.repo.CategoryRepository;
 import com.example.supermarket.repo.ProductRepository;
 
 import jakarta.persistence.EntityNotFoundException;
@@ -18,8 +20,17 @@ public class ProductService {
     @Autowired
     private ProductRepository productRepository;
 
+    @Autowired
+    private CategoryRepository categoryRepository;
+
     public void save(Product product) {
+        Category category = categoryRepository.findByName(product.getCategory().getName())
+                .orElse(categoryRepository.save(product.getCategory()));
+
+        product.setCategory(category);
+
         productRepository.save(product);
+
     }
 
     public void updateProduct(int id, Product modProduct) {
