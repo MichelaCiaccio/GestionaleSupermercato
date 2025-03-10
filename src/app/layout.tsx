@@ -14,7 +14,10 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'SupermarketOS',
+  title: {
+    template: '%s | SupermarketOS',
+    default: 'SupermarketOS',
+  },
   description:
     'Manage your supermarket efficiently with SupermarketOS by tracking inventory, sales, suppliers, and reports.',
 };
