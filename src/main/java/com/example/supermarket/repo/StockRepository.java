@@ -7,12 +7,16 @@ import com.example.supermarket.entity.Stock;
 import java.util.List;
 import com.example.supermarket.entity.Product;
 import com.example.supermarket.entity.Supplier;
+
+import jakarta.transaction.Transactional;
+
 import java.time.LocalDate;
 
 @Repository
+@Transactional
 public interface StockRepository extends JpaRepository<Stock, Integer> {
 
-    List<Stock> findByProduct(Product product);
+    List<Stock> findByProductName(String name);
 
     List<Stock> findBySupplier(Supplier supplier);
 
