@@ -41,6 +41,8 @@ public class CategoryController {
 
     }
 
+    // TODO la findAll è rotta e restituisce 500, probabile problema con la
+    // serializzazione del prodotto
     @GetMapping("/all")
     public List<Category> findAll() {
         return categoryService.findAll();

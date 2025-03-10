@@ -27,6 +27,9 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
+//TODO 
+// Migliorare gli header delle richieste
+// Mostrare le categorie nella findAll dei product
 @RestController
 @RequestMapping(path = "/product/")
 public class ProductController {
