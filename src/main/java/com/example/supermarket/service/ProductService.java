@@ -35,11 +35,16 @@ public class ProductService {
 
     public void updateProduct(int id, Product modProduct) {
         Product product = productRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("Category with id " + id + " not found"));
+                .orElseThrow(() -> new EntityNotFoundException("Product with id " + id + " not found"));
+
+        Category category = categoryRepository.findByName(modProduct.getCategory().getName())
+                .orElse(categoryRepository.save(modProduct.getCategory()));
+
+        product.setCategory(category);
+        product.setCategory(category);
         product.setName(modProduct.getName());
         product.setSellingPrice(modProduct.getSellingPrice());
         product.setStocks(modProduct.getStocks());
-        product.setCategory(modProduct.getCategory());
         productRepository.save(product);
     }
 

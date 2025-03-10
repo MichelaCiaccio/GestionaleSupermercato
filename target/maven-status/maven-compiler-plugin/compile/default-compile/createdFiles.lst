@@ -6,7 +6,6 @@ com/example/supermarket/entity/Discount.class
 com/example/supermarket/repo/CategoryRepository.class
 com/example/supermarket/entity/Receipt.class
 com/example/supermarket/repo/StockRepository.class
-com/example/supermarket/controller/CategoryController.class
 com/example/supermarket/repo/ProductRepository.class
 com/example/supermarket/service/ProductService.class
 com/example/supermarket/errorHandling/CustomRestExceptionHandler.class
@@ -20,7 +19,6 @@ com/example/supermarket/service/UserService.class
 com/example/supermarket/entity/Stock.class
 com/example/supermarket/entity/Category.class
 com/example/supermarket/entity/Supplier.class
-com/example/supermarket/service/CategoryService.class
 com/example/supermarket/entity/ProductSale.class
 com/example/supermarket/controller/UserController.class
 com/example/supermarket/service/StockService.class
