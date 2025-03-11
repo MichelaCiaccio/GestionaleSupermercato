@@ -28,7 +28,7 @@ export const products: Product[] = [
   },
   {
     name: 'Product 5',
-    quantity: 97,
+    quantity: 14,
     arrivalDate: new Date('2025-03-11T00:00:00.000Z'),
     expiryDate: new Date('2025-04-11T00:00:00.000Z'),
   },
@@ -46,7 +46,7 @@ export const products: Product[] = [
   },
   {
     name: 'Product 8',
-    quantity: 20,
+    quantity: 19,
     arrivalDate: new Date('2025-03-11T00:00:00.000Z'),
     expiryDate: new Date('2025-04-11T00:00:00.000Z'),
   },

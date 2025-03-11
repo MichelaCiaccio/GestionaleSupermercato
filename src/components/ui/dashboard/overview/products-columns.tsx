@@ -38,5 +38,8 @@ export const columns: ColumnDef<Product>[] = [
   {
     accessorKey: 'quantity',
     header: () => <div className="text-right">Quantity</div>,
+    cell: ({ row }) => {
+      return <div className="text-right">{row.getValue('quantity')}</div>;
+    },
   },
 ];
