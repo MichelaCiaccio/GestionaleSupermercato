@@ -1,7 +1,7 @@
-import { Separator } from '@radix-ui/react-separator';
 import { SidebarTrigger } from '../sidebar';
 import React from 'react';
 import { cn } from '@/lib/utils';
+import { DarkModeToggle } from '../dark-mode-toggle';
 
 export default function Header({
   title,
@@ -11,14 +11,19 @@ export default function Header({
   return (
     <header
       className={cn(
-        'flex h-16 shrink-0 items-center gap-2 border-b px-4',
+        'flex h-16 shrink-0 items-center justify-between gap-2 border-b px-4',
         className
       )}
       {...props}
     >
-      <SidebarTrigger className="-ml-1 cursor-pointer" />
-      <Separator orientation="vertical" className="mr-2 h-4" />
-      <h1>{title}</h1>
+      <div className="flex items-center gap-2.5">
+        <SidebarTrigger className="-ml-1 cursor-pointer" />
+        <h1>{title}</h1>
+      </div>
+
+      <div className="flex items-center gap-2.5">
+        <DarkModeToggle />
+      </div>
     </header>
   );
 }
