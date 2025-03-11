@@ -92,7 +92,7 @@ public class ProductServiceTest {
         // VERIFY
         assertEquals(product.getId(), ret.get().getId());
         assertNotNull(ret);
-        verify(productService, times(1)).findById(id);
+        verify(productRepository, times(1)).findById(id);
 
     }
 
