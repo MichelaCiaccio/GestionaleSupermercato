@@ -1,5 +1,6 @@
 package com.example.supermarket.service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,15 +33,54 @@ public class StockService {
         return stocks;
     }
 
-
-    public List<Stock> findBySupplierName(String name){
-            List<Stock> stocks = stockRepository.findBySupplierName(name);
-            if(stocks.isEmpty()){
-                 throw new EntityNotFoundException("There are no stocks from supplier with name " + name);
-            }
-            return  stocks;
+    public List<Stock> findBySupplierName(String name) {
+        List<Stock> stocks = stockRepository.findBySupplierName(name);
+        if (stocks.isEmpty()) {
+            throw new EntityNotFoundException("There are no stocks from supplier with name " + name);
         }
+        return stocks;
+    }
 
+    public List<Stock> findByQuantityGreaterThan(int quantity) {
+        List<Stock> stocks = stockRepository.findByQuantityGreaterThan(quantity);
+        if (stocks.isEmpty()) {
+            throw new EntityNotFoundException("There are no products with a stock quantity greater than " + quantity);
+        }
+        return stocks;
+    }
 
+    public List<Stock> findByQuantityLessThan(int quantity) {
+        List<Stock> stocks = stockRepository.findByQuantityLessThan(quantity);
+        if (stocks.isEmpty()) {
+            throw new EntityNotFoundException("There are no products with a stock quantity less than " + quantity);
+        }
+        return stocks;
+    }
+
+    public List<Stock> findByDeliveryDate(LocalDate deliveryDate) {
+        List<Stock> stocks = stockRepository.findByDeliveryDate(deliveryDate);
+        if (stocks.isEmpty()) {
+            throw new EntityNotFoundException("There are no products in stock arrived on " + deliveryDate);
+        }
+        return stocks;
+    }
+
+    public List<Stock> findByExpirationDate(LocalDate expirationDate) {
+        List<Stock> stocks = stockRepository.findByExpirationDate(expirationDate);
+        if (stocks.isEmpty()) {
+            throw new EntityNotFoundException(
+                    "There are no products in stock with expiration date equals to " + expirationDate);
+        }
+        return stocks;
+    }
+
+    public List<Stock> findByExpirationDateBetween(LocalDate firstDate, LocalDate seconDate) {
+        List<Stock> stocks = stockRepository.findByExpirationDateBetween(firstDate, seconDate);
+        if (stocks.isEmpty()) {
+            throw new EntityNotFoundException(
+                    "There are no products in stock with exipration date betweem " + firstDate + " and " + seconDate);
+        }
+        return stocks;
+    }
 
 }
