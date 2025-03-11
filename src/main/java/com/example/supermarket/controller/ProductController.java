@@ -22,7 +22,7 @@ import jakarta.validation.constraints.NotNull;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -116,4 +116,15 @@ public class ProductController {
         return productService.findAllCategories();
     }
 
+    @PutMapping("/{productId}")
+    public ResponseEntity<String> removeCategoryFromProduct(@PathVariable int productId) {
+        productService.removeCategoryFromProduct(productId);
+        return ResponseEntity.ok("Category removed successfully");
+    }
+
+    @DeleteMapping("/category")
+    public ResponseEntity<String> deleteCategoryById(int categoryId) {
+        productService.deleteCategoryById(categoryId);
+        return ResponseEntity.ok("Category with id " + categoryId + " delete successfully");
+    }
 }

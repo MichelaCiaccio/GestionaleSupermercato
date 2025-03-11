@@ -24,11 +24,9 @@ public class ProductService {
     private CategoryRepository categoryRepository;
 
     public void save(Product product) {
-        Category category = categoryRepository.findByName(product.getCategory().getName())
-                .orElse(categoryRepository.save(product.getCategory()));
-
+        Optional<Category> existingCategory = categoryRepository.findByName(product.getCategory().getName());
+        Category category = existingCategory.orElseGet(() -> categoryRepository.save(product.getCategory()));
         product.setCategory(category);
-
         productRepository.save(product);
 
     }
@@ -136,4 +134,26 @@ public class ProductService {
         }
         return categoryRepository.findAll();
     }
+
+    public void removeCategoryFromProduct(int productId) {
+
+        Product product = productRepository.findById(productId)
+                .orElseThrow(() -> new EntityNotFoundException("There are no products with id " + productId));
+        product.setCategory(null);
+        productRepository.save(product);
+    }
+
+    public void deleteCategoryById(int id) {
+        Optional<Category> category = categoryRepository.findById(id);
+        List<Product> products = productRepository.findByCategoryName(category.get().getName());
+        if (category.isEmpty()) {
+            throw new EntityNotFoundException("There are no category with id " + id + " to delete");
+        }
+        for (Product product : products) {
+            removeCategoryFromProduct(product.getId());
+        }
+
+        categoryRepository.deleteById(id);
+    }
+
 }
