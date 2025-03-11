@@ -11,4 +11,5 @@ import com.example.supermarket.entity.Category;
 public interface CategoryRepository extends JpaRepository<Category, Integer> {
 
     Optional<Category> findByName(String name);
+
 }

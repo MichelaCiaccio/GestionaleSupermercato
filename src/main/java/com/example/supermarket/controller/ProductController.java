@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.supermarket.entity.Category;
 import com.example.supermarket.entity.Product;
 import com.example.supermarket.service.ProductService;
 
@@ -107,6 +108,12 @@ public class ProductController {
     public ResponseEntity<?> deleteById(@NotNull @RequestParam int id) {
         productService.deleteById(id);
         return ResponseEntity.ok("User with id " + id + " have been deleted");
+    }
+
+    // CATEGORY
+    @GetMapping("/all/category")
+    public List<Category> findAllCategories() {
+        return productService.findAllCategories();
     }
 
 }

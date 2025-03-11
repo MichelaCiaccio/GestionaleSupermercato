@@ -127,4 +127,13 @@ public class ProductService {
         productRepository.deleteAll();
     }
 
+    // CATEGORY
+
+    public List<Category> findAllCategories() {
+        List<Category> categories = categoryRepository.findAll();
+        if (categories.isEmpty()) {
+            throw new EntityNotFoundException("There are no categories");
+        }
+        return categoryRepository.findAll();
+    }
 }
