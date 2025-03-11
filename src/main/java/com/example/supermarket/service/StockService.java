@@ -4,6 +4,8 @@ import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DuplicateKeyException;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.example.supermarket.entity.Stock;
@@ -81,6 +83,30 @@ public class StockService {
                     "There are no products in stock with exipration date betweem " + firstDate + " and " + seconDate);
         }
         return stocks;
+    }
+
+    /**
+     * Questo metodo recupera lo stock relativo ad un prodotto specifico,
+     * recuperandolo tramite id, e ne aggiorna la quantità sommando quella già
+     * esistente a quella nuova
+     * 
+     * @param newStockQuantity
+     * @param productId
+     */
+    public ResponseEntity<String> updateQuantity(int newStockQuantity, int productId) {
+        Stock stock = stockRepository.findByProductId(productId);
+        stock.setQuantity(stock.getQuantity() + newStockQuantity);
+        return ResponseEntity.ok("Quantity for product " + stock.getProduct().getName() + " updated successfully");
+
+    }
+
+    public void save(Stock stock) {
+        if (stockRepository.existsByProductNameAndSupplierName(stock.getProduct().getName(),
+                stock.getSupplier().getName())) {
+            throw new DuplicateKeyException(
+                    "The stock for this product already exists. Instead of creating new stock, update the quantity");
+        }
+        stockRepository.save(stock);
     }
 
 }

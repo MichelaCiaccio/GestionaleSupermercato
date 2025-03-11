@@ -16,6 +16,8 @@ public interface StockRepository extends JpaRepository<Stock, Integer> {
 
     List<Stock> findByProductName(String name);
 
+    Stock findByProductId(int productId);
+
     List<Stock> findBySupplierName(String namej);
 
     List<Stock> findByQuantityGreaterThan(int quantity);
@@ -27,5 +29,7 @@ public interface StockRepository extends JpaRepository<Stock, Integer> {
     List<Stock> findByExpirationDate(LocalDate expirationDate);
 
     List<Stock> findByExpirationDateBetween(LocalDate startExpirationPeriod, LocalDate endExpirationPeriod);
+
+    boolean existsByProductNameAndSupplierName(String productName, String supplierName);
 
 }
