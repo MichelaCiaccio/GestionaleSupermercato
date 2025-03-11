@@ -1,7 +1,7 @@
 package com.example.supermarket.entity;
 
 import java.math.BigDecimal;
-import java.util.Set;
+import java.util.List;
 
 import io.micrometer.common.lang.Nullable;
 import jakarta.persistence.Entity;
@@ -40,6 +40,6 @@ public class Product {
 
     @OneToMany(mappedBy = "product")
     @Nullable
-    private Set<Stock> stocks;
+    private List<Stock> stocks;
 
 }

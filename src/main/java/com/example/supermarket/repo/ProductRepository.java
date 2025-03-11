@@ -12,6 +12,7 @@ import java.util.Optional;
 import java.time.LocalDate;
 import java.util.List;
 
+//Paginazione a 20
 @Repository
 @Transactional
 public interface ProductRepository extends JpaRepository<Product, Integer> {
@@ -32,5 +33,7 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
 
     @Query("select p from Product p join p.stocks s where s.quantity = :quantity")
     List<Product> findByStocks_Quantity(int quantity);
+
+    boolean existsByNameAndStocks_Supplier_Name(String name, String supplierName);
 
 }

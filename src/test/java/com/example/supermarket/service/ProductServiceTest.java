@@ -13,7 +13,6 @@ import static org.mockito.Mockito.when;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 
@@ -45,8 +44,8 @@ public class ProductServiceTest {
     void testDeleteAll() {
         // GIVEN
         List<Product> products = List.of(
-                new Product(1, "Nome", new BigDecimal(12), null, new HashSet<>()),
-                new Product(2, "Nome", new BigDecimal(15), null, new HashSet<>()));
+                new Product(1, "Nome", new BigDecimal(12), null, null),
+                new Product(2, "Nome", new BigDecimal(15), null, null));
 
         // WHEN
         when(productService.findAll()).thenReturn(products);
@@ -65,8 +64,8 @@ public class ProductServiceTest {
         // GIVEN
         Category category = new Category(1, "Categoria");
         List<Product> products = List.of(
-                new Product(1, "Nome", new BigDecimal(15), category, new HashSet<>()),
-                new Product(2, "Nome", new BigDecimal(15), category, new HashSet<>()));
+                new Product(1, "Nome", new BigDecimal(15), category, null),
+                new Product(2, "Nome", new BigDecimal(15), category, null));
 
         // WHEN
         when(productService.findAll()).thenReturn(products);
@@ -83,7 +82,7 @@ public class ProductServiceTest {
 
         // GIVEN
         int id = 1;
-        Product product = new Product(id, "Nome", new BigDecimal(id), null, new HashSet<>());
+        Product product = new Product(id, "Nome", new BigDecimal(id), null, null);
 
         // WHEN
         when(productRepository.findById(id)).thenReturn(Optional.of(product));
@@ -116,8 +115,8 @@ public class ProductServiceTest {
         // GIVEN
         String categoryName = "Categoria-A";
         List<Product> products = List.of(
-                new Product(1, "Nome", new BigDecimal(22), null, new HashSet<>()),
-                new Product(2, "Nome", new BigDecimal(26), null, new HashSet<>()));
+                new Product(1, "Nome", new BigDecimal(22), null, null),
+                new Product(2, "Nome", new BigDecimal(26), null, null));
 
         // WHEN
         when(productService.findByCategoryName(categoryName)).thenReturn(products);
@@ -136,8 +135,8 @@ public class ProductServiceTest {
         // GIVEN
         LocalDate expirationDate = LocalDate.now();
         List<Product> products = List.of(
-                new Product(1, "Nome", new BigDecimal(22), null, new HashSet<>()),
-                new Product(2, "Nome", new BigDecimal(22), null, new HashSet<>()));
+                new Product(1, "Nome", new BigDecimal(22), null, null),
+                new Product(2, "Nome", new BigDecimal(22), null, null));
 
         // WHEN
         when(productService.findByExpirationDate(expirationDate)).thenReturn(products);
@@ -156,8 +155,8 @@ public class ProductServiceTest {
         // GIVEN
         String name = "nome";
         List<Product> products = List.of(
-                new Product(1, name, new BigDecimal(22), null, new HashSet<>()),
-                new Product(2, name, new BigDecimal(15), null, new HashSet<>()));
+                new Product(1, name, new BigDecimal(22), null, null),
+                new Product(2, name, new BigDecimal(15), null, null));
 
         // WHEN
         when(productService.findByName(name)).thenReturn(products);
@@ -177,8 +176,8 @@ public class ProductServiceTest {
         // GIVEN
         double sellingPrice = 15.24;
         List<Product> products = List.of(
-                new Product(1, "Nome", new BigDecimal(sellingPrice), null, new HashSet<>()),
-                new Product(2, "Nome", new BigDecimal(sellingPrice), null, new HashSet<>()));
+                new Product(1, "Nome", new BigDecimal(sellingPrice), null, null),
+                new Product(2, "Nome", new BigDecimal(sellingPrice), null, null));
 
         // WHEN
         when(productService.findBySellingPrice(sellingPrice)).thenReturn(products);
@@ -197,8 +196,8 @@ public class ProductServiceTest {
         // GIVEN
         int quantity = 15;
         List<Product> products = List.of(
-                new Product(1, "Nome", new BigDecimal(22), null, new HashSet<>()),
-                new Product(2, "Nome", new BigDecimal(22), null, new HashSet<>()));
+                new Product(1, "Nome", new BigDecimal(22), null, null),
+                new Product(2, "Nome", new BigDecimal(22), null, null));
 
         // WHEN
         when(productService.findByStockQuantity(quantity)).thenReturn(products);
@@ -218,8 +217,8 @@ public class ProductServiceTest {
         // GIVEN
         String supplierName = "Nome Fornitore";
         List<Product> products = List.of(
-                new Product(1, "Nome", new BigDecimal(22), null, new HashSet<>()),
-                new Product(2, "Nome", new BigDecimal(22), null, new HashSet<>()));
+                new Product(1, "Nome", new BigDecimal(22), null, null),
+                new Product(2, "Nome", new BigDecimal(22), null, null));
 
         // WHEN
         when(productService.findBySupplierName(supplierName)).thenReturn(products);
@@ -238,7 +237,7 @@ public class ProductServiceTest {
         // GIVEN
         int productId = 1;
         Category category = new Category(1, "categoria");
-        Product product = new Product(productId, "Nome", new BigDecimal(23), category, new HashSet<>());
+        Product product = new Product(productId, "Nome", new BigDecimal(23), category, null);
 
         // WHEN
         when(productRepository.findById(productId)).thenReturn(null).thenReturn(Optional.of(product));
@@ -264,7 +263,7 @@ public class ProductServiceTest {
     void testDeleteById() {
         // GIVEN
         int id = 1;
-        Product product = new Product(id, "Nome", new BigDecimal(id), null, new HashSet<>());
+        Product product = new Product(id, "Nome", new BigDecimal(id), null, null);
 
         // WHEN
         when(productRepository.findById(id))

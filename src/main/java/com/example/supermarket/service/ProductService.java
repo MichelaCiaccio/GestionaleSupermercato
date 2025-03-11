@@ -5,10 +5,12 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 
 import com.example.supermarket.entity.Category;
 import com.example.supermarket.entity.Product;
+import com.example.supermarket.entity.Stock;
 import com.example.supermarket.repo.CategoryRepository;
 import com.example.supermarket.repo.ProductRepository;
 
@@ -23,9 +25,14 @@ public class ProductService {
     @Autowired
     private CategoryRepository categoryRepository;
 
+    // TO DO il controllo non funziona bisogna migliorarlo e poi spostarlo in una
+    // funzione autonoma
     public void save(Product product) {
-        if (productRepository.findById(product.getId()).isPresent()) {
-            throw new EntityNotFoundException("");
+        for (Stock stock : product.getStocks()) {
+            if (productRepository.existsByNameAndStocks_Supplier_Name(product.getName(),
+                    stock.getSupplier().getName())) {
+                throw new DuplicateKeyException("Product with name " + product.getId() + " already exist");
+            }
         }
         Optional<Category> existingCategory = categoryRepository.findByName(product.getCategory().getName());
         Category category = existingCategory.orElseGet(() -> categoryRepository.save(product.getCategory()));
