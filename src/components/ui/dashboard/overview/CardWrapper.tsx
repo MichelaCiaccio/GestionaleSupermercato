@@ -1,4 +1,5 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { currencyFormatter } from '@/lib/utils';
 import { Banknote, Factory, LucideIcon, Package, Users } from 'lucide-react';
 
 export function CardWrapper() {
@@ -14,7 +15,7 @@ export function CardWrapper() {
 
 function OverviewCard(props: {
   title: string;
-  value: string | number;
+  value: number;
   icon: LucideIcon;
 }) {
   return (
@@ -26,7 +27,9 @@ function OverviewCard(props: {
         </CardTitle>
       </CardHeader>
       <CardContent>
-        <div className="text-2xl font-bold">€{props.value}</div>
+        <div className="text-2xl font-bold">
+          {currencyFormatter.format(props.value)}
+        </div>
       </CardContent>
     </Card>
   );
