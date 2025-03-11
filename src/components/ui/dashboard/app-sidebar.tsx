@@ -1,6 +1,7 @@
 import {
   Sidebar,
   SidebarContent,
+  SidebarFooter,
   SidebarGroup,
   SidebarGroupContent,
   SidebarGroupLabel,
@@ -18,6 +19,7 @@ import {
   Receipt,
   Users,
 } from 'lucide-react';
+import { SidebarUser } from './sidebar-user';
 
 const items = [
   {
@@ -84,6 +86,16 @@ export function AppSidebar() {
           </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>
+      <SidebarFooter>
+        <SidebarUser
+          user={{
+            name: 'Sherwin',
+            avatar: '/',
+            avatarFallback: 'SA',
+            email: 's.arellano@esis-italia.com',
+          }}
+        />
+      </SidebarFooter>
     </Sidebar>
   );
 }
