@@ -3,7 +3,7 @@ import React from 'react';
 import { cn } from '@/lib/utils';
 import { DarkModeToggle } from '../dark-mode-toggle';
 
-export default function Header({
+export function Header({
   title,
   className,
   ...props
