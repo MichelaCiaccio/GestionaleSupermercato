@@ -1,6 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { SalesDataTable } from './sales-data-table';
-import { columns, sales } from './sales-columns';
+import { columns } from './sales-columns';
+import { sales } from './sample-data';
 
 export function SalesTable() {
   return (

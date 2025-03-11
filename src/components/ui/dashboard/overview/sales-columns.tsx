@@ -10,24 +10,6 @@ export type Sale = {
   amount: number;
 };
 
-export const sales: Sale[] = [
-  {
-    id: '1',
-    amount: 455.5,
-    date: new Date('2025-03-11'),
-  },
-  {
-    id: '2',
-    amount: 1242.8,
-    date: new Date('2025-03-11'),
-  },
-  {
-    id: '3',
-    amount: 543.45,
-    date: new Date('2025-03-11'),
-  },
-];
-
 export const columns: ColumnDef<Sale>[] = [
   {
     accessorKey: 'id',
