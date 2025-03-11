@@ -21,7 +21,7 @@ function OverviewCard(props: {
   return (
     <Card className="gap-1.5">
       <CardHeader>
-        <CardTitle className="flex items-center justify-between gap-1.5 font-normal">
+        <CardTitle className="flex items-center justify-between gap-1.5">
           {props.title}
           <props.icon className="text-muted-foreground h-5 w-5" />
         </CardTitle>
