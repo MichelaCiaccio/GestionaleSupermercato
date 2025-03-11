@@ -16,7 +16,7 @@ export default function Header({
       )}
       {...props}
     >
-      <SidebarTrigger className="-ml-1" />
+      <SidebarTrigger className="-ml-1 cursor-pointer" />
       <Separator orientation="vertical" className="mr-2 h-4" />
       <h1>{title}</h1>
     </header>
