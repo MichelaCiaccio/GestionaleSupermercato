@@ -19,7 +19,7 @@ import {
   Receipt,
   Users,
 } from 'lucide-react';
-import { SidebarUser } from './sidebar-user';
+import { SidebarUser, SidebarUserProps } from './sidebar-user';
 
 const items = [
   {
@@ -64,18 +64,21 @@ const items = [
   },
 ];
 
-export function AppSidebar() {
+export function AppSidebar({
+  user,
+  ...props
+}: React.ComponentProps<'div'> & SidebarUserProps) {
   return (
-    <Sidebar>
+    <Sidebar {...props}>
       <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupLabel>Application</SidebarGroupLabel>
+          <SidebarGroupLabel>SupermarketOS</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               {items.map((item) => (
                 <SidebarMenuItem key={item.title}>
                   <SidebarMenuButton asChild>
-                    <a href={item.url}>
+                    <a href={`/dashboard/${item.url}`}>
                       <item.icon />
                       <span>{item.title}</span>
                     </a>
@@ -87,14 +90,7 @@ export function AppSidebar() {
         </SidebarGroup>
       </SidebarContent>
       <SidebarFooter>
-        <SidebarUser
-          user={{
-            name: 'Sherwin',
-            avatar: '/',
-            avatarFallback: 'SA',
-            email: 's.arellano@esis-italia.com',
-          }}
-        />
+        <SidebarUser user={user} />
       </SidebarFooter>
     </Sidebar>
   );
