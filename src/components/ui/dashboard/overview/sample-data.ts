@@ -1,4 +1,190 @@
-export const sales = [
+import { Product } from './products-columns';
+import { Sale } from './sales-columns';
+
+export const products: Product[] = [
+  {
+    name: 'Product 1',
+    quantity: 7,
+    arrivalDate: new Date('2025-03-11T00:00:00.000Z'),
+    expiryDate: new Date('2025-04-11T00:00:00.000Z'),
+  },
+  {
+    name: 'Product 2',
+    quantity: 96,
+    arrivalDate: new Date('2025-03-11T00:00:00.000Z'),
+    expiryDate: new Date('2025-04-11T00:00:00.000Z'),
+  },
+  {
+    name: 'Product 3',
+    quantity: 77,
+    arrivalDate: new Date('2025-03-11T00:00:00.000Z'),
+    expiryDate: new Date('2025-04-11T00:00:00.000Z'),
+  },
+  {
+    name: 'Product 4',
+    quantity: 73,
+    arrivalDate: new Date('2025-03-11T00:00:00.000Z'),
+    expiryDate: new Date('2025-04-11T00:00:00.000Z'),
+  },
+  {
+    name: 'Product 5',
+    quantity: 97,
+    arrivalDate: new Date('2025-03-11T00:00:00.000Z'),
+    expiryDate: new Date('2025-04-11T00:00:00.000Z'),
+  },
+  {
+    name: 'Product 6',
+    quantity: 38,
+    arrivalDate: new Date('2025-03-11T00:00:00.000Z'),
+    expiryDate: new Date('2025-04-11T00:00:00.000Z'),
+  },
+  {
+    name: 'Product 7',
+    quantity: 56,
+    arrivalDate: new Date('2025-03-11T00:00:00.000Z'),
+    expiryDate: new Date('2025-04-11T00:00:00.000Z'),
+  },
+  {
+    name: 'Product 8',
+    quantity: 20,
+    arrivalDate: new Date('2025-03-11T00:00:00.000Z'),
+    expiryDate: new Date('2025-04-11T00:00:00.000Z'),
+  },
+  {
+    name: 'Product 9',
+    quantity: 76,
+    arrivalDate: new Date('2025-03-11T00:00:00.000Z'),
+    expiryDate: new Date('2025-04-11T00:00:00.000Z'),
+  },
+  {
+    name: 'Product 10',
+    quantity: 21,
+    arrivalDate: new Date('2025-03-11T00:00:00.000Z'),
+    expiryDate: new Date('2025-04-11T00:00:00.000Z'),
+  },
+  {
+    name: 'Product 11',
+    quantity: 24,
+    arrivalDate: new Date('2025-03-11T00:00:00.000Z'),
+    expiryDate: new Date('2025-04-11T00:00:00.000Z'),
+  },
+  {
+    name: 'Product 12',
+    quantity: 54,
+    arrivalDate: new Date('2025-03-11T00:00:00.000Z'),
+    expiryDate: new Date('2025-04-11T00:00:00.000Z'),
+  },
+  {
+    name: 'Product 13',
+    quantity: 101,
+    arrivalDate: new Date('2025-03-11T00:00:00.000Z'),
+    expiryDate: new Date('2025-04-11T00:00:00.000Z'),
+  },
+  {
+    name: 'Product 14',
+    quantity: 53,
+    arrivalDate: new Date('2025-03-11T00:00:00.000Z'),
+    expiryDate: new Date('2025-04-11T00:00:00.000Z'),
+  },
+  {
+    name: 'Product 15',
+    quantity: 64,
+    arrivalDate: new Date('2025-03-11T00:00:00.000Z'),
+    expiryDate: new Date('2025-04-11T00:00:00.000Z'),
+  },
+  {
+    name: 'Product 16',
+    quantity: 31,
+    arrivalDate: new Date('2025-03-11T00:00:00.000Z'),
+    expiryDate: new Date('2025-04-11T00:00:00.000Z'),
+  },
+  {
+    name: 'Product 17',
+    quantity: 39,
+    arrivalDate: new Date('2025-03-11T00:00:00.000Z'),
+    expiryDate: new Date('2025-04-11T00:00:00.000Z'),
+  },
+  {
+    name: 'Product 18',
+    quantity: 46,
+    arrivalDate: new Date('2025-03-11T00:00:00.000Z'),
+    expiryDate: new Date('2025-04-11T00:00:00.000Z'),
+  },
+  {
+    name: 'Product 19',
+    quantity: 56,
+    arrivalDate: new Date('2025-03-11T00:00:00.000Z'),
+    expiryDate: new Date('2025-04-11T00:00:00.000Z'),
+  },
+  {
+    name: 'Product 20',
+    quantity: 4,
+    arrivalDate: new Date('2025-03-11T00:00:00.000Z'),
+    expiryDate: new Date('2025-04-11T00:00:00.000Z'),
+  },
+  {
+    name: 'Product 21',
+    quantity: 28,
+    arrivalDate: new Date('2025-03-11T00:00:00.000Z'),
+    expiryDate: new Date('2025-04-11T00:00:00.000Z'),
+  },
+  {
+    name: 'Product 22',
+    quantity: 44,
+    arrivalDate: new Date('2025-03-11T00:00:00.000Z'),
+    expiryDate: new Date('2025-04-11T00:00:00.000Z'),
+  },
+  {
+    name: 'Product 23',
+    quantity: 95,
+    arrivalDate: new Date('2025-03-11T00:00:00.000Z'),
+    expiryDate: new Date('2025-04-11T00:00:00.000Z'),
+  },
+  {
+    name: 'Product 24',
+    quantity: 92,
+    arrivalDate: new Date('2025-03-11T00:00:00.000Z'),
+    expiryDate: new Date('2025-04-11T00:00:00.000Z'),
+  },
+  {
+    name: 'Product 25',
+    quantity: 69,
+    arrivalDate: new Date('2025-03-11T00:00:00.000Z'),
+    expiryDate: new Date('2025-04-11T00:00:00.000Z'),
+  },
+  {
+    name: 'Product 26',
+    quantity: 60,
+    arrivalDate: new Date('2025-03-11T00:00:00.000Z'),
+    expiryDate: new Date('2025-04-11T00:00:00.000Z'),
+  },
+  {
+    name: 'Product 27',
+    quantity: 54,
+    arrivalDate: new Date('2025-03-11T00:00:00.000Z'),
+    expiryDate: new Date('2025-04-11T00:00:00.000Z'),
+  },
+  {
+    name: 'Product 28',
+    quantity: 77,
+    arrivalDate: new Date('2025-03-11T00:00:00.000Z'),
+    expiryDate: new Date('2025-04-11T00:00:00.000Z'),
+  },
+  {
+    name: 'Product 29',
+    quantity: 36,
+    arrivalDate: new Date('2025-03-11T00:00:00.000Z'),
+    expiryDate: new Date('2025-04-11T00:00:00.000Z'),
+  },
+  {
+    name: 'Product 30',
+    quantity: 93,
+    arrivalDate: new Date('2025-03-11T00:00:00.000Z'),
+    expiryDate: new Date('2025-04-11T00:00:00.000Z'),
+  },
+];
+
+export const sales: Sale[] = [
   {
     id: '16926',
     amount: 7478.443843082369,
