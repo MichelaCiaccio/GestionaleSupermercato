@@ -11,7 +11,14 @@ export const metadata: Metadata = {
 export default function DashboardLayout({ children }: { children: ReactNode }) {
   return (
     <SidebarProvider>
-      <AppSidebar />
+      <AppSidebar
+        user={{
+          name: 'Sherwin Arellano',
+          avatar: '/',
+          avatarFallback: 'SA',
+          email: 's.arellano@esis-italia.com',
+        }}
+      />
 
       <main className="flex-1">
         <Header title="Dashboard" />

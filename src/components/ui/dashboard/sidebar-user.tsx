@@ -19,16 +19,16 @@ import {
 } from '@/components/ui/sidebar';
 import Link from 'next/link';
 
-export function SidebarUser({
-  user,
-}: {
+export type SidebarUserProps = {
   user: {
     name: string;
     email: string;
     avatar: string;
     avatarFallback: string;
   };
-}) {
+};
+
+export function SidebarUser({ user }: SidebarUserProps) {
   const { isMobile } = useSidebar();
 
   return (
