@@ -12,11 +12,17 @@ import { Label } from '@/components/ui/label';
 import { DarkModeToggle } from '../dark-mode-toggle';
 import { ChangePasswordButton } from './change-password-button';
 import Link from 'next/link';
+import { redirect } from 'next/navigation';
 
 export function LoginForm({
   className,
   ...props
 }: React.ComponentPropsWithoutRef<'div'>) {
+  const formAction = async () => {
+    'use server';
+    redirect('/dashboard');
+  };
+
   return (
     <div className={cn('flex flex-col gap-6', className)} {...props}>
       <Card>
@@ -30,7 +36,7 @@ export function LoginForm({
           <DarkModeToggle />
         </CardHeader>
         <CardContent>
-          <form>
+          <form action={formAction}>
             <div className="flex flex-col gap-6">
               <div className="grid gap-2">
                 <Label htmlFor="email">Email</Label>
