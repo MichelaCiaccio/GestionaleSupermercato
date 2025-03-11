@@ -4,6 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.Assert.assertNull;
+
+import static org.mockito.Mockito.doNothing;
+
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -21,6 +24,8 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.example.supermarket.entity.Product;
+import com.example.supermarket.repo.CategoryRepository;
+import com.example.supermarket.repo.ProductRepository;
 
 import jakarta.persistence.EntityNotFoundException;
 
@@ -29,6 +34,12 @@ public class ProductServiceTest {
 
     @Mock
     private ProductService productService;
+
+    @Mock
+    private CategoryRepository categoryRepository;
+
+    @Mock
+    private ProductRepository productRepository;
 
     @Test
     void testDeleteAll() {
@@ -46,25 +57,6 @@ public class ProductServiceTest {
         // VERIFY
         List<Product> deletedProducts = productService.findAll();
         assertNull(deletedProducts);
-
-    }
-
-    @Test
-    void testDeleteById() {
-
-        // GIVEN
-        int id = 1;
-        Product product = new Product(id, "Nome", new BigDecimal(id), null, new HashSet<>());
-
-        // WHEN
-        when(productService.findById(id)).thenReturn(Optional.of(product));
-        productService.deleteById(id);
-        verify(productService, times(1)).deleteById(id);
-        when(productService.findById(id)).thenReturn(null);
-
-        // VERIFY
-        Optional<Product> deletedProduct = productService.findById(id);
-        assertNull(deletedProduct);
 
     }
 
@@ -94,8 +86,8 @@ public class ProductServiceTest {
         Product product = new Product(id, "Nome", new BigDecimal(id), null, new HashSet<>());
 
         // WHEN
-        when(productService.findById(id)).thenReturn(Optional.of(product));
-        Optional<Product> ret = productService.findById(id);
+        when(productRepository.findById(id)).thenReturn(Optional.of(product));
+        Optional<Product> ret = productRepository.findById(id);
 
         // VERIFY
         assertEquals(product.getId(), ret.get().getId());
@@ -243,5 +235,54 @@ public class ProductServiceTest {
     @Test
     void testSave() {
 
+        // GIVEN
+        int productId = 1;
+        Category category = new Category(1, "categoria");
+        Product product = new Product(productId, "Nome", new BigDecimal(23), category, new HashSet<>());
+
+        // WHEN
+        when(productRepository.findById(productId)).thenReturn(null).thenReturn(Optional.of(product));
+        when(categoryRepository.findByName("Categoria")).thenReturn(null)
+                .thenReturn(Optional.of(category));
+        Optional<Product> noProduct = productRepository.findById(productId);
+        Optional<Category> noCategory = categoryRepository.findByName("Categoria");
+        productRepository.save(product);
+        Optional<Product> newProduct = productRepository.findById(productId);
+        Optional<Category> newCategory = categoryRepository.findByName("Categoria");
+
+        // VERIFY
+        verify(productRepository, times(2)).findById(productId);
+        verify(categoryRepository, times(2)).findByName("Categoria");
+        verify(productRepository, times(1)).save(product);
+        assertNotNull(newCategory);
+        assertNotNull(newProduct);
+        assertNull(noProduct);
+        assertNull(noCategory);
+    }
+
+    @Test
+    void testDeleteById() {
+        // GIVEN
+        int id = 1;
+        Product product = new Product(id, "Nome", new BigDecimal(id), null, new HashSet<>());
+
+        // WHEN
+        when(productRepository.findById(id))
+                .thenReturn(Optional.of(product))
+                .thenReturn(Optional.empty());
+        doNothing().when(productRepository).deleteById(id);
+
+        // Chiamata per ottenere il prodotto (prima della cancellazione)
+        Optional<Product> existingProduct = productRepository.findById(id);
+        // Cancelliamo il prodotto
+        productRepository.deleteById(id);
+        // Chiamata per verificare che il prodotto non esista più
+        Optional<Product> deletedProduct = productRepository.findById(id);
+
+        // VERIFY
+        verify(productRepository, times(2)).findById(id); // verifica che findById sia stato chiamato due volte
+        verify(productRepository, times(1)).deleteById(id);
+        assertNull(deletedProduct.orElse(null));
+        assertNotNull(existingProduct);
     }
 }

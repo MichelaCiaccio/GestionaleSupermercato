@@ -2,7 +2,6 @@ package com.example.supermarket.controller;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -64,7 +63,7 @@ public class ProductController {
     }
 
     @GetMapping("/id/")
-    public Optional<Product> findById(@NotNull @RequestParam int id) {
+    public Product findById(@NotNull @RequestParam int id) {
         return productService.findById(id);
     }
 
