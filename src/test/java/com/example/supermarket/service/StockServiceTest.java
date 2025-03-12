@@ -1,5 +1,7 @@
 package com.example.supermarket.service;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThrows;
 import static org.junit.Assert.assertTrue;
@@ -111,11 +113,70 @@ public class StockServiceTest {
     @Test
     void testFindAll() {
 
+        // GIVEN
+        Product product = new Product(1, "Prodotto", new BigDecimal(26), null, null);
+        Supplier supplier = new Supplier(1, "Fornitore", "Indirizzo", "3336875889", "test@email.com", null);
+        List<Stock> stocks = List.of(
+                new Stock(1, 36, LocalDate.of(2025, 3, 12), LocalDate.of(2026, 02, 15), product, supplier),
+                new Stock(2, 36, LocalDate.of(2025, 3, 12), LocalDate.of(2026, 02, 15), product, supplier));
+
+        // WHEN
+        when(stockRepo.findAll()).thenReturn(stocks).thenReturn(null);
+        List<Stock> ret = stockRepo.findAll();
+
+        // VERIFY
+        verify(stockRepo, times(1)).findAll();
+        assertEquals(ret, stocks);
+        assertEquals(2, ret.size());
+        assertNotNull(ret);
+
+    }
+
+    @Test
+    void testFindAllException() {
+
+        // WHEN
+        when(stockRepo.findAll()).thenThrow(new EntityNotFoundException());
+
+        // VERIFY
+        verify(stockRepo, times(0)).findAll();
+        assertThrows(EntityNotFoundException.class, stockRepo::findAll);
+
     }
 
     @Test
     void testFindByDeliveryDate() {
+        // GIVEN
+        LocalDate deliveryDate = LocalDate.of(2025, 3, 12);
+        Product product = new Product(1, "Prodotto", new BigDecimal(26), null, null);
+        Supplier supplier = new Supplier(1, "Fornitore", "Indirizzo", "3336875889", "test@email.com", null);
+        List<Stock> stocks = List.of(
+                new Stock(1, 36, deliveryDate, LocalDate.of(2026, 02, 15), product, supplier),
+                new Stock(2, 36, deliveryDate, LocalDate.of(2026, 02, 15), product, supplier));
 
+        // WHEN
+        when(stockRepo.findByDeliveryDate(deliveryDate, null)).thenReturn(stocks);
+        List<Stock> ret = stockRepo.findByDeliveryDate(deliveryDate, null);
+
+        // VERIFY
+        verify(stockRepo, times(1)).findByDeliveryDate(deliveryDate, null);
+        assertEquals(ret, stocks);
+        assertEquals(2, ret.size());
+        assertNotNull(ret);
+    }
+
+    @Test
+    void findByDeliveryDateException() {
+
+        // GIVEN
+        LocalDate deliveryDate = LocalDate.of(2025, 3, 12);
+
+        // WHEN
+        when(stockRepo.findByDeliveryDate(deliveryDate, null)).thenThrow(new EntityNotFoundException());
+
+        // VERIFY
+        verify(stockRepo, times(0)).findByDeliveryDate(deliveryDate, null);
+        assertThrows(EntityNotFoundException.class, () -> stockRepo.findByDeliveryDate(deliveryDate, null));
     }
 
     @Test
