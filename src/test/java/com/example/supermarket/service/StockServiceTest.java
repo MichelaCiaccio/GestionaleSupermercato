@@ -298,11 +298,82 @@ public class StockServiceTest {
     @Test
     void testFindByQuantityGreaterThan() {
 
+        // GIVEN
+        int quantity = 36;
+        int greaterQuantity = 40;
+        Product product = new Product(1, "Prodotto", new BigDecimal(26), null, null);
+        Supplier supplier = new Supplier(1, "Fornitore", "Indirizzo", "3336875889", "test@email.com", null);
+        List<Stock> stocks = List.of(
+                new Stock(1, greaterQuantity, LocalDate.of(2025, 3, 12), LocalDate.of(2026, 02, 15), product, supplier),
+                new Stock(2, greaterQuantity, LocalDate.of(2025, 3, 12), LocalDate.of(2026, 02, 15), product,
+                        supplier));
+
+        // WHEN
+        when(stockRepo.findByQuantityGreaterThan(quantity, null)).thenReturn(stocks);
+        List<Stock> ret = stockRepo.findByQuantityGreaterThan(quantity, null);
+
+        // VERIFY
+        verify(stockRepo, times(1)).findByQuantityGreaterThan(quantity, null);
+        assertNotNull(ret);
+        assertEquals(ret, stocks);
+        assertEquals(2, ret.size());
+
+    }
+
+    @Test
+    void testFindByQuantityGreaterThanException() {
+
+        // GIVEN
+        int quantity = 36;
+
+        // WHEN
+        when(stockRepo.findByQuantityGreaterThan(quantity, null))
+                .thenThrow(new EntityNotFoundException());
+
+        // VERIFY
+        verify(stockRepo, times(0)).findByQuantityGreaterThan(quantity, null);
+        assertThrows(EntityNotFoundException.class,
+                () -> stockRepo.findByQuantityGreaterThan(quantity, null));
     }
 
     @Test
     void testFindByQuantityLessThan() {
 
+        // GIVEN
+        int quantity = 36;
+        int lessQuantity = 25;
+        Product product = new Product(1, "Prodotto", new BigDecimal(26), null, null);
+        Supplier supplier = new Supplier(1, "Fornitore", "Indirizzo", "3336875889", "test@email.com", null);
+        List<Stock> stocks = List.of(
+                new Stock(1, lessQuantity, LocalDate.of(2025, 3, 12), LocalDate.of(2026, 02, 15), product, supplier),
+                new Stock(2, lessQuantity, LocalDate.of(2025, 3, 12), LocalDate.of(2026, 02, 15), product,
+                        supplier));
+
+        // WHEN
+        when(stockRepo.findByQuantityLessThan(quantity, null)).thenReturn(stocks);
+        List<Stock> ret = stockRepo.findByQuantityLessThan(quantity, null);
+
+        // VERIFY
+        verify(stockRepo, times(1)).findByQuantityLessThan(quantity, null);
+        assertNotNull(ret);
+        assertEquals(ret, stocks);
+        assertEquals(2, ret.size());
+    }
+
+    @Test
+    void testFindByQuantityLessThanException() {
+
+        // GIVEN
+        int quantity = 36;
+
+        // WHEN
+        when(stockRepo.findByQuantityLessThan(quantity, null))
+                .thenThrow(new EntityNotFoundException());
+
+        // VERIFY
+        verify(stockRepo, times(0)).findByQuantityLessThan(quantity, null);
+        assertThrows(EntityNotFoundException.class,
+                () -> stockRepo.findByQuantityLessThan(quantity, null));
     }
 
     @Test
