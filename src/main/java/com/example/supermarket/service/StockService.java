@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -20,7 +21,7 @@ public class StockService {
     private StockRepository stockRepository;
 
     public List<Stock> findAll() {
-        List<Stock> stocks = stockRepository.findAll();
+        List<Stock> stocks = stockRepository.findAll(PageRequest.of(0, 20)).getContent();
         if (stocks.isEmpty()) {
             throw new EntityNotFoundException("There are no stocks");
         }

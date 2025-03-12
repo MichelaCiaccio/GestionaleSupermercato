@@ -6,6 +6,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import com.example.supermarket.entity.Category;
@@ -57,7 +58,7 @@ public class ProductService {
     }
 
     public List<Product> findAll() {
-        List<Product> products = productRepository.findAll();
+        List<Product> products = productRepository.findAll(PageRequest.of(0, 20)).getContent();
         if (products.isEmpty()) {
             throw new EntityNotFoundException("There are no products");
         }
