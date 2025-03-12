@@ -202,6 +202,30 @@ public class StockService {
     }
 
     /**
+     * This method updates a stock identified by its ID.
+     * Checks if the stock exists, and if it doesn't, throws an
+     * EntityNotFoundException.
+     * Otherwise, it proceeds to update the stock's attribute with the new
+     * information
+     * and saves the modified stock.
+     *
+     * @param id       The ID of the stock to be updated.
+     * @param modStock The new stock data to update with.
+     */
+
+    public void update(int id, Stock modStock) {
+        Stock stock = stockRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("No stock with id " + id));
+
+        stock.setQuantity(modStock.getQuantity());
+        stock.setDeliveryDate(modStock.getDeliveryDate());
+        stock.setExpirationDate(modStock.getExpirationDate());
+        stock.setProduct(modStock.getProduct());
+        stock.setSupplier(modStock.getSupplier());
+        stockRepository.save(stock);
+    }
+
+    /**
      * This method deletes a stock identified by its id.
      * Check if the stock exists and, if it does, proceed to call
      * stockRepository.delete to delete it.
