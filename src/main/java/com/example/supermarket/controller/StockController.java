@@ -1,5 +1,6 @@
 package com.example.supermarket.controller;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.supermarket.entity.Stock;
@@ -38,4 +40,41 @@ public class StockController {
             return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());
         }
     }
+
+    @GetMapping(path = "/product/")
+    public List<Stock> findByProductName(@RequestParam String productName) {
+        return stockService.findByProductName(productName);
+    }
+
+    @GetMapping(path = "/supplier/")
+    public List<Stock> findBySupplierName(@RequestParam String supplierName) {
+        return stockService.findBySupplierName(supplierName);
+    }
+
+    @GetMapping(path = "/quantityGreater/")
+    public List<Stock> findByQuantityGreaterThan(@RequestParam int quantity) {
+        return stockService.findByQuantityGreaterThan(quantity);
+    }
+
+    @GetMapping(path = "/quantityLess/")
+    public List<Stock> findByQuantityLessThan(@RequestParam int quantity) {
+        return stockService.findByQuantityLessThan(quantity);
+    }
+
+    @GetMapping(path = "/deliveryDate/")
+    public List<Stock> findByDeliveryDate(@RequestParam LocalDate deliveryDate) {
+        return stockService.findByDeliveryDate(deliveryDate);
+    }
+
+    @GetMapping(path = "/deliveryDate/")
+    public List<Stock> findByExpirationDate(@RequestParam LocalDate expirationDate) {
+        return stockService.findByExpirationDate(expirationDate);
+    }
+
+    @GetMapping(path = "/deliveryDate/")
+    public List<Stock> findByExpirationDateBetween(@RequestParam LocalDate expirationDateStart,
+            LocalDate expirationDateEnd) {
+        return stockService.findByExpirationDateBetween(expirationDateStart, expirationDateEnd);
+    }
+
 }
