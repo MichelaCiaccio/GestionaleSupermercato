@@ -182,6 +182,38 @@ public class StockServiceTest {
     @Test
     void testFindByExpirationDate() {
 
+        // GIVEN
+        LocalDate expirationDate = LocalDate.of(2025, 3, 12);
+        Product product = new Product(1, "Prodotto", new BigDecimal(26), null, null);
+        Supplier supplier = new Supplier(1, "Fornitore", "Indirizzo", "3336875889", "test@email.com", null);
+        List<Stock> stocks = List.of(
+                new Stock(1, 36, expirationDate, LocalDate.of(2026, 02, 15), product, supplier),
+                new Stock(2, 36, expirationDate, LocalDate.of(2026, 02, 15), product, supplier));
+
+        // WHEN
+        when(stockRepo.findByExpirationDate(expirationDate, null)).thenReturn(stocks);
+        List<Stock> ret = stockRepo.findByExpirationDate(expirationDate, null);
+
+        // VERIFY
+        verify(stockRepo, times(1)).findByExpirationDate(expirationDate, null);
+        assertEquals(ret, stocks);
+        assertEquals(2, ret.size());
+        assertNotNull(ret);
+
+    }
+
+    @Test
+    void findByExpirationDateException() {
+
+        // GIVEN
+        LocalDate expirationDate = LocalDate.of(2025, 3, 12);
+
+        // WHEN
+        when(stockRepo.findByExpirationDate(expirationDate, null)).thenThrow(new EntityNotFoundException());
+
+        // VERIFY
+        verify(stockRepo, times(0)).findByExpirationDate(expirationDate, null);
+        assertThrows(EntityNotFoundException.class, () -> stockRepo.findByExpirationDate(expirationDate, null));
     }
 
     @Test
