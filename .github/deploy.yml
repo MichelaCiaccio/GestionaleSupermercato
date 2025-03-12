@@ -1,0 +1,27 @@
+name: Deploy to Production
+
+on:
+  pull_request:
+    types:
+      - closed
+    branches:
+      - dev-fe
+
+jobs:
+  sync-production:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set Git user info
+        run: |
+          git config user.name "Sherwin Arellano"
+          git config user.email "s.arellano@esis-italia.com"
+
+      - name: Update production branch
+        run: |
+          git checkout -B production dev-fe
+          git push origin production --force
