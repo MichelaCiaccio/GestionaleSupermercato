@@ -17,9 +17,6 @@ import {
   TableRow,
 } from '@/components/ui/table';
 import { DataTablePagination } from './sales-data-table-pagination';
-import { Product } from './products-columns';
-
-const LOW_STOCK_THRESHOLD = 20;
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -71,11 +68,6 @@ export function ProductsDataTable<TData, TValue>({
               <TableRow
                 key={row.id}
                 data-state={row.getIsSelected() && 'selected'}
-                className={
-                  (row.original as Product).quantity < LOW_STOCK_THRESHOLD
-                    ? 'bg-destructive/50 hover:bg-destructive/80'
-                    : ''
-                }
               >
                 {row.getVisibleCells().map((cell) => (
                   <TableCell key={cell.id}>
