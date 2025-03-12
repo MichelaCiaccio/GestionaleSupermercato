@@ -22,6 +22,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.dao.DataIntegrityViolationException;
 
 import com.example.supermarket.entity.Product;
 import com.example.supermarket.entity.Stock;
@@ -434,6 +435,22 @@ public class StockServiceTest {
         // VERIFY
         verify(stockRepo, times(1)).save(stock);
         assertFalse(exists);
+    }
+
+    @Test
+    void testSaveStockWithNullSupplier() {
+
+        // GIVEN
+        Product product = new Product(1, "Prodotto", new BigDecimal(26), null, null);
+        Stock stock = new Stock(1, 36, LocalDate.of(2025, 3, 12), LocalDate.of(2026, 02, 15), product, null);
+
+        // WHEN
+        when(stockRepo.save(stock)).thenThrow(new DataIntegrityViolationException("Stock must have a supplier"));
+
+        // VERIFY
+        verify(stockRepo, times(0)).save(stock);
+        assertThrows(DataIntegrityViolationException.class,
+                () -> stockRepo.save(stock));
     }
 
     @Test
