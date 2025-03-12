@@ -18,7 +18,7 @@ export function CardWrapper() {
       <OverviewCard
         title="Total Products"
         icon={Package}
-        value={products.reduce((total, { quantity }) => total + quantity, 0)}
+        value={products.length}
       />
       <OverviewCard title="Total Suppliers" icon={Factory} value={20} />
       <OverviewCard title="Total Users" icon={Users} value={1} />
