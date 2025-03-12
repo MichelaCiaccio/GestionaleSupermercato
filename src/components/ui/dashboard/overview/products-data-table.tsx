@@ -39,6 +39,7 @@ export function ProductsDataTable<TData, TValue>({
     getSortedRowModel: getSortedRowModel(),
     initialState: {
       sorting: [{ id: 'quantity', desc: false }],
+      pagination: { pageSize: 20 },
     },
   });
 

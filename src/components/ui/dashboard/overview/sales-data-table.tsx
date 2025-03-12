@@ -36,6 +36,7 @@ export function SalesDataTable<TData, TValue>({
     getSortedRowModel: getSortedRowModel(),
     initialState: {
       sorting: [{ id: 'id', desc: true }],
+      pagination: { pageSize: 20 },
     },
   });
 
