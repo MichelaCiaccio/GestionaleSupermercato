@@ -379,6 +379,40 @@ public class StockServiceTest {
     @Test
     void testFindBySupplierName() {
 
+        // GIVEN
+        String supplierName = "Fornitore";
+        Product product = new Product(1, "Prodotto", new BigDecimal(26), null, null);
+        Supplier supplier = new Supplier(1, supplierName, "Indirizzo", "3336875889", "test@email.com", null);
+        List<Stock> stocks = List.of(
+                new Stock(1, 36, LocalDate.of(2025, 3, 12), LocalDate.of(2026, 02, 15), product, supplier),
+                new Stock(2, 36, LocalDate.of(2025, 3, 12), LocalDate.of(2026, 02, 15), product, supplier));
+
+        // WHEN
+        when(stockRepo.findBySupplierName(supplierName, null)).thenReturn(stocks);
+        List<Stock> ret = stockRepo.findBySupplierName(supplierName, null);
+
+        // VERIFY
+        verify(stockRepo, times(1)).findBySupplierName(supplierName, null);
+        assertEquals(ret, stocks);
+        assertEquals(2, ret.size());
+        assertNotNull(ret);
+    }
+
+    @Test
+    void testFindBySupplierNameException() {
+
+        // GIVEN
+        String supplierName = "Fornitore";
+
+        // WHEN
+        when(stockRepo.findBySupplierName(supplierName, null))
+                .thenThrow(new EntityNotFoundException());
+
+        // VERIFY
+        verify(stockRepo, times(0)).findBySupplierName(supplierName, null);
+        assertThrows(EntityNotFoundException.class,
+                () -> stockRepo.findBySupplierName(supplierName, null));
+
     }
 
     @Test
