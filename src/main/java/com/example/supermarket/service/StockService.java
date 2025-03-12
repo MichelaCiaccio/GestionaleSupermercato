@@ -21,11 +21,10 @@ public class StockService {
     private StockRepository stockRepository;
 
     /**
-     * Metodo per ricercare tutti gli stock presente nel database e restituirli. In
-     * caso di assenza di Stock lancia una eccezzione e con un messaggio di errore.
-     * Gli elementi vengono restituiti con una paginazione di 20 stock per pagina
-     * 
-     * @return
+     * The method calls the stockRepository findAll to search for all the stocks
+     * if there are no stocks throws an EntityNotFoundException.
+     * The elements found are returned with 20 items for page pagination
+     * @return the stocks found
      */
     public List<Stock> findAll() {
         List<Stock> stocks = stockRepository.findAll(PageRequest.of(0, 20)).getContent();
@@ -36,13 +35,11 @@ public class StockService {
     }
 
     /**
-     * Metodo per ricercare lo stock di prodotti tramite il nome del prodotto
-     * immagazzinato. In
-     * caso di assenza viene lanciata una eccezzione con un messaggio di errore.
-     * Gli elementi vengono restituiti con una paginazione di 20 stock per pagina
-     * 
-     * @param name
-     * @return
+     * This method searches for stocks using the name as a parameter
+     * if the stocks are empty throws a EntityNotFoundException.
+     * The elements found are returned with 20 items for page pagination
+     * @param name the name of the stock
+     * @return the stocks found
      */
     public List<Stock> findByProductName(String name) {
         List<Stock> stocks = stockRepository.findByProductName(name, PageRequest.of(0, 20));
@@ -53,11 +50,11 @@ public class StockService {
     }
 
     /**
-     * Metodo per cercare gli stock di prodotti tramite il nome del fornitore.
-     * Gli elementi vengono restituiti con una paginazione di 20 stock per pagina
-     * 
-     * @param name
-     * @return
+     * This method searches for stocks using the name of the supplier as a parameter
+     * if the stocks are empty throws a EntityNotFoundException.
+     * The elements found are returned with 20 items for page pagination
+     * @param name the name of the supplier
+     * @return the stocks found
      */
     public List<Stock> findBySupplierName(String name) {
         List<Stock> stocks = stockRepository.findBySupplierName(name, PageRequest.of(0, 20));
@@ -68,12 +65,13 @@ public class StockService {
     }
 
     /**
-     * Metodo per cercare gli stock di prodotti con giacenza maggiore di una
-     * certa quantità.
-     * Gli elementi vengono restituiti con una paginazione di 20 stock per pagina
-     * 
+     * This method searches for stocks using the quantity as a parameter
+     * to search for amounts of stocks greater than the given quantity
+     * if there are no stocks in quantity greater than the one indicated
+     * the method throws a EntityNotFoundException.
+     * The elements found are returned with 20 items for page pagination
      * @param quantity
-     * @return
+     * @return the stocks found
      */
     public List<Stock> findByQuantityGreaterThan(int quantity) {
         List<Stock> stocks = stockRepository.findByQuantityGreaterThan(quantity, PageRequest.of(0, 20));
@@ -84,12 +82,13 @@ public class StockService {
     }
 
     /**
-     * Metodo per cercare gli stock di prodotti con una giacenza minore di una
-     * certa quantità.
-     * Gli elementi vengono restituiti con una paginazione di 20 stock per pagina
-     * 
+     * This method searches for stocks using the quantity as a parameter
+     * to search for amounts of stocks lower than the given quantity
+     * if there are no stocks in quantity lower than the one indicated
+     * the method throws a EntityNotFoundException.
+     * The elements found are returned with 20 items for page pagination
      * @param quantity
-     * @return
+     * @return the stocks found
      */
     public List<Stock> findByQuantityLessThan(int quantity) {
         List<Stock> stocks = stockRepository.findByQuantityLessThan(quantity, PageRequest.of(0, 20));
@@ -100,12 +99,13 @@ public class StockService {
     }
 
     /**
-     * Metodo per cercare gli stock di prodotti con una data di consegna uguale a
-     * quella fornita.
-     * Gli elementi vengono restituiti con una paginazione di 20 stock per pagina
-     * 
+     * This method searches for stocks with a deliveryDate corresponding to the one
+     * given as the input parameter
+     * if there are no stocks corresponding to the filter indicated
+     * the method throws a EntityNotFoundException.
+     * The elements found are returned with 20 items for page pagination
      * @param deliveryDate
-     * @return
+     * @return the stocks found
      */
     public List<Stock> findByDeliveryDate(LocalDate deliveryDate) {
         List<Stock> stocks = stockRepository.findByDeliveryDate(deliveryDate, PageRequest.of(0, 20));
@@ -116,12 +116,13 @@ public class StockService {
     }
 
     /**
-     * Metodo per cercare gli stock di prodotti con data da scadenza uguale a quella
-     * fornita.
-     * Gli elementi vengono restituiti con una paginazione di 20 stock per pagina
-     * 
+     * This method searches for stocks with an expirationDate corresponding to the one
+     * given as the input parameter
+     * if there are no stocks corresponding to the filter indicated
+     * the method throws a EntityNotFoundException.
+     * The elements found are returned with 20 items for page pagination
      * @param expirationDate
-     * @return
+     * @return the stocks found
      */
     public List<Stock> findByExpirationDate(LocalDate expirationDate) {
         List<Stock> stocks = stockRepository.findByExpirationDate(expirationDate, PageRequest.of(0, 20));
@@ -133,13 +134,14 @@ public class StockService {
     }
 
     /**
-     * Metodo per cercare stock di prodotti con un data di scadenza compresa tra due
-     * date fornite.
-     * Gli elementi vengono restituiti con una paginazione di 20 stock per pagina
-     * 
+     * This method searches for stocks with an expirationDate between the ones
+     * provided as the input parameter
+     * if there are no stocks corresponding to the filter indicated
+     * the method throws a EntityNotFoundException.
+     * The elements found are returned with 20 items for page pagination
      * @param firstDate
      * @param seconDate
-     * @return
+     * @return the stocks found
      */
     public List<Stock> findByExpirationDateBetween(LocalDate firstDate, LocalDate seconDate) {
         List<Stock> stocks = stockRepository.findByExpirationDateBetween(firstDate, seconDate, PageRequest.of(0, 20));
@@ -151,12 +153,11 @@ public class StockService {
     }
 
     /**
-     * Questo metodo recupera lo stock relativo ad un prodotto specifico,
-     * recuperandolo tramite id, e ne aggiorna la quantità sommando quella già
-     * esistente a quella nuova
-     * 
-     * @param newStockQuantity
-     * @param productId
+     * This method searches and updates the stock of a specific product
+     * the method calls the stockRepository.findById to search for the specific stock
+     * then modifies it by adding the new quantity indicated as an input
+     * @param newStockQuantity the quantity to add to the stock
+     * @param productId the id of the product
      */
     public ResponseEntity<String> updateQuantity(int newStockQuantity, int productId) {
         Stock stock = stockRepository.findByProductId(productId);
@@ -166,12 +167,9 @@ public class StockService {
     }
 
     /**
-     * Metodo per creare un nuovo stock di un determinato prodotto. Prima di
-     * salvarlo cerca se questo non sia già esistente in database. Se esiste
-     * già restituisce un errrore con un messaggio che rimanada ad un altro metodo.
-     * In caso di riscontro negativo invece prodede a salvare nel database il nuovo
-     * stock
-     * 
+     * This method creates a new stock of a product.
+     * Checks if the stock already exists and if it does, throws a DuplicateKeyException,
+     * otherwise calls the stockRepository.save method to create the new stock.
      * @param stock
      */
     public void save(Stock stock) {
