@@ -203,8 +203,9 @@ public class StockService {
 
     /**
      * This method deletes a stock identified by its id.
-     * Check if the stock exists and, if it doeas, proceed to delete it.
-     * Otherwise it calls stockRepository.delete to delete the stock
+     * Check if the stock exists and, if it does, proceed to call
+     * stockRepository.delete to delete it.
+     * Otherwise it throws an EntityNotFoundException
      * 
      * @param id
      */
@@ -212,6 +213,21 @@ public class StockService {
         Stock stock = stockRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("No stock with this id to delete"));
         stockRepository.delete(stock);
+    }
+
+    /**
+     * This method delete all the stocks.
+     * Checks if the stocks exist, and if they don't, throws an
+     * EntityNotFoundException.
+     * Otherwise, it proceeds to call stockRepository.deleteAll to delete them all.
+     */
+
+    public void deleteALl() {
+        List<Stock> stocks = stockRepository.findAll();
+        if (stocks.isEmpty()) {
+            throw new EntityNotFoundException("There are no stocks to delete");
+        }
+        stockRepository.deleteAll();
     }
 
 }
