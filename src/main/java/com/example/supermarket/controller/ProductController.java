@@ -98,13 +98,13 @@ public class ProductController {
     }
 
     @DeleteMapping("/all")
-    public ResponseEntity<?> deleteAll() {
+    public ResponseEntity<String> deleteAll() {
         productService.deleteAll();
         return ResponseEntity.ok("All products have been deleted");
     }
 
     @DeleteMapping("/id/")
-    public ResponseEntity<?> deleteById(@NotNull @RequestParam int id) {
+    public ResponseEntity<String> deleteById(@NotNull @RequestParam int id) {
         productService.deleteById(id);
         return ResponseEntity.ok("User with id " + id + " have been deleted");
     }

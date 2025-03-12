@@ -201,4 +201,17 @@ public class StockService {
         stockRepository.save(stock);
     }
 
+    /**
+     * This method deletes a stock identified by its id.
+     * Check if the stock exists and, if it doeas, proceed to delete it.
+     * Otherwise it calls stockRepository.delete to delete the stock
+     * 
+     * @param id
+     */
+    public void deleteByID(int id) {
+        Stock stock = stockRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("No stock with this id to delete"));
+        stockRepository.delete(stock);
+    }
+
 }

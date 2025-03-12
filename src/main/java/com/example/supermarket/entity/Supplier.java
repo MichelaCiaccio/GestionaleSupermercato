@@ -2,6 +2,10 @@ package com.example.supermarket.entity;
 
 import java.util.Set;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
+import jakarta.annotation.Nullable;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -37,6 +41,8 @@ public class Supplier {
     private String email;
 
     @OneToMany(mappedBy = "supplier")
+    @Nullable
+    @OnDelete(action = OnDeleteAction.SET_NULL)
     private Set<Stock> stocks;
 
 }

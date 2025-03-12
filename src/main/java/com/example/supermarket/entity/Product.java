@@ -3,7 +3,10 @@ package com.example.supermarket.entity;
 import java.math.BigDecimal;
 import java.util.List;
 
-import io.micrometer.common.lang.Nullable;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
+import jakarta.annotation.Nullable;
 import jakarta.persistence.Entity;
 
 import jakarta.persistence.GeneratedValue;
@@ -40,6 +43,7 @@ public class Product {
 
     @OneToMany(mappedBy = "product")
     @Nullable
+    @OnDelete(action = OnDeleteAction.SET_NULL)
     private List<Stock> stocks;
 
 }
