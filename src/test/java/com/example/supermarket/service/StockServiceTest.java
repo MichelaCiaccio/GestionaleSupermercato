@@ -38,6 +38,9 @@ public class StockServiceTest {
     @Mock
     private StockRepository stockRepo;
 
+    @Mock
+    private StockService stockServ;
+
     @Test
     void testDeleteALl() {
 
@@ -479,6 +482,40 @@ public class StockServiceTest {
     @Test
     void testUpdate() {
 
+        // GIVEN
+        int id = 1;
+        Product product = new Product(1, "Prodotto", new BigDecimal(26), null, null);
+        Product modProduct = new Product(1, "Prodotto modificato", new BigDecimal(26), null, null);
+        Supplier supplier = new Supplier(1, "Fornitore", "Indirizzo", "3336875889", "test@email.com", null);
+        Stock stock = new Stock(id, 36, LocalDate.of(2025, 3, 12), LocalDate.of(2026, 02, 15), product, supplier);
+        Stock modStock = new Stock(id, 36, LocalDate.of(2025, 3, 12), LocalDate.of(2026, 02, 15), modProduct, supplier);
+
+        // WHEN
+        when(stockRepo.findById(id)).thenReturn(Optional.of(stock)).thenReturn(Optional.of(modStock));
+        Optional<Stock> existingStock = stockRepo.findById(id);
+        stockServ.update(id, modStock);
+        Optional<Stock> updatedStock = stockRepo.findById(id);
+
+        // VERIFY
+        verify(stockRepo, times(2)).findById(id);
+        verify(stockServ, times(1)).update(id, modStock);
+        assertNotEquals(existingStock, updatedStock);
+        assertNotNull(existingStock);
+        assertNotNull(updatedStock);
+    }
+
+    @Test
+    void testUpdateException() {
+
+        // GIVEN
+        int id = 1;
+
+        // WHEN
+        when(stockRepo.findById(id)).thenThrow(new EntityNotFoundException());
+
+        // VERIFY
+        verify(stockRepo, times(0)).findById(id);
+        assertThrows(EntityNotFoundException.class, () -> stockRepo.findById(id));
     }
 
     @Test
