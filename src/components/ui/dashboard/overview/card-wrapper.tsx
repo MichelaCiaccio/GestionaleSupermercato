@@ -1,14 +1,27 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { currencyFormatter } from '@/lib/utils';
 import { Banknote, Factory, LucideIcon, Package, Users } from 'lucide-react';
+import {
+  products,
+  sales,
+} from '@/components/ui/dashboard/overview/sample-data';
 
 export function CardWrapper() {
   return (
     <>
-      <OverviewCard title="Total Sales" icon={Banknote} value={123.5} />
-      <OverviewCard title="Total Products" icon={Package} value={123.5} />
-      <OverviewCard title="Total Suppliers" icon={Factory} value={123.5} />
-      <OverviewCard title="Total Users" icon={Users} value={123.5} />
+      <OverviewCard
+        title="Total Sales"
+        icon={Banknote}
+        value={sales.reduce((total, { amount }) => total + amount, 0)}
+        isCurrency
+      />
+      <OverviewCard
+        title="Total Products"
+        icon={Package}
+        value={products.reduce((total, { quantity }) => total + quantity, 0)}
+      />
+      <OverviewCard title="Total Suppliers" icon={Factory} value={20} />
+      <OverviewCard title="Total Users" icon={Users} value={1} />
     </>
   );
 }
@@ -16,6 +29,7 @@ export function CardWrapper() {
 function OverviewCard(props: {
   title: string;
   value: number;
+  isCurrency?: boolean;
   icon: LucideIcon;
 }) {
   return (
@@ -28,7 +42,9 @@ function OverviewCard(props: {
       </CardHeader>
       <CardContent>
         <div className="text-2xl font-bold">
-          {currencyFormatter.format(props.value)}
+          {props.isCurrency
+            ? currencyFormatter.format(props.value)
+            : props.value}
         </div>
       </CardContent>
     </Card>
