@@ -65,9 +65,8 @@ public class StockService {
     }
 
     /**
-     * This method searches for stocks using the quantity as a parameter
-     * to search for amounts of stocks greater than the given quantity
-     * if there are no stocks in quantity greater than the one indicated
+     * This method searches for amounts of stocks greater than the given quantity
+     * if there are no stocks with a quantity greater than the one indicated
      * the method throws a EntityNotFoundException.
      * The elements found are returned with 20 items for page pagination
      * @param quantity
@@ -82,9 +81,8 @@ public class StockService {
     }
 
     /**
-     * This method searches for stocks using the quantity as a parameter
-     * to search for amounts of stocks lower than the given quantity
-     * if there are no stocks in quantity lower than the one indicated
+     * This method searches for amounts of stocks lower than the given quantity
+     * if there are no stocks with a quantity lower than the one indicated
      * the method throws a EntityNotFoundException.
      * The elements found are returned with 20 items for page pagination
      * @param quantity
@@ -169,7 +167,7 @@ public class StockService {
     /**
      * This method creates a new stock of a product.
      * Checks if the stock already exists and if it does, throws a DuplicateKeyException,
-     * otherwise calls the stockRepository.save method to create the new stock.
+     * otherwise calls the creates the new stock.
      * @param stock
      */
     public void save(Stock stock) {
