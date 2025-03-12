@@ -11,7 +11,7 @@ export default function ProductsPage() {
     <>
       <DashboardHeader title="Suppliers" />
 
-      <main className="flex flex-col gap-6 p-6">
+      <main className="grid gap-6 p-6">
         <SuppliersTable />
       </main>
     </>

@@ -78,8 +78,8 @@ export function SuppliersDataTable<TData, TValue>({
   });
 
   return (
-    <div className="w-full">
-      <div className="mb-4 flex items-center">
+    <div className="w-full min-w-0">
+      <div className="mb-4 flex items-center gap-2">
         <Input
           placeholder="Find suppliers..."
           value={(table.getColumn('name')?.getFilterValue() as string) ?? ''}
@@ -123,6 +123,7 @@ export function SuppliersDataTable<TData, TValue>({
           </Button>
         </div>
       </div>
+
       <div className="rounded-md border">
         <Table>
           <TableHeader>
