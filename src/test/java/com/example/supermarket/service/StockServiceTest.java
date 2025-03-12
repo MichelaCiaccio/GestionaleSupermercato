@@ -105,7 +105,7 @@ public class StockServiceTest {
         when(stockRepo.findById(id)).thenThrow(new EntityNotFoundException());
 
         // VERIFY
-        verify(stockRepo, times(0)).findById(null);
+        verify(stockRepo, times(0)).findById(id);
         assertThrows(EntityNotFoundException.class, () -> stockRepo.findById(id));
 
     }
@@ -117,8 +117,8 @@ public class StockServiceTest {
         Product product = new Product(1, "Prodotto", new BigDecimal(26), null, null);
         Supplier supplier = new Supplier(1, "Fornitore", "Indirizzo", "3336875889", "test@email.com", null);
         List<Stock> stocks = List.of(
-                new Stock(1, 36, LocalDate.of(2025, 3, 12), LocalDate.of(2026, 02, 15), product, supplier),
-                new Stock(2, 36, LocalDate.of(2025, 3, 12), LocalDate.of(2026, 02, 15), product, supplier));
+                new Stock(1, 36, LocalDate.of(2025, 3, 12), LocalDate.of(2026, 2, 15), product, supplier),
+                new Stock(2, 36, LocalDate.of(2025, 3, 12), LocalDate.of(2026, 2, 15), product, supplier));
 
         // WHEN
         when(stockRepo.findAll()).thenReturn(stocks).thenReturn(null);
@@ -151,8 +151,8 @@ public class StockServiceTest {
         Product product = new Product(1, "Prodotto", new BigDecimal(26), null, null);
         Supplier supplier = new Supplier(1, "Fornitore", "Indirizzo", "3336875889", "test@email.com", null);
         List<Stock> stocks = List.of(
-                new Stock(1, 36, deliveryDate, LocalDate.of(2026, 02, 15), product, supplier),
-                new Stock(2, 36, deliveryDate, LocalDate.of(2026, 02, 15), product, supplier));
+                new Stock(1, 36, deliveryDate, LocalDate.of(2026, 2, 15), product, supplier),
+                new Stock(2, 36, deliveryDate, LocalDate.of(2026, 2, 15), product, supplier));
 
         // WHEN
         when(stockRepo.findByDeliveryDate(deliveryDate, null)).thenReturn(stocks);
@@ -187,8 +187,8 @@ public class StockServiceTest {
         Product product = new Product(1, "Prodotto", new BigDecimal(26), null, null);
         Supplier supplier = new Supplier(1, "Fornitore", "Indirizzo", "3336875889", "test@email.com", null);
         List<Stock> stocks = List.of(
-                new Stock(1, 36, expirationDate, LocalDate.of(2026, 02, 15), product, supplier),
-                new Stock(2, 36, expirationDate, LocalDate.of(2026, 02, 15), product, supplier));
+                new Stock(1, 36, expirationDate, LocalDate.of(2026, 2, 15), product, supplier),
+                new Stock(2, 36, expirationDate, LocalDate.of(2026, 2, 15), product, supplier));
 
         // WHEN
         when(stockRepo.findByExpirationDate(expirationDate, null)).thenReturn(stocks);
@@ -225,8 +225,8 @@ public class StockServiceTest {
         Product product = new Product(1, "Prodotto", new BigDecimal(26), null, null);
         Supplier supplier = new Supplier(1, "Fornitore", "Indirizzo", "3336875889", "test@email.com", null);
         List<Stock> stocks = List.of(
-                new Stock(1, 36, expirationDateStart, LocalDate.of(2026, 02, 15), product, supplier),
-                new Stock(2, 36, expirationDateEnd, LocalDate.of(2026, 02, 15), product, supplier));
+                new Stock(1, 36, expirationDateStart, LocalDate.of(2026, 2, 15), product, supplier),
+                new Stock(2, 36, expirationDateEnd, LocalDate.of(2026, 2, 15), product, supplier));
 
         // WHEN
         when(stockRepo.findByExpirationDateBetween(expirationDateStart, expirationDateEnd, null)).thenReturn(stocks);
