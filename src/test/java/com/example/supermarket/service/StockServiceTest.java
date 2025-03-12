@@ -521,5 +521,27 @@ public class StockServiceTest {
     @Test
     void testUpdateQuantity() {
 
+        // GIVEN
+        int id = 1;
+        int quantity = 36;
+        int newQuantity = quantity + 30;
+        Product product = new Product(1, "Prodotto", new BigDecimal(26), null, null);
+        Supplier supplier = new Supplier(1, "Fornitore", "Indirizzo", "3336875889", "test@email.com", null);
+        Stock stock = new Stock(id, quantity, LocalDate.of(2025, 3, 12), LocalDate.of(2026, 02, 15), product, supplier);
+        Stock modStock = new Stock(id, newQuantity, LocalDate.of(2025, 3, 12), LocalDate.of(2026, 02, 15), product,
+                supplier);
+
+        // WHEN
+        when(stockRepo.findById(id)).thenReturn(Optional.of(stock)).thenReturn(Optional.of(modStock));
+        Optional<Stock> existingStock = stockRepo.findById(id);
+        stockServ.updateQuantity(newQuantity, id);
+        Optional<Stock> newStock = stockRepo.findById(id);
+
+        // VERIFY
+        verify(stockRepo, times(2)).findById(id);
+        verify(stockServ, times(1)).updateQuantity(newQuantity, id);
+        assertNotNull(existingStock);
+        assertNotNull(newStock);
+        assertNotEquals(existingStock, newStock);
     }
 }
