@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
@@ -24,6 +25,7 @@ public class StockService {
      * The method calls the stockRepository findAll to search for all the stocks
      * if there are no stocks throws an EntityNotFoundException.
      * The elements found are returned with 20 items for page pagination
+     * 
      * @return the stocks found
      */
     public List<Stock> findAll() {
@@ -38,6 +40,7 @@ public class StockService {
      * This method searches for stocks using the name as a parameter
      * if the stocks are empty throws a EntityNotFoundException.
      * The elements found are returned with 20 items for page pagination
+     * 
      * @param name the name of the stock
      * @return the stocks found
      */
@@ -53,6 +56,7 @@ public class StockService {
      * This method searches for stocks using the name of the supplier as a parameter
      * if the stocks are empty throws a EntityNotFoundException.
      * The elements found are returned with 20 items for page pagination
+     * 
      * @param name the name of the supplier
      * @return the stocks found
      */
@@ -69,6 +73,7 @@ public class StockService {
      * if there are no stocks with a quantity greater than the one indicated
      * the method throws a EntityNotFoundException.
      * The elements found are returned with 20 items for page pagination
+     * 
      * @param quantity
      * @return the stocks found
      */
@@ -85,6 +90,7 @@ public class StockService {
      * if there are no stocks with a quantity lower than the one indicated
      * the method throws a EntityNotFoundException.
      * The elements found are returned with 20 items for page pagination
+     * 
      * @param quantity
      * @return the stocks found
      */
@@ -102,6 +108,7 @@ public class StockService {
      * if there are no stocks corresponding to the filter indicated
      * the method throws a EntityNotFoundException.
      * The elements found are returned with 20 items for page pagination
+     * 
      * @param deliveryDate
      * @return the stocks found
      */
@@ -114,11 +121,13 @@ public class StockService {
     }
 
     /**
-     * This method searches for stocks with an expirationDate corresponding to the one
+     * This method searches for stocks with an expirationDate corresponding to the
+     * one
      * given as the input parameter
      * if there are no stocks corresponding to the filter indicated
      * the method throws a EntityNotFoundException.
      * The elements found are returned with 20 items for page pagination
+     * 
      * @param expirationDate
      * @return the stocks found
      */
@@ -137,6 +146,7 @@ public class StockService {
      * if there are no stocks corresponding to the filter indicated
      * the method throws a EntityNotFoundException.
      * The elements found are returned with 20 items for page pagination
+     * 
      * @param firstDate
      * @param seconDate
      * @return the stocks found
@@ -152,10 +162,12 @@ public class StockService {
 
     /**
      * This method searches and updates the stock of a specific product
-     * the method calls the stockRepository.findById to search for the specific stock
+     * the method calls the stockRepository.findById to search for the specific
+     * stock
      * then modifies it by adding the new quantity indicated as an input
+     * 
      * @param newStockQuantity the quantity to add to the stock
-     * @param productId the id of the product
+     * @param productId        the id of the product
      */
     public ResponseEntity<String> updateQuantity(int newStockQuantity, int productId) {
         Stock stock = stockRepository.findByProductId(productId);
@@ -166,15 +178,25 @@ public class StockService {
 
     /**
      * This method creates a new stock of a product.
-     * Checks if the stock already exists and if it does, throws a DuplicateKeyException,
-     * otherwise calls the creates the new stock.
+     * First, it checks if the supplier already exists and if it doesn't, throws a
+     * IllegalArgumentException. If the supplier exists, it proceeds to the next
+     * check.
+     * Next, it checks if the stock already exists and if it does, throws a
+     * DuplicateKeyException,
+     * otherwise calls the stockRepository.save method to create the new stock.
+     * 
      * @param stock
      */
     public void save(Stock stock) {
+        if (stock.getSupplier() == null) {
+            throw new DataIntegrityViolationException("Stock must have a supplier");
+        }
         if (stockRepository.existsByProductNameAndSupplierName(stock.getProduct().getName(),
                 stock.getSupplier().getName())) {
             throw new DuplicateKeyException(
-                    "The stock for this product already exists. Instead of creating new stock, update the quantity");
+                    "The stock for " + stock.getProduct().getName()
+                            + " from " + stock.getSupplier().getName()
+                            + " already exists. Instead of creating new stock, update the quantity");
         }
         stockRepository.save(stock);
     }
