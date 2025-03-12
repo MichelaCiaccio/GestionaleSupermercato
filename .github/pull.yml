@@ -1,0 +1,7 @@
+# Auto sync fork by pulling changes from upstream branch
+# For more information, check: https://wei.github.io/pull/
+version: '1'
+rules:
+  - base: dev-fe
+    upstream: MichelaCiaccio:dev-fe
+    mergeMethod: hardreset
