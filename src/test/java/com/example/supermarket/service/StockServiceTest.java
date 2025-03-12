@@ -23,6 +23,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.DuplicateKeyException;
 
 import com.example.supermarket.entity.Product;
 import com.example.supermarket.entity.Stock;
@@ -451,6 +452,28 @@ public class StockServiceTest {
         verify(stockRepo, times(0)).save(stock);
         assertThrows(DataIntegrityViolationException.class,
                 () -> stockRepo.save(stock));
+    }
+
+    @Test
+    void testSaveWithDuplicateStock() {
+
+        // GIVEN
+        Product product = new Product(1, "Prodotto", new BigDecimal(26), null, null);
+        Supplier supplier = new Supplier(1, "Fornitore", "Indirizzo", "3336875889", "test@email.com", null);
+        Stock stock = new Stock(1, 36, LocalDate.of(2025, 3, 12), LocalDate.of(2026, 02, 15), product, supplier);
+
+        // WHEN
+        when(stockRepo.existsByProductNameAndSupplierName(stock.getProduct().getName(),
+                stock.getSupplier().getName()))
+                .thenThrow(new DuplicateKeyException("The stock for " + stock.getProduct().getName() + " from "
+                        + stock.getSupplier().getName() + " already existis"));
+
+        // VERIFY
+        verify(stockRepo, times(0)).existsByProductNameAndSupplierName(stock.getProduct().getName(),
+                stock.getSupplier().getName());
+        assertThrows(DuplicateKeyException.class,
+                () -> stockRepo.existsByProductNameAndSupplierName(stock.getProduct().getName(),
+                        stock.getSupplier().getName()));
     }
 
     @Test
