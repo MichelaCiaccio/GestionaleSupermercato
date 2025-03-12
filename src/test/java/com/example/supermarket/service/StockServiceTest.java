@@ -1,6 +1,7 @@
 package com.example.supermarket.service;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThrows;
@@ -416,8 +417,23 @@ public class StockServiceTest {
     }
 
     @Test
-    void testSave() {
+    void testSaveSuccessfully() {
 
+        // GIVEN
+        Product product = new Product(1, "Prodotto", new BigDecimal(26), null, null);
+        Supplier supplier = new Supplier(1, "Fornitore", "Indirizzo", "3336875889", "test@email.com", null);
+        Stock stock = new Stock(1, 36, LocalDate.of(2025, 3, 12), LocalDate.of(2026, 02, 15), product, supplier);
+
+        // WHEN
+        when(stockRepo.existsByProductNameAndSupplierName(stock.getProduct().getName(), stock.getSupplier().getName()))
+                .thenReturn(false);
+        Boolean exists = stockRepo.existsByProductNameAndSupplierName(stock.getProduct().getName(),
+                stock.getSupplier().getName());
+        stockRepo.save(stock);
+
+        // VERIFY
+        verify(stockRepo, times(1)).save(stock);
+        assertFalse(exists);
     }
 
     @Test
