@@ -66,12 +66,12 @@ public class StockController {
         return stockService.findByDeliveryDate(deliveryDate);
     }
 
-    @GetMapping(path = "/deliveryDate/")
+    @GetMapping(path = "/expirationDate/")
     public List<Stock> findByExpirationDate(@RequestParam LocalDate expirationDate) {
         return stockService.findByExpirationDate(expirationDate);
     }
 
-    @GetMapping(path = "/deliveryDate/")
+    @GetMapping(path = "/deliveryDatePeriod/")
     public List<Stock> findByExpirationDateBetween(@RequestParam LocalDate expirationDateStart,
             LocalDate expirationDateEnd) {
         return stockService.findByExpirationDateBetween(expirationDateStart, expirationDateEnd);
