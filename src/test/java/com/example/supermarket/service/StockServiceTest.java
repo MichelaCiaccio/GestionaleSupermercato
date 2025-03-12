@@ -1,9 +1,10 @@
 package com.example.supermarket.service;
 
-import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThrows;
+import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -12,6 +13,7 @@ import static org.mockito.Mockito.when;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -51,7 +53,6 @@ public class StockServiceTest {
         // VERIFY
         verify(stockRepo, times(2)).findAll();
         verify(stockRepo, times(1)).deleteAll();
-        assertNotNull(existingStocks);
         assertNull(deleteStocks);
         assertNotEquals(existingStocks, deleteStocks);
 
@@ -70,6 +71,40 @@ public class StockServiceTest {
 
     @Test
     void testDeleteByID() {
+
+        // GIVEN
+        int id = 1;
+        Product product = new Product(1, "Prodotto", new BigDecimal(26), null, null);
+        Supplier supplier = new Supplier(1, "Fornitore", "Indirizzo", "3336875889", "test@email.com", null);
+        Stock stock = new Stock(id, 36, LocalDate.of(2025, 3, 12), LocalDate.of(2026, 02, 15), product, supplier);
+
+        // WHEN
+        when(stockRepo.findById(id)).thenReturn(Optional.of(stock)).thenReturn(Optional.empty());
+        doNothing().when(stockRepo).deleteById(id);
+        Optional<Stock> existingStock = stockRepo.findById(id);
+        stockRepo.deleteById(id);
+        Optional<Stock> deleteStock = stockRepo.findById(id);
+
+        // VERIFY
+        verify(stockRepo, times(2)).findById(id);
+        verify(stockRepo, times(1)).deleteById(id);
+        assertNotEquals(existingStock, deleteStock);
+        assertTrue(existingStock.isPresent());
+        assertNull(deleteStock.orElse(null));
+    }
+
+    @Test
+    void testDeleteByIdException() {
+
+        // GIVEN
+        int id = 1;
+
+        // WHEN
+        when(stockRepo.findById(id)).thenThrow(new EntityNotFoundException());
+
+        // VERIFY
+        verify(stockRepo, times(0)).findById(null);
+        assertThrows(EntityNotFoundException.class, () -> stockRepo.findById(id));
 
     }
 
