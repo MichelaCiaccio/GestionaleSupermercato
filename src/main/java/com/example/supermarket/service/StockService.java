@@ -148,6 +148,8 @@ public class StockService {
      * The elements found are returned with 20 items for page pagination
      * 
      * @param firstDate
+     * 
+     * 
      * @param seconDate
      * @return the stocks found
      */
