@@ -94,4 +94,27 @@ public class SupplierService {
         }
         supplierRepo.save(supplier);
     }
+
+    /**
+     * This method updates a supplier identified by its ID.
+     * Checks if the supplier exists, and if it doesn't, throws an
+     * EntityNotFoundException.
+     * Otherwise, it proceeds to update the supplier's attribute with the new
+     * information and saves the modified supplier.
+     *
+     * @param id          The ID of the supplier to be updated.
+     * @param modSupplier The new supplier data to update with.
+     */
+
+    public void update(int id, Supplier modSupplier) {
+        Supplier supplier = supplierRepo.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("No supplier with id " + id));
+
+        supplier.setName(modSupplier.getName());
+        supplier.setEmail(modSupplier.getEmail());
+        supplier.setPhoneNumber(modSupplier.getPhoneNumber());
+        supplier.setStocks(modSupplier.getStocks());
+        supplier.setAddress(modSupplier.getAddress());
+        supplierRepo.save(supplier);
+    }
 }
