@@ -1,6 +1,7 @@
 package com.example.supermarket.repo;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -12,7 +13,7 @@ import com.example.supermarket.entity.Supplier;
 @Transactional
 public interface SupplierRepository extends JpaRepository<Supplier, Integer> {
 
-    Supplier findByName(String name);
+    Optional<Supplier> findByName(String name);
 
     List<Supplier> findByStocksProductName(String name);
 }

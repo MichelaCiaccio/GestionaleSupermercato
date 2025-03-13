@@ -15,9 +15,8 @@ public class SupplierService {
     private SupplierRepository supplierRepo;
 
     /**
-     * This method searches for stocks using the id as a parameter.
+     * This method searches for supplier using the id as a parameter.
      * If the supplier doesn't exists throw an EntityNotFoundException.
-     * Otherwise it return the supplier
      * 
      * @param id the id of the supplier
      * @return the supplier found
@@ -25,6 +24,19 @@ public class SupplierService {
     public Supplier findById(int id) {
         Supplier supplier = supplierRepo.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Supplier with id " + id + " not found"));
+        return supplier;
+    }
+
+    /**
+     * This method searches for supplier using the name as a parameter.
+     * If the supplier doeasn't exists throw an EntityNotFoundException.
+     * 
+     * @param name the name of the supplier
+     * @return the supplier found
+     */
+    public Supplier findByName(String name) {
+        Supplier supplier = supplierRepo.findByName(name)
+                .orElseThrow(() -> new EntityNotFoundException("Supplier with name " + name + " not found"));
         return supplier;
     }
 }
