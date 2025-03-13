@@ -1,5 +1,7 @@
 package com.example.supermarket.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -38,5 +40,13 @@ public class SupplierService {
         Supplier supplier = supplierRepo.findByName(name)
                 .orElseThrow(() -> new EntityNotFoundException("Supplier with name " + name + " not found"));
         return supplier;
+    }
+
+    public List<Supplier> findByProductName(String name) {
+        List<Supplier> suppliers = supplierRepo.findByStocksProductName(name);
+        if (suppliers.isEmpty()) {
+            throw new EntityNotFoundException("Suppliers providing the product " + name + " not found");
+        }
+        return suppliers;
     }
 }
