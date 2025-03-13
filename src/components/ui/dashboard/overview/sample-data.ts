@@ -1,7 +1,7 @@
-import { Product } from './products-columns';
 import { Sale } from './sales-columns';
+import { OverviewProduct } from './products-columns';
 
-export const products: Product[] = [
+export const products: OverviewProduct[] = [
   {
     name: 'Product 1',
     quantity: 7,

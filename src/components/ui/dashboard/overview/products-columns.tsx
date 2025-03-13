@@ -1,22 +1,20 @@
 'use client';
 
+import { Product } from '@/types/db';
 import { ColumnDef } from '@tanstack/react-table';
 import { format } from 'date-fns';
 
 const LOW_STOCK_THRESHOLD = 20;
 const MEDIUM_STOCK_THRESHOLD = 40;
 
-export type Product = {
-  lowStock?: null;
-  name: string;
-  quantity: number;
+export type OverviewProduct = Omit<Product, 'id'> & {
   arrivalDate: Date;
   expiryDate: Date;
 };
 
-export const columns: ColumnDef<Product>[] = [
+export const columns: ColumnDef<OverviewProduct>[] = [
   {
-    accessorKey: 'lowStock',
+    id: 'lowStock',
     header: () => <div className="w-2" />,
     cell: ({ row }) => {
       const quantity = parseInt(row.getValue('quantity'));
