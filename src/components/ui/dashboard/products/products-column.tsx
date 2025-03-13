@@ -17,6 +17,7 @@ import {
   SelectCheckbox,
 } from '@/components/ui/data-table';
 import { Product } from '@/types/db';
+import { currencyFormatter } from '@/lib/utils';
 
 export const columns: ColumnDef<Product>[] = [
   {
@@ -28,24 +29,35 @@ export const columns: ColumnDef<Product>[] = [
   },
   {
     accessorKey: 'name',
-    header: 'Name',
+    header: ({ column }) => {
+      return (
+        <AscDescTableHead title="Name" column={column} className="-ml-3" />
+      );
+    },
     cell: ({ row }) => <div className="capitalize">{row.getValue('name')}</div>,
   },
   {
-    accessorKey: 'quantity',
+    accessorKey: 'category',
+    header: ({ column }) => {
+      return (
+        <AscDescTableHead title="Category" column={column} className="-ml-3" />
+      );
+    },
+    cell: ({ row }) => row.original.category.name,
+  },
+  {
+    accessorKey: 'sellingPrice',
     header: ({ column }) => {
       return (
         <div className="text-right">
-          <AscDescTableHead
-            title="Quantity"
-            column={column}
-            className="-mr-3"
-          />
+          <AscDescTableHead title="Price" column={column} className="-mr-3" />
         </div>
       );
     },
     cell: ({ row }) => (
-      <div className="text-right">{row.getValue('quantity')}</div>
+      <div className="text-right">
+        {currencyFormatter.format(row.original.sellingPrice)}
+      </div>
     ),
   },
   {
@@ -66,9 +78,11 @@ export const columns: ColumnDef<Product>[] = [
             <DropdownMenuContent align="end">
               <DropdownMenuLabel>Actions</DropdownMenuLabel>
               <DropdownMenuItem
-                onClick={() => navigator.clipboard.writeText(supplier.id)}
+                onClick={() =>
+                  navigator.clipboard.writeText(supplier.id.toString())
+                }
               >
-                Copy supplier ID
+                Copy product ID
               </DropdownMenuItem>
               <DropdownMenuSeparator />
               <DropdownMenuItem>Edit</DropdownMenuItem>
