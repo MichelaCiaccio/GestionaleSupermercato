@@ -32,6 +32,7 @@ public interface StockRepository extends JpaRepository<Stock, Integer> {
     List<Stock> findByExpirationDateBetween(LocalDate startExpirationPeriod, LocalDate endExpirationPeriod,
             Pageable pageable);
 
-    boolean existsByProductNameAndSupplierName(String productName, String supplierName);
+    boolean existsByProductNameAndSupplierNameAndExpirationDate(String productName, String supplierName,
+            LocalDate expirationDate);
 
 }

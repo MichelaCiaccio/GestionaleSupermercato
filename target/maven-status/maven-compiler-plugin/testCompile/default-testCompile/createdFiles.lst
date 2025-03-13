@@ -1,5 +1,5 @@
 com/example/supermarket/service/HashCodeServiceTest.class
 com/example/supermarket/SupermarketApplicationTests.class
-com/example/supermarket/service/UserServiceTest.class
 com/example/supermarket/TestcontainersConfiguration.class
+com/example/supermarket/service/UserServiceTest.class
 com/example/supermarket/TestSupermarketApplication.class

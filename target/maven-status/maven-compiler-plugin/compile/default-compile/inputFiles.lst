@@ -1,5 +1,6 @@
 /home/utente/Scaricati/GestionaleSupermercato/src/main/java/com/example/supermarket/SupermarketApplication.java
 /home/utente/Scaricati/GestionaleSupermercato/src/main/java/com/example/supermarket/controller/ProductController.java
+/home/utente/Scaricati/GestionaleSupermercato/src/main/java/com/example/supermarket/controller/StockController.java
 /home/utente/Scaricati/GestionaleSupermercato/src/main/java/com/example/supermarket/controller/UserController.java
 /home/utente/Scaricati/GestionaleSupermercato/src/main/java/com/example/supermarket/entity/Category.java
 /home/utente/Scaricati/GestionaleSupermercato/src/main/java/com/example/supermarket/entity/Deal.java

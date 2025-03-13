@@ -193,11 +193,11 @@ public class StockService {
         if (stock.getSupplier() == null) {
             throw new DataIntegrityViolationException("Stock must have a supplier");
         }
-        if (stockRepository.existsByProductNameAndSupplierName(stock.getProduct().getName(),
-                stock.getSupplier().getName())) {
+        if (stockRepository.existsByProductNameAndSupplierNameAndExpirationDate(stock.getProduct().getName(),
+                stock.getSupplier().getName(), stock.getExpirationDate())) {
             throw new DuplicateKeyException(
                     "The stock for " + stock.getProduct().getName()
-                            + " from " + stock.getSupplier().getName()
+                            + " from " + stock.getSupplier().getName() + " with expiration"
                             + " already exists. Instead of creating new stock, update the quantity");
         }
         stockRepository.save(stock);

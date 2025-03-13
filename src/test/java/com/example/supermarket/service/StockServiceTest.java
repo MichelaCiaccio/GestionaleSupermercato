@@ -430,10 +430,11 @@ public class StockServiceTest {
         Stock stock = new Stock(1, 36, LocalDate.of(2025, 3, 12), LocalDate.of(2026, 02, 15), product, supplier);
 
         // WHEN
-        when(stockRepo.existsByProductNameAndSupplierName(stock.getProduct().getName(), stock.getSupplier().getName()))
+        when(stockRepo.existsByProductNameAndSupplierNameAndExpirationDate(stock.getProduct().getName(),
+                stock.getSupplier().getName(), stock.getExpirationDate()))
                 .thenReturn(false);
-        Boolean exists = stockRepo.existsByProductNameAndSupplierName(stock.getProduct().getName(),
-                stock.getSupplier().getName());
+        Boolean exists = stockRepo.existsByProductNameAndSupplierNameAndExpirationDate(stock.getProduct().getName(),
+                stock.getSupplier().getName(), stock.getExpirationDate());
         stockRepo.save(stock);
 
         // VERIFY
@@ -466,17 +467,17 @@ public class StockServiceTest {
         Stock stock = new Stock(1, 36, LocalDate.of(2025, 3, 12), LocalDate.of(2026, 02, 15), product, supplier);
 
         // WHEN
-        when(stockRepo.existsByProductNameAndSupplierName(stock.getProduct().getName(),
-                stock.getSupplier().getName()))
+        when(stockRepo.existsByProductNameAndSupplierNameAndExpirationDate(stock.getProduct().getName(),
+                stock.getSupplier().getName(), stock.getExpirationDate()))
                 .thenThrow(new DuplicateKeyException("The stock for " + stock.getProduct().getName() + " from "
                         + stock.getSupplier().getName() + " already existis"));
 
         // VERIFY
-        verify(stockRepo, times(0)).existsByProductNameAndSupplierName(stock.getProduct().getName(),
-                stock.getSupplier().getName());
+        verify(stockRepo, times(0)).existsByProductNameAndSupplierNameAndExpirationDate(stock.getProduct().getName(),
+                stock.getSupplier().getName(), stock.getExpirationDate());
         assertThrows(DuplicateKeyException.class,
-                () -> stockRepo.existsByProductNameAndSupplierName(stock.getProduct().getName(),
-                        stock.getSupplier().getName()));
+                () -> stockRepo.existsByProductNameAndSupplierNameAndExpirationDate(stock.getProduct().getName(),
+                        stock.getSupplier().getName(), stock.getExpirationDate()));
     }
 
     @Test
