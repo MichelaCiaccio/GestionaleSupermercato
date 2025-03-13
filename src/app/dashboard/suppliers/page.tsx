@@ -1,12 +1,12 @@
 import { DashboardHeader } from '@/components/ui/dashboard/header';
-import { SuppliersTable } from '@/components/ui/suppliers/suppliers-table';
+import { SuppliersTable } from '@/components/ui/dashboard/suppliers/suppliers-table';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Suppliers',
 };
 
-export default function ProductsPage() {
+export default function SuppliersPage() {
   return (
     <>
       <DashboardHeader title="Suppliers" />
