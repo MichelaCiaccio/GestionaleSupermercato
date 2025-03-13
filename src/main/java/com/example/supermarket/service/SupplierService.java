@@ -3,6 +3,7 @@ package com.example.supermarket.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 
 import com.example.supermarket.entity.Supplier;
@@ -48,5 +49,49 @@ public class SupplierService {
             throw new EntityNotFoundException("Suppliers providing the product " + name + " not found");
         }
         return suppliers;
+    }
+
+    /**
+     * This method delete all the suppliers.
+     * If there are no suppliers it throws an EntityNotFoundException.
+     * Otherwise calls supplierRepository.deleteAll to delete all the suppliers.
+     */
+    public void deleteAll() {
+        if (supplierRepo.findAll().isEmpty()) {
+            throw new EntityNotFoundException("There are no suppliers to delete");
+        }
+        supplierRepo.deleteAll();
+    }
+
+    /**
+     * This method deletes a supplier identified by its id.
+     * Check if the supplier exists and, if it does, proceed to call
+     * supplierRepository.deleteById to delete it.
+     * Otherwise it throws an EntityNotFoundException.
+     * 
+     * @param id
+     */
+    public void deleteById(int id) {
+        if (supplierRepo.findById(id).isEmpty()) {
+            throw new EntityNotFoundException("There are no supplier with this id" + id + " to delete");
+        }
+        supplierRepo.deleteById(id);
+    }
+
+    /**
+     * This method creates a new supplier.
+     * It checks if the supplier already exists, searching by its name, and if it
+     * does, throws a
+     * DuplicateKeyException.
+     * Otherwise calls the supplierRepository.save method to create the new
+     * supplier.
+     * 
+     * @param supplier
+     */
+    public void save(Supplier supplier) {
+        if (supplierRepo.findByName(supplier.getName()).isPresent()) {
+            throw new DuplicateKeyException("Supplier with name " + supplier.getName() + " already exists");
+        }
+        supplierRepo.save(supplier);
     }
 }

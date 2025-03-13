@@ -11,7 +11,6 @@ com/example/supermarket/service/ProductService.class
 com/example/supermarket/errorHandling/CustomRestExceptionHandler.class
 com/example/supermarket/errorHandling/ApiError.class
 com/example/supermarket/repo/UserRepository.class
-com/example/supermarket/service/HashCodeService.class
 com/example/supermarket/SupermarketApplication.class
 com/example/supermarket/controller/ProductController.class
 com/example/supermarket/entity/User.class

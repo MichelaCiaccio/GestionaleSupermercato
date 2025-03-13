@@ -18,8 +18,9 @@
 /home/utente/Scaricati/GestionaleSupermercato/src/main/java/com/example/supermarket/repo/CategoryRepository.java
 /home/utente/Scaricati/GestionaleSupermercato/src/main/java/com/example/supermarket/repo/ProductRepository.java
 /home/utente/Scaricati/GestionaleSupermercato/src/main/java/com/example/supermarket/repo/StockRepository.java
+/home/utente/Scaricati/GestionaleSupermercato/src/main/java/com/example/supermarket/repo/SupplierRepository.java
 /home/utente/Scaricati/GestionaleSupermercato/src/main/java/com/example/supermarket/repo/UserRepository.java
-/home/utente/Scaricati/GestionaleSupermercato/src/main/java/com/example/supermarket/service/HashCodeService.java
 /home/utente/Scaricati/GestionaleSupermercato/src/main/java/com/example/supermarket/service/ProductService.java
 /home/utente/Scaricati/GestionaleSupermercato/src/main/java/com/example/supermarket/service/StockService.java
+/home/utente/Scaricati/GestionaleSupermercato/src/main/java/com/example/supermarket/service/SupplierService.java
 /home/utente/Scaricati/GestionaleSupermercato/src/main/java/com/example/supermarket/service/UserService.java
