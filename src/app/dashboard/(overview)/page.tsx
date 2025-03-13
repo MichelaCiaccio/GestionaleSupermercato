@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 export default function OverviewPage() {
   return (
     <>
-      <DashboardHeader title="Dashboard Overview" />
+      <DashboardHeader breadcrumbs={[{ label: 'Overview' }]} />
 
       <main className="flex flex-col gap-6 p-6">
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">

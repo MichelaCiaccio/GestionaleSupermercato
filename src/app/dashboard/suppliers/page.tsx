@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 export default function SuppliersPage() {
   return (
     <>
-      <DashboardHeader title="Suppliers" />
+      <DashboardHeader breadcrumbs={[{ label: 'Suppliers' }]} />
 
       <main className="grid gap-6 p-6">
         <SuppliersTable />

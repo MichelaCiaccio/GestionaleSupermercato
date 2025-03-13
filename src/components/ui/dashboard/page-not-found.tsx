@@ -3,7 +3,7 @@ import { DashboardHeader } from './header';
 export function PageNotFound() {
   return (
     <>
-      <DashboardHeader title="Page Not Found" />
+      <DashboardHeader breadcrumbs={[{ label: 'Page Not Found' }]} />
 
       <main className="flex flex-1 items-center px-4 py-12 sm:px-6 md:px-8 lg:px-12 xl:px-16">
         <div className="w-full space-y-6 text-center">

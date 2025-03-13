@@ -3,7 +3,7 @@ import { DashboardHeader } from './header';
 export function PageInProgress() {
   return (
     <>
-      <DashboardHeader title="Page In Development" />
+      <DashboardHeader breadcrumbs={[{ label: 'Page In Development' }]} />
 
       <div className="flex flex-1 items-center px-4 py-12 sm:px-6 md:px-8 lg:px-12 xl:px-16">
         <div className="w-full space-y-6 text-center">
