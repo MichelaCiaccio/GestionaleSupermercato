@@ -3,7 +3,7 @@ import { Slot } from '@radix-ui/react-slot';
 import { ChevronRight, MoreHorizontal } from 'lucide-react';
 
 import { cn } from '@/lib/utils';
-import { Button } from '@/components/ui/button';
+import { buttonVariants } from './button';
 
 function Breadcrumb({ ...props }: React.ComponentProps<'nav'>) {
   return <nav aria-label="breadcrumb" data-slot="breadcrumb" {...props} />;
@@ -84,23 +84,21 @@ function BreadcrumbSeparator({
 function BreadcrumbEllipsis({
   className,
   ...props
-}: React.ComponentProps<'button'>) {
+}: React.ComponentProps<'span'>) {
   return (
-    <Button
-      type="button"
-      variant="ghost"
+    <span
       data-slot="breadcrumb-ellipsis"
       role="presentation"
       aria-hidden="true"
       className={cn(
-        'flex cursor-pointer items-center justify-center py-3',
-        className
+        buttonVariants({ variant: 'ghost', className }),
+        'flex cursor-pointer items-center justify-center py-3'
       )}
       {...props}
     >
       <MoreHorizontal className="size-4" />
       <span className="sr-only">More</span>
-    </Button>
+    </span>
   );
 }
 
