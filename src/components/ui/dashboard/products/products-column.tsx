@@ -86,7 +86,7 @@ export const columns: ColumnDef<Product>[] = [
               </DropdownMenuItem>
               <DropdownMenuSeparator />
               <DropdownMenuItem>Edit</DropdownMenuItem>
-              <DropdownMenuItem>Delete</DropdownMenuItem>
+              <DropdownMenuItem variant="destructive">Delete</DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
         </div>
