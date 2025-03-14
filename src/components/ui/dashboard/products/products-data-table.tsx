@@ -69,21 +69,23 @@ export function ProductsDataTable<TData, TValue>({
   return (
     <div className="w-full min-w-0">
       <div className="mb-4 flex items-center gap-2">
-        <InputFiler placeholder="Find products..." table={table} />
+        <InputFiler
+          className="flex-1"
+          placeholder="Find products..."
+          table={table}
+        />
 
-        <div className="ml-auto flex gap-2">
-          <Button
-            type="button"
-            variant="default"
-            className="cursor-pointer"
-            asChild
-          >
-            <Link href="/dashboard/products/create">
-              <Plus />
-              New Product
-            </Link>
-          </Button>
-        </div>
+        <Button
+          type="button"
+          variant="default"
+          className="cursor-pointer"
+          asChild
+        >
+          <Link href="/dashboard/products/create">
+            <Plus />
+            New Product
+          </Link>
+        </Button>
       </div>
 
       <div className="rounded-md border">

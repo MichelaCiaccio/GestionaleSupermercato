@@ -20,7 +20,6 @@ import {
   DropdownMenuContent,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { Input } from '@/components/ui/input';
 import {
   Table,
   TableBody,
@@ -37,6 +36,7 @@ import {
   Plus,
   Settings2,
 } from 'lucide-react';
+import { InputFiler } from '../../data-table';
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -81,16 +81,13 @@ export function SuppliersDataTable<TData, TValue>({
   return (
     <div className="w-full min-w-0">
       <div className="mb-4 flex items-center gap-2">
-        <Input
+        <InputFiler
+          className="flex-1"
           placeholder="Find suppliers..."
-          value={(table.getColumn('name')?.getFilterValue() as string) ?? ''}
-          onChange={(event) =>
-            table.getColumn('name')?.setFilterValue(event.target.value)
-          }
-          className="max-w-sm"
+          table={table}
         />
 
-        <div className="ml-auto flex gap-2">
+        <div className="flex gap-2">
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="outline" className="cursor-pointer">

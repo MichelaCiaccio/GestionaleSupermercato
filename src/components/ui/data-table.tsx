@@ -34,7 +34,7 @@ export function InputFiler<TData extends RowData>({
       onChange={(event) =>
         table.getColumn('name')?.setFilterValue(event.target.value)
       }
-      className={cn('max-w-sm', className)}
+      className={className}
       {...props}
     />
   );
