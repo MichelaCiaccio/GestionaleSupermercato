@@ -3,6 +3,9 @@ export type Category = {
   name: string;
 };
 
+export type CreateCategoryDTO = Omit<Category, 'id'>;
+export type UpdateCategoryDTO = Omit<Category, 'id'>;
+
 export type Product = {
   id: number;
   name: string;
@@ -11,5 +14,8 @@ export type Product = {
   stocks: [];
 };
 
-export type CreateProductDTO = Omit<Product, 'id'>;
+export type CreateProductDTO = Omit<Product, 'id' | 'stocks' | 'category'> & {
+  category: CreateCategoryDTO;
+};
+
 export type UpdateProductDTO = Partial<Omit<Product, 'id'>>;

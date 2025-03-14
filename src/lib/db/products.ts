@@ -1,5 +1,6 @@
 import { Product, CreateProductDTO, UpdateProductDTO } from '@/types/db';
 import instance from './instance';
+import { AxiosResponse } from 'axios';
 
 export const getAll = async (): Promise<Product[]> => {
   const response = await instance.get<Product[]>(`/product/all`);
@@ -16,8 +17,12 @@ export const getByName = async (name: string): Promise<Product> => {
   return response.data;
 };
 
-export const create = async (data: CreateProductDTO): Promise<Product> => {
-  const response = await instance.post<Product>('/product/add', data);
+export const create = async (data: CreateProductDTO): Promise<string> => {
+  const response = await instance.post<
+    string,
+    AxiosResponse,
+    CreateProductDTO & Pick<Product, 'stocks'>
+  >('/product/add', { ...data, stocks: [] });
   return response.data;
 };
 

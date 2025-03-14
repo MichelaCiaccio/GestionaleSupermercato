@@ -1,5 +1,6 @@
 import { Breadcrumb } from '@/components/ui/breadcrumbs';
 import { DashboardHeader } from '@/components/ui/dashboard/header';
+import { CreateProductForm } from '@/components/ui/dashboard/products/create-form';
 
 const breadcrumbs: Breadcrumb[] = [
   {
@@ -16,7 +17,9 @@ export default function CreateProductPage() {
     <>
       <DashboardHeader breadcrumbs={breadcrumbs} />
 
-      <main className="grid gap-6 p-6">Create product page</main>
+      <main className="grid gap-6 p-6">
+        <CreateProductForm />
+      </main>
     </>
   );
 }
