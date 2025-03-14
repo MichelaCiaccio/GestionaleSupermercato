@@ -92,7 +92,7 @@ function BreadcrumbEllipsis({
       aria-hidden="true"
       className={cn(
         buttonVariants({ variant: 'ghost', className }),
-        'flex cursor-pointer items-center justify-center py-3'
+        'flex cursor-pointer items-center justify-center'
       )}
       {...props}
     >

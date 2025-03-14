@@ -113,7 +113,7 @@ export function InteractiveEllipses({
       <>
         <Drawer open={open} onOpenChange={setOpen}>
           <DrawerTrigger aria-label="Toggle Menu">
-            <BreadcrumbEllipsis className="h-4 w-4" />
+            <BreadcrumbEllipsis className="h-6 w-4" />
           </DrawerTrigger>
           <DrawerContent>
             <DrawerHeader className="text-left">
@@ -152,7 +152,7 @@ export function InteractiveEllipses({
           className="flex items-center gap-1"
           aria-label="Toggle menu"
         >
-          <BreadcrumbEllipsis className="h-4 w-4" />
+          <BreadcrumbEllipsis className="h-6 w-4" />
         </DropdownMenuTrigger>
         <DropdownMenuContent align="start">
           {breadcrumbs.slice(1, -2).map((item, index) => (
