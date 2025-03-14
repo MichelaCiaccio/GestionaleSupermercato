@@ -69,8 +69,12 @@ export function Breadcrumbs({ breadcrumbs }: { breadcrumbs: Breadcrumb[] }) {
         {!isMobile && (
           <>
             <BreadcrumbItem>
-              <BreadcrumbLink href={breadcrumbs[0].href}>
-                {breadcrumbs[0].label}
+              <BreadcrumbLink asChild>
+                {breadcrumbs[0].href ? (
+                  <Link href={breadcrumbs[0].href}>{breadcrumbs[0].label}</Link>
+                ) : (
+                  breadcrumbs[0].label
+                )}
               </BreadcrumbLink>
             </BreadcrumbItem>
             <BreadcrumbSeparator />
