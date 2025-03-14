@@ -56,7 +56,7 @@ export const columns: ColumnDef<Product>[] = [
     },
     cell: ({ row }) => (
       <div className="text-right">
-        {currencyFormatter.format(row.original.sellingPrice)}
+        {currencyFormatter.format(row.original.sellingPrice / 100)}
       </div>
     ),
   },
