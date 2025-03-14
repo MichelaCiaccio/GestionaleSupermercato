@@ -81,7 +81,7 @@ export function ProductsDataTable<TData, TValue>({
           className="cursor-pointer"
           asChild
         >
-          <Link href="/dashboard/products/create">
+          <Link href="/dashboard/products/add">
             <Plus />
             New Product
           </Link>

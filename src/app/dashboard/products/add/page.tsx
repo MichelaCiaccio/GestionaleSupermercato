@@ -1,7 +1,7 @@
 import { Breadcrumb } from '@/components/ui/breadcrumbs';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { DashboardHeader } from '@/components/ui/dashboard/header';
-import { CreateProductForm } from '@/components/ui/dashboard/products/create-form';
+import { AddProductForm } from '@/components/ui/dashboard/products/create-form';
 
 const breadcrumbs: Breadcrumb[] = [
   {
@@ -9,7 +9,7 @@ const breadcrumbs: Breadcrumb[] = [
     href: '/dashboard/products',
   },
   {
-    label: 'Create Product',
+    label: 'Add Product',
   },
 ];
 
@@ -21,10 +21,10 @@ export default function CreateProductPage() {
       <main className="grid gap-6 p-6">
         <Card>
           <CardHeader>
-            <CardTitle>Create a new product</CardTitle>
+            <CardTitle>Add a new product</CardTitle>
           </CardHeader>
           <CardContent>
-            <CreateProductForm />
+            <AddProductForm />
           </CardContent>
         </Card>
       </main>

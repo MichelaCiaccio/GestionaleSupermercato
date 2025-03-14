@@ -20,7 +20,7 @@ import { toast } from 'sonner';
 
 const resolver = zodResolver(ProductSchema);
 
-export function CreateProductForm() {
+export function AddProductForm() {
   const initialState: ProductFormState = {
     message: '',
     success: false,
@@ -55,7 +55,7 @@ export function CreateProductForm() {
           name="name"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Product Name</FormLabel>
+              <FormLabel>Name</FormLabel>
               <FormControl>
                 <Input
                   placeholder="e.g., T-shirt"
@@ -106,7 +106,7 @@ export function CreateProductForm() {
           type="submit"
           className="ml-auto block w-full cursor-pointer px-10 md:w-auto"
         >
-          Submit
+          Add Product
         </Button>
       </form>
     </Form>
