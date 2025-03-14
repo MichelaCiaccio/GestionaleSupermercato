@@ -24,6 +24,7 @@ import {
 } from '@/components/ui/table';
 import { DataTableFooter, InputFiler } from '../../data-table';
 import { Plus } from 'lucide-react';
+import Link from 'next/link';
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -71,9 +72,16 @@ export function ProductsDataTable<TData, TValue>({
         <InputFiler placeholder="Find products..." table={table} />
 
         <div className="ml-auto flex gap-2">
-          <Button type="button" variant="default" className="cursor-pointer">
-            <Plus />
-            New Product
+          <Button
+            type="button"
+            variant="default"
+            className="cursor-pointer"
+            asChild
+          >
+            <Link href="/dashboard/products/create">
+              <Plus />
+              New Product
+            </Link>
           </Button>
         </div>
       </div>
