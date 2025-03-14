@@ -2,7 +2,6 @@
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
-import { z } from 'zod';
 import {
   Form,
   FormControl,
@@ -14,39 +13,43 @@ import {
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Euro, Package, Tag } from 'lucide-react';
-import db from '@/lib/db';
+import { useActionState } from 'react';
+import { createProduct, ProductFormState } from './actions';
+import { ProductSchema, ProductValues } from '@/lib/entities/product';
+import { toast } from 'sonner';
 
-const schema = z.object({
-  name: z.string().min(1, { message: 'Name is required.' }),
-  sellingPrice: z.coerce
-    .number()
-    .gt(0, { message: 'Please enter an amount greater than €0.' }),
-  category: z.string().min(1, { message: 'Category is required.' }),
-});
+const resolver = zodResolver(ProductSchema);
 
 export function CreateProductForm() {
-  const form = useForm<z.infer<typeof schema>>({
-    resolver: zodResolver(schema),
-    defaultValues: {
-      name: '',
-      sellingPrice: 0,
-      category: '',
-    },
-  });
-
-  const onSubmit = ({
-    name,
-    sellingPrice,
-    category,
-  }: z.infer<typeof schema>) => {
-    db.products
-      .create({ name, sellingPrice, category: { name: category } })
-      .then(() => form.reset());
+  const initialState: ProductFormState = {
+    message: '',
+    success: false,
+    values: { name: '', sellingPrice: 0, category: '' },
   };
+  const [state, formAction] = useActionState(
+    async (prevState: ProductFormState, formData: FormData) => {
+      const result = await createProduct(prevState, formData);
+      if (result.success) {
+        form.reset();
+        toast('Product created', {
+          icon: <Package />,
+          description: result.message,
+        });
+      }
+      return result;
+    },
+    initialState
+  );
+
+  const form = useForm<ProductValues>({
+    resolver,
+    errors: state.errors,
+    values: state.values,
+  });
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+      <form action={formAction} className="space-y-8">
         <FormField
           control={form.control}
           name="name"
