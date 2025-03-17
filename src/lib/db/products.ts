@@ -34,6 +34,7 @@ export const update = async (
   return response.data;
 };
 
-export const deleteById = async (id: number): Promise<void> => {
-  await instance.delete(`/product/${id}`);
+export const deleteById = async (id: number): Promise<string> => {
+  const response = await instance.delete<string>(`/product/id/?id=${id}`);
+  return response.data;
 };

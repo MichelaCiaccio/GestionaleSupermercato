@@ -64,3 +64,24 @@ export async function createProduct(
     values: { name: '', sellingPrice: 0, category: '' },
   };
 }
+
+export async function deleteProduct(
+  id: number
+): Promise<Omit<ProductFormState, 'values' | 'errors'>> {
+  let message: string;
+  let success = false;
+
+  try {
+    message = await db.products.deleteById(id);
+    success = true;
+  } catch {
+    message = 'Internal server error. Failed to delete product.';
+  }
+
+  revalidatePath('/dashboard/products');
+
+  return {
+    message,
+    success,
+  };
+}

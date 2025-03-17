@@ -3,6 +3,17 @@
 import { ColumnDef } from '@tanstack/react-table';
 import { Button } from '@/components/ui/button';
 import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from '@/components/ui/alert-dialog';
+import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
@@ -18,6 +29,8 @@ import {
 } from '@/components/ui/data-table';
 import { Product } from '@/types/db';
 import { currencyFormatter } from '@/lib/utils';
+import { useActionState } from 'react';
+import { deleteProduct } from './actions';
 
 export const columns: ColumnDef<Product>[] = [
   {
@@ -64,33 +77,71 @@ export const columns: ColumnDef<Product>[] = [
     id: 'actions',
     enableHiding: false,
     cell: ({ row }) => {
-      const supplier = row.original;
+      const product = row.original;
 
       return (
         <div className="text-right">
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="ghost" className="h-8 w-8 p-0">
-                <span className="sr-only">Open menu</span>
-                <MoreHorizontal />
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
-              <DropdownMenuLabel>Actions</DropdownMenuLabel>
-              <DropdownMenuItem
-                onClick={() =>
-                  navigator.clipboard.writeText(supplier.id.toString())
-                }
-              >
-                Copy product ID
-              </DropdownMenuItem>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem>Edit</DropdownMenuItem>
-              <DropdownMenuItem variant="destructive">Delete</DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
+          <ProductDropdownMenu product={product} />
         </div>
       );
     },
   },
 ];
+
+function ProductDropdownMenu({ product }: { product: Product }) {
+  const deleteProductWithId = deleteProduct.bind(null, product.id);
+  const formAction = useActionState(deleteProductWithId, {
+    message: '',
+    success: false,
+  })[1];
+
+  return (
+    <AlertDialog>
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+          <Button variant="ghost" className="h-8 w-8 p-0">
+            <span className="sr-only">Open menu</span>
+            <MoreHorizontal />
+          </Button>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent align="end">
+          <DropdownMenuLabel>Actions</DropdownMenuLabel>
+          <DropdownMenuItem
+            onClick={() => navigator.clipboard.writeText(product.id.toString())}
+          >
+            Copy product ID
+          </DropdownMenuItem>
+          <DropdownMenuSeparator />
+          <DropdownMenuItem>Edit</DropdownMenuItem>
+
+          <AlertDialogTrigger asChild>
+            <DropdownMenuItem variant="destructive">Delete</DropdownMenuItem>
+          </AlertDialogTrigger>
+        </DropdownMenuContent>
+      </DropdownMenu>
+      <AlertDialogContent>
+        <AlertDialogHeader>
+          <AlertDialogTitle>
+            Are you sure to delete this product?
+          </AlertDialogTitle>
+          <AlertDialogDescription>
+            This action cannot be undone. This will permanently delete the
+            product {product.name}. Do you wish to continue?
+          </AlertDialogDescription>
+        </AlertDialogHeader>
+        <AlertDialogFooter>
+          <AlertDialogCancel className="cursor-pointer">No</AlertDialogCancel>
+          <AlertDialogAction
+            variant="destructive"
+            className="cursor-pointer"
+            asChild
+          >
+            <form action={formAction}>
+              <button className="cursor-pointer">Yes, Delete</button>
+            </form>
+          </AlertDialogAction>
+        </AlertDialogFooter>
+      </AlertDialogContent>
+    </AlertDialog>
+  );
+}
