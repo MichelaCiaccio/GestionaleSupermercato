@@ -2,7 +2,7 @@ import { env } from '@/data/env/server';
 import axios from 'axios';
 
 const instance = axios.create({
-  baseURL: 'http://localhost:8080/',
+  baseURL: env.DB_BASE_URL,
 });
 
 if (env.NODE_ENV === 'development') {
