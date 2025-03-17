@@ -29,10 +29,12 @@ public class ProductService {
     // TO DO il controllo non funziona bisogna migliorarlo e poi spostarlo in una
     // funzione autonoma
     public void save(Product product) {
-        for (Stock stock : product.getStocks()) {
-            if (productRepository.existsByNameAndStocks_Supplier_Name(product.getName(),
-                    stock.getSupplier().getName())) {
-                throw new DuplicateKeyException("Product with name " + product.getId() + " already exist");
+        if (product.getStocks() != null) {
+            for (Stock stock : product.getStocks()) {
+                if (productRepository.existsByNameAndStocks_Supplier_Name(product.getName(),
+                        stock.getSupplier().getName())) {
+                    throw new DuplicateKeyException("Product with name " + product.getId() + " already exist");
+                }
             }
         }
         Optional<Category> existingCategory = categoryRepository.findByName(product.getCategory().getName());
