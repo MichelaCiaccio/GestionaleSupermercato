@@ -76,6 +76,7 @@ export function AddProductForm() {
               <FormControl>
                 <Input
                   type="number"
+                  step="any"
                   placeholder="e.g., 29.99"
                   icon={<Euro className="h-5 w-5" strokeWidth={1} />}
                   {...field}
