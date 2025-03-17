@@ -1,13 +1,14 @@
 'use client';
 
-import { Product } from '@/types/db';
 import { ColumnDef } from '@tanstack/react-table';
 import { format } from 'date-fns';
 
 const LOW_STOCK_THRESHOLD = 20;
 const MEDIUM_STOCK_THRESHOLD = 40;
 
-export type OverviewProduct = Omit<Product, 'id'> & {
+export type OverviewProduct = {
+  name: string;
+  quantity: number;
   arrivalDate: Date;
   expiryDate: Date;
 };
