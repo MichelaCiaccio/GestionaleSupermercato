@@ -21,7 +21,7 @@ import * as CheckboxPrimitive from '@radix-ui/react-checkbox';
 import { cn } from '@/lib/utils';
 import { VariantProps } from 'class-variance-authority';
 
-export function InputFiler<TData extends RowData>({
+export function InputFilter<TData extends RowData>({
   table,
   className,
   ...props

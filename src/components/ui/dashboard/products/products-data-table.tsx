@@ -22,7 +22,7 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
-import { DataTableFooter, InputFiler } from '../../data-table';
+import { DataTableFooter, InputFilter } from '../../data-table';
 import { Plus } from 'lucide-react';
 import Link from 'next/link';
 
@@ -69,7 +69,7 @@ export function ProductsDataTable<TData, TValue>({
   return (
     <div className="w-full min-w-0">
       <div className="mb-4 flex items-center gap-2">
-        <InputFiler
+        <InputFilter
           className="flex-1"
           placeholder="Find products..."
           table={table}

@@ -36,7 +36,7 @@ import {
   Plus,
   Settings2,
 } from 'lucide-react';
-import { InputFiler } from '../../data-table';
+import { InputFilter } from '../../data-table';
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -81,7 +81,7 @@ export function SuppliersDataTable<TData, TValue>({
   return (
     <div className="w-full min-w-0">
       <div className="mb-4 flex items-center gap-2">
-        <InputFiler
+        <InputFilter
           className="flex-1"
           placeholder="Find suppliers..."
           table={table}
