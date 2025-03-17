@@ -18,4 +18,4 @@ export type CreateProductDTO = Omit<Product, 'id' | 'stocks' | 'category'> & {
   category: CreateCategoryDTO;
 };
 
-export type UpdateProductDTO = Partial<Omit<Product, 'id'>>;
+export type UpdateProductDTO = CreateProductDTO;

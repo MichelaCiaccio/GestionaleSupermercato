@@ -8,7 +8,7 @@ export const getAll = async (): Promise<Product[]> => {
 };
 
 export const getById = async (id: number): Promise<Product> => {
-  const response = await instance.get<Product>(`/product/${id}`);
+  const response = await instance.get<Product>(`/product/id/?id=${id}`);
   return response.data;
 };
 
@@ -29,8 +29,11 @@ export const create = async (data: CreateProductDTO): Promise<string> => {
 export const update = async (
   id: number,
   data: UpdateProductDTO
-): Promise<Product> => {
-  const response = await instance.put<Product>(`/product/${id}`, data);
+): Promise<string> => {
+  const response = await instance.put<string, AxiosResponse, UpdateProductDTO>(
+    `/product/id/?id=${id}`,
+    data
+  );
   return response.data;
 };
 

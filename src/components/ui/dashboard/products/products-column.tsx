@@ -31,6 +31,7 @@ import { Product } from '@/types/db';
 import { currencyFormatter } from '@/lib/utils';
 import { useActionState } from 'react';
 import { deleteProduct } from './actions';
+import Link from 'next/link';
 
 export const columns: ColumnDef<Product>[] = [
   {
@@ -112,7 +113,9 @@ function ProductDropdownMenu({ product }: { product: Product }) {
             Copy product ID
           </DropdownMenuItem>
           <DropdownMenuSeparator />
-          <DropdownMenuItem>Edit</DropdownMenuItem>
+          <DropdownMenuItem asChild>
+            <Link href={`/dashboard/products/${product.id}/edit`}>Edit</Link>
+          </DropdownMenuItem>
 
           <AlertDialogTrigger asChild>
             <DropdownMenuItem variant="destructive">Delete</DropdownMenuItem>
