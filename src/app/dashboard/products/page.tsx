@@ -1,7 +1,9 @@
 import { Button } from '@/components/ui/button';
 import { DashboardHeader } from '@/components/ui/dashboard/header';
+import { PopulateProductsButton } from '@/components/ui/dashboard/products/populate-products';
 import { ProductsTable } from '@/components/ui/dashboard/products/products-table';
 import { SearchInput } from '@/components/ui/data-table';
+import { env } from '@/data/env/server';
 import { Plus } from 'lucide-react';
 import { Metadata } from 'next';
 import Link from 'next/link';
@@ -54,6 +56,10 @@ export default async function ProductsPage(props: {
             order={order}
             sort={sort}
           />
+
+          {env.NODE_ENV === 'development' && (
+            <PopulateProductsButton className="hidden" />
+          )}
         </div>
       </main>
     </>
