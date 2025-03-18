@@ -1,3 +1,5 @@
+'use client';
+
 import { Checkbox } from '@/components/ui/checkbox';
 import { Button, buttonVariants } from '@/components/ui/button';
 import {
@@ -20,7 +22,41 @@ import { ReactNode } from 'react';
 import * as CheckboxPrimitive from '@radix-ui/react-checkbox';
 import { cn } from '@/lib/utils';
 import { VariantProps } from 'class-variance-authority';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { useDebouncedCallback } from 'use-debounce';
 
+export function SearchInput(props: React.ComponentProps<'input'>) {
+  const searchParams = useSearchParams();
+  const pathname = usePathname();
+  const { replace } = useRouter();
+
+  const handleSearch = useDebouncedCallback((term: string) => {
+    const params = new URLSearchParams(searchParams);
+
+    params.set('page', '1');
+
+    if (term) {
+      params.set('search', term);
+    } else {
+      params.delete('search');
+    }
+
+    replace(`${pathname}?${params.toString()}`);
+  }, 300);
+
+  return (
+    <Input
+      {...props}
+      onChange={(e) => handleSearch(e.target.value)}
+      defaultValue={searchParams.get('search')?.toString()}
+    />
+  );
+}
+
+/**
+ * @deprecated In favor of SearchInput, this component is marked to be removed
+ *             once the new table logic with query parameters is implemented.
+ */
 export function InputFilter<TData extends RowData>({
   table,
   className,

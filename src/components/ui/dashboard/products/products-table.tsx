@@ -2,8 +2,17 @@ import db from '@/lib/db';
 import { columns } from './products-column';
 import { ProductsDataTable } from './products-data-table';
 import { Product } from '@/types/db';
+import { DataTableFooter } from '../../data-table';
 
-export async function ProductsTable() {
+type ProductsTableProps = {
+  search: string;
+  currentPage: number;
+};
+
+export async function ProductsTable({
+  search,
+  currentPage,
+}: ProductsTableProps) {
   let products: Product[];
 
   try {
@@ -12,5 +21,11 @@ export async function ProductsTable() {
     products = [];
   }
 
-  return <ProductsDataTable columns={columns} data={products} />;
+  return (
+    <>
+      <ProductsDataTable search={search} columns={columns} data={products} />
+
+      {/* <DataTableFooter /> */}
+    </>
+  );
 }
