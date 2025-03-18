@@ -11,6 +11,7 @@ import {
 } from '@/components/ui/sidebar';
 import {
   BarChart3,
+  Boxes,
   Factory,
   Home,
   Megaphone,
@@ -32,6 +33,11 @@ export const items = [
     title: 'Products',
     url: '/products',
     icon: Package,
+  },
+  {
+    title: 'Stocks',
+    url: '/stocks',
+    icon: Boxes,
   },
   {
     title: 'Suppliers',
