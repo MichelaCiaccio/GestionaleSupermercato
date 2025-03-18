@@ -29,7 +29,7 @@ public class ProductController {
 
     @GetMapping("")
     public Page<Product> findAll(@RequestParam(defaultValue = "0") int page) throws EntityNotFoundException {
-        return productService.findAll(page);
+        return productService.findAllSortByName(page);
     }
 
     @PostMapping("/add")

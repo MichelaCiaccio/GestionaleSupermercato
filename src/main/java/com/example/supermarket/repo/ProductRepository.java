@@ -1,19 +1,17 @@
 package com.example.supermarket.repo;
 
+import com.example.supermarket.entity.Product;
 import jakarta.annotation.Nonnull;
 import jakarta.annotation.Nullable;
+import jakarta.transaction.Transactional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.example.supermarket.entity.Product;
-
-import jakarta.transaction.Transactional;
-
-import java.util.Optional;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 // Paginazione a 20
 @Repository
@@ -24,9 +22,9 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
     @Nonnull
     Optional<Product> findById(@Nullable Integer id);
 
-    @Override
+
     @Nonnull
-    Page<Product> findAll(@Nullable  Pageable pageable);
+    Page<Product> findAll(@Nullable Pageable pageable);
 
     List<Product> findByName(String name);
 

@@ -11,6 +11,7 @@ import org.springframework.dao.DuplicateKeyException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -59,8 +60,9 @@ public class ProductService {
         productRepository.save(product);
     }
 
-    public Page<Product> findAll(int page) {
-        Pageable pageable = PageRequest.of(page, 20);
+    // TO DO Passare i sort come parametro per scegliere di mostrarli in modo desc o asc e decidere anche il nome del parametro
+    public Page<Product> findAllSortByName(int page) {
+        Pageable pageable = PageRequest.of(page, 20, Sort.by(Sort.Direction.ASC, "name"));
         Page<Product> products = productRepository.findAll(pageable);
         if (products.isEmpty()) {
             throw new EntityNotFoundException("There are no products");
