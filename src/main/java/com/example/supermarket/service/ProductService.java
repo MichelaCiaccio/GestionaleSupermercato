@@ -1,21 +1,21 @@
 package com.example.supermarket.service;
 
-import java.time.LocalDate;
-import java.util.List;
-import java.util.Optional;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DuplicateKeyException;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.stereotype.Service;
-
 import com.example.supermarket.entity.Category;
 import com.example.supermarket.entity.Product;
 import com.example.supermarket.entity.Stock;
 import com.example.supermarket.repo.CategoryRepository;
 import com.example.supermarket.repo.ProductRepository;
-
 import jakarta.persistence.EntityNotFoundException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DuplicateKeyException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
+
+import java.time.LocalDate;
+import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ProductService {
@@ -59,8 +59,9 @@ public class ProductService {
         productRepository.save(product);
     }
 
-    public List<Product> findAll() {
-        List<Product> products = productRepository.findAll(PageRequest.of(0, 20)).getContent();
+    public Page<Product> findAll(int page) {
+        Pageable pageable = PageRequest.of(page, 20);
+        Page<Product> products = productRepository.findAll(pageable);
         if (products.isEmpty()) {
             throw new EntityNotFoundException("There are no products");
         }
@@ -128,7 +129,7 @@ public class ProductService {
     }
 
     public void deleteAll() {
-        if (findAll().isEmpty()) {
+        if (productRepository.findAll().isEmpty()) {
             throw new EntityNotFoundException("There are no products to delete");
         }
         productRepository.deleteAll();
