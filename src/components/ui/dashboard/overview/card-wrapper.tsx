@@ -1,26 +1,27 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import db from '@/lib/db';
 import { currencyFormatter } from '@/lib/utils';
+import { Product } from '@/types/db';
 import { Banknote, Factory, LucideIcon, Package, Users } from 'lucide-react';
-import {
-  products,
-  sales,
-} from '@/components/ui/dashboard/overview/sample-data';
 
-export function CardWrapper() {
+export async function CardWrapper() {
+  let products: Product[];
+
+  try {
+    products = await db.products.getAll();
+  } catch {
+    products = [];
+  }
+
   return (
     <>
-      <OverviewCard
-        title="Total Sales"
-        icon={Banknote}
-        value={sales.reduce((total, { amount }) => total + amount, 0)}
-        isCurrency
-      />
+      <OverviewCard title="Total Sales" icon={Banknote} value={0} isCurrency />
       <OverviewCard
         title="Total Products"
         icon={Package}
         value={products.length}
       />
-      <OverviewCard title="Total Suppliers" icon={Factory} value={20} />
+      <OverviewCard title="Total Suppliers" icon={Factory} value={0} />
       <OverviewCard title="Total Users" icon={Users} value={1} />
     </>
   );

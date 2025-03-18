@@ -79,7 +79,7 @@ export function ProductsDataTable<TData, TValue>({
           ) : (
             <TableRow>
               <TableCell colSpan={columns.length} className="h-24 text-center">
-                No results.
+                No low stock products.
               </TableCell>
             </TableRow>
           )}
