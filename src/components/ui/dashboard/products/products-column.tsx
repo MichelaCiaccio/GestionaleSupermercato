@@ -61,7 +61,11 @@ export const columns: ColumnDef<Product>[] = [
   {
     accessorKey: 'sellingPrice',
     header: () => (
-      <SortTableHead title="Price" value="sellingPrice" className="-mr-3" />
+      <SortTableHead
+        title="Price"
+        value="sellingPrice"
+        className="float-right -mr-3"
+      />
     ),
     cell: ({ row }) => (
       <div className="text-right">
