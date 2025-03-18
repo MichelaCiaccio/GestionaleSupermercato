@@ -28,7 +28,7 @@ export default async function ProductsPage(props: {
 
       <main className="grid gap-6 p-6">
         <div className="w-full min-w-0">
-          <div className="mb-4 flex items-center gap-6">
+          <div className="mb-4 flex items-center gap-4">
             <SearchInput className="flex-1" placeholder="Find products..." />
 
             <Button
