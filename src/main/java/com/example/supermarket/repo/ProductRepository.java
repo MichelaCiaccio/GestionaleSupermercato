@@ -5,7 +5,6 @@ import jakarta.annotation.Nullable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import com.example.supermarket.entity.Product;
@@ -16,7 +15,7 @@ import java.util.Optional;
 import java.time.LocalDate;
 import java.util.List;
 
-//Paginazione a 20
+// Paginazione a 20
 @Repository
 @Transactional
 public interface ProductRepository extends JpaRepository<Product, Integer> {
@@ -35,13 +34,10 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
 
     List<Product> findBySellingPrice(double sellingPrice);
 
-    @Query("select p from Product p join p.stocks s join s.supplier sup where sup.name= :supplierName")
-    List<Product> findBySupplierName(String supplierName);
+    List<Product> findByStocks_Supplier_Name(String supplierName);
 
-    @Query("select p from Product p join p.stocks s where s.expirationDate = :expirationDate")
     List<Product> findByStocks_ExpirationDate(LocalDate expirationDate);
 
-    @Query("select p from Product p join p.stocks s where s.quantity = :quantity")
     List<Product> findByStocks_Quantity(int quantity);
 
     boolean existsByNameAndStocks_Supplier_Name(String name, String supplierName);
