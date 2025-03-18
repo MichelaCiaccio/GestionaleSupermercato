@@ -121,8 +121,12 @@ export function ViewColumnsFilterDropdown<TData extends RowData>({
 
 export function DataTableFooter<TData extends RowData>({
   table,
+  currentPage,
+  totalPages,
 }: {
   table: Table<TData>;
+  currentPage: number;
+  totalPages: number;
 }) {
   return (
     <div className="flex items-center justify-end space-x-2 py-4">
@@ -131,53 +135,102 @@ export function DataTableFooter<TData extends RowData>({
         {table.getFilteredRowModel().rows.length} row(s) selected.
       </div>
 
-      <div className="flex gap-2.5">
-        <div className="space-x-2">
-          <Button
-            variant="outline"
-            className="h-8 w-8 cursor-pointer p-0"
-            onClick={() => table.setPageIndex(0)}
-            disabled={!table.getCanPreviousPage()}
-          >
-            <span className="sr-only">Go to first page</span>
-            <ChevronsLeft />
-          </Button>
-          <Button
-            variant="outline"
-            className="h-8 w-8 cursor-pointer p-0"
-            onClick={() => table.previousPage()}
-            disabled={!table.getCanPreviousPage()}
-          >
-            <span className="sr-only">Go to previous page</span>
-            <ChevronLeft />
-          </Button>
-        </div>
+      <Pagination currentPage={currentPage} totalPages={totalPages} />
+    </div>
+  );
+}
 
-        <div className="flex items-center text-sm font-medium">
-          Page {table.getState().pagination.pageIndex + 1} of{' '}
-          {table.getPageCount()}
-        </div>
+export function Pagination({
+  currentPage,
+  totalPages,
+}: {
+  currentPage: number;
+  totalPages: number;
+}) {
+  const searchParams = useSearchParams();
+  const pathname = usePathname();
+  const { replace } = useRouter();
 
-        <div className="space-x-2">
-          <Button
-            variant="outline"
-            className="h-8 w-8 cursor-pointer p-0"
-            onClick={() => table.nextPage()}
-            disabled={!table.getCanNextPage()}
-          >
-            <span className="sr-only">Go to next page</span>
-            <ChevronRight />
-          </Button>
-          <Button
-            variant="outline"
-            className="h-8 w-8 cursor-pointer p-0"
-            onClick={() => table.setPageIndex(table.getPageCount() - 1)}
-            disabled={!table.getCanNextPage()}
-          >
-            <span className="sr-only">Go to last page</span>
-            <ChevronsRight />
-          </Button>
-        </div>
+  const nextPage = () => {
+    const params = new URLSearchParams(searchParams);
+
+    const next = (Number(params.get('page')) || 1) + 1;
+
+    if (next <= totalPages) {
+      params.set('page', next.toString());
+      replace(`${pathname}?${params.toString()}`);
+    }
+  };
+
+  const prevPage = () => {
+    const params = new URLSearchParams(searchParams);
+
+    const prev = (Number(params.get('page')) || 1) - 1;
+
+    if (prev >= 1) {
+      params.set('page', prev.toString());
+      replace(`${pathname}?${params.toString()}`);
+    }
+  };
+
+  const firstPage = () => {
+    const params = new URLSearchParams(searchParams);
+    params.set('page', '1');
+    replace(`${pathname}?${params.toString()}`);
+  };
+
+  const lastPage = () => {
+    const params = new URLSearchParams(searchParams);
+    params.set('page', totalPages.toString());
+    replace(`${pathname}?${params.toString()}`);
+  };
+
+  return (
+    <div className="flex gap-2.5">
+      <div className="space-x-2">
+        <Button
+          variant="outline"
+          className="h-8 w-8 cursor-pointer p-0"
+          onClick={firstPage}
+          disabled={currentPage <= 1}
+        >
+          <span className="sr-only">Go to first page</span>
+          <ChevronsLeft />
+        </Button>
+        <Button
+          variant="outline"
+          className="h-8 w-8 cursor-pointer p-0"
+          onClick={prevPage}
+          disabled={currentPage <= 1}
+        >
+          <span className="sr-only">Go to previous page</span>
+          <ChevronLeft />
+        </Button>
+      </div>
+
+      <div className="flex items-center text-sm font-medium">
+        Page {currentPage} of {totalPages}
+      </div>
+
+      <div className="space-x-2">
+        <Button
+          variant="outline"
+          className="h-8 w-8 cursor-pointer p-0"
+          onClick={nextPage}
+          disabled={currentPage >= totalPages}
+        >
+          <span className="sr-only">Go to next page</span>
+          <ChevronRight />
+        </Button>
+        <Button
+          variant="outline"
+          className="h-8 w-8 cursor-pointer p-0"
+          onClick={lastPage}
+          disabled={currentPage >= totalPages}
+        >
+          <span className="sr-only">Go to last page</span>
+          <ChevronsRight />
+        </Button>
       </div>
     </div>
   );
