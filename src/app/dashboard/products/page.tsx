@@ -13,6 +13,8 @@ export const metadata: Metadata = {
 type QueryParams = {
   search?: string;
   page?: string;
+  order?: 'asc' | 'desc';
+  sort?: string;
 };
 
 export default async function ProductsPage(props: {
@@ -20,6 +22,8 @@ export default async function ProductsPage(props: {
 }) {
   const searchParams = await props.searchParams;
   const search = searchParams?.search ?? '';
+  const order = searchParams?.order ?? 'asc';
+  const sort = searchParams?.sort ?? 'name';
   const currentPage = Number(searchParams?.page) || 1;
 
   return (
@@ -44,7 +48,12 @@ export default async function ProductsPage(props: {
             </Button>
           </div>
 
-          <ProductsTable search={search} currentPage={currentPage} />
+          <ProductsTable
+            search={search}
+            currentPage={currentPage}
+            order={order}
+            sort={sort}
+          />
         </div>
       </main>
     </>

@@ -23,7 +23,7 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { MoreHorizontal } from 'lucide-react';
 import {
-  AscDescTableHead,
+  SortTableHead,
   SelectAllCheckbox,
   SelectCheckbox,
 } from '@/components/ui/data-table';
@@ -43,31 +43,26 @@ export const columns: ColumnDef<Product>[] = [
   },
   {
     accessorKey: 'name',
-    header: ({ column }) => {
-      return (
-        <AscDescTableHead title="Name" column={column} className="-ml-3" />
-      );
-    },
+    header: () => <SortTableHead title="Name" value="name" className="-ml-3" />,
     cell: ({ row }) => <div className="capitalize">{row.getValue('name')}</div>,
   },
   {
     accessorKey: 'category',
-    header: ({ column }) => {
-      return (
-        <AscDescTableHead title="Category" column={column} className="-ml-3" />
+    header: () => (
+      <SortTableHead title="Category" value="category" className="-ml-3" />
+    ),
+    cell: ({ row }) => row.original.category.name,
+    sortingFn: (rowA, rowB) => {
+      return rowA.original.category.name.localeCompare(
+        rowB.original.category.name
       );
     },
-    cell: ({ row }) => row.original.category.name,
   },
   {
     accessorKey: 'sellingPrice',
-    header: ({ column }) => {
-      return (
-        <div className="text-right">
-          <AscDescTableHead title="Price" column={column} className="-mr-3" />
-        </div>
-      );
-    },
+    header: () => (
+      <SortTableHead title="Price" value="sellingPrice" className="-mr-3" />
+    ),
     cell: ({ row }) => (
       <div className="text-right">
         {currencyFormatter.format(row.original.sellingPrice / 100)}

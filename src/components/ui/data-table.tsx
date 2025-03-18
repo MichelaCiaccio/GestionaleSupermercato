@@ -9,7 +9,7 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { Input } from '@/components/ui/input';
-import { Column, Row, RowData, Table } from '@tanstack/react-table';
+import { Row, RowData, Table } from '@tanstack/react-table';
 import {
   ArrowUpDown,
   ChevronLeft,
@@ -275,9 +275,9 @@ export function SelectCheckbox<TData extends RowData>({
   );
 }
 
-export function AscDescTableHead<TData extends RowData>({
+export function SortTableHead({
   title,
-  column,
+  value,
   className,
   ...props
 }: React.ComponentProps<'button'> &
@@ -285,14 +285,29 @@ export function AscDescTableHead<TData extends RowData>({
     asChild?: boolean;
   } & {
     title: ReactNode;
-    column: Column<TData>;
+    value: string;
   }) {
+  const searchParams = useSearchParams();
+  const pathname = usePathname();
+  const { replace } = useRouter();
+
+  const sort = () => {
+    const params = new URLSearchParams(searchParams);
+    const order = params.get('order') || 'asc';
+
+    params.set('page', '1');
+    params.set('order', order === 'asc' ? 'desc' : 'asc');
+    params.set('sort', value);
+
+    replace(`${pathname}?${params.toString()}`);
+  };
+
   return (
     <Button
       type="button"
       className={cn('cursor-pointer', className)}
       variant="ghost"
-      onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
+      onClick={sort}
       {...props}
     >
       {title}

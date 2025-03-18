@@ -2,17 +2,14 @@
 
 import {
   ColumnDef,
-  ColumnFiltersState,
   flexRender,
   getCoreRowModel,
   getFilteredRowModel,
   getPaginationRowModel,
   getSortedRowModel,
-  SortingState,
   useReactTable,
-  VisibilityState,
 } from '@tanstack/react-table';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import {
   Table,
   TableBody,
@@ -32,6 +29,8 @@ interface DataTableProps<TData, TValue> {
   search: string;
   currentPage: number;
   totalPages: number;
+  order: 'asc' | 'desc';
+  sort: string;
 }
 
 export function ProductsDataTable<TData, TValue>({
@@ -40,45 +39,34 @@ export function ProductsDataTable<TData, TValue>({
   search,
   currentPage,
   totalPages,
+  order,
+  sort,
 }: DataTableProps<TData, TValue>) {
-  const [sorting, setSorting] = useState<SortingState>([
-    { id: 'name', desc: false },
-  ]);
-  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
-  const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
-  const [rowSelection, setRowSelection] = useState({});
-
   const table = useReactTable({
     data,
     columns,
-    onSortingChange: setSorting,
-    onColumnFiltersChange: setColumnFilters,
     getCoreRowModel: getCoreRowModel(),
     // WARNING: This is paginating in the client, use backend pagination in the future.
     getPaginationRowModel: getPaginationRowModel(),
     // WARNING: This is sorting in the client, use backend sorting in the future.
     getSortedRowModel: getSortedRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
-    onColumnVisibilityChange: setColumnVisibility,
-    onRowSelectionChange: setRowSelection,
     initialState: {
       pagination: { pageIndex: currentPage - 1, pageSize: 20 },
     },
-    state: {
-      sorting,
-      columnFilters,
-      columnVisibility,
-      rowSelection,
-    },
   });
+
+  useEffect(() => {
+    table.setPagination({ pageIndex: currentPage - 1, pageSize: 20 });
+  }, [table, currentPage]);
 
   useEffect(() => {
     table.getColumn('name')?.setFilterValue(search);
   }, [table, search]);
 
   useEffect(() => {
-    table.setPagination({ pageIndex: currentPage - 1, pageSize: 20 });
-  }, [table, currentPage]);
+    table.getColumn(sort)?.toggleSorting(order === 'desc');
+  }, [table, order, sort]);
 
   return (
     <>
