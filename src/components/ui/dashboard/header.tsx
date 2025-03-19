@@ -12,7 +12,7 @@ export function DashboardHeader({
   return (
     <header
       className={cn(
-        'flex h-16 shrink-0 items-center justify-between gap-2 border-b px-4',
+        'bg-background sticky top-0 z-30 flex h-16 shrink-0 items-center justify-between gap-2 border-b px-4',
         className
       )}
       {...props}
