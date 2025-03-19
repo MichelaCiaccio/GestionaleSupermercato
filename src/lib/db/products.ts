@@ -6,8 +6,13 @@ const route = `products`;
 
 export const get = async ({
   page,
+  sortDirection,
+  dataType,
 }: {
   page?: number;
+  sortDirection?: 'asc' | 'desc';
+  // eslint-disable-next-line @typescript-eslint/no-empty-object-type
+  dataType?: keyof Pick<Product, 'name' | 'sellingPrice' | 'category'> | {};
 } = {}): Promise<{
   content: Product[];
   last: boolean;
@@ -21,6 +26,8 @@ export const get = async ({
   const params = new URLSearchParams();
 
   params.set('page', page?.toString() || '0');
+  params.set('sortDirection', sortDirection ?? 'asc');
+  params.set('dataType', (dataType as string | undefined) || 'name');
 
   const response = await instance.get(`/${route}/?${params.toString()}`);
 
