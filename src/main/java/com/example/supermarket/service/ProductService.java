@@ -99,11 +99,27 @@ public class ProductService {
         return products;
     }
 
+    /**
+     * This method searches for a product by its ID.
+     * If no product is found throws a EntityNotFoundException.
+     * The found product are returned.
+     *
+     * @param id The id of the product to search for
+     * @return The product found
+     */
     public Product findById(Integer id) {
         return productRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Product with id " + id + " not found"));
     }
 
+    /**
+     * This method searches for products using the name as a parameter
+     * If the products are empty throws a EntityNotFoundException.
+     * Otherwise, it returns the list of product found
+     *
+     * @param name the name of the products
+     * @return the products found
+     */
     public List<Product> findByName(String name) {
         List<Product> products = productRepository.findByName(name);
         if (products.isEmpty()) {
