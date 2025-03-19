@@ -113,12 +113,12 @@ public class ProductService {
     }
 
     /**
-     * This method searches for products using the name as a parameter
-     * If the products are empty throws a EntityNotFoundException.
-     * Otherwise, it returns the list of product found
+     * This method searches for products by their name.
+     * If no products are found throws a EntityNotFoundException.
+     * Otherwise, a list of found products is returned
      *
-     * @param name the name of the products
-     * @return the products found
+     * @param name The name of the products
+     * @return The products found
      */
     public List<Product> findByName(String name) {
         List<Product> products = productRepository.findByName(name);
@@ -128,6 +128,14 @@ public class ProductService {
         return products;
     }
 
+    /**
+     * This method searches for products by the name of their category.
+     * If no products are found throws a EntityNotFoundException.
+     * Otherwise, a list of found products is returned
+     *
+     * @param categoryName The name of the category
+     * @return The products found
+     */
     public List<Product> findByCategoryName(String categoryName) {
         List<Product> products = productRepository.findByCategoryName(categoryName);
         if (products.isEmpty()) {
@@ -136,6 +144,14 @@ public class ProductService {
         return products;
     }
 
+    /**
+     * This method searches for products by their selling price.
+     * If no products are found throws a EntityNotFoundException.
+     * Otherwise, a list of found products is returned
+     *
+     * @param sellingPrice The selling price of the products
+     * @return the products found
+     */
     public List<Product> findBySellingPrice(double sellingPrice) {
         List<Product> products = productRepository.findBySellingPrice(sellingPrice);
         if (products.isEmpty()) {
@@ -144,6 +160,14 @@ public class ProductService {
         return products;
     }
 
+    /**
+     * This method searches for products by the name of their supplier.
+     * If no products are found throws a EntityNotFoundException.
+     * Otherwise, a list of found products is returned
+     *
+     * @param supplierName The name of the supplier
+     * @return The products found
+     */
     public List<Product> findBySupplierName(String supplierName) {
         List<Product> products = productRepository.findByStocks_Supplier_Name(supplierName);
         if (products.isEmpty()) {
@@ -152,6 +176,14 @@ public class ProductService {
         return products;
     }
 
+    /**
+     * This method searches for products by their expiration date.
+     * If no products are found throws a EntityNotFoundException.
+     * Otherwise, a list of found products is returned
+     *
+     * @param expirationDate The expiration date of the products
+     * @return The products found
+     */
     public List<Product> findByExpirationDate(LocalDate expirationDate) {
         List<Product> products = productRepository.findByStocks_ExpirationDate(expirationDate);
         if (products.isEmpty()) {
@@ -160,6 +192,14 @@ public class ProductService {
         return products;
     }
 
+    /**
+     * This method searches for products by their quantity in stock.
+     * If no products are found throws a EntityNotFoundException.
+     * Otherwise, a list of found products is returned
+     *
+     * @param quantity The quantity in stock
+     * @return the products found
+     */
     public List<Product> findByStockQuantity(int quantity) {
         List<Product> products = productRepository.findByStocks_Quantity(quantity);
         if (products.isEmpty()) {

@@ -7,9 +7,8 @@
     <option name="rewriteBookmarkType" value="true" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7c4caa73-20ab-4765-9784-19538829fb77" name="Changes" comment="Update findAll in ProductController">
+    <list default="true" id="7c4caa73-20ab-4765-9784-19538829fb77" name="Changes" comment="Add javadoc to findById and findByName">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mvnw" beforeDir="false" afterPath="$PROJECT_DIR$/mvnw" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/service/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/service/ProductService.java" afterDir="false" />
     </list>
     <list id="6499c595-af5e-4d71-8893-8354dc300f9f" name="No commit" comment="" />
@@ -174,7 +173,15 @@
       <option name="project" value="LOCAL" />
       <updated>1742379881384</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Add javadoc to findById and findByName">
+      <option name="closed" value="true" />
+      <created>1742380790609</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1742380790609</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -197,6 +204,7 @@
     <MESSAGE value="Star adding sort logic to findAll" />
     <MESSAGE value="complete findAllProductsSorted method in ProductService" />
     <MESSAGE value="Update findAll in ProductController" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update findAll in ProductController" />
+    <MESSAGE value="Add javadoc to findById and findByName" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add javadoc to findById and findByName" />
   </component>
 </project>
