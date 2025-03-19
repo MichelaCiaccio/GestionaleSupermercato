@@ -22,11 +22,7 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { MoreHorizontal } from 'lucide-react';
-import {
-  SortTableHead,
-  SelectAllCheckbox,
-  SelectCheckbox,
-} from '@/components/ui/data-table';
+import { SortTableHead } from '@/components/ui/data-table';
 import { Product } from '@/types/db';
 import { currencyFormatter } from '@/lib/utils';
 import { useActionState } from 'react';
@@ -34,17 +30,21 @@ import { deleteProduct } from './actions';
 import Link from 'next/link';
 
 export const columns: ColumnDef<Product>[] = [
-  {
-    id: 'select',
-    header: ({ table }) => <SelectAllCheckbox table={table} />,
-    cell: ({ row }) => <SelectCheckbox row={row} />,
-    enableSorting: false,
-    enableHiding: false,
-  },
+  // Disable checkboxes for now, there's no functionality to it yet.
+  // Remember to remove `ml-3` from name cell element
+  // {
+  //   id: 'select',
+  //   header: ({ table }) => <SelectAllCheckbox table={table} />,
+  //   cell: ({ row }) => <SelectCheckbox row={row} />,
+  //   enableSorting: false,
+  //   enableHiding: false,
+  // },
   {
     accessorKey: 'name',
-    header: () => <SortTableHead title="Name" value="name" className="-ml-3" />,
-    cell: ({ row }) => <div className="capitalize">{row.getValue('name')}</div>,
+    header: () => <SortTableHead title="Name" value="name" />,
+    cell: ({ row }) => (
+      <div className="ml-3 capitalize">{row.getValue('name')}</div>
+    ),
   },
   {
     accessorKey: 'category',
