@@ -237,6 +237,13 @@ public class ProductService {
 
     // CATEGORY
 
+    /**
+     * The method searches for all the categories
+     * If no categories are found it throws an EntityNotFoundException.
+     * Otherwise, a list of the found categories is returned.
+     *
+     * @return The categories found
+     */
     public List<Category> findAllCategories() {
         List<Category> categories = categoryRepository.findAll();
         if (categories.isEmpty()) {
@@ -245,6 +252,13 @@ public class ProductService {
         return categoryRepository.findAll();
     }
 
+    /**
+     * This method remove the category from a product identified by its id.
+     * If the product doesn't exist, an EntityNotFoundException is thrown.
+     * Otherwise, proceed to save the product with category set to null.
+     *
+     * @param productId The ID of the product from which to remove the category
+     */
     public void removeCategoryFromProduct(int productId) {
 
         Product product = productRepository.findById(productId)
@@ -253,12 +267,19 @@ public class ProductService {
         productRepository.save(product);
     }
 
+    /**
+     * This method delete a category identified by its id.
+     * If the category doesn't exist, an EntityNotFoundException is thrown.
+     * Otherwise, it removes the category from all associated products and deletes the category.
+     *
+     * @param id The ID of the category to delete
+     */
     public void deleteCategoryById(int id) {
         Optional<Category> category = categoryRepository.findById(id);
-        List<Product> products = productRepository.findByCategoryName(category.get().getName());
         if (category.isEmpty()) {
             throw new EntityNotFoundException("There are no category with id " + id + " to delete");
         }
+        List<Product> products = productRepository.findByCategoryName(category.get().getName());
         for (Product product : products) {
             removeCategoryFromProduct(product.getId());
         }
