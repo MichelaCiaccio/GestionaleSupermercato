@@ -208,6 +208,13 @@ public class ProductService {
         return products;
     }
 
+    /**
+     * This method deletes a product identified by its id.
+     * If the product exists proceed to delete it.
+     * If not, an EntityNotFoundException is thrown.
+     *
+     * @param id The id of the product to delete
+     */
     public void deleteById(int id) {
         if (productRepository.findById(id).isEmpty()) {
             throw new EntityNotFoundException("No product with this id to delete");
@@ -215,6 +222,12 @@ public class ProductService {
         productRepository.deleteById(id);
     }
 
+    /**
+     * This method delete all the products.
+     * Checks if the products exist, and if they don't, throws an
+     * EntityNotFoundException.
+     * Otherwise, it proceeds to delete them all.
+     */
     public void deleteAll() {
         if (productRepository.findAll().isEmpty()) {
             throw new EntityNotFoundException("There are no products to delete");
