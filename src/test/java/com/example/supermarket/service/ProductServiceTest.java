@@ -15,7 +15,6 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.Assert.assertNull;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
@@ -252,6 +251,7 @@ public class ProductServiceTest {
         assertNull(noCategory);
     }
 
+
     @Test
     void testDeleteById() {
         // GIVEN
@@ -277,4 +277,9 @@ public class ProductServiceTest {
         assertNull(deletedProduct.orElse(null));
         assertNotNull(existingProduct);
     }
+
+
 }
+
+
+

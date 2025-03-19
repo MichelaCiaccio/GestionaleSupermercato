@@ -34,7 +34,8 @@ public class ProductService {
             for (Stock stock : product.getStocks()) {
                 if (productRepository.existsByNameAndStocks_Supplier_Name(product.getName(),
                         stock.getSupplier().getName())) {
-                    throw new DuplicateKeyException("Product with name " + product.getId() + " already exist");
+                    throw new DuplicateKeyException("Product with name " + product.getName() + " and Supplier " + stock.getSupplier().getName() +
+                            " already exists");
                 }
             }
         }
