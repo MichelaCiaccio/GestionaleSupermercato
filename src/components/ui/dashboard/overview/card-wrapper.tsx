@@ -1,16 +1,16 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import db from '@/lib/db';
 import { currencyFormatter } from '@/lib/utils';
-import { Product } from '@/types/db';
 import { Banknote, Factory, LucideIcon, Package, Users } from 'lucide-react';
 
 export async function CardWrapper() {
-  let products: Product[];
+  let productsCount: number;
 
   try {
-    products = await db.products.getAll();
+    const { totalElements } = await db.products.get();
+    productsCount = totalElements;
   } catch {
-    products = [];
+    productsCount = 0;
   }
 
   return (
@@ -19,7 +19,7 @@ export async function CardWrapper() {
       <OverviewCard
         title="Total Products"
         icon={Package}
-        value={products.length}
+        value={productsCount}
       />
       <OverviewCard title="Total Suppliers" icon={Factory} value={0} />
       <OverviewCard title="Total Users" icon={Users} value={1} />

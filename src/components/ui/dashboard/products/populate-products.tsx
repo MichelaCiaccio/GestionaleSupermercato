@@ -59,7 +59,7 @@ const products: CreateProductDTO[] = [
 
 async function createProduct(product: CreateProductDTO) {
   await axios.post(
-    new URL('/product/add', env.NEXT_PUBLIC_DB_BASE_URL).toString(),
+    new URL('/products/add', env.NEXT_PUBLIC_DB_BASE_URL).toString(),
     {
       ...product,
       stocks: [],

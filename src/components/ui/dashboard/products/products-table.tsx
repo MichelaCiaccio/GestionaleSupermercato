@@ -20,9 +20,19 @@ export async function ProductsTable({
   let totalPages = 1;
 
   try {
-    products = await db.products.getAll();
-    // For now, pagination size is hard coded to 20.
-    totalPages = Math.ceil(products.length / 20);
+    const data = await db.products.get();
+    products = data.content;
+
+    // Since query functionalities are still limited in the backend
+    // then manually get all products:
+    const promises: ReturnType<typeof db.products.get>[] = [];
+    for (let i = 1; i < data.totalPages; i++)
+      promises.push(db.products.get({ page: i }));
+    (await Promise.all(promises)).forEach(({ content }) =>
+      products.push(...content)
+    );
+
+    totalPages = data.totalPages;
   } catch {
     products = [];
   }
