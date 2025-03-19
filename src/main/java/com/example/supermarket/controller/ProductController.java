@@ -28,7 +28,9 @@ public class ProductController {
     private ProductService productService;
 
     @GetMapping("")
-    public Page<Product> findAll(@RequestParam int page, @RequestParam String sortDirection, @RequestParam String dataType) throws EntityNotFoundException {
+    public Page<Product> findAll(@RequestParam(required = false) Integer page,
+                                 @RequestParam(required = false) String sortDirection,
+                                 @RequestParam(required = false) String dataType) throws EntityNotFoundException {
         return productService.findAllProductsSorted(page, sortDirection, dataType);
     }
 
