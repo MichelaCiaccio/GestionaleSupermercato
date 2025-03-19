@@ -123,7 +123,7 @@ export function DataTableFooter<TData extends RowData>({
   currentPage,
   totalPages,
 }: {
-  table: Table<TData>;
+  table?: Table<TData>;
   currentPage: number;
   totalPages: number;
 }) {

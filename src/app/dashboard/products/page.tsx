@@ -2,11 +2,13 @@ import { Button } from '@/components/ui/button';
 import { DashboardHeader } from '@/components/ui/dashboard/header';
 import { PopulateProductsButton } from '@/components/ui/dashboard/products/populate-products';
 import { ProductsTable } from '@/components/ui/dashboard/products/products-table';
+import { ProductsTableSkeleton } from '@/components/ui/dashboard/products/skeleton';
 import { SearchInput } from '@/components/ui/data-table';
 import { env } from '@/data/env/server';
 import { Plus } from 'lucide-react';
 import { Metadata } from 'next';
 import Link from 'next/link';
+import { Suspense } from 'react';
 
 export const metadata: Metadata = {
   title: 'Products',
@@ -50,12 +52,17 @@ export default async function ProductsPage(props: {
             </Button>
           </div>
 
-          <ProductsTable
-            search={search}
-            currentPage={currentPage}
-            order={order}
-            sort={sort}
-          />
+          <Suspense
+            key={search + currentPage + order + sort}
+            fallback={<ProductsTableSkeleton />}
+          >
+            <ProductsTable
+              search={search}
+              currentPage={currentPage}
+              order={order}
+              sort={sort}
+            />
+          </Suspense>
 
           {env.NODE_ENV === 'development' && (
             <PopulateProductsButton className="hidden" />

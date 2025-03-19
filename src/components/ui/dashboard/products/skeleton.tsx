@@ -1,72 +1,84 @@
 'use client';
 
 import {
-  ColumnDef,
-  flexRender,
-  getCoreRowModel,
-  getFilteredRowModel,
-  getPaginationRowModel,
-  getSortedRowModel,
-  useReactTable,
-} from '@tanstack/react-table';
-import { useEffect } from 'react';
-import {
   Table,
   TableBody,
   TableCell,
   TableHead,
   TableHeader,
   TableRow,
-} from '@/components/ui/table';
-import { DataTableFooter } from '../../data-table';
+} from '../../table';
+import {
+  ColumnDef,
+  flexRender,
+  getCoreRowModel,
+  useReactTable,
+} from '@tanstack/react-table';
+import { DataTableFooter, SortTableHead } from '../../data-table';
+import { Skeleton } from '../../skeleton';
+import { useState } from 'react';
 
-interface DataTableProps<TData, TValue> {
-  columns: ColumnDef<TData, TValue>[];
-  data: TData[];
-  // WARNING: Data filtering, sorting, and processing must be done by the backend.
-  // For now, this will be handled in the client with the following
-  // helper props:
-  search: string;
-  currentPage: number;
-  totalPages: number;
-  order: 'asc' | 'desc';
-  sort: string;
-}
+type ProductSkeleton = {
+  name: number;
+  category: number;
+  sellingPrice: number;
+};
 
-export function ProductsDataTable<TData, TValue>({
-  columns,
-  data,
-  search,
-  currentPage,
-  totalPages,
-  order,
-  sort,
-}: DataTableProps<TData, TValue>) {
+const columns: ColumnDef<ProductSkeleton>[] = [
+  {
+    accessorKey: 'name',
+    header: () => <SortTableHead title="Name" value="name" />,
+    cell: ({ row }) => (
+      <Skeleton className={`ml-3 h-6`} style={{ width: row.original.name }} />
+    ),
+  },
+  {
+    accessorKey: 'category',
+    header: () => (
+      <SortTableHead title="Category" value="category" className="-ml-3" />
+    ),
+    cell: ({ row }) => (
+      <Skeleton className={`h-6`} style={{ width: row.original.category }} />
+    ),
+  },
+  {
+    accessorKey: 'sellingPrice',
+    header: () => (
+      <SortTableHead
+        title="Price"
+        value="sellingPrice"
+        className="float-right -mr-3"
+      />
+    ),
+    cell: ({ row }) => (
+      <Skeleton
+        className={`float-right h-6`}
+        style={{ width: row.original.sellingPrice }}
+      />
+    ),
+  },
+  {
+    id: 'actions',
+    enableHiding: false,
+    cell: () => {
+      return <Skeleton className="float-right h-8 w-8" />;
+    },
+  },
+];
+
+export function ProductsTableSkeleton() {
+  const [data] = useState<ProductSkeleton[]>(() =>
+    Array.from(Array(20)).map(() => ({
+      name: Math.floor(Math.random() * 110 + 50),
+      category: Math.floor(Math.random() * 110 + 50),
+      sellingPrice: Math.floor(Math.random() * 50 + 30),
+    }))
+  );
   const table = useReactTable({
     data,
     columns,
     getCoreRowModel: getCoreRowModel(),
-    // WARNING: This is paginating in the client, use backend pagination in the future.
-    getPaginationRowModel: getPaginationRowModel(),
-    // WARNING: This is sorting in the client, use backend sorting in the future.
-    getSortedRowModel: getSortedRowModel(),
-    getFilteredRowModel: getFilteredRowModel(),
-    initialState: {
-      pagination: { pageIndex: currentPage - 1, pageSize: 20 },
-    },
   });
-
-  useEffect(() => {
-    table.setPagination({ pageIndex: currentPage - 1, pageSize: 20 });
-  }, [table, currentPage]);
-
-  useEffect(() => {
-    table.getColumn('name')?.setFilterValue(search);
-  }, [table, search]);
-
-  useEffect(() => {
-    table.getColumn(sort)?.toggleSorting(order === 'desc');
-  }, [table, order, sort]);
 
   return (
     <>
@@ -124,11 +136,7 @@ export function ProductsDataTable<TData, TValue>({
         </Table>
       </div>
 
-      <DataTableFooter
-        table={table}
-        currentPage={currentPage}
-        totalPages={totalPages}
-      />
+      <DataTableFooter currentPage={1} totalPages={1} />
     </>
   );
 }
