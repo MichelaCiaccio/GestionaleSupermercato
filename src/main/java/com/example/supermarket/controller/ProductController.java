@@ -28,8 +28,8 @@ public class ProductController {
     private ProductService productService;
 
     @GetMapping("")
-    public Page<Product> findAll(@RequestParam(defaultValue = "0") int page) throws EntityNotFoundException {
-        return productService.findAllSortByName(page);
+    public Page<Product> findAll(@RequestParam int page, @RequestParam String sortDirection, @RequestParam String dataType) throws EntityNotFoundException {
+        return productService.findAllProductsSorted(page, sortDirection, dataType);
     }
 
     @PostMapping("/add")

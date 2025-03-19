@@ -45,6 +45,17 @@ public class ProductService {
 
     }
 
+    /**
+     * This method updates a product identified by its ID.
+     * At first checks if the product exists, and if it doesn't, throws an
+     * EntityNotFoundException.
+     * Then it checks if the new category exists, and if it doesn't, throws an EntityNotFoundException
+     * Otherwise, it proceeds to update the product's attribute with the new
+     * information and saves the modified product.
+     *
+     * @param id         The ID of the product to be updated.
+     * @param modProduct The new product data to update with.
+     */
     public void updateProduct(int id, Product modProduct) {
         Product product = productRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Product with id " + id + " not found"));
@@ -60,9 +71,27 @@ public class ProductService {
         productRepository.save(product);
     }
 
-    // TO DO Passare i sort come parametro per scegliere di mostrarli in modo desc o asc e decidere anche il nome del parametro
-    public Page<Product> findAllSortByName(int page) {
-        Pageable pageable = PageRequest.of(page, 20, Sort.by(Sort.Direction.ASC, "name"));
+    /**
+     * This method searches for all the product, organizes them into pagination of 20 element, and sorts them according
+     * to a specified direction and data type.
+     * If the page number, sort direction or the data type are not provided by the client default values are set.
+     * Check if any product exists and returns them.
+     * Otherwise, it throws and EntityNotFoundException
+     *
+     * @param page          The page number the client wants to display. If null, the first page (0) is used.
+     * @param sortDirection The direction in which the client wants the products to be ordered. Defaults to "ASC" if null or blank.
+     * @param dataType      The data by which the products should be ordered. Defaults to "name" if null or blank.
+     * @return A Page containing the list of products.
+     */
+    public Page<Product> findAllProductsSorted(Integer page, String sortDirection, String dataType) {
+        page = page == null ? 0 : page;
+
+        sortDirection = sortDirection == null || sortDirection.isBlank() ? "ASC" : sortDirection;
+
+        dataType = dataType == null || dataType.isBlank() ? "name" : dataType;
+
+        Sort.Direction direction = Sort.Direction.fromString(sortDirection.toUpperCase());
+        Pageable pageable = PageRequest.of(page, 20, Sort.by(direction, dataType));
         Page<Product> products = productRepository.findAll(pageable);
         if (products.isEmpty()) {
             throw new EntityNotFoundException("There are no products");

@@ -1,8 +1,8 @@
 package com.example.supermarket.service;
 
-import java.time.LocalDate;
-import java.util.List;
-
+import com.example.supermarket.entity.Stock;
+import com.example.supermarket.repo.StockRepository;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.DuplicateKeyException;
@@ -10,13 +10,12 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import com.example.supermarket.entity.Stock;
-import com.example.supermarket.repo.StockRepository;
-
-import jakarta.persistence.EntityNotFoundException;
+import java.time.LocalDate;
+import java.util.List;
 
 @Service
-public class StockService {
+public class
+StockService {
 
     @Autowired
     private StockRepository stockRepository;
@@ -25,7 +24,7 @@ public class StockService {
      * The method calls the stockRepository findAll to search for all the stocks
      * if there are no stocks throws an EntityNotFoundException.
      * The elements found are returned with 20 items for page pagination
-     * 
+     *
      * @return the stocks found
      */
     public List<Stock> findAll() {
@@ -40,7 +39,7 @@ public class StockService {
      * This method searches for stocks using the name as a parameter
      * if the stocks are empty throws a EntityNotFoundException.
      * The elements found are returned with 20 items for page pagination
-     * 
+     *
      * @param name the name of the stock
      * @return the stocks found
      */
@@ -56,7 +55,7 @@ public class StockService {
      * This method searches for stocks using the name of the supplier as a parameter
      * if the stocks are empty throws a EntityNotFoundException.
      * The elements found are returned with 20 items for page pagination
-     * 
+     *
      * @param name the name of the supplier
      * @return the stocks found
      */
@@ -73,7 +72,7 @@ public class StockService {
      * if there are no stocks with a quantity greater than the one indicated
      * the method throws a EntityNotFoundException.
      * The elements found are returned with 20 items for page pagination
-     * 
+     *
      * @param quantity
      * @return the stocks found
      */
@@ -90,7 +89,7 @@ public class StockService {
      * if there are no stocks with a quantity lower than the one indicated
      * the method throws a EntityNotFoundException.
      * The elements found are returned with 20 items for page pagination
-     * 
+     *
      * @param quantity
      * @return the stocks found
      */
@@ -108,7 +107,7 @@ public class StockService {
      * if there are no stocks corresponding to the filter indicated
      * the method throws a EntityNotFoundException.
      * The elements found are returned with 20 items for page pagination
-     * 
+     *
      * @param deliveryDate
      * @return the stocks found
      */
@@ -127,7 +126,7 @@ public class StockService {
      * if there are no stocks corresponding to the filter indicated
      * the method throws a EntityNotFoundException.
      * The elements found are returned with 20 items for page pagination
-     * 
+     *
      * @param expirationDate
      * @return the stocks found
      */
@@ -146,10 +145,8 @@ public class StockService {
      * if there are no stocks corresponding to the filter indicated
      * the method throws a EntityNotFoundException.
      * The elements found are returned with 20 items for page pagination
-     * 
+     *
      * @param firstDate
-     * 
-     * 
      * @param seconDate
      * @return the stocks found
      */
@@ -167,7 +164,7 @@ public class StockService {
      * the method calls the stockRepository.findById to search for the specific
      * stock
      * then modifies it by adding the new quantity indicated as an input
-     * 
+     *
      * @param newStockQuantity the quantity to add to the stock
      * @param productId        the id of the product
      */
@@ -186,7 +183,7 @@ public class StockService {
      * Next, it checks if the stock already exists and if it does, throws a
      * DuplicateKeyException,
      * otherwise calls the stockRepository.save method to create the new stock.
-     * 
+     *
      * @param stock
      */
     public void save(Stock stock) {
@@ -232,7 +229,7 @@ public class StockService {
      * Check if the stock exists and, if it does, proceed to call
      * stockRepository.delete to delete it.
      * Otherwise it throws an EntityNotFoundException
-     * 
+     *
      * @param id
      */
     public void deleteByID(int id) {
