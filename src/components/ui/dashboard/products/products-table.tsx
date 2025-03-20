@@ -2,6 +2,7 @@ import db from '@/lib/db';
 import { columns } from './products-column';
 import { ProductsDataTable } from './products-data-table';
 import { Product } from '@/types/db';
+import { isAxiosError } from 'axios';
 
 type ProductsTableProps = {
   search: string;
@@ -18,6 +19,7 @@ export async function ProductsTable({
 }: ProductsTableProps) {
   let products: Product[];
   let totalPages = 1;
+  let isError = false;
 
   try {
     const data = await db.products.get();
@@ -33,7 +35,11 @@ export async function ProductsTable({
     );
 
     totalPages = data.totalPages;
-  } catch {
+  } catch (e) {
+    if (isAxiosError(e) && e.code === 'ECONNREFUSED') {
+      isError = true;
+    }
+
     products = [];
   }
 
@@ -46,6 +52,7 @@ export async function ProductsTable({
       sort={sort}
       columns={columns}
       data={products}
+      isError={isError}
     />
   );
 }

@@ -7,6 +7,8 @@ import {
   getFilteredRowModel,
   getPaginationRowModel,
   getSortedRowModel,
+  RowData,
+  Table as ReactTable,
   useReactTable,
 } from '@tanstack/react-table';
 import { useEffect } from 'react';
@@ -19,10 +21,12 @@ import {
   TableRow,
 } from '@/components/ui/table';
 import { DataTableFooter } from '../../data-table';
+import { ServerOff } from 'lucide-react';
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
+  isError?: boolean;
   // WARNING: Data filtering, sorting, and processing must be done by the backend.
   // For now, this will be handled in the client with the following
   // helper props:
@@ -41,6 +45,7 @@ export function ProductsDataTable<TData, TValue>({
   totalPages,
   order,
   sort,
+  isError,
 }: DataTableProps<TData, TValue>) {
   const table = useReactTable({
     data,
@@ -94,32 +99,7 @@ export function ProductsDataTable<TData, TValue>({
             ))}
           </TableHeader>
           <TableBody>
-            {table.getRowModel().rows?.length ? (
-              table.getRowModel().rows.map((row) => (
-                <TableRow
-                  key={row.id}
-                  data-state={row.getIsSelected() && 'selected'}
-                >
-                  {row.getVisibleCells().map((cell) => (
-                    <TableCell key={cell.id}>
-                      {flexRender(
-                        cell.column.columnDef.cell,
-                        cell.getContext()
-                      )}
-                    </TableCell>
-                  ))}
-                </TableRow>
-              ))
-            ) : (
-              <TableRow>
-                <TableCell
-                  colSpan={columns.length}
-                  className="h-24 text-center"
-                >
-                  No products yet.
-                </TableCell>
-              </TableRow>
-            )}
+            <TableBodyContent table={table} isError={isError} />
           </TableBody>
         </Table>
       </div>
@@ -131,4 +111,48 @@ export function ProductsDataTable<TData, TValue>({
       />
     </>
   );
+}
+
+function TableBodyContent<TData extends RowData>({
+  table,
+  isError,
+}: {
+  table: ReactTable<TData>;
+  isError?: boolean;
+}) {
+  if (isError) {
+    return (
+      <TableRow>
+        <TableCell colSpan={table._getColumnDefs().length} className="h-24">
+          <span className="flex justify-center gap-2.5">
+            <ServerOff />
+            Could not fetch products.
+          </span>
+        </TableCell>
+      </TableRow>
+    );
+  }
+
+  if (table.getRowModel().rows?.length === 0) {
+    return (
+      <TableRow>
+        <TableCell
+          colSpan={table._getColumnDefs().length}
+          className="h-24 text-center"
+        >
+          No products yet.
+        </TableCell>
+      </TableRow>
+    );
+  }
+
+  return table.getRowModel().rows.map((row) => (
+    <TableRow key={row.id} data-state={row.getIsSelected() && 'selected'}>
+      {row.getVisibleCells().map((cell) => (
+        <TableCell key={cell.id}>
+          {flexRender(cell.column.columnDef.cell, cell.getContext())}
+        </TableCell>
+      ))}
+    </TableRow>
+  ));
 }
