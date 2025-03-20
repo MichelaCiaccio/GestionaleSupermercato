@@ -211,7 +211,6 @@ StockService {
      * @param id       The ID of the stock to be updated.
      * @param modStock The new stock data to update with.
      */
-
     public void update(int id, Stock modStock) {
         Stock stock = stockRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("No stock with id " + id));

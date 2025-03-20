@@ -6,6 +6,8 @@ import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
@@ -35,11 +37,12 @@ public class Product {
 
     @ManyToMany(mappedBy = "products")
     @NotNull(message = "The supplier is required")
+    @OnDelete(action = OnDeleteAction.SET_NULL)
     private Set<Supplier> suppliers;
 
     @OneToMany(mappedBy = "product")
     @Nullable
-    @OnDelete(action = OnDeleteAction.SET_NULL)
+    @Cascade(value = CascadeType.DELETE_ORPHAN)
     private List<Stock> stocks;
 
 }

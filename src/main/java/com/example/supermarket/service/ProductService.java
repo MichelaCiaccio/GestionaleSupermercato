@@ -5,9 +5,9 @@ import com.example.supermarket.entity.Product;
 import com.example.supermarket.entity.Supplier;
 import com.example.supermarket.repo.CategoryRepository;
 import com.example.supermarket.repo.ProductRepository;
-import com.example.supermarket.repo.SupplierRepository;
 import com.sun.jdi.request.DuplicateRequestException;
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -28,8 +28,6 @@ public class ProductService {
     @Autowired
     private CategoryRepository categoryRepository;
 
-    @Autowired
-    private SupplierRepository supplierRepository;
 
     // TO DO il controllo non funziona bisogna migliorarlo e poi spostarlo in una
     // funzione autonoma
@@ -236,8 +234,10 @@ public class ProductService {
      * EntityNotFoundException.
      * Otherwise, it proceeds to delete them all.
      */
+    @Transactional
     public void deleteAll() {
-        if (productRepository.findAll().isEmpty()) {
+        List<Product> products = productRepository.findAll();
+        if (products.isEmpty()) {
             throw new EntityNotFoundException("There are no products to delete");
         }
         productRepository.deleteAll();
