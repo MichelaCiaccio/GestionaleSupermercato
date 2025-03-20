@@ -31,7 +31,7 @@ StockService {
      * if there are no stocks throws an EntityNotFoundException.
      * The elements found are returned with 20 items for page pagination
      *
-     * @return the stocks found
+     * @return The found stocks
      */
     public List<Stock> findAll() {
         List<Stock> stocks = stockRepository.findAll(PageRequest.of(0, 20)).getContent();
@@ -43,7 +43,7 @@ StockService {
 
     /**
      * This method searches for stocks using the name as a parameter
-     * if the stocks are empty throws a EntityNotFoundException.
+     * if the stocks are empty throws an EntityNotFoundException.
      * The elements found are returned with 20 items for page pagination
      *
      * @param name the name of the stock
@@ -59,11 +59,11 @@ StockService {
 
     /**
      * This method searches for stocks using the name of the supplier as a parameter
-     * if the stocks are empty throws a EntityNotFoundException.
+     * if the stocks are empty throws an EntityNotFoundException.
      * The elements found are returned with 20 items for page pagination
      *
-     * @param name the name of the supplier
-     * @return the stocks found
+     * @param name The name of the supplier
+     * @return The found stocks
      */
     public List<Stock> findBySupplierName(String name) {
         List<Stock> stocks = stockRepository.findBySupplierName(name, PageRequest.of(0, 20));
@@ -74,13 +74,13 @@ StockService {
     }
 
     /**
-     * This method searches for amounts of stocks greater than the given quantity
+     * This method searches for numbers of stocks greater than the given quantity
      * if there are no stocks with a quantity greater than the one indicated
-     * the method throws a EntityNotFoundException.
+     * the method throws an EntityNotFoundException.
      * The elements found are returned with 20 items for page pagination
      *
-     * @param quantity
-     * @return the stocks found
+     * @param quantity The quantity in stocks
+     * @return The found stocks
      */
     public List<Stock> findByQuantityGreaterThan(int quantity) {
         List<Stock> stocks = stockRepository.findByQuantityGreaterThan(quantity, PageRequest.of(0, 20));
@@ -91,13 +91,13 @@ StockService {
     }
 
     /**
-     * This method searches for amounts of stocks lower than the given quantity
+     * This method searches for numbers of stocks lower than the given quantity
      * if there are no stocks with a quantity lower than the one indicated
-     * the method throws a EntityNotFoundException.
+     * the method throws an EntityNotFoundException.
      * The elements found are returned with 20 items for page pagination
      *
-     * @param quantity
-     * @return the stocks found
+     * @param quantity The quantity in stocks
+     * @return The found stocks
      */
     public List<Stock> findByQuantityLessThan(int quantity) {
         List<Stock> stocks = stockRepository.findByQuantityLessThan(quantity, PageRequest.of(0, 20));
@@ -111,11 +111,11 @@ StockService {
      * This method searches for stocks with a deliveryDate corresponding to the one
      * given as the input parameter
      * if there are no stocks corresponding to the filter indicated
-     * the method throws a EntityNotFoundException.
+     * the method throws an EntityNotFoundException.
      * The elements found are returned with 20 items for page pagination
      *
-     * @param deliveryDate
-     * @return the stocks found
+     * @param deliveryDate The delivery date in stocks
+     * @return The found stocks
      */
     public List<Stock> findByDeliveryDate(LocalDate deliveryDate) {
         List<Stock> stocks = stockRepository.findByDeliveryDate(deliveryDate, PageRequest.of(0, 20));
@@ -130,11 +130,11 @@ StockService {
      * one
      * given as the input parameter
      * if there are no stocks corresponding to the filter indicated
-     * the method throws a EntityNotFoundException.
+     * the method throws an EntityNotFoundException.
      * The elements found are returned with 20 items for page pagination
      *
-     * @param expirationDate
-     * @return the stocks found
+     * @param expirationDate The expiration date in stocks
+     * @return The stocks found
      */
     public List<Stock> findByExpirationDate(LocalDate expirationDate) {
         List<Stock> stocks = stockRepository.findByExpirationDate(expirationDate, PageRequest.of(0, 20));
@@ -149,18 +149,18 @@ StockService {
      * This method searches for stocks with an expirationDate between the ones
      * provided as the input parameter
      * if there are no stocks corresponding to the filter indicated
-     * the method throws a EntityNotFoundException.
+     * the method throws an EntityNotFoundException.
      * The elements found are returned with 20 items for page pagination
      *
-     * @param firstDate
-     * @param seconDate
-     * @return the stocks found
+     * @param firstDate  The start date for the expiration date filter.
+     * @param secondDate The end date for the expiration date filter.
+     * @return The stocks found
      */
-    public List<Stock> findByExpirationDateBetween(LocalDate firstDate, LocalDate seconDate) {
-        List<Stock> stocks = stockRepository.findByExpirationDateBetween(firstDate, seconDate, PageRequest.of(0, 20));
+    public List<Stock> findByExpirationDateBetween(LocalDate firstDate, LocalDate secondDate) {
+        List<Stock> stocks = stockRepository.findByExpirationDateBetween(firstDate, secondDate, PageRequest.of(0, 20));
         if (stocks.isEmpty()) {
             throw new EntityNotFoundException(
-                    "There are no products in stock with exipration date betweem " + firstDate + " and " + seconDate);
+                    "There are no products in stock with expiration date between " + firstDate + " and " + secondDate);
         }
         return stocks;
     }
@@ -171,8 +171,8 @@ StockService {
      * stock
      * then modifies it by adding the new quantity indicated as an input
      *
-     * @param newStockQuantity the quantity to add to the stock
-     * @param productId        the id of the product
+     * @param newStockQuantity The quantity to add to the stock
+     * @param productId        The id of the product
      */
     public ResponseEntity<String> updateQuantity(int newStockQuantity, int productId) {
         Stock stock = stockRepository.findByProductId(productId);
@@ -183,14 +183,14 @@ StockService {
 
     /**
      * This method creates a new stock of a product.
-     * First, it checks if the supplier already exists and if it doesn't, throws a
+     * First, it checks if the supplier already exists and if it doesn't, throws an
      * IllegalArgumentException. If the supplier exists, it proceeds to the next
      * check.
      * Next, it checks if the stock already exists and if it does, throws a
-     * DuplicateKeyException,
-     * otherwise calls the stockRepository.save method to create the new stock.
+     * DuplicateKeyException.
+     * Otherwise, proceed to create the new stock.
      *
-     * @param stock
+     * @param stock The stock to be saved
      */
     public void save(Stock stock) {
         Product product = productService.findById(stock.getProduct().getId());
@@ -226,11 +226,10 @@ StockService {
 
     /**
      * This method deletes a stock identified by its id.
-     * Check if the stock exists and, if it does, proceed to call
-     * stockRepository.delete to delete it.
+     * Check if the stock exists and, if it does, proceed to delete it.
      * Otherwise, it throws an EntityNotFoundException
      *
-     * @param id he ID of the stock to be delete
+     * @param id The ID of the stock to be deleted
      */
     public void deleteByID(int id) {
         Stock stock = stockRepository.findById(id)
@@ -239,7 +238,7 @@ StockService {
     }
 
     /**
-     * This method delete all the stocks.
+     * This method deletes all the stocks.
      * Checks if the stocks exist, and if they don't, throws an
      * EntityNotFoundException.
      * Otherwise, it proceeds to call stockRepository.deleteAll to delete them all.
