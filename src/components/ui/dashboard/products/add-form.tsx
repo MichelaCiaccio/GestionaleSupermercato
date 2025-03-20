@@ -17,6 +17,7 @@ import { useActionState } from 'react';
 import { createProduct, ProductFormState } from './actions';
 import { ProductSchema, ProductValues } from '@/lib/entities/product';
 import { toast } from 'sonner';
+import { ScreenSpinner } from '../../spinner';
 
 const resolver = zodResolver(ProductSchema);
 
@@ -26,7 +27,7 @@ export function AddProductForm() {
     success: false,
     values: { name: '', sellingPrice: 0, category: '' },
   };
-  const [state, formAction] = useActionState(
+  const [state, formAction, isPending] = useActionState(
     async (prevState: ProductFormState, formData: FormData) => {
       const result = await createProduct(prevState, formData);
       if (result.success) {
@@ -50,6 +51,8 @@ export function AddProductForm() {
   return (
     <Form {...form}>
       <form action={formAction} className="space-y-8">
+        {isPending && <ScreenSpinner label="Adding product" />}
+
         <FormField
           control={form.control}
           name="name"
