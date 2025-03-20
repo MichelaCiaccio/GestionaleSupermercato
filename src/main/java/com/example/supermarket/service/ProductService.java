@@ -2,8 +2,11 @@ package com.example.supermarket.service;
 
 import com.example.supermarket.entity.Category;
 import com.example.supermarket.entity.Product;
+import com.example.supermarket.entity.Supplier;
 import com.example.supermarket.repo.CategoryRepository;
 import com.example.supermarket.repo.ProductRepository;
+import com.example.supermarket.repo.SupplierRepository;
+import com.sun.jdi.request.DuplicateRequestException;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -25,12 +28,29 @@ public class ProductService {
     @Autowired
     private CategoryRepository categoryRepository;
 
+    @Autowired
+    private SupplierRepository supplierRepository;
+
     // TO DO il controllo non funziona bisogna migliorarlo e poi spostarlo in una
     // funzione autonoma
 
-   /* public void save(Product product) {
-        productRepository.save(product);
-    }*/
+    /**
+     * This method creates a new product.
+     * Checks if a product with the same name and the same supplier already exists.
+     * If it does, a DuplicateRequestException is thrown.
+     * Otherwise, the new product is saved.
+     *
+     * @param product The product to be saved
+     */
+    public void save(Product product) {
+        for (Supplier supplier : product.getSuppliers()) {
+            if (productRepository.existsByNameAndSuppliers_Name(product.getName(), supplier.getName())) {
+                throw new DuplicateRequestException("A product named" + product.getName() + " supplied by " + supplier.getName() + " already exists");
+            }
+            productRepository.save(product);
+        }
+
+    }
 
     /**
      * This method updates a product identified by its ID.
@@ -43,7 +63,7 @@ public class ProductService {
      * @param id         The ID of the product to be updated.
      * @param modProduct The new product data to update with.
      */
-  /*  public void updateProduct(int id, Product modProduct) {
+    public void updateProduct(int id, Product modProduct) {
         Product product = productRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Product with id " + id + " not found"));
 
@@ -55,8 +75,9 @@ public class ProductService {
         product.setName(modProduct.getName());
         product.setSellingPrice(modProduct.getSellingPrice());
         product.setStocks(modProduct.getStocks());
+        product.setSuppliers(modProduct.getSuppliers());
         productRepository.save(product);
-    }*/
+    }
 
     /**
      * This method searches for all the product, organizes them into pagination of 20 elements, and sorts them according
@@ -255,7 +276,7 @@ public class ProductService {
     }
 
     /**
-     * This method delete a category identified by its id.
+     * This method deletes a category identified by its id.
      * If the category doesn't exist, an EntityNotFoundException is thrown.
      * Otherwise, it removes the category from all associated products and deletes the category.
      *
