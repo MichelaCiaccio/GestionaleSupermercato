@@ -1,6 +1,5 @@
 'use client';
 
-import { ColumnDef } from '@tanstack/react-table';
 import { Button } from '@/components/ui/button';
 import {
   AlertDialog,
@@ -22,71 +21,121 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { MoreHorizontal } from 'lucide-react';
-import { SortTableHead } from '@/components/ui/data-table';
+import { ColumnsBuilder, SortTableHead } from '@/components/ui/data-table';
 import { Product } from '@/types/db';
 import { currencyFormatter } from '@/lib/utils';
 import { useActionState } from 'react';
 import { deleteProduct } from './actions';
 import Link from 'next/link';
+import { Skeleton } from '../../skeleton';
 
-export const columns: ColumnDef<Product>[] = [
-  // Disable checkboxes for now, there's no functionality to it yet.
-  // Remember to remove `ml-3` from name cell element
-  // {
-  //   id: 'select',
-  //   header: ({ table }) => <SelectAllCheckbox table={table} />,
-  //   cell: ({ row }) => <SelectCheckbox row={row} />,
-  //   enableSorting: false,
-  //   enableHiding: false,
-  // },
-  {
-    accessorKey: 'name',
-    header: () => <SortTableHead title="Name" value="name" />,
-    cell: ({ row }) => (
-      <div className="ml-3 capitalize">{row.getValue('name')}</div>
-    ),
-  },
-  {
-    accessorKey: 'category',
-    header: () => (
-      <SortTableHead title="Category" value="category" className="-ml-3" />
-    ),
-    cell: ({ row }) => row.original.category.name,
-    sortingFn: (rowA, rowB) => {
-      return rowA.original.category.name.localeCompare(
-        rowB.original.category.name
-      );
+export type ProductSkeleton = {
+  name: number;
+  category: number;
+  sellingPrice: number;
+};
+
+const [columns, skeletonColumns] = new ColumnsBuilder<
+  Product,
+  ProductSkeleton
+>()
+  .addColumn(
+    {
+      accessorKey: 'name',
+      header: () => <SortTableHead title="Name" value="name" />,
+      cell: ({ row }) => (
+        <div className="ml-3 capitalize">{row.getValue('name')}</div>
+      ),
     },
-  },
-  {
-    accessorKey: 'sellingPrice',
-    header: () => (
-      <SortTableHead
-        title="Price"
-        value="sellingPrice"
-        className="float-right -mr-3"
-      />
-    ),
-    cell: ({ row }) => (
-      <div className="text-right">
-        {currencyFormatter.format(row.original.sellingPrice / 100)}
-      </div>
-    ),
-  },
-  {
-    id: 'actions',
-    enableHiding: false,
-    cell: ({ row }) => {
-      const product = row.original;
-
-      return (
+    {
+      accessorKey: 'name',
+      header: () => <SortTableHead title="Name" value="name" />,
+      cell: ({ row }) => (
+        <Skeleton className={`ml-3 h-6`} style={{ width: row.original.name }} />
+      ),
+    }
+  )
+  .addColumn(
+    {
+      accessorKey: 'category',
+      header: () => (
+        <SortTableHead title="Category" value="category" className="-ml-3" />
+      ),
+      cell: ({ row }) => row.original.category.name,
+      sortingFn: (rowA, rowB) => {
+        return rowA.original.category.name.localeCompare(
+          rowB.original.category.name
+        );
+      },
+    },
+    {
+      accessorKey: 'category',
+      header: () => (
+        <SortTableHead title="Category" value="category" className="-ml-3" />
+      ),
+      cell: ({ row }) => (
+        <Skeleton className={`h-6`} style={{ width: row.original.category }} />
+      ),
+    }
+  )
+  .addColumn(
+    {
+      accessorKey: 'sellingPrice',
+      header: () => (
+        <SortTableHead
+          title="Price"
+          value="sellingPrice"
+          className="float-right -mr-3"
+        />
+      ),
+      cell: ({ row }) => (
         <div className="text-right">
-          <ProductDropdownMenu product={product} />
+          {currencyFormatter.format(row.original.sellingPrice / 100)}
         </div>
-      );
+      ),
     },
-  },
-];
+    {
+      accessorKey: 'sellingPrice',
+      header: () => (
+        <SortTableHead
+          title="Price"
+          value="sellingPrice"
+          className="float-right -mr-3"
+        />
+      ),
+      cell: ({ row }) => (
+        <Skeleton
+          className={`float-right h-6`}
+          style={{ width: row.original.sellingPrice }}
+        />
+      ),
+    }
+  )
+  .addColumn(
+    {
+      id: 'actions',
+      enableHiding: false,
+      cell: ({ row }) => {
+        const product = row.original;
+
+        return (
+          <div className="text-right">
+            <ProductDropdownMenu product={product} />
+          </div>
+        );
+      },
+    },
+    {
+      id: 'actions',
+      enableHiding: false,
+      cell: () => {
+        return <Skeleton className="float-right h-8 w-8" />;
+      },
+    }
+  )
+  .build();
+
+export { columns, skeletonColumns };
 
 function ProductDropdownMenu({ product }: { product: Product }) {
   const deleteProductWithId = deleteProduct.bind(null, product.id);

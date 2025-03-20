@@ -2,7 +2,7 @@ import { Button } from '@/components/ui/button';
 import { DashboardHeader } from '@/components/ui/dashboard/header';
 import { PopulateProductsButton } from '@/components/ui/dashboard/products/populate-products';
 import { ProductsTable } from '@/components/ui/dashboard/products/products-table';
-import { ProductsTableSkeleton } from '@/components/ui/dashboard/products/skeleton';
+import { ProductsTableSkeleton } from '@/components/ui/dashboard/products/products-table-skeleton';
 import { SearchInput } from '@/components/ui/data-table';
 import { env } from '@/data/env/server';
 import { Plus } from 'lucide-react';

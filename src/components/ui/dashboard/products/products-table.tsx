@@ -1,8 +1,8 @@
 import db from '@/lib/db';
 import { columns } from './products-column';
-import { ProductsDataTable } from './products-data-table';
 import { Product } from '@/types/db';
 import { isAxiosError } from 'axios';
+import { DataTable } from '../../data-table';
 
 type ProductsTableProps = {
   search: string;
@@ -44,7 +44,7 @@ export async function ProductsTable({
   }
 
   return (
-    <ProductsDataTable
+    <DataTable
       search={search}
       currentPage={currentPage}
       totalPages={totalPages}

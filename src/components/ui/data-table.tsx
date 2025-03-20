@@ -9,21 +9,256 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { Input } from '@/components/ui/input';
-import { Row, RowData, Table } from '@tanstack/react-table';
+import * as Tanstack from '@tanstack/react-table';
 import {
   ArrowUpDown,
   ChevronLeft,
   ChevronRight,
   ChevronsLeft,
   ChevronsRight,
+  ServerOff,
   Settings2,
 } from 'lucide-react';
-import { ReactNode } from 'react';
+import { ReactNode, useEffect } from 'react';
 import * as CheckboxPrimitive from '@radix-ui/react-checkbox';
 import { cn } from '@/lib/utils';
 import { VariantProps } from 'class-variance-authority';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useDebouncedCallback } from 'use-debounce';
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from './table';
+
+export class ColumnsBuilder<
+  TData extends Tanstack.RowData,
+  TSkeletonData extends Tanstack.RowData,
+> {
+  private columns: Tanstack.ColumnDef<TData>[] = [];
+  private skeletons: Tanstack.ColumnDef<TSkeletonData>[] = [];
+
+  addColumn(
+    column: Tanstack.ColumnDef<TData>,
+    skeleton: Tanstack.ColumnDef<TSkeletonData>
+  ): this {
+    this.columns.push(column);
+    this.skeletons.push(skeleton);
+    return this;
+  }
+
+  build(): [
+    columns: Tanstack.ColumnDef<TData>[],
+    skeletons: Tanstack.ColumnDef<TSkeletonData>[],
+  ] {
+    return [this.columns, this.skeletons];
+  }
+}
+
+export function DataTableSkeleton<TData, TValue>({
+  data,
+  columns,
+}: {
+  data: TData[];
+  columns: Tanstack.ColumnDef<TData, TValue>[];
+}) {
+  const table = Tanstack.useReactTable({
+    data,
+    columns,
+    getCoreRowModel: Tanstack.getCoreRowModel(),
+  });
+
+  return (
+    <>
+      <div className="rounded-md border">
+        <Table>
+          <TableHeader>
+            {table.getHeaderGroups().map((headerGroup) => (
+              <TableRow key={headerGroup.id}>
+                {headerGroup.headers.map((header) => {
+                  return (
+                    <TableHead
+                      key={header.id}
+                      className={header.id === 'actions' ? 'w-8' : ''}
+                    >
+                      {header.isPlaceholder
+                        ? null
+                        : Tanstack.flexRender(
+                            header.column.columnDef.header,
+                            header.getContext()
+                          )}
+                    </TableHead>
+                  );
+                })}
+              </TableRow>
+            ))}
+          </TableHeader>
+          <TableBody>
+            {table.getRowModel().rows?.length ? (
+              table.getRowModel().rows.map((row) => (
+                <TableRow
+                  key={row.id}
+                  data-state={row.getIsSelected() && 'selected'}
+                >
+                  {row.getVisibleCells().map((cell) => (
+                    <TableCell key={cell.id}>
+                      {Tanstack.flexRender(
+                        cell.column.columnDef.cell,
+                        cell.getContext()
+                      )}
+                    </TableCell>
+                  ))}
+                </TableRow>
+              ))
+            ) : (
+              <TableRow>
+                <TableCell
+                  colSpan={columns.length}
+                  className="h-24 text-center"
+                >
+                  No products yet.
+                </TableCell>
+              </TableRow>
+            )}
+          </TableBody>
+        </Table>
+      </div>
+
+      <DataTableFooter currentPage={1} totalPages={1} />
+    </>
+  );
+}
+
+export function DataTable<TData, TValue>({
+  columns,
+  data,
+  search,
+  currentPage,
+  totalPages,
+  order,
+  sort,
+  isError,
+}: {
+  columns: Tanstack.ColumnDef<TData, TValue>[];
+  data: TData[];
+  isError?: boolean;
+  // WARNING: Data filtering, sorting, and processing must be done by the backend.
+  // For now, this will be handled in the client with the following
+  // helper props:
+  search: string;
+  currentPage: number;
+  totalPages: number;
+  order: 'asc' | 'desc';
+  sort: string;
+}) {
+  const table = Tanstack.useReactTable({
+    data,
+    columns,
+    getCoreRowModel: Tanstack.getCoreRowModel(),
+    // WARNING: This is paginating in the client, use backend pagination in the future.
+    getPaginationRowModel: Tanstack.getPaginationRowModel(),
+    // WARNING: This is sorting in the client, use backend sorting in the future.
+    getSortedRowModel: Tanstack.getSortedRowModel(),
+    getFilteredRowModel: Tanstack.getFilteredRowModel(),
+    initialState: {
+      pagination: { pageIndex: currentPage - 1, pageSize: 20 },
+    },
+  });
+
+  useEffect(() => {
+    table.setPagination({ pageIndex: currentPage - 1, pageSize: 20 });
+  }, [table, currentPage]);
+
+  useEffect(() => {
+    table.getColumn('name')?.setFilterValue(search);
+  }, [table, search]);
+
+  useEffect(() => {
+    table.getColumn(sort)?.toggleSorting(order === 'desc');
+  }, [table, order, sort]);
+
+  return (
+    <>
+      <div className="rounded-md border">
+        <Table>
+          <TableHeader>
+            {table.getHeaderGroups().map((headerGroup) => (
+              <TableRow key={headerGroup.id}>
+                {headerGroup.headers.map((header) => {
+                  return (
+                    <TableHead
+                      key={header.id}
+                      className={header.id === 'actions' ? 'w-8' : ''}
+                    >
+                      {header.isPlaceholder
+                        ? null
+                        : Tanstack.flexRender(
+                            header.column.columnDef.header,
+                            header.getContext()
+                          )}
+                    </TableHead>
+                  );
+                })}
+              </TableRow>
+            ))}
+          </TableHeader>
+          <TableBody>
+            <TableBodyContent table={table} isError={isError} />
+          </TableBody>
+        </Table>
+      </div>
+
+      <DataTableFooter currentPage={currentPage} totalPages={totalPages} />
+    </>
+  );
+}
+
+function TableBodyContent<TData extends Tanstack.RowData>({
+  table,
+  isError,
+}: {
+  table: Tanstack.Table<TData>;
+  isError?: boolean;
+}) {
+  if (isError) {
+    return (
+      <TableRow>
+        <TableCell colSpan={table._getColumnDefs().length} className="h-72">
+          <span className="flex justify-center gap-2.5">
+            <ServerOff />
+            Could not fetch products.
+          </span>
+        </TableCell>
+      </TableRow>
+    );
+  }
+
+  if (table.getRowModel().rows?.length === 0) {
+    return (
+      <TableRow>
+        <TableCell
+          colSpan={table._getColumnDefs().length}
+          className="h-72 text-center"
+        >
+          No products yet.
+        </TableCell>
+      </TableRow>
+    );
+  }
+
+  return table.getRowModel().rows.map((row) => (
+    <TableRow key={row.id} data-state={row.getIsSelected() && 'selected'}>
+      {row.getVisibleCells().map((cell) => (
+        <TableCell key={cell.id}>
+          {Tanstack.flexRender(cell.column.columnDef.cell, cell.getContext())}
+        </TableCell>
+      ))}
+    </TableRow>
+  ));
+}
 
 export function SearchInput(props: React.ComponentProps<'input'>) {
   const searchParams = useSearchParams();
@@ -57,12 +292,12 @@ export function SearchInput(props: React.ComponentProps<'input'>) {
  * @deprecated In favor of SearchInput, this component is marked to be removed
  *             once the new table logic with query parameters is implemented.
  */
-export function InputFilter<TData extends RowData>({
+export function InputFilter<TData extends Tanstack.RowData>({
   table,
   className,
   ...props
 }: React.ComponentProps<'input'> & {
-  table: Table<TData>;
+  table: Tanstack.Table<TData>;
 }) {
   return (
     <Input
@@ -76,7 +311,7 @@ export function InputFilter<TData extends RowData>({
   );
 }
 
-export function ViewColumnsFilterDropdown<TData extends RowData>({
+export function ViewColumnsFilterDropdown<TData extends Tanstack.RowData>({
   table,
   className,
   ...props
@@ -84,7 +319,7 @@ export function ViewColumnsFilterDropdown<TData extends RowData>({
   VariantProps<typeof buttonVariants> & {
     asChild?: boolean;
   } & {
-    table: Table<TData>;
+    table: Tanstack.Table<TData>;
   }) {
   return (
     <DropdownMenu>
@@ -119,22 +354,15 @@ export function ViewColumnsFilterDropdown<TData extends RowData>({
   );
 }
 
-export function DataTableFooter<TData extends RowData>({
+export function DataTableFooter({
   currentPage,
   totalPages,
 }: {
-  table?: Table<TData>;
   currentPage: number;
   totalPages: number;
 }) {
   return (
-    <div className="flex items-center justify-end space-x-2 py-4">
-      {/* Checkboxes are disabled for now.
-      <div className="text-muted-foreground flex-1 text-sm">
-        {table.getFilteredSelectedRowModel().rows.length} of{' '}
-        {table.getFilteredRowModel().rows.length} row(s) selected.
-      </div> */}
-
+    <div className="space-x-2 py-4">
       <Pagination currentPage={currentPage} totalPages={totalPages} />
     </div>
   );
@@ -236,12 +464,12 @@ export function Pagination({
   );
 }
 
-export function SelectAllCheckbox<TData extends RowData>({
+export function SelectAllCheckbox<TData extends Tanstack.RowData>({
   table,
   className,
   ...props
 }: React.ComponentProps<typeof CheckboxPrimitive.Root> & {
-  table: Table<TData>;
+  table: Tanstack.Table<TData>;
 }) {
   return (
     <Checkbox
@@ -257,12 +485,12 @@ export function SelectAllCheckbox<TData extends RowData>({
   );
 }
 
-export function SelectCheckbox<TData extends RowData>({
+export function SelectCheckbox<TData extends Tanstack.RowData>({
   row,
   className,
   ...props
 }: React.ComponentProps<typeof CheckboxPrimitive.Root> & {
-  row: Row<TData>;
+  row: Tanstack.Row<TData>;
 }) {
   return (
     <Checkbox
