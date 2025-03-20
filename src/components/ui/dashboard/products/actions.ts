@@ -78,6 +78,7 @@ export async function createProduct(
     message = 'Internal server error. Failed to create new product.';
   }
 
+  revalidatePath('/dashboard');
   revalidatePath('/dashboard/products');
 
   return {
@@ -114,6 +115,7 @@ export async function updateProduct(
       category: { name: category },
     });
     success = true;
+    revalidatePath('/dashboard');
     revalidatePath('/dashboard/products');
   } catch {
     message = `Internal server error. Failed to update product.`;
@@ -139,6 +141,7 @@ export async function deleteProduct(
     message = 'Internal server error. Failed to delete product.';
   }
 
+  revalidatePath('/dashboard');
   revalidatePath('/dashboard/products');
 
   return {
