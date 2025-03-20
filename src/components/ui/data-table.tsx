@@ -59,9 +59,11 @@ export class ColumnsBuilder<
 }
 
 export function DataTableSkeleton<TData, TValue>({
+  label,
   data,
   columns,
 }: {
+  label: string;
   data: TData[];
   columns: Tanstack.ColumnDef<TData, TValue>[];
 }) {
@@ -119,7 +121,7 @@ export function DataTableSkeleton<TData, TValue>({
                   colSpan={columns.length}
                   className="h-24 text-center"
                 >
-                  No products yet.
+                  No {label} yet.
                 </TableCell>
               </TableRow>
             )}
@@ -133,6 +135,7 @@ export function DataTableSkeleton<TData, TValue>({
 }
 
 export function DataTable<TData, TValue>({
+  label,
   columns,
   data,
   search,
@@ -142,17 +145,18 @@ export function DataTable<TData, TValue>({
   sort,
   isError,
 }: {
+  label: string;
   columns: Tanstack.ColumnDef<TData, TValue>[];
   data: TData[];
   isError?: boolean;
   // WARNING: Data filtering, sorting, and processing must be done by the backend.
   // For now, this will be handled in the client with the following
   // helper props:
-  search: string;
-  currentPage: number;
-  totalPages: number;
-  order: 'asc' | 'desc';
-  sort: string;
+  search?: string;
+  currentPage?: number;
+  totalPages?: number;
+  order?: 'asc' | 'desc';
+  sort?: string;
 }) {
   const table = Tanstack.useReactTable({
     data,
@@ -164,19 +168,22 @@ export function DataTable<TData, TValue>({
     getSortedRowModel: Tanstack.getSortedRowModel(),
     getFilteredRowModel: Tanstack.getFilteredRowModel(),
     initialState: {
-      pagination: { pageIndex: currentPage - 1, pageSize: 20 },
+      pagination: { pageIndex: (Number(currentPage) || 1) - 1, pageSize: 20 },
     },
   });
 
   useEffect(() => {
+    if (!currentPage) return;
     table.setPagination({ pageIndex: currentPage - 1, pageSize: 20 });
   }, [table, currentPage]);
 
   useEffect(() => {
+    if (!search) return;
     table.getColumn('name')?.setFilterValue(search);
   }, [table, search]);
 
   useEffect(() => {
+    if (!sort || !order) return;
     table.getColumn(sort)?.toggleSorting(order === 'desc');
   }, [table, order, sort]);
 
@@ -206,20 +213,25 @@ export function DataTable<TData, TValue>({
             ))}
           </TableHeader>
           <TableBody>
-            <TableBodyContent table={table} isError={isError} />
+            <TableBodyContent label={label} table={table} isError={isError} />
           </TableBody>
         </Table>
       </div>
 
-      <DataTableFooter currentPage={currentPage} totalPages={totalPages} />
+      <DataTableFooter
+        currentPage={currentPage ?? 1}
+        totalPages={totalPages ?? 1}
+      />
     </>
   );
 }
 
 function TableBodyContent<TData extends Tanstack.RowData>({
+  label,
   table,
   isError,
 }: {
+  label: string;
   table: Tanstack.Table<TData>;
   isError?: boolean;
 }) {
@@ -229,7 +241,7 @@ function TableBodyContent<TData extends Tanstack.RowData>({
         <TableCell colSpan={table._getColumnDefs().length} className="h-72">
           <span className="flex justify-center gap-2.5">
             <ServerOff />
-            Could not fetch products.
+            Could not fetch {label}.
           </span>
         </TableCell>
       </TableRow>
@@ -243,7 +255,7 @@ function TableBodyContent<TData extends Tanstack.RowData>({
           colSpan={table._getColumnDefs().length}
           className="h-72 text-center"
         >
-          No products yet.
+          No {label} yet.
         </TableCell>
       </TableRow>
     );

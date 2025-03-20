@@ -45,6 +45,7 @@ export async function ProductsTable({
 
   return (
     <DataTable
+      label="products"
       search={search}
       currentPage={currentPage}
       totalPages={totalPages}

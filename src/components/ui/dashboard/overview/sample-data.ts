@@ -1,5 +1,5 @@
-import { Sale } from './sales-columns';
-import { OverviewProduct } from './products-columns';
+import { Sale } from './old-sales-columns';
+import { OverviewProduct } from './old-products-columns';
 
 export const products: OverviewProduct[] = [
   {

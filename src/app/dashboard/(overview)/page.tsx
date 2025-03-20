@@ -1,10 +1,13 @@
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { DashboardHeader } from '@/components/ui/dashboard/header';
 import { CardWrapper } from '@/components/ui/dashboard/overview/card-wrapper';
 import { ProductsTable } from '@/components/ui/dashboard/overview/products-table';
-import { SalesTable } from '@/components/ui/dashboard/overview/sales-table';
+import { ProductsTableSkeleton } from '@/components/ui/dashboard/overview/products-table-skeleton';
 import { CardWrapperSkeleton } from '@/components/ui/dashboard/overview/skeleton';
 import { Metadata } from 'next';
 import { Suspense } from 'react';
+import { SalesTableSkeleton } from '@/components/ui/dashboard/overview/sales-table-skeleton';
+import { SalesTable } from '@/components/ui/dashboard/overview/sales-table';
 
 export const metadata: Metadata = {
   title: 'Overview',
@@ -22,8 +25,27 @@ export default function OverviewPage() {
           </Suspense>
         </div>
         <div className="grid items-start gap-6 sm:grid-cols-1 lg:grid-cols-2">
-          <SalesTable />
-          <ProductsTable />
+          <Card className="min-w-0">
+            <CardHeader>
+              <CardTitle className="text-base">Low Stock Products</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <Suspense fallback={<SalesTableSkeleton />}>
+                <SalesTable />
+              </Suspense>
+            </CardContent>
+          </Card>
+
+          <Card className="min-w-0">
+            <CardHeader>
+              <CardTitle className="text-base">Low Stock Products</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <Suspense fallback={<ProductsTableSkeleton />}>
+                <ProductsTable />
+              </Suspense>
+            </CardContent>
+          </Card>
         </div>
       </main>
     </>

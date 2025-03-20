@@ -1,38 +1,72 @@
 'use client';
 
-import { currencyFormatter } from '@/lib/utils';
-import { ColumnDef } from '@tanstack/react-table';
 import { format } from 'date-fns';
+import { ColumnsBuilder } from '../../data-table';
+import { currencyFormatter } from '@/lib/utils';
+import { Skeleton } from '../../skeleton';
 
 export type Sale = {
-  id: string;
+  id: number;
   date: Date;
-  amount: number;
+  totalAmount: Date;
 };
 
-export const columns: ColumnDef<Sale>[] = [
-  {
-    accessorKey: 'id',
-    header: 'ID',
-  },
-  {
-    accessorKey: 'date',
-    header: 'Date',
-    cell: ({ row }) => {
-      const date = new Date(row.getValue('date'));
-      const formatted = format(date, 'P');
+export type SaleSkeleton = {
+  [P in keyof Sale]: number;
+};
 
-      return formatted;
+const [columns, skeletonColumns] = new ColumnsBuilder<Sale, SaleSkeleton>()
+  .addColumn(
+    {
+      accessorKey: 'id',
+      header: 'ID',
     },
-  },
-  {
-    accessorKey: 'amount',
-    header: () => <div className="text-right">Total Amount</div>,
-    cell: ({ row }) => {
-      const amount = parseFloat(row.getValue('amount'));
-      const formatted = currencyFormatter.format(amount);
+    {
+      accessorKey: 'id',
+      header: 'ID',
+      cell: ({ row }) => (
+        <Skeleton className="h-5" style={{ width: row.original.id }} />
+      ),
+    }
+  )
+  .addColumn(
+    {
+      accessorKey: 'date',
+      header: 'Date',
+      cell: ({ row }) => {
+        const date = new Date(row.getValue('date'));
+        const formatted = format(date, 'P');
 
-      return <div className="text-right font-medium">{formatted}</div>;
+        return formatted;
+      },
     },
-  },
-];
+    {
+      accessorKey: 'date',
+      header: 'Date',
+      cell: ({ row }) => (
+        <Skeleton className="h-5" style={{ width: row.original.date }} />
+      ),
+    }
+  )
+  .addColumn(
+    {
+      accessorKey: 'amount',
+      header: () => <div className="text-right">Total Amount</div>,
+      cell: ({ row }) => {
+        const amount = parseFloat(row.getValue('amount'));
+        const formatted = currencyFormatter.format(amount);
+
+        return <div className="text-right font-medium">{formatted}</div>;
+      },
+    },
+    {
+      accessorKey: 'amount',
+      header: () => <div className="text-right">Total Amount</div>,
+      cell: ({ row }) => (
+        <Skeleton className="h-5" style={{ width: row.original.totalAmount }} />
+      ),
+    }
+  )
+  .build();
+
+export { columns, skeletonColumns };
