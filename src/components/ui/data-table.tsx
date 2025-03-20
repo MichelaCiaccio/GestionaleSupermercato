@@ -129,7 +129,7 @@ export function DataTableSkeleton<TData, TValue>({
         </Table>
       </div>
 
-      <DataTableFooter currentPage={1} totalPages={1} />
+      <DataTableFooterSkeleton />
     </>
   );
 }
@@ -366,6 +366,14 @@ export function ViewColumnsFilterDropdown<TData extends Tanstack.RowData>({
   );
 }
 
+export function DataTableFooterSkeleton() {
+  return (
+    <div className="space-x-2 py-4">
+      <PaginationSkeleton />
+    </div>
+  );
+}
+
 export function DataTableFooter({
   currentPage,
   totalPages,
@@ -376,6 +384,52 @@ export function DataTableFooter({
   return (
     <div className="space-x-2 py-4">
       <Pagination currentPage={currentPage} totalPages={totalPages} />
+    </div>
+  );
+}
+
+export function PaginationSkeleton() {
+  return (
+    <div className="flex flex-1 justify-between gap-2.5">
+      <div className="space-x-2">
+        <Button
+          variant="outline"
+          className="h-8 w-8 cursor-pointer p-0"
+          disabled
+        >
+          <span className="sr-only">Go to first page</span>
+          <ChevronsLeft />
+        </Button>
+        <Button
+          variant="outline"
+          className="h-8 w-8 cursor-pointer p-0"
+          disabled
+        >
+          <span className="sr-only">Go to previous page</span>
+          <ChevronLeft />
+        </Button>
+      </div>
+
+      <div className="flex items-center text-sm font-medium">Page 1 of 1</div>
+
+      <div className="space-x-2">
+        <Button
+          variant="outline"
+          className="h-8 w-8 cursor-pointer p-0"
+          disabled
+        >
+          <span className="sr-only">Go to next page</span>
+          <ChevronRight />
+        </Button>
+        <Button
+          variant="outline"
+          className="h-8 w-8 cursor-pointer p-0"
+          disabled
+        >
+          <span className="sr-only">Go to last page</span>
+          <ChevronsRight />
+        </Button>
+      </div>
     </div>
   );
 }
@@ -512,6 +566,29 @@ export function SelectCheckbox<TData extends Tanstack.RowData>({
       aria-label="Select row"
       {...props}
     />
+  );
+}
+
+export function SortTableHeadSkeleton({
+  title,
+  className,
+  ...props
+}: React.ComponentProps<'button'> &
+  VariantProps<typeof buttonVariants> & {
+    asChild?: boolean;
+  } & {
+    title: ReactNode;
+  }) {
+  return (
+    <Button
+      type="button"
+      className={cn('cursor-pointer', className)}
+      variant="ghost"
+      {...props}
+    >
+      {title}
+      <ArrowUpDown />
+    </Button>
   );
 }
 

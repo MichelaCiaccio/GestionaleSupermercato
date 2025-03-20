@@ -21,7 +21,11 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { MoreHorizontal } from 'lucide-react';
-import { ColumnsBuilder, SortTableHead } from '@/components/ui/data-table';
+import {
+  ColumnsBuilder,
+  SortTableHead,
+  SortTableHeadSkeleton,
+} from '@/components/ui/data-table';
 import { Product } from '@/types/db';
 import { currencyFormatter } from '@/lib/utils';
 import { useActionState } from 'react';
@@ -49,7 +53,7 @@ const [columns, skeletonColumns] = new ColumnsBuilder<
     },
     {
       accessorKey: 'name',
-      header: () => <SortTableHead title="Name" value="name" />,
+      header: () => <SortTableHeadSkeleton title="Name" />,
       cell: ({ row }) => (
         <Skeleton className={`ml-3 h-6`} style={{ width: row.original.name }} />
       ),
@@ -71,7 +75,7 @@ const [columns, skeletonColumns] = new ColumnsBuilder<
     {
       accessorKey: 'category',
       header: () => (
-        <SortTableHead title="Category" value="category" className="-ml-3" />
+        <SortTableHeadSkeleton title="Category" className="-ml-3" />
       ),
       cell: ({ row }) => (
         <Skeleton className={`h-6`} style={{ width: row.original.category }} />
@@ -97,11 +101,7 @@ const [columns, skeletonColumns] = new ColumnsBuilder<
     {
       accessorKey: 'sellingPrice',
       header: () => (
-        <SortTableHead
-          title="Price"
-          value="sellingPrice"
-          className="float-right -mr-3"
-        />
+        <SortTableHeadSkeleton title="Price" className="float-right -mr-3" />
       ),
       cell: ({ row }) => (
         <Skeleton
