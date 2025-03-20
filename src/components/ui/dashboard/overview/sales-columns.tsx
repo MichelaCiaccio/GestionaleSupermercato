@@ -8,7 +8,7 @@ import { Skeleton } from '../../skeleton';
 export type Sale = {
   id: number;
   date: Date;
-  totalAmount: Date;
+  amount: number;
 };
 
 export type SaleSkeleton = {
@@ -63,7 +63,7 @@ const [columns, skeletonColumns] = new ColumnsBuilder<Sale, SaleSkeleton>()
       accessorKey: 'amount',
       header: () => <div className="text-right">Total Amount</div>,
       cell: ({ row }) => (
-        <Skeleton className="h-5" style={{ width: row.original.totalAmount }} />
+        <Skeleton className="h-5" style={{ width: row.original.amount }} />
       ),
     }
   )

@@ -5,7 +5,7 @@ export function SalesTableSkeleton() {
   const data = Array.from(Array(10)).map<SaleSkeleton>(() => ({
     id: 50,
     date: 70,
-    totalAmount: Math.floor(Math.random() * 25 + 40),
+    amount: Math.floor(Math.random() * 25 + 40),
   }));
 
   return (
