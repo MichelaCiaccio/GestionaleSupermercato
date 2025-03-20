@@ -1,6 +1,5 @@
 package com.example.supermarket.entity;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
@@ -36,10 +35,14 @@ public class Supplier {
     @NotNull
     private String email;
 
+    @ManyToMany
+    @JoinTable(name = "stock", joinColumns = @JoinColumn(name = "supplier_id"), inverseJoinColumns =
+    @JoinColumn(name = "product_id"))
+    private Set<Product> products;
+
     @OneToMany(mappedBy = "supplier")
     @Nullable
     @OnDelete(action = OnDeleteAction.SET_NULL)
-    @JsonManagedReference
     private Set<Stock> stocks;
 
 }

@@ -1,11 +1,11 @@
 package com.example.supermarket.service;
 
+import com.example.supermarket.entity.Product;
 import com.example.supermarket.entity.Stock;
+import com.example.supermarket.entity.Supplier;
 import com.example.supermarket.repo.StockRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.dao.DuplicateKeyException;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -19,6 +19,12 @@ StockService {
 
     @Autowired
     private StockRepository stockRepository;
+
+    @Autowired
+    private ProductService productService;
+
+    @Autowired
+    private SupplierService supplierService;
 
     /**
      * The method calls the stockRepository findAll to search for all the stocks
@@ -187,16 +193,10 @@ StockService {
      * @param stock
      */
     public void save(Stock stock) {
-        if (stock.getSupplier() == null) {
-            throw new DataIntegrityViolationException("Stock must have a supplier");
-        }
-        if (stockRepository.existsByProductNameAndSupplierNameAndExpirationDate(stock.getProduct().getName(),
-                stock.getSupplier().getName(), stock.getExpirationDate())) {
-            throw new DuplicateKeyException(
-                    "The stock for " + stock.getProduct().getName()
-                            + " from " + stock.getSupplier().getName() + " with expiration"
-                            + " already exists. Instead of creating new stock, update the quantity");
-        }
+        Product product = productService.findById(stock.getProduct().getId());
+        Supplier supplier = supplierService.findById(stock.getSupplier().getId());
+        stock.setProduct(product);
+        stock.setSupplier(supplier);
         stockRepository.save(stock);
     }
 

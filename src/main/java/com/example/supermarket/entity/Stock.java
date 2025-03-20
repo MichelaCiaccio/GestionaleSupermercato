@@ -1,7 +1,5 @@
 package com.example.supermarket.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Future;
 import jakarta.validation.constraints.NotNull;
@@ -35,12 +33,10 @@ public class Stock {
 
     @ManyToOne
     @JoinColumn(name = "product_id")
-    @JsonManagedReference
     private Product product;
 
     @ManyToOne
     @JoinColumn(name = "supplier_id")
-    @JsonBackReference
     private Supplier supplier;
 
 }

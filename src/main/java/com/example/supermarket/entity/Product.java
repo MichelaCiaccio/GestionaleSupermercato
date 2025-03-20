@@ -1,6 +1,5 @@
 package com.example.supermarket.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
@@ -12,6 +11,7 @@ import org.hibernate.annotations.OnDeleteAction;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Data
@@ -33,10 +33,13 @@ public class Product {
     @JoinColumn(name = "category_id")
     private Category category;
 
+    @ManyToMany(mappedBy = "products")
+    @NotNull(message = "The supplier is required")
+    private Set<Supplier> suppliers;
+
     @OneToMany(mappedBy = "product")
     @Nullable
     @OnDelete(action = OnDeleteAction.SET_NULL)
-    @JsonBackReference
     private List<Stock> stocks;
 
 }

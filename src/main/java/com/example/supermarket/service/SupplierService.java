@@ -1,15 +1,13 @@
 package com.example.supermarket.service;
 
-import java.util.List;
-
+import com.example.supermarket.entity.Supplier;
+import com.example.supermarket.repo.SupplierRepository;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 
-import com.example.supermarket.entity.Supplier;
-import com.example.supermarket.repo.SupplierRepository;
-
-import jakarta.persistence.EntityNotFoundException;
+import java.util.List;
 
 @Service
 public class SupplierService {
@@ -20,20 +18,18 @@ public class SupplierService {
     /**
      * This method searches for supplier using the id as a parameter.
      * If the supplier doesn't exists throw an EntityNotFoundException.
-     * 
+     *
      * @param id the id of the supplier
      * @return the supplier found
      */
     public Supplier findById(int id) {
-        Supplier supplier = supplierRepo.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("Supplier with id " + id + " not found"));
-        return supplier;
+        return supplierRepo.findById(id).orElseThrow(() -> new EntityNotFoundException("Supplier with id " + id + " not found"));
     }
 
     /**
      * This method searches for supplier using the name as a parameter.
-     * If the supplier doeasn't exists throw an EntityNotFoundException.
-     * 
+     * If the supplier doesn't exists throw an EntityNotFoundException.
+     *
      * @param name the name of the supplier
      * @return the supplier found
      */
@@ -68,7 +64,7 @@ public class SupplierService {
      * Check if the supplier exists and, if it does, proceed to call
      * supplierRepository.deleteById to delete it.
      * Otherwise it throws an EntityNotFoundException.
-     * 
+     *
      * @param id
      */
     public void deleteById(int id) {
@@ -85,7 +81,7 @@ public class SupplierService {
      * DuplicateKeyException.
      * Otherwise calls the supplierRepository.save method to create the new
      * supplier.
-     * 
+     *
      * @param supplier
      */
     public void save(Supplier supplier) {

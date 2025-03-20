@@ -32,13 +32,13 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
 
     List<Product> findBySellingPrice(double sellingPrice);
 
-    List<Product> findByStocks_Supplier_Name(String supplierName);
+    List<Product> findBySuppliers_Name(String supplierName);
 
     List<Product> findByStocks_ExpirationDate(LocalDate expirationDate);
 
     List<Product> findByStocks_Quantity(int quantity);
-    
-    boolean existsByNameAndStocks_Supplier_Name(String name, String supplierName);
+
+    boolean existsByNameAndSuppliers_Name(String name, String supplierName);
 
 
 }

@@ -4,13 +4,10 @@ import com.example.supermarket.entity.Category;
 import com.example.supermarket.entity.Product;
 import com.example.supermarket.service.ProductService;
 import jakarta.persistence.EntityNotFoundException;
-import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -34,7 +31,7 @@ public class ProductController {
         return productService.findAllProductsSorted(page, sortDirection, dataType);
     }
 
-    @PostMapping("/add")
+    /*@PostMapping("/add")
     public ResponseEntity<?> createNewProduct(@Valid @RequestBody Product product) {
         try {
             productService.save(product);
@@ -52,7 +49,7 @@ public class ProductController {
         } catch (DataIntegrityViolationException e) {
             return ResponseEntity.status(HttpStatus.CONFLICT).body((e.getMessage()));
         }
-    }
+    }*/
 
     @GetMapping("/id/")
     public Product findById(@NotNull @RequestParam int id) {
@@ -86,7 +83,7 @@ public class ProductController {
 
     @GetMapping("/stock/quantity/")
     public List<Product> findByStockQuantity(@NotNull @RequestParam int quantity) {
-        return productService.findByStockQuantity(quantity);
+        return productService.findByQuantity(quantity);
     }
 
     @DeleteMapping("/all")

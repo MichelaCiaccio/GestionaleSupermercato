@@ -2,12 +2,10 @@ package com.example.supermarket.service;
 
 import com.example.supermarket.entity.Category;
 import com.example.supermarket.entity.Product;
-import com.example.supermarket.entity.Stock;
 import com.example.supermarket.repo.CategoryRepository;
 import com.example.supermarket.repo.ProductRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DuplicateKeyException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -29,22 +27,10 @@ public class ProductService {
 
     // TO DO il controllo non funziona bisogna migliorarlo e poi spostarlo in una
     // funzione autonoma
-    public void save(Product product) {
-        if (product.getStocks() != null) {
-            for (Stock stock : product.getStocks()) {
-                if (productRepository.existsByNameAndStocks_Supplier_Name(product.getName(),
-                        stock.getSupplier().getName())) {
-                    throw new DuplicateKeyException("Product with name " + product.getName() + " and Supplier " + stock.getSupplier().getName() +
-                            " already exists");
-                }
-            }
-        }
-        Optional<Category> existingCategory = categoryRepository.findByName(product.getCategory().getName());
-        Category category = existingCategory.orElseGet(() -> categoryRepository.save(product.getCategory()));
-        product.setCategory(category);
-        productRepository.save(product);
 
-    }
+   /* public void save(Product product) {
+        productRepository.save(product);
+    }*/
 
     /**
      * This method updates a product identified by its ID.
@@ -57,7 +43,7 @@ public class ProductService {
      * @param id         The ID of the product to be updated.
      * @param modProduct The new product data to update with.
      */
-    public void updateProduct(int id, Product modProduct) {
+  /*  public void updateProduct(int id, Product modProduct) {
         Product product = productRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Product with id " + id + " not found"));
 
@@ -70,13 +56,13 @@ public class ProductService {
         product.setSellingPrice(modProduct.getSellingPrice());
         product.setStocks(modProduct.getStocks());
         productRepository.save(product);
-    }
+    }*/
 
     /**
-     * This method searches for all the product, organizes them into pagination of 20 element, and sorts them according
+     * This method searches for all the product, organizes them into pagination of 20 elements, and sorts them according
      * to a specified direction and data type.
-     * If the page number, sort direction or the data type are not provided by the client default values are set.
-     * Check if any product exists and returns them.
+     * If the page number, sort direction or the data type are not provided by the client, default values are set.
+     * Check if any product exists and return them.
      * Otherwise, it throws and EntityNotFoundException
      *
      * @param page          The page number the client wants to display. If null, the first page (0) is used.
@@ -102,8 +88,8 @@ public class ProductService {
 
     /**
      * This method searches for a product by its ID.
-     * If no product is found throws a EntityNotFoundException.
-     * The found product are returned.
+     * If no product is found, throw an EntityNotFoundException.
+     * The found product is returned.
      *
      * @param id The id of the product to search for
      * @return The product found
@@ -115,7 +101,7 @@ public class ProductService {
 
     /**
      * This method searches for products by their name.
-     * If no products are found throws a EntityNotFoundException.
+     * If no products are found, throw an EntityNotFoundException.
      * Otherwise, a list of found products is returned
      *
      * @param name The name of the products
@@ -131,7 +117,7 @@ public class ProductService {
 
     /**
      * This method searches for products by the name of their category.
-     * If no products are found throws a EntityNotFoundException.
+     * If no products are found, throw an EntityNotFoundException.
      * Otherwise, a list of found products is returned
      *
      * @param categoryName The name of the category
@@ -147,7 +133,7 @@ public class ProductService {
 
     /**
      * This method searches for products by their selling price.
-     * If no products are found throws a EntityNotFoundException.
+     * If no products are found, throw an EntityNotFoundException.
      * Otherwise, a list of found products is returned
      *
      * @param sellingPrice The selling price of the products
@@ -163,14 +149,14 @@ public class ProductService {
 
     /**
      * This method searches for products by the name of their supplier.
-     * If no products are found throws a EntityNotFoundException.
+     * If no products are found, throw an EntityNotFoundException.
      * Otherwise, a list of found products is returned
      *
      * @param supplierName The name of the supplier
      * @return The products found
      */
     public List<Product> findBySupplierName(String supplierName) {
-        List<Product> products = productRepository.findByStocks_Supplier_Name(supplierName);
+        List<Product> products = productRepository.findBySuppliers_Name(supplierName);
         if (products.isEmpty()) {
             throw new EntityNotFoundException("No product has a supplier with a name" + supplierName);
         }
@@ -179,7 +165,7 @@ public class ProductService {
 
     /**
      * This method searches for products by their expiration date.
-     * If no products are found throws a EntityNotFoundException.
+     * If no products are found, throw an EntityNotFoundException.
      * Otherwise, a list of found products is returned
      *
      * @param expirationDate The expiration date of the products
@@ -195,13 +181,13 @@ public class ProductService {
 
     /**
      * This method searches for products by their quantity in stock.
-     * If no products are found throws a EntityNotFoundException.
+     * If no products are found, throw an EntityNotFoundException.
      * Otherwise, a list of found products is returned
      *
      * @param quantity The quantity in stock
      * @return the products found
      */
-    public List<Product> findByStockQuantity(int quantity) {
+    public List<Product> findByQuantity(int quantity) {
         List<Product> products = productRepository.findByStocks_Quantity(quantity);
         if (products.isEmpty()) {
             throw new EntityNotFoundException("No product is available in quantity equals to " + quantity);
@@ -211,7 +197,7 @@ public class ProductService {
 
     /**
      * This method deletes a product identified by its id.
-     * If the product exists proceed to delete it.
+     * If the product exists, proceed to delete it.
      * If not, an EntityNotFoundException is thrown.
      *
      * @param id The id of the product to delete
@@ -224,7 +210,7 @@ public class ProductService {
     }
 
     /**
-     * This method delete all the products.
+     * This method deletes all the products.
      * Checks if the products exist, and if they don't, throws an
      * EntityNotFoundException.
      * Otherwise, it proceeds to delete them all.

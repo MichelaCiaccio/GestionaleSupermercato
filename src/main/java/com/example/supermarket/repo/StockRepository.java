@@ -1,14 +1,13 @@
 package com.example.supermarket.repo;
 
+import com.example.supermarket.entity.Stock;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.example.supermarket.entity.Stock;
-import java.util.List;
-
 import java.time.LocalDate;
+import java.util.List;
 
 @Repository
 @Transactional
@@ -30,8 +29,5 @@ public interface StockRepository extends JpaRepository<Stock, Integer> {
 
     List<Stock> findByExpirationDateBetween(LocalDate startExpirationPeriod, LocalDate endExpirationPeriod,
                                             Pageable pageable);
-
-    boolean existsByProductNameAndSupplierNameAndExpirationDate(String productName, String supplierName,
-                                                                LocalDate expirationDate);
 
 }
