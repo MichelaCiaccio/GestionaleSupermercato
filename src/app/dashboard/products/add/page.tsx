@@ -1,7 +1,7 @@
 import { Breadcrumb } from '@/components/ui/breadcrumbs';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { DashboardHeader } from '@/components/ui/dashboard/header';
-import { AddProductForm } from '@/components/ui/dashboard/products/create-form';
+import { AddProductForm } from '@/components/ui/dashboard/products/add-form';
 
 const breadcrumbs: Breadcrumb[] = [
   {
