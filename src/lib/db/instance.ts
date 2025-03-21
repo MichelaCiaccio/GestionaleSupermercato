@@ -14,7 +14,7 @@ if (env.NODE_ENV === 'development') {
   });
 
   instance.interceptors.response.use((response) => {
-    console.log(`[DEV] Response (${response.config.url}):`, response.data);
+    // console.log(`[DEV] Response (${response.config.url}):`, response.data);
     return response;
   });
 }
