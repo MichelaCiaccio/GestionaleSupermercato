@@ -1,20 +1,31 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import db from '@/lib/db';
 import { currencyFormatter } from '@/lib/utils';
+import { isAxiosError } from 'axios';
 import { Banknote, Factory, LucideIcon, Package, Users } from 'lucide-react';
+import { ShowToast } from './show-toast';
 
 export async function CardWrapper() {
   let productsCount: number;
+  let isError = false;
 
   try {
     const { totalElements } = await db.products.get();
     productsCount = totalElements;
-  } catch {
+  } catch (e) {
+    if (isAxiosError(e) && e.code === 'ECONNREFUSED') {
+      isError = true;
+    }
+
     productsCount = 0;
   }
 
   return (
     <>
+      <ShowToast
+        message="Could not fetch data. Server is probably down."
+        isError={isError}
+      />
       <OverviewCard title="Total Sales" icon={Banknote} value={0} isCurrency />
       <OverviewCard
         title="Total Products"
