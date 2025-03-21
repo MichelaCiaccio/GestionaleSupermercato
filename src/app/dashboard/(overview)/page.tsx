@@ -27,7 +27,7 @@ export default function OverviewPage() {
         <div className="grid items-start gap-6 sm:grid-cols-1 lg:grid-cols-2">
           <Card className="min-w-0">
             <CardHeader>
-              <CardTitle className="text-base">Low Stock Products</CardTitle>
+              <CardTitle className="text-base">Recent Sales</CardTitle>
             </CardHeader>
             <CardContent>
               <Suspense fallback={<SalesTableSkeleton />}>
