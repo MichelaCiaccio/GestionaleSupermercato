@@ -1,16 +1,26 @@
+import { auth } from '@/auth';
 import { AppSidebar } from '@/components/ui/dashboard/app-sidebar';
 import { SidebarProvider } from '@/components/ui/sidebar';
 import { ReactNode } from 'react';
 
-export default function DashboardLayout({ children }: { children: ReactNode }) {
+export default async function DashboardLayout({
+  children,
+}: {
+  children: ReactNode;
+}) {
+  const { user } = (await auth())!;
+  const initials =
+    user.name.slice(0, 1).toUpperCase() +
+    user.surname.slice(0, 1).toUpperCase();
+
   return (
     <SidebarProvider>
       <AppSidebar
         user={{
-          name: 'Sherwin Arellano',
+          name: `${user.name} ${user.surname}`,
           avatar: '/',
-          avatarFallback: 'SA',
-          email: 's.arellano@esis-italia.com',
+          avatarFallback: initials,
+          email: user.email,
         }}
       />
 
