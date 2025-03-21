@@ -17,7 +17,7 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from '@/components/ui/sidebar';
-import Link from 'next/link';
+import { logout } from '../login/actions';
 
 export type SidebarUserProps = {
   user: {
@@ -82,12 +82,14 @@ export function SidebarUser({ user }: SidebarUserProps) {
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
-            <DropdownMenuItem asChild>
-              <Link href="/login">
-                <LogOut />
-                Log out
-              </Link>
-            </DropdownMenuItem>
+            <form action={logout}>
+              <DropdownMenuItem variant="destructive" asChild>
+                <button className="w-full">
+                  <LogOut />
+                  Log out
+                </button>
+              </DropdownMenuItem>
+            </form>
           </DropdownMenuContent>
         </DropdownMenu>
       </SidebarMenuItem>
