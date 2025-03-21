@@ -1,7 +1,7 @@
 import { User } from '@/types/entities/user';
 
 // For now I'm hardcoding accounts since backend authentication is currently in development.
-const users: User[] = [
+export const users: User[] = [
   {
     email: 's.arellano@esis-italia.com',
     name: 'Sherwin',

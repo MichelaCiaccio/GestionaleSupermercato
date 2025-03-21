@@ -4,6 +4,7 @@ import { currencyFormatter } from '@/lib/utils';
 import { isAxiosError } from 'axios';
 import { Banknote, Factory, LucideIcon, Package, Users } from 'lucide-react';
 import { ShowToast } from './show-toast';
+import { users } from '@/lib/db/users';
 
 export async function CardWrapper() {
   let productsCount: number;
@@ -33,7 +34,7 @@ export async function CardWrapper() {
         value={productsCount}
       />
       <OverviewCard title="Total Suppliers" icon={Factory} value={0} />
-      <OverviewCard title="Total Users" icon={Users} value={1} />
+      <OverviewCard title="Total Users" icon={Users} value={users.length} />
     </>
   );
 }
