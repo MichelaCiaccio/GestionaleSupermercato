@@ -2,9 +2,12 @@ package com.example.supermarket.service;
 
 import com.example.supermarket.entity.Category;
 import com.example.supermarket.entity.Product;
+import com.example.supermarket.entity.Stock;
 import com.example.supermarket.entity.Supplier;
 import com.example.supermarket.repo.CategoryRepository;
 import com.example.supermarket.repo.ProductRepository;
+import com.example.supermarket.repo.StockRepository;
+import com.example.supermarket.repo.SupplierRepository;
 import com.sun.jdi.request.DuplicateRequestException;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
@@ -15,7 +18,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,42 +30,71 @@ public class ProductService {
     @Autowired
     private CategoryRepository categoryRepository;
 
+    @Autowired
+    private StockRepository stockRepository;
 
-    // TO DO il controllo non funziona bisogna migliorarlo e poi spostarlo in una
-    // funzione autonoma
+    @Autowired
+    private SupplierRepository supplierRepository;
+
 
     /**
      * This method creates a new product.
-     * Checks if a product with the same name and the same supplier already exists.
-     * If it does, a DuplicateRequestException is thrown.
+     * Checks if the stock is present.
+     * If it does, proceed to create a stock and save the new product
      * Otherwise, the new product is saved.
      *
      * @param product The product to be saved
      */
+    @Transactional
     public void save(Product product) {
+        // Verifica se esiste il fornitore a cui associare il prodotto.
+        // Verifica se esiste già un prodotto con lo stesso nome e lo stesso fornitore
         for (Supplier supplier : product.getSuppliers()) {
-            if (productRepository.existsByNameAndSuppliers_Name(product.getName(), supplier.getName())) {
-                throw new DuplicateRequestException("A product named" + product.getName() + " supplied by " + supplier.getName() + " already exists");
+            Supplier existingSupplier =
+                    supplierRepository.findById(supplier.getId()).orElseThrow(() -> new EntityNotFoundException("Supplier with id " + supplier.getId() + " does not exist."));
+            if (productRepository.existsByNameAndSuppliers_Id(product.getName(),
+                                                              supplier.getId())) {
+                throw new DuplicateRequestException("A product with the same name and supplier " +
+                                                            "already exists");
             }
-            productRepository.save(product);
+            Optional<Stock> existingStock =
+                    stockRepository.findByProduct_NameAndProductSuppliers_Name(product.getName(),
+                                                                               supplier.getName());
+            if (existingStock.isPresent()) {
+                throw new DuplicateRequestException("Product with name " + product.getName() +
+                                                            " and this supplier " + supplier.getName() + " already exist");
+            }
+
+
         }
+        Category existingCategory =
+                categoryRepository.findByName(product.getCategory().getName()).orElse(categoryRepository.save(product.getCategory()));
+        product.setCategory(existingCategory);
+
+
+        product.getStock().setProduct(product);
+
+        productRepository.save(product);
 
     }
+
 
     /**
      * This method updates a product identified by its ID.
      * At first checks if the product exists, and if it doesn't, throws an
      * EntityNotFoundException.
-     * Then it checks if the new category exists, and if it doesn't, throws an EntityNotFoundException
+     * Then it checks if the new category exists, and if it doesn't, throws an
+     * EntityNotFoundException
      * Otherwise, it proceeds to update the product's attribute with the new
      * information and saves the modified product.
      *
      * @param id         The ID of the product to be updated.
      * @param modProduct The new product data to update with.
      */
-    public void updateProduct(int id, Product modProduct) {
+    /*public void updateProduct(int id, Product modProduct) {
         Product product = productRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("Product with id " + id + " not found"));
+                .orElseThrow(() -> new EntityNotFoundException("Product with id " + id + " not " +
+                                                                       "found"));
 
         Category category = categoryRepository.findByName(modProduct.getCategory().getName())
                 .orElse(categoryRepository.save(modProduct.getCategory()));
@@ -75,21 +106,25 @@ public class ProductService {
         product.setStocks(modProduct.getStocks());
         product.setSuppliers(modProduct.getSuppliers());
         productRepository.save(product);
-    }
+    }*/
 
     /**
-     * This method searches for all the product, organizes them into pagination of 20 elements, and sorts them according
+     * This method searches for all the product, organizes them into pagination of 20 elements,
+     * and sorts them according
      * to a specified direction and data type.
-     * If the page number, sort direction or the data type are not provided by the client, default values are set.
+     * If the page number, sort direction or the data type are not provided by the client,
+     * default values are set.
      * Check if any product exists and return them.
      * Otherwise, it throws and EntityNotFoundException
      *
-     * @param page          The page number the client wants to display. If null, the first page (0) is used.
-     * @param sortDirection The direction in which the client wants the products to be ordered. Defaults to "ASC" if null or blank.
-     * @param dataType      The data by which the products should be ordered. Defaults to "name" if null or blank.
+     * @param page          The page number the client wants to display.
+     * @param sortDirection The direction in which the client wants the products to be ordered.
+     *                      Defaults to "ASC" if null or blank.
+     * @param dataType      The data by which the products should be ordered.
      * @return A Page containing the list of products.
      */
-    public Page<Product> findAllProductsSorted(Integer page, String sortDirection, String dataType) {
+    public Page<Product> findAllProductsSorted(Integer page, String sortDirection,
+                                               String dataType) {
         page = page == null ? 0 : page;
 
         sortDirection = sortDirection == null || sortDirection.isBlank() ? "ASC" : sortDirection;
@@ -115,7 +150,8 @@ public class ProductService {
      */
     public Product findById(Integer id) {
         return productRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("Product with id " + id + " not found"));
+                .orElseThrow(() -> new EntityNotFoundException("Product with id " + id + " not " +
+                                                                       "found"));
     }
 
     /**
@@ -169,7 +205,7 @@ public class ProductService {
     /**
      * This method searches for products by the name of their supplier.
      * If no products are found, throw an EntityNotFoundException.
-     * Otherwise, a list of found products is returned
+     * Otherwise, a list of found products is returned.
      *
      * @param supplierName The name of the supplier
      * @return The products found
@@ -183,33 +219,17 @@ public class ProductService {
     }
 
     /**
-     * This method searches for products by their expiration date.
+     * This method searches for products that have specified stock quantity.
      * If no products are found, throw an EntityNotFoundException.
-     * Otherwise, a list of found products is returned
+     * Otherwise, a List of found products is returned.
      *
-     * @param expirationDate The expiration date of the products
-     * @return The products found
-     */
-    public List<Product> findByExpirationDate(LocalDate expirationDate) {
-        List<Product> products = productRepository.findByStocks_ExpirationDate(expirationDate);
-        if (products.isEmpty()) {
-            throw new EntityNotFoundException("No product has expiration date equals to " + expirationDate);
-        }
-        return products;
-    }
-
-    /**
-     * This method searches for products by their quantity in stock.
-     * If no products are found, throw an EntityNotFoundException.
-     * Otherwise, a list of found products is returned
-     *
-     * @param quantity The quantity in stock
-     * @return the products found
+     * @param quantity The stock quantity of the products
+     * @return The List of the products found
      */
     public List<Product> findByQuantity(int quantity) {
-        List<Product> products = productRepository.findByStocks_Quantity(quantity);
+        List<Product> products = productRepository.findByStock_Quantity(quantity);
         if (products.isEmpty()) {
-            throw new EntityNotFoundException("No product is available in quantity equals to " + quantity);
+            throw new EntityNotFoundException("No product found with stock quantity  " + quantity);
         }
         return products;
     }

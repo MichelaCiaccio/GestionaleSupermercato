@@ -8,16 +8,16 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 @Transactional
 public interface StockRepository extends JpaRepository<Stock, Integer> {
 
-    List<Stock> findByProductName(String name, Pageable pageable);
+    Optional<Stock> findByProduct_NameAndProductSuppliers_Name(String productName,
+                                                               String supplierName);
 
     Stock findByProductId(int productId);
-
-    List<Stock> findBySupplierName(String name, Pageable pageable);
 
     List<Stock> findByQuantityGreaterThan(int quantity, Pageable pageable);
 
@@ -27,7 +27,8 @@ public interface StockRepository extends JpaRepository<Stock, Integer> {
 
     List<Stock> findByExpirationDate(LocalDate expirationDate, Pageable pageable);
 
-    List<Stock> findByExpirationDateBetween(LocalDate startExpirationPeriod, LocalDate endExpirationPeriod,
+    List<Stock> findByExpirationDateBetween(LocalDate startExpirationPeriod,
+                                            LocalDate endExpirationPeriod,
                                             Pageable pageable);
 
 }

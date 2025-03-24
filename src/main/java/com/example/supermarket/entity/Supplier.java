@@ -1,13 +1,10 @@
 package com.example.supermarket.entity;
 
-import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
 
 import java.util.Set;
 
@@ -35,14 +32,8 @@ public class Supplier {
     @NotNull
     private String email;
 
-    @ManyToMany
-    @JoinTable(name = "stock", joinColumns = @JoinColumn(name = "supplier_id"), inverseJoinColumns =
-    @JoinColumn(name = "product_id"))
+    @ManyToMany(mappedBy = "suppliers")
     private Set<Product> products;
 
-    @OneToMany(mappedBy = "supplier")
-    @Nullable
-    @OnDelete(action = OnDeleteAction.SET_NULL)
-    private Set<Stock> stocks;
 
 }

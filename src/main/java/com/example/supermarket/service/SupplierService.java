@@ -37,7 +37,8 @@ public class SupplierService {
      */
     public Supplier findByName(String name) {
         return supplierRepo.findByName(name)
-                .orElseThrow(() -> new EntityNotFoundException("Supplier with name " + name + " not found"));
+                .orElseThrow(() -> new EntityNotFoundException("Supplier with name " + name + " " +
+                                                                       "not found"));
     }
 
     /**
@@ -51,7 +52,8 @@ public class SupplierService {
     public List<Supplier> findByProductName(String productName) {
         List<Supplier> suppliers = supplierRepo.findByProducts_Name(productName);
         if (suppliers.isEmpty()) {
-            throw new EntityNotFoundException("Suppliers providing the product " + productName + " not found");
+            throw new EntityNotFoundException("Suppliers providing the product " + productName +
+                                                      " not found");
         }
         return suppliers;
     }
@@ -78,7 +80,8 @@ public class SupplierService {
      */
     public void deleteById(int id) {
         if (supplierRepo.findById(id).isEmpty()) {
-            throw new EntityNotFoundException("There are no supplier with this id" + id + " to delete");
+            throw new EntityNotFoundException("There are no supplier with this id" + id + " to " +
+                                                      "delete");
         }
         supplierRepo.deleteById(id);
     }
@@ -93,7 +96,8 @@ public class SupplierService {
      */
     public void save(Supplier supplier) {
         if (supplierRepo.findByName(supplier.getName()).isPresent()) {
-            throw new DuplicateKeyException("Supplier with name " + supplier.getName() + " already exists");
+            throw new DuplicateKeyException("Supplier with name " + supplier.getName() + " " +
+                                                    "already exists");
         }
         supplierRepo.save(supplier);
     }
@@ -109,7 +113,7 @@ public class SupplierService {
      * @param modSupplier The new supplier data to update with.
      */
 
-    public void update(int id, Supplier modSupplier) {
+   /* public void update(int id, Supplier modSupplier) {
         Supplier supplier = supplierRepo.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("No supplier with id " + id));
 
@@ -120,5 +124,5 @@ public class SupplierService {
         supplier.setAddress(modSupplier.getAddress());
         supplier.setProducts(modSupplier.getProducts());
         supplierRepo.save(supplier);
-    }
+    }*/
 }

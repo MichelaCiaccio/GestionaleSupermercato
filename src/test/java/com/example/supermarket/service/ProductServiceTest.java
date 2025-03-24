@@ -1,42 +1,26 @@
 //package com.example.supermarket.service;
-//
-//import com.example.supermarket.entity.Category;
-//import com.example.supermarket.entity.Product;
-//import com.example.supermarket.repo.CategoryRepository;
-//import com.example.supermarket.repo.ProductRepository;
-//import jakarta.persistence.EntityNotFoundException;
-//import org.junit.jupiter.api.Test;
-//import org.junit.jupiter.api.extension.ExtendWith;
-//import org.mockito.Mock;
-//import org.mockito.junit.jupiter.MockitoExtension;
-//
-//import java.math.BigDecimal;
-//import java.time.LocalDate;
-//import java.util.List;
-//import java.util.Optional;
-//
-//import static org.junit.jupiter.api.Assertions.*;
-//import static org.mockito.Mockito.*;
-//
+
+
 //@ExtendWith(MockitoExtension.class)
 //public class ProductServiceTest {
-//
-//    @Mock
-//    private ProductService productService;
-//
-//    @Mock
-//    private CategoryRepository categoryRepository;
-//
-//    @Mock
-//    private ProductRepository productRepository;
-//
-//    /*  @Test
+
+// @Mock
+//private ProductRepository productRepository;
+
+
+
+
+
+
+
+    /*  @Test
 //      void testDeleteAll() {
 //          // GIVEN
 //          List<Product> products = List.of(
 //                  new Product(1, "Nome", new BigDecimal(12), null, null),
 //                  new Product(2, "Nome", new BigDecimal(15), null, null));
-//          Page<Product> pagedProduct = new PageImpl<>(products, PageRequest.of(page, 20), products.size());
+//          Page<Product> pagedProduct = new PageImpl<>(products, PageRequest.of(page, 20),
+products.size());
 //
 //          // WHEN
 //          when(productService.findAll(page)).thenReturn(products);
@@ -93,7 +77,8 @@
 //        int id = 1;
 //
 //        // WHEN
-//        when(productService.findById(id)).thenThrow(new EntityNotFoundException("Product with is" + id + " not found"));
+//        when(productService.findById(id)).thenThrow(new EntityNotFoundException("Product with
+//        is" + id + " not found"));
 //
 //        // VERIFY
 //        assertThrows(EntityNotFoundException.class, () -> productService.findById(id));
@@ -223,33 +208,6 @@
 //        verify(productService, times(1)).findBySupplierName(supplierName);
 //    }
 //
-//    @Test
-//    void testSave() {
-//
-//        // GIVEN
-//        int productId = 1;
-//        Category category = new Category(1, "categoria");
-//        Product product = new Product(productId, "Nome", new BigDecimal(23), category, null);
-//
-//        // WHEN
-//        when(productRepository.findById(productId)).thenReturn(null).thenReturn(Optional.of(product));
-//        when(categoryRepository.findByName("Categoria")).thenReturn(null)
-//                .thenReturn(Optional.of(category));
-//        Optional<Product> noProduct = productRepository.findById(productId);
-//        Optional<Category> noCategory = categoryRepository.findByName("Categoria");
-//        productRepository.save(product);
-//        Optional<Product> newProduct = productRepository.findById(productId);
-//        Optional<Category> newCategory = categoryRepository.findByName("Categoria");
-//
-//        // VERIFY
-//        verify(productRepository, times(2)).findById(productId);
-//        verify(categoryRepository, times(2)).findByName("Categoria");
-//        verify(productRepository, times(1)).save(product);
-//        assertNotNull(newCategory);
-//        assertNotNull(newProduct);
-//        assertNull(noProduct);
-//        assertNull(noCategory);
-//    }
 //
 //
 //    @Test
@@ -272,7 +230,8 @@
 //        Optional<Product> deletedProduct = productRepository.findById(id);
 //
 //        // VERIFY
-//        verify(productRepository, times(2)).findById(id); // verifica che findById sia stato chiamato due volte
+//        verify(productRepository, times(2)).findById(id); // verifica che findById sia stato
+//        chiamato due volte
 //        verify(productRepository, times(1)).deleteById(id);
 //        assertNull(deletedProduct.orElse(null));
 //        assertNotNull(existingProduct);

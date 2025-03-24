@@ -9,7 +9,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -34,11 +33,8 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
 
     List<Product> findBySuppliers_Name(String supplierName);
 
-    List<Product> findByStocks_ExpirationDate(LocalDate expirationDate);
+    List<Product> findByStock_Quantity(int stockQuantity);
 
-    List<Product> findByStocks_Quantity(int quantity);
-
-    boolean existsByNameAndSuppliers_Name(String name, String supplierName);
-
+    boolean existsByNameAndSuppliers_Id(String productName, Integer id);
 
 }

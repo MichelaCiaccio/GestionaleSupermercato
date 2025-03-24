@@ -31,12 +31,9 @@ public class Stock {
     @Future
     private LocalDate expirationDate;
 
-    @ManyToOne
-    @JoinColumn(name = "product_id")
+    @OneToOne
+    @JoinColumn(name = "product_id", unique = true)
     private Product product;
 
-    @ManyToOne
-    @JoinColumn(name = "supplier_id")
-    private Supplier supplier;
 
 }

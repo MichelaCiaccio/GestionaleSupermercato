@@ -1,8 +1,6 @@
 package com.example.supermarket.service;
 
-import com.example.supermarket.entity.Product;
 import com.example.supermarket.entity.Stock;
-import com.example.supermarket.entity.Supplier;
 import com.example.supermarket.repo.StockRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,8 +12,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Service
-public class
-StockService {
+public class StockService {
 
     @Autowired
     private StockRepository stockRepository;
@@ -41,37 +38,6 @@ StockService {
         return stocks;
     }
 
-    /**
-     * This method searches for stocks using the name as a parameter
-     * if the stocks are empty throws an EntityNotFoundException.
-     * The elements found are returned with 20 items for page pagination
-     *
-     * @param name the name of the stock
-     * @return the stocks found
-     */
-    public List<Stock> findByProductName(String name) {
-        List<Stock> stocks = stockRepository.findByProductName(name, PageRequest.of(0, 20));
-        if (stocks.isEmpty()) {
-            throw new EntityNotFoundException("There are no product with name " + name + " in stock");
-        }
-        return stocks;
-    }
-
-    /**
-     * This method searches for stocks using the name of the supplier as a parameter
-     * if the stocks are empty throws an EntityNotFoundException.
-     * The elements found are returned with 20 items for page pagination
-     *
-     * @param name The name of the supplier
-     * @return The found stocks
-     */
-    public List<Stock> findBySupplierName(String name) {
-        List<Stock> stocks = stockRepository.findBySupplierName(name, PageRequest.of(0, 20));
-        if (stocks.isEmpty()) {
-            throw new EntityNotFoundException("There are no stocks from supplier with name " + name);
-        }
-        return stocks;
-    }
 
     /**
      * This method searches for numbers of stocks greater than the given quantity
@@ -83,9 +49,11 @@ StockService {
      * @return The found stocks
      */
     public List<Stock> findByQuantityGreaterThan(int quantity) {
-        List<Stock> stocks = stockRepository.findByQuantityGreaterThan(quantity, PageRequest.of(0, 20));
+        List<Stock> stocks = stockRepository.findByQuantityGreaterThan(quantity, PageRequest.of(0
+                , 20));
         if (stocks.isEmpty()) {
-            throw new EntityNotFoundException("There are no products with a stock quantity greater than " + quantity);
+            throw new EntityNotFoundException("There are no products with a stock quantity " +
+                                                      "greater than " + quantity);
         }
         return stocks;
     }
@@ -100,9 +68,11 @@ StockService {
      * @return The found stocks
      */
     public List<Stock> findByQuantityLessThan(int quantity) {
-        List<Stock> stocks = stockRepository.findByQuantityLessThan(quantity, PageRequest.of(0, 20));
+        List<Stock> stocks = stockRepository.findByQuantityLessThan(quantity, PageRequest.of(0,
+                                                                                             20));
         if (stocks.isEmpty()) {
-            throw new EntityNotFoundException("There are no products with a stock quantity less than " + quantity);
+            throw new EntityNotFoundException("There are no products with a stock quantity less " +
+                                                      "than " + quantity);
         }
         return stocks;
     }
@@ -118,7 +88,8 @@ StockService {
      * @return The found stocks
      */
     public List<Stock> findByDeliveryDate(LocalDate deliveryDate) {
-        List<Stock> stocks = stockRepository.findByDeliveryDate(deliveryDate, PageRequest.of(0, 20));
+        List<Stock> stocks = stockRepository.findByDeliveryDate(deliveryDate, PageRequest.of(0,
+                                                                                             20));
         if (stocks.isEmpty()) {
             throw new EntityNotFoundException("There are no products in stock arrived on " + deliveryDate);
         }
@@ -137,7 +108,8 @@ StockService {
      * @return The stocks found
      */
     public List<Stock> findByExpirationDate(LocalDate expirationDate) {
-        List<Stock> stocks = stockRepository.findByExpirationDate(expirationDate, PageRequest.of(0, 20));
+        List<Stock> stocks = stockRepository.findByExpirationDate(expirationDate,
+                                                                  PageRequest.of(0, 20));
         if (stocks.isEmpty()) {
             throw new EntityNotFoundException(
                     "There are no products in stock with expiration date equals to " + expirationDate);
@@ -157,10 +129,12 @@ StockService {
      * @return The stocks found
      */
     public List<Stock> findByExpirationDateBetween(LocalDate firstDate, LocalDate secondDate) {
-        List<Stock> stocks = stockRepository.findByExpirationDateBetween(firstDate, secondDate, PageRequest.of(0, 20));
+        List<Stock> stocks = stockRepository.findByExpirationDateBetween(firstDate, secondDate,
+                                                                         PageRequest.of(0, 20));
         if (stocks.isEmpty()) {
             throw new EntityNotFoundException(
-                    "There are no products in stock with expiration date between " + firstDate + " and " + secondDate);
+                    "There are no products in stock with expiration date between " + firstDate +
+                            " and " + secondDate);
         }
         return stocks;
     }
@@ -177,7 +151,8 @@ StockService {
     public ResponseEntity<String> updateQuantity(int newStockQuantity, int productId) {
         Stock stock = stockRepository.findByProductId(productId);
         stock.setQuantity(stock.getQuantity() + newStockQuantity);
-        return ResponseEntity.ok("Quantity for product " + stock.getProduct().getName() + " updated successfully");
+        return ResponseEntity.ok("Quantity for product " + stock.getProduct().getName() + " " +
+                                         "updated successfully");
 
     }
 
@@ -192,13 +167,13 @@ StockService {
      *
      * @param stock The stock to be saved
      */
-    public void save(Stock stock) {
+   /* public void save(Stock stock) {
         Product product = productService.findById(stock.getProduct().getId());
         Supplier supplier = supplierService.findById(stock.getSupplier().getId());
         stock.setProduct(product);
         stock.setSupplier(supplier);
         stockRepository.save(stock);
-    }
+    }*/
 
     /**
      * This method updates a stock identified by its ID.
@@ -211,7 +186,7 @@ StockService {
      * @param id       The ID of the stock to be updated.
      * @param modStock The new stock data to update with.
      */
-    public void update(int id, Stock modStock) {
+  /*  public void update(int id, Stock modStock) {
         Stock stock = stockRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("No stock with id " + id));
 
@@ -221,7 +196,7 @@ StockService {
         stock.setProduct(modStock.getProduct());
         stock.setSupplier(modStock.getSupplier());
         stockRepository.save(stock);
-    }
+    }*/
 
     /**
      * This method deletes a stock identified by its id.

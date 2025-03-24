@@ -14,7 +14,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
 import java.util.List;
 
 //TO DO 
@@ -44,15 +43,16 @@ public class ProductController {
         }
     }
 
-    @PutMapping(path = "/id/")
-    public ResponseEntity<?> updateProduct(@Valid @RequestBody Product modProduct, @RequestParam int id) {
+   /* @PutMapping(path = "/id/")
+    public ResponseEntity<?> updateProduct(@Valid @RequestBody Product modProduct, @RequestParam
+    int id) {
         try {
             productService.updateProduct(id, modProduct);
             return ResponseEntity.ok(modProduct.getName() + " updated successfully");
         } catch (DataIntegrityViolationException e) {
             return ResponseEntity.status(HttpStatus.CONFLICT).body((e.getMessage()));
         }
-    }
+    }*/
 
     @GetMapping("/id/")
     public Product findById(@NotNull @RequestParam int id) {
@@ -79,15 +79,6 @@ public class ProductController {
         return productService.findBySupplierName(name);
     }
 
-    @GetMapping("/expirationDate/")
-    public List<Product> findByExpirationDate(@NotNull @RequestParam LocalDate expirationDate) {
-        return productService.findByExpirationDate(expirationDate);
-    }
-
-    @GetMapping("/stock/quantity/")
-    public List<Product> findByStockQuantity(@NotNull @RequestParam int quantity) {
-        return productService.findByQuantity(quantity);
-    }
 
     @DeleteMapping("/all")
     public ResponseEntity<String> deleteAll() {
