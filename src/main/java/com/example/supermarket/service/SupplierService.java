@@ -3,11 +3,15 @@ package com.example.supermarket.service;
 import com.example.supermarket.entity.Supplier;
 import com.example.supermarket.repo.SupplierRepository;
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.annotation.Validated;
+
+import java.util.Optional;
 
 @Service
+@Validated
 public class SupplierService {
 
     @Autowired
@@ -68,20 +72,20 @@ public class SupplierService {
         supplierRepo.deleteById(id);
     }
 
-    /**
-     * This method creates a new supplier.
-     * It checks if the supplier already exists, searching by its name, and if it
-     * does, throws a DuplicateKeyException.
-     * Otherwise, proceed to create the new supplier.
-     *
-     * @param supplier The supplier to be saved
-     */
-    public void save(Supplier supplier) {
-        if (supplierRepo.findByName(supplier.getName()).isPresent()) {
-            throw new DuplicateKeyException("Supplier with name " + supplier.getName() + " " +
-                                                    "already exists");
+    public Supplier createNewSupplier(@Valid Supplier supplier) {
+        Optional<Supplier> existingSupplier =
+                supplierRepo.findByName(supplier.getName());
+        if (existingSupplier.isEmpty()) {
+            Supplier newSupplier = new Supplier();
+            newSupplier.setAddress(supplier.getAddress());
+            newSupplier.setName(supplier.getName());
+            newSupplier.setPhoneNumber(supplier.getPhoneNumber());
+            newSupplier.setEmail(supplier.getEmail());
+            supplierRepo.save(newSupplier);
+            return newSupplier;
+        } else {
+            return existingSupplier.get();
         }
-        supplierRepo.save(supplier);
     }
 
     /**

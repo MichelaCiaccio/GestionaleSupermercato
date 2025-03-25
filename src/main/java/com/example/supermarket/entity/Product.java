@@ -5,8 +5,6 @@ import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
-import org.hibernate.annotations.Cascade;
-import org.hibernate.annotations.CascadeType;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -16,6 +14,7 @@ import java.util.List;
 @AllArgsConstructor
 @RequiredArgsConstructor
 public class Product {
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -31,16 +30,19 @@ public class Product {
     @JoinColumn(name = "category_id")
     private Category category;
 
-    @ManyToMany
+    /*@OneToOne(mappedBy = "product", orphanRemoval = true)
+    @NotNull
+    @Cascade(value = CascadeType.ALL)
+    private Stock stock;*/
+    /*@ManyToMany
     @JoinTable(name = "product_supplier", joinColumns = @JoinColumn(name = "product_id"),
             inverseJoinColumns = @JoinColumn(name = "supplier_id"))
     @Cascade(CascadeType.PERSIST)
     @NotNull
-    private List<Supplier> suppliers;
+    private List<Supplier> suppliers;*/
 
-    @OneToOne(mappedBy = "product", orphanRemoval = true)
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
     @NotNull
-    @Cascade(value = CascadeType.ALL)
-    private Stock stock;
+    private List<Stock> stocks;
 
 }

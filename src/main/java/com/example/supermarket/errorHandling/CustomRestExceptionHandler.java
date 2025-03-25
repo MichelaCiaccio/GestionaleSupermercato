@@ -28,7 +28,7 @@ public class CustomRestExceptionHandler extends ResponseEntityExceptionHandler {
         // Lista per raccogliere tutti gli errori
         List<String> errors = new ArrayList<String>();
 
-        // Per ogni errore si estrae il nome del campo ed il messaggio di default e si
+        // Per ogni errore si estrae il nome del campo e il messaggio di default e si
         // concatenano
         for (FieldError error : ex.getBindingResult().getFieldErrors()) {
             errors.add(error.getField() + ": " + error.getDefaultMessage());

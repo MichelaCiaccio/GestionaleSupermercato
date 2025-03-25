@@ -17,22 +17,26 @@ public class Supplier {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-    @NotNull
+    @NotNull(message = "The supplier name is required")
     @Column(unique = true)
     private String name;
 
-    @NotNull
+    @NotNull(message = "The supplier address is required")
     private String address;
 
-    @NotNull
+    @NotNull(message = "The supplier phone number is required")
     private String phoneNumber;
 
-    @NotNull
+    @NotNull(message = "The supplier email is required")
     private String email;
 
     // @ManyToMany(mappedBy = "suppliers", fetch = FetchType.LAZY)
     // @Nullable
     //private List<Product> products;
+
+    //@OneToMany(mappedBy = "supplier", cascade = CascadeType.REMOVE, orphanRemoval = true)
+    //@NotNull
+    //private List<Stock> stocks;
 
 
 }

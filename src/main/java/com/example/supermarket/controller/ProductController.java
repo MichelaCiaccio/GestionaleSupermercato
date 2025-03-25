@@ -43,7 +43,7 @@ public class ProductController {
         }
     }
 
-   /* @PutMapping(path = "/id/")
+    @PutMapping(path = "/id/")
     public ResponseEntity<?> updateProduct(@Valid @RequestBody Product modProduct, @RequestParam
     int id) {
         try {
@@ -52,7 +52,7 @@ public class ProductController {
         } catch (DataIntegrityViolationException e) {
             return ResponseEntity.status(HttpStatus.CONFLICT).body((e.getMessage()));
         }
-    }*/
+    }
 
     @GetMapping("/id/")
     public Product findById(@NotNull @RequestParam int id) {

@@ -2,7 +2,7 @@ package com.example.supermarket.service;
 
 import com.example.supermarket.entity.Category;
 import com.example.supermarket.entity.Product;
-import com.example.supermarket.entity.Supplier;
+import com.example.supermarket.entity.Stock;
 import com.example.supermarket.repo.CategoryRepository;
 import com.example.supermarket.repo.ProductRepository;
 import com.example.supermarket.repo.StockRepository;
@@ -36,6 +36,9 @@ public class ProductService {
     @Autowired
     private SupplierRepository supplierRepository;
 
+    @Autowired
+    private SupplierService supplierService;
+
 
     /**
      * This method creates a new product.
@@ -47,29 +50,45 @@ public class ProductService {
      */
     @Transactional
     public void save(Product product) {
-        List<Supplier> suppliers = new ArrayList<>();
-        for (Supplier supplier : product.getSuppliers()) {
-            Supplier existingSupplier =
-                    supplierRepository.findById(supplier.getId()).orElseGet(() -> supplierRepository.save(supplier));
-            suppliers.add(existingSupplier);
-            if (productRepository.existsByNameAndSuppliers_Id(product.getName(),
-                                                              supplier.getId())) {
-                throw new DuplicateRequestException("A product with the same name and the same " +
-                                                            "supplier already exists");
+
+        // Creo una Lista di Stock
+        List<Stock> stocks = new ArrayList<>();
+
+
+        // Itero sugli stock del prodotto
+        for (Stock stock : product.getStocks()) {
+
+            //Controllo se il supplier esiste, in caso contrario lo creo
+            stock.setSupplier(supplierService.createNewSupplier(stock.getSupplier()));
+
+
+            // Controllo se nello stock esiste già una coppia prodotto-fornitore
+            if (productRepository.existsByNameAndStocks_Supplier_Id(product.getName(),
+                                                                    stock.getSupplier().getId())) {
+                throw new DuplicateRequestException("A stock of the " +
+                                                            "product " + product.getName() + " " +
+                                                            "and " +
+                                                            "supplier with id " + stock.getSupplier().getId() + " already exists");
             }
+
+            // Per ogni stock setto il prodotto e il supplier, aggiungo lo stock alla Lista di
+            // stocks
+            stock.setProduct(product);
+            stocks.add(stock);
+
         }
 
-        product.setSuppliers(suppliers);
-
-
+        // Controllo se la categoria esiste già e se non esiste la creo e la setto al prodotto
         Category existingCategory =
                 categoryRepository.findByName(product.getCategory().getName()).orElseGet(() -> categoryRepository.save(product.getCategory()));
+
         product.setCategory(existingCategory);
-        product.setStock(product.getStock());
-        product.getStock().setProduct(product);
 
+        // Setto la lista di stock del prodotto
+        product.setStocks(stocks);
+
+        // Salvo il prodotto
         productRepository.save(product);
-
     }
 
     /**
@@ -92,12 +111,12 @@ public class ProductService {
         Category category = categoryRepository.findByName(modProduct.getCategory().getName())
                 .orElse(categoryRepository.save(modProduct.getCategory()));
 
+
         product.setCategory(category);
         product.setCategory(category);
         product.setName(modProduct.getName());
         product.setSellingPrice(modProduct.getSellingPrice());
-        product.setSuppliers(modProduct.getSuppliers());
-        product.setStock(modProduct.getStock());
+        product.setStocks(modProduct.getStocks());
         productRepository.save(product);
     }
 
@@ -206,7 +225,7 @@ public class ProductService {
      * @return The products found
      */
     public List<Product> findBySupplierName(String supplierName) {
-        List<Product> products = productRepository.findBySuppliers_Name(supplierName);
+        List<Product> products = productRepository.findByStocks_Supplier_Name(supplierName);
         if (products.isEmpty()) {
             throw new EntityNotFoundException("No product has a supplier with a name" + supplierName);
         }
@@ -222,7 +241,7 @@ public class ProductService {
      * @return The List of the products found
      */
     public List<Product> findByQuantity(int quantity) {
-        List<Product> products = productRepository.findByStock_Quantity(quantity);
+        List<Product> products = productRepository.findByStocks_Quantity(quantity);
         if (products.isEmpty()) {
             throw new EntityNotFoundException("No product found with stock quantity  " + quantity);
         }
@@ -255,7 +274,10 @@ public class ProductService {
         if (products.isEmpty()) {
             throw new EntityNotFoundException("There are no products to delete");
         }
+        stockRepository.deleteAll();
         productRepository.deleteAll();
+        supplierRepository.deleteAll();
+
     }
 
     /**
@@ -311,6 +333,8 @@ public class ProductService {
     }
 
 }
+
+
 
 
 
