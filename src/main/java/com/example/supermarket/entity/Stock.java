@@ -1,5 +1,6 @@
 package com.example.supermarket.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Future;
 import jakarta.validation.constraints.NotNull;
@@ -33,7 +34,7 @@ public class Stock {
 
     @OneToOne
     @JoinColumn(name = "product_id", unique = true)
+    @JsonIgnore
     private Product product;
-
 
 }

@@ -6,8 +6,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
-import java.util.Set;
-
 @Entity
 @Data
 @AllArgsConstructor
@@ -32,8 +30,9 @@ public class Supplier {
     @NotNull
     private String email;
 
-    @ManyToMany(mappedBy = "suppliers")
-    private Set<Product> products;
+    // @ManyToMany(mappedBy = "suppliers", fetch = FetchType.LAZY)
+    // @Nullable
+    //private List<Product> products;
 
 
 }

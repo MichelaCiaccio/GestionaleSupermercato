@@ -20,7 +20,7 @@ import java.util.List;
 // Migliorare gli header delle richieste
 // Mostrare le categorie nella findAll dei product
 @RestController
-@RequestMapping(path = "/products/")
+@RequestMapping(path = "/products")
 public class ProductController {
 
     @Autowired

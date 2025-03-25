@@ -7,8 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
 public class SupplierService {
 
@@ -41,22 +39,6 @@ public class SupplierService {
                                                                        "not found"));
     }
 
-    /**
-     * This method searches for suppliers who supply a product identified by its name.
-     * If no suppliers are found, throw an EntityNotFoundException.
-     * Otherwise, returns the list of found suppliers
-     *
-     * @param productName The name of the product
-     * @return A list of found suppliers.
-     */
-    public List<Supplier> findByProductName(String productName) {
-        List<Supplier> suppliers = supplierRepo.findByProducts_Name(productName);
-        if (suppliers.isEmpty()) {
-            throw new EntityNotFoundException("Suppliers providing the product " + productName +
-                                                      " not found");
-        }
-        return suppliers;
-    }
 
     /**
      * This method deletes all the suppliers.

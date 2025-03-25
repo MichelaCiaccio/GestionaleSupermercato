@@ -9,7 +9,7 @@ import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 
 import java.math.BigDecimal;
-import java.util.Set;
+import java.util.List;
 
 @Entity
 @Data
@@ -34,8 +34,9 @@ public class Product {
     @ManyToMany
     @JoinTable(name = "product_supplier", joinColumns = @JoinColumn(name = "product_id"),
             inverseJoinColumns = @JoinColumn(name = "supplier_id"))
+    @Cascade(CascadeType.PERSIST)
     @NotNull
-    private Set<Supplier> suppliers;
+    private List<Supplier> suppliers;
 
     @OneToOne(mappedBy = "product", orphanRemoval = true)
     @NotNull

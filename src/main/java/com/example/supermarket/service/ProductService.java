@@ -2,7 +2,6 @@ package com.example.supermarket.service;
 
 import com.example.supermarket.entity.Category;
 import com.example.supermarket.entity.Product;
-import com.example.supermarket.entity.Stock;
 import com.example.supermarket.entity.Supplier;
 import com.example.supermarket.repo.CategoryRepository;
 import com.example.supermarket.repo.ProductRepository;
@@ -18,6 +17,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -47,37 +47,30 @@ public class ProductService {
      */
     @Transactional
     public void save(Product product) {
-        // Verifica se esiste il fornitore a cui associare il prodotto.
-        // Verifica se esiste già un prodotto con lo stesso nome e lo stesso fornitore
+        List<Supplier> suppliers = new ArrayList<>();
         for (Supplier supplier : product.getSuppliers()) {
             Supplier existingSupplier =
-                    supplierRepository.findById(supplier.getId()).orElseThrow(() -> new EntityNotFoundException("Supplier with id " + supplier.getId() + " does not exist."));
+                    supplierRepository.findById(supplier.getId()).orElseGet(() -> supplierRepository.save(supplier));
+            suppliers.add(existingSupplier);
             if (productRepository.existsByNameAndSuppliers_Id(product.getName(),
                                                               supplier.getId())) {
-                throw new DuplicateRequestException("A product with the same name and supplier " +
-                                                            "already exists");
+                throw new DuplicateRequestException("A product with the same name and the same " +
+                                                            "supplier already exists");
             }
-            Optional<Stock> existingStock =
-                    stockRepository.findByProduct_NameAndProductSuppliers_Name(product.getName(),
-                                                                               supplier.getName());
-            if (existingStock.isPresent()) {
-                throw new DuplicateRequestException("Product with name " + product.getName() +
-                                                            " and this supplier " + supplier.getName() + " already exist");
-            }
-
-
         }
+
+        product.setSuppliers(suppliers);
+
+
         Category existingCategory =
-                categoryRepository.findByName(product.getCategory().getName()).orElse(categoryRepository.save(product.getCategory()));
+                categoryRepository.findByName(product.getCategory().getName()).orElseGet(() -> categoryRepository.save(product.getCategory()));
         product.setCategory(existingCategory);
-
-
+        product.setStock(product.getStock());
         product.getStock().setProduct(product);
 
         productRepository.save(product);
 
     }
-
 
     /**
      * This method updates a product identified by its ID.
@@ -91,7 +84,7 @@ public class ProductService {
      * @param id         The ID of the product to be updated.
      * @param modProduct The new product data to update with.
      */
-    /*public void updateProduct(int id, Product modProduct) {
+    public void updateProduct(int id, Product modProduct) {
         Product product = productRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Product with id " + id + " not " +
                                                                        "found"));
@@ -103,10 +96,10 @@ public class ProductService {
         product.setCategory(category);
         product.setName(modProduct.getName());
         product.setSellingPrice(modProduct.getSellingPrice());
-        product.setStocks(modProduct.getStocks());
         product.setSuppliers(modProduct.getSuppliers());
+        product.setStock(modProduct.getStock());
         productRepository.save(product);
-    }*/
+    }
 
     /**
      * This method searches for all the product, organizes them into pagination of 20 elements,
@@ -137,7 +130,9 @@ public class ProductService {
         if (products.isEmpty()) {
             throw new EntityNotFoundException("There are no products");
         }
+
         return products;
+
     }
 
     /**
@@ -263,8 +258,6 @@ public class ProductService {
         productRepository.deleteAll();
     }
 
-    // CATEGORY
-
     /**
      * The method searches for all the categories
      * If no categories are found it throws an EntityNotFoundException.
@@ -279,6 +272,8 @@ public class ProductService {
         }
         return categoryRepository.findAll();
     }
+
+    // CATEGORY
 
     /**
      * This method remove the category from a product identified by its id.
@@ -316,3 +311,6 @@ public class ProductService {
     }
 
 }
+
+
+

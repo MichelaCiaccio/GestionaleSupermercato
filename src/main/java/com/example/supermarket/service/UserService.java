@@ -1,18 +1,16 @@
 package com.example.supermarket.service;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-
+import com.example.supermarket.entity.User;
+import com.example.supermarket.repo.UserRepository;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import com.example.supermarket.entity.User;
-import com.example.supermarket.repo.UserRepository;
-
-import jakarta.persistence.EntityNotFoundException;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
 
 @Service
 public class UserService {
@@ -31,7 +29,8 @@ public class UserService {
 
     public User findByOperatorCode(String operatorCode) {
         if (!userRepository.existsById(operatorCode)) {
-            throw new EntityNotFoundException("User with operator code " + operatorCode + " not found");
+            throw new EntityNotFoundException("User with operator code " + operatorCode + " not " +
+                                                      "found");
         }
         return userRepository.findByOperatorCode(operatorCode);
     }
@@ -68,7 +67,7 @@ public class UserService {
         if (users.isEmpty()) {
             throw new EntityNotFoundException("There are no Users");
         }
-        users.sort(Comparator.comparing(o -> o.getRole()));
+        users.sort(Comparator.comparing(User::getRole));
         return users;
     }
 
@@ -82,7 +81,8 @@ public class UserService {
 
     public void deleteByOperatorCode(String operatorCode) {
         if (!userRepository.existsById(operatorCode)) {
-            throw new EntityNotFoundException("User with operator code " + operatorCode + " not found");
+            throw new EntityNotFoundException("User with operator code " + operatorCode + " not " +
+                                                      "found");
         }
         userRepository.deleteById(operatorCode);
     }
