@@ -18,6 +18,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -181,6 +182,9 @@ public class ProductService {
 
     }
 
+
+    // FIND BY
+
     /**
      * This method searches for a product by its ID.
      * If no product is found, throw an EntityNotFoundException.
@@ -276,6 +280,22 @@ public class ProductService {
     }
 
     /**
+     * This method searches for product that has specified expiration date.
+     * If no products are found, throw an EntityNotFoundException.
+     * Otherwise, a List of found products is returned.
+     *
+     * @param expirationDate The expiration date of the products
+     * @return The list of the products found
+     */
+    public List<Product> findByExpirationDate(LocalDate expirationDate) {
+        List<Product> products = productRepository.findByStocks_ExpirationDate(expirationDate);
+        if (products.isEmpty()) {
+            throw new EntityNotFoundException("No product found with expiration date : " + expirationDate);
+        }
+        return products;
+    }
+
+    /**
      * This method deletes a product identified by its id.
      * If the product exists, proceed to delete it.
      * If not, an EntityNotFoundException is thrown.
@@ -301,9 +321,7 @@ public class ProductService {
         if (products.isEmpty()) {
             throw new EntityNotFoundException("There are no products to delete");
         }
-        stockRepository.deleteAll();
         productRepository.deleteAll();
-        supplierRepository.deleteAll();
 
     }
 

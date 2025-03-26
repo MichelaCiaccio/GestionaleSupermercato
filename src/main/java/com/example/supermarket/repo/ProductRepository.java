@@ -9,6 +9,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,7 +21,6 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
     @Override
     @Nonnull
     Optional<Product> findById(@Nullable Integer id);
-
 
     @Nonnull
     Page<Product> findAll(@Nullable Pageable pageable);
@@ -34,6 +34,8 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
     List<Product> findByStocks_Supplier_Name(String supplierName);
 
     List<Product> findByStocks_Quantity(int stockQuantity);
+
+    List<Product> findByStocks_ExpirationDate(LocalDate expirationDate);
 
     boolean existsByNameAndStocks_Supplier_Id(String productName, Integer supplierId);
 

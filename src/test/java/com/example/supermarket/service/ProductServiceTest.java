@@ -142,28 +142,90 @@ public class ProductServiceTest {
         assertNotNull(updatedProduct);
     }
 
+    @Test
+    void testDeleteById() {
 
-    /*  @Test
-//      void testDeleteAll() {
-//          // GIVEN
-//          List<Product> products = List.of(
-//                  new Product(1, "Nome", new BigDecimal(12), null, null),
-//                  new Product(2, "Nome", new BigDecimal(15), null, null));
-//          Page<Product> pagedProduct = new PageImpl<>(products, PageRequest.of(page, 20),
-products.size());
-//
-//          // WHEN
-//          when(productService.findAll(page)).thenReturn(products);
-//          productService.deleteAll();
-//          verify(productService, times(1)).deleteAll();
-//          when(productService.findAll()).thenReturn(null);
-//
-//          // VERIFY
-//          List<Product> deletedProducts = productService.findAll();
-//          assertNull(deletedProducts);
-//
-//      }
-//  */
+        // Given
+        int id = 1;
+        Product product = new Product(id, "Nome", new BigDecimal(id), null, null);
+
+        // When
+        when(productRepository.findById(id))
+                .thenReturn(Optional.of(product))
+                .thenReturn(Optional.empty());
+        doNothing().when(productRepository).deleteById(id);
+
+
+        Optional<Product> existingProduct = productRepository.findById(id);
+        productRepository.deleteById(id);
+        Optional<Product> deletedProduct = productRepository.findById(id);
+
+        // VERIFY
+        verify(productRepository, times(2)).findById(id);
+        verify(productRepository, times(1)).deleteById(id);
+        assertNull(deletedProduct.orElse(null));
+        assertNotNull(existingProduct);
+    }
+
+    @Test
+    void testDeleteByIdException() {
+
+        // Given
+        int id = 1;
+        Product product = new Product(id, "Nome", new BigDecimal(id), null, null);
+
+        // When
+        when(productRepository.findById(id)).thenThrow(new EntityNotFoundException());
+
+        // Verify
+        verify(productRepository, times(0)).findById(id);
+        assertThrows(EntityNotFoundException.class, () -> productRepository.findById(id));
+
+    }
+
+    @Test
+    void testDeleteAll() {
+
+        // Given
+        List<Product> products = List.of(
+                new Product(1, "Nome", new BigDecimal(12), null, null),
+                new Product(2, "Nome", new BigDecimal(15), null, null));
+
+
+        // When
+        when(productRepository.findAll()).thenReturn(products).thenReturn(null);
+        doNothing().when(productRepository).deleteAll();
+        List<Product> existingProduct = productRepository.findAll();
+        productRepository.deleteAll();
+        List<Product> deletedProduct = productRepository.findAll();
+
+
+        //Verify
+        verify(productRepository, times(1)).deleteAll();
+        assertNotNull(existingProduct);
+        assertNull(deletedProduct);
+
+    }
+
+    @Test
+    void testDeleteAllException() {
+
+        // Given
+        Category category = new Category(1, "Categoria");
+        List<Product> products = List.of(
+                new Product(1, "Nome", new BigDecimal(15), category, null),
+                new Product(2, "Nome", new BigDecimal(15), category, null));
+
+        // When
+        when(productRepository.findAll()).thenThrow(new EntityNotFoundException());
+
+        // Verify
+        verify(productRepository, times(0)).findAll();
+        assertThrows(EntityNotFoundException.class, () -> productRepository.findAll());
+
+    }
+
+
     @Test
     void testFindAll() {
 
@@ -279,139 +341,218 @@ products.size());
 
     }
 
-    //    @Test
-    //    void testFindByExpirationDate() {
-    //
-    //        // GIVEN
-    //        LocalDate expirationDate = LocalDate.now();
-    //        List<Product> products = List.of(
-    //                new Product(1, "Nome", new BigDecimal(22), null, null),
-    //                new Product(2, "Nome", new BigDecimal(22), null, null));
-    //
-    //        // WHEN
-    //        when(productService.findByExpirationDate(expirationDate)).thenReturn(products);
-    //        List<Product> ret = productService.findByExpirationDate(expirationDate);
-    //
-    //        // VERIFY
-    //        assertEquals(products, ret);
-    //        assertNotNull(ret);
-    //        assertEquals(2, ret.size());
-    //        verify(productService, times(1)).findByExpirationDate(expirationDate);
-    //    }
-    //
-    //    @Test
-    //    void testFindByName() {
-    //
-    //        // GIVEN
-    //        String name = "nome";
-    //        List<Product> products = List.of(
-    //                new Product(1, name, new BigDecimal(22), null, null),
-    //                new Product(2, name, new BigDecimal(15), null, null));
-    //
-    //        // WHEN
-    //        when(productService.findByName(name)).thenReturn(products);
-    //        List<Product> ret = productService.findByName(name);
-    //
-    //        // VERIFY
-    //        assertEquals(products, ret);
-    //        assertNotNull(ret);
-    //        assertEquals(2, ret.size());
-    //        verify(productService, times(1)).findByName(name);
-    //
-    //    }
-    //
-    //    @Test
-    //    void testFindBySellingPrice() {
-    //
-    //        // GIVEN
-    //        double sellingPrice = 15.24;
-    //        List<Product> products = List.of(
-    //                new Product(1, "Nome", new BigDecimal(sellingPrice), null, null),
-    //                new Product(2, "Nome", new BigDecimal(sellingPrice), null, null));
-    //
-    //        // WHEN
-    //        when(productService.findBySellingPrice(sellingPrice)).thenReturn(products);
-    //        List<Product> ret = productService.findBySellingPrice(sellingPrice);
-    //
-    //        // VERIFY
-    //        assertEquals(products, ret);
-    //        assertEquals(2, ret.size());
-    //        assertNotNull(ret);
-    //        verify(productService, times(1)).findBySellingPrice(sellingPrice);
-    //    }
-    //
-    //    @Test
-    //    void testFindByStockQuantity() {
-    //
-    //        // GIVEN
-    //        int quantity = 15;
-    //        List<Product> products = List.of(
-    //                new Product(1, "Nome", new BigDecimal(22), null, null),
-    //                new Product(2, "Nome", new BigDecimal(22), null, null));
-    //
-    //        // WHEN
-    //        when(productService.findByStockQuantity(quantity)).thenReturn(products);
-    //        List<Product> ret = productService.findByStockQuantity(quantity);
-    //
-    //        // VERIFY
-    //        assertEquals(products, ret);
-    //        assertNotNull(ret);
-    //        assertEquals(2, ret.size());
-    //        verify(productService, times(1)).findByStockQuantity(quantity);
-    //
-    //    }
-    //
-    //    @Test
-    //    void testFindBySupplierName() {
-    //
-    //        // GIVEN
-    //        String supplierName = "Nome Fornitore";
-    //        List<Product> products = List.of(
-    //                new Product(1, "Nome", new BigDecimal(22), null, null),
-    //                new Product(2, "Nome", new BigDecimal(22), null, null));
-    //
-    //        // WHEN
-    //        when(productService.findBySupplierName(supplierName)).thenReturn(products);
-    //        List<Product> ret = productService.findBySupplierName(supplierName);
-    //
-    //        // VERIFY
-    //        assertEquals(products, ret);
-    //        assertNotNull(ret);
-    //        assertEquals(2, ret.size());
-    //        verify(productService, times(1)).findBySupplierName(supplierName);
-    //    }
-    //
-    //
-    //
-    //    @Test
-    //    void testDeleteById() {
-    //        // GIVEN
-    //        int id = 1;
-    //        Product product = new Product(id, "Nome", new BigDecimal(id), null, null);
-    //
-    //        // WHEN
-    //        when(productRepository.findById(id))
-    //                .thenReturn(Optional.of(product))
-    //                .thenReturn(Optional.empty());
-    //        doNothing().when(productRepository).deleteById(id);
-    //
-    //        // Chiamata per ottenere il prodotto (prima della cancellazione)
-    //        Optional<Product> existingProduct = productRepository.findById(id);
-    //        // Cancelliamo il prodotto
-    //        productRepository.deleteById(id);
-    //        // Chiamata per verificare che il prodotto non esista più
-    //        Optional<Product> deletedProduct = productRepository.findById(id);
-    //
-    //        // VERIFY
-    //        verify(productRepository, times(2)).findById(id); // verifica che findById sia stato
-    //        chiamato due volte
-    //        verify(productRepository, times(1)).deleteById(id);
-    //        assertNull(deletedProduct.orElse(null));
-    //        assertNotNull(existingProduct);
-    //    }
-    //
-    //
+    @Test
+    void testFindByExpirationDate() {
+
+        // Given
+        LocalDate expirationDate = LocalDate.now().plusDays(50);
+        List<Product> products = List.of(
+                new Product(1, "Nome", new BigDecimal(22), null, null),
+                new Product(2, "Nome", new BigDecimal(22), null, null));
+
+        // When
+        when(productRepository.findByStocks_ExpirationDate(expirationDate)).thenReturn(products);
+        List<Product> ret = productRepository.findByStocks_ExpirationDate(expirationDate);
+
+        // Verify
+        verify(productRepository, times(1)).findByStocks_ExpirationDate(expirationDate);
+        assertEquals(products, ret);
+        assertNotNull(ret);
+        assertEquals(2, ret.size());
+
+    }
+
+    @Test
+    void testFindByExpirationDateException() {
+
+        // Given
+        LocalDate expirationDate = LocalDate.now().plusDays(50);
+        List<Product> products = List.of(
+                new Product(1, "Nome", new BigDecimal(22), null, null),
+                new Product(2, "Nome", new BigDecimal(22), null, null));
+
+        // When
+        when(productRepository.findByStocks_ExpirationDate(expirationDate)).thenThrow(new EntityNotFoundException());
+
+
+        // Verify
+        verify(productRepository, times(0)).findByStocks_ExpirationDate(expirationDate);
+        assertThrows(EntityNotFoundException.class,
+                     () -> productRepository.findByStocks_ExpirationDate(expirationDate));
+
+    }
+
+    @Test
+    void testFindByName() {
+
+        // Given
+        String name = "nome";
+        List<Product> products = List.of(
+                new Product(1, name, new BigDecimal(22), null, null),
+                new Product(2, name, new BigDecimal(15), null, null));
+
+        // When
+        when(productRepository.findByName(name)).thenReturn(products);
+        List<Product> ret = productRepository.findByName(name);
+
+        // Verify
+        assertEquals(products, ret);
+        assertNotNull(ret);
+        assertEquals(2, ret.size());
+        verify(productRepository, times(1)).findByName(name);
+
+    }
+
+    @Test
+    void testFindByNameException() {
+
+        // Given
+        String name = "nome";
+        List<Product> products = List.of(
+                new Product(1, name, new BigDecimal(22), null, null),
+                new Product(2, name, new BigDecimal(15), null, null));
+
+
+        // When
+        when(productRepository.findByName(name)).thenThrow(new EntityNotFoundException());
+
+
+        // Verify
+        verify(productRepository, times(0)).findByName(name);
+        assertThrows(EntityNotFoundException.class,
+                     () -> productRepository.findByName(name));
+
+
+    }
+
+    @Test
+    void testFindBySellingPrice() {
+
+        // Given
+        double sellingPrice = 15.24;
+        List<Product> products = List.of(
+                new Product(1, "Nome", new BigDecimal(sellingPrice), null, null),
+                new Product(2, "Nome", new BigDecimal(sellingPrice), null, null));
+
+        // WHEN
+        when(productRepository.findBySellingPrice(sellingPrice)).thenReturn(products);
+        List<Product> ret = productRepository.findBySellingPrice(sellingPrice);
+
+        // Verify
+        assertEquals(products, ret);
+        assertEquals(2, ret.size());
+        assertNotNull(ret);
+        verify(productRepository, times(1)).findBySellingPrice(sellingPrice);
+    }
+
+    @Test
+    void testFindBySellingPriceException() {
+
+        // Given
+        double sellingPrice = 15.24;
+        List<Product> products = List.of(
+                new Product(1, "Nome", new BigDecimal(sellingPrice), null, null),
+                new Product(2, "Nome", new BigDecimal(sellingPrice), null, null));
+
+
+        // When
+        when(productRepository.findBySellingPrice(sellingPrice)).thenThrow(new EntityNotFoundException());
+
+
+        // Verify
+        verify(productRepository, times(0)).findBySellingPrice(sellingPrice);
+        assertThrows(EntityNotFoundException.class,
+                     () -> productRepository.findBySellingPrice(sellingPrice));
+
+
+    }
+
+    @Test
+    void testFindByStockQuantity() {
+
+        // Given
+        int quantity = 15;
+        List<Product> products = List.of(
+                new Product(1, "Nome", new BigDecimal(22), null, null),
+                new Product(2, "Nome", new BigDecimal(22), null, null));
+
+        // When
+        when(productRepository.findByStocks_Quantity(quantity)).thenReturn(products);
+        List<Product> ret = productRepository.findByStocks_Quantity(quantity);
+
+        // Verify
+        assertEquals(products, ret);
+        assertNotNull(ret);
+        assertEquals(2, ret.size());
+        verify(productRepository, times(1)).findByStocks_Quantity(quantity);
+
+    }
+
+    @Test
+    void testFindByQuantityException() {
+
+        // Given
+        int quantity = 15;
+        List<Product> products = List.of(
+                new Product(1, "Nome", new BigDecimal(22), null, null),
+                new Product(2, "Nome", new BigDecimal(22), null, null));
+
+
+        // When
+        when(productRepository.findByStocks_Quantity(quantity)).thenThrow(new EntityNotFoundException());
+
+
+        // Verify
+        verify(productRepository, times(0)).findByStocks_Quantity(quantity);
+        assertThrows(EntityNotFoundException.class,
+                     () -> productRepository.findByStocks_Quantity(quantity));
+
+
+    }
+
+
+    @Test
+    void testFindBySupplierName() {
+
+        // Given
+        String supplierName = "Nome Fornitore";
+        List<Product> products = List.of(
+                new Product(1, "Nome", new BigDecimal(22), null, null),
+                new Product(2, "Nome", new BigDecimal(22), null, null));
+
+        // When
+        when(productRepository.findByStocks_Supplier_Name(supplierName)).thenReturn(products);
+        List<Product> ret = productRepository.findByStocks_Supplier_Name(supplierName);
+
+        // Verify
+        assertEquals(products, ret);
+        assertNotNull(ret);
+        assertEquals(2, ret.size());
+        verify(productRepository, times(1)).findByStocks_Supplier_Name(supplierName);
+    }
+
+    @Test
+    void testFindBySupplierNameException() {
+
+        // Given
+        String supplierName = "Nome Fornitore";
+        List<Product> products = List.of(
+                new Product(1, "Nome", new BigDecimal(22), null, null),
+                new Product(2, "Nome", new BigDecimal(22), null, null));
+
+
+        // When
+        when(productRepository.findByStocks_Supplier_Name(supplierName)).thenThrow(new EntityNotFoundException());
+
+
+        // Verify
+        verify(productRepository, times(0)).findByStocks_Supplier_Name(supplierName);
+        assertThrows(EntityNotFoundException.class,
+                     () -> productRepository.findByStocks_Supplier_Name(supplierName));
+
+
+    }
+
+
 }
-//
-//
-//
+

@@ -89,7 +89,7 @@ public class ProductController {
     @DeleteMapping("/id/")
     public ResponseEntity<String> deleteById(@NotNull @RequestParam int id) {
         productService.deleteById(id);
-        return ResponseEntity.ok("User with id " + id + " have been deleted");
+        return ResponseEntity.ok("Product with id " + id + " have been deleted");
     }
 
     // CATEGORY
