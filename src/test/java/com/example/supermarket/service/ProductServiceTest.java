@@ -8,6 +8,7 @@ import com.example.supermarket.entity.Supplier;
 import com.example.supermarket.repo.CategoryRepository;
 import com.example.supermarket.repo.ProductRepository;
 import com.sun.jdi.request.DuplicateRequestException;
+import jakarta.persistence.EntityNotFoundException;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
@@ -101,7 +102,7 @@ public class ProductServiceTest {
 
 
         // Verify
-        verify(productRepository, times(1)).existsByNameAndStocks_Supplier_Id(product.getName(),
+        verify(productRepository, times(0)).existsByNameAndStocks_Supplier_Id(product.getName(),
                                                                               stock.getSupplier().getId());
         assertThrows(DuplicateRequestException.class,
                      () -> productRepository.existsByNameAndStocks_Supplier_Id(product.getName(),
@@ -163,78 +164,121 @@ products.size());
 //
 //      }
 //  */
-    /// *    @Test
-    //    void testFindAll() {
-    //        // GIVEN
-    //        int page = 0;
-    //        Category category = new Category(1, "Categoria");
-    //        List<Product> products = List.of(
-    //                new Product(1, "Nome", new BigDecimal(15), category, null),
-    //                new Product(2, "Nome", new BigDecimal(15), category, null));
-    //
-    //        // WHEN
-    //        when(productService.findAll(page)).thenReturn(products);
-    //        Page<Product> ret = productService.findAll(page);
-    //
-    //        // VERIFY
-    //        assertNotNull(ret);
-    //        assertEquals(2, ret.size());
-    //        verify(productService, times(1)).findAll();
-    //    }*/
-    //
-    //    @Test
-    //    void testFindById() {
-    //
-    //        // GIVEN
-    //        int id = 1;
-    //        Product product = new Product(id, "Nome", new BigDecimal(id), null, null);
-    //
-    //        // WHEN
-    //        when(productRepository.findById(id)).thenReturn(Optional.of(product));
-    //        Optional<Product> ret = productRepository.findById(id);
-    //
-    //        // VERIFY
-    //        assertEquals(product.getId(), ret.get().getId());
-    //        assertNotNull(ret);
-    //        verify(productRepository, times(1)).findById(id);
-    //
-    //    }
-    //
-    //    @Test
-    //    void testFindByIdException() {
-    //        // GIVEN
-    //        int id = 1;
-    //
-    //        // WHEN
-    //        when(productService.findById(id)).thenThrow(new EntityNotFoundException("Product with
-    //        is" + id + " not found"));
-    //
-    //        // VERIFY
-    //        assertThrows(EntityNotFoundException.class, () -> productService.findById(id));
-    //        verify(productService, times(1)).findById(id);
-    //
-    //    }
-    //
-    //    @Test
-    //    void testFindByCategoryName() {
-    //
-    //        // GIVEN
-    //        String categoryName = "Categoria-A";
-    //        List<Product> products = List.of(
-    //                new Product(1, "Nome", new BigDecimal(22), null, null),
-    //                new Product(2, "Nome", new BigDecimal(26), null, null));
-    //
-    //        // WHEN
-    //        when(productService.findByCategoryName(categoryName)).thenReturn(products);
-    //        List<Product> ret = productService.findByCategoryName(categoryName);
-    //
-    //        // VERIFY
-    //        assertEquals(products, ret);
-    //        assertNotNull(ret);
-    //        assertEquals(2, ret.size());
-    //        verify(productService, times(1)).findByCategoryName(categoryName);
-    //    }
-    //
+    @Test
+    void testFindAll() {
+
+        // Given
+        int page = 0;
+        Category category = new Category(1, "Categoria");
+        List<Product> products = List.of(
+                new Product(1, "Nome", new BigDecimal(15), category, null),
+                new Product(2, "Nome", new BigDecimal(15), category, null));
+
+        // When
+        when(productRepository.findAll()).thenReturn(products);
+        List<Product> ret = productRepository.findAll();
+
+        // Verify
+        verify(productRepository, times(1)).findAll();
+        assertNotNull(ret);
+        assertEquals(2, ret.size());
+
+    }
+
+    @Test
+    void testFindAllException() {
+
+        // Given
+        Category category = new Category(1, "Categoria");
+        List<Product> products = List.of(
+                new Product(1, "Nome", new BigDecimal(15), category, null),
+                new Product(2, "Nome", new BigDecimal(15), category, null));
+
+        // When
+        when(productRepository.findAll()).thenThrow(new EntityNotFoundException());
+
+        // Verify
+        verify(productRepository, times(0)).findAll();
+        assertThrows(EntityNotFoundException.class, () -> productRepository.findAll());
+
+    }
+
+    @Test
+    void testFindById() {
+
+        // GIVEN
+        int id = 1;
+        Product product = new Product(id, "Nome", new BigDecimal(id), null, null);
+
+        // WHEN
+        when(productRepository.findById(id)).thenReturn(Optional.of(product));
+        Optional<Product> ret = productRepository.findById(id);
+
+        // VERIFY
+        assertEquals(ret.get().getId(), product.getId());
+        assertNotNull(ret);
+        verify(productRepository, times(1)).findById(id);
+
+    }
+
+    @Test
+    void testFindByIdException() {
+
+        // Given
+        int id = 1;
+        Category category = new Category(1, "Categoria");
+        List<Product> products = List.of(
+                new Product(1, "Nome", new BigDecimal(15), category, null),
+                new Product(2, "Nome", new BigDecimal(15), category, null));
+
+        // When
+        when(productRepository.findById(id)).thenThrow(new EntityNotFoundException());
+
+        // Verify
+        verify(productRepository, times(0)).findById(id);
+        assertThrows(EntityNotFoundException.class, () -> productRepository.findById(id));
+
+    }
+
+    @Test
+    void testFindByCategoryName() {
+
+        // Given
+        String categoryName = "Categoria-A";
+        List<Product> products = List.of(
+                new Product(1, "Nome", new BigDecimal(22), null, null),
+                new Product(2, "Nome", new BigDecimal(26), null, null));
+
+        // When
+        when(productRepository.findByCategoryName(categoryName)).thenReturn(products);
+        List<Product> ret = productRepository.findByCategoryName(categoryName);
+
+        // Verify
+        assertEquals(products, ret);
+        assertNotNull(ret);
+        assertEquals(2, ret.size());
+        verify(productRepository, times(1)).findByCategoryName(categoryName);
+    }
+
+    @Test
+    void testFindByCategoryNameException() {
+
+        // Given
+        String categoryName = "Categoria-A";
+        List<Product> products = List.of(
+                new Product(1, "Nome", new BigDecimal(22), null, null),
+                new Product(2, "Nome", new BigDecimal(26), null, null));
+
+        // When
+        when(productRepository.findByCategoryName(categoryName)).thenThrow(new EntityNotFoundException());
+
+        // Verify
+        verify(productRepository, times(0)).findByCategoryName(categoryName);
+        assertThrows(EntityNotFoundException.class,
+                     () -> productRepository.findByCategoryName(categoryName));
+
+    }
+
     //    @Test
     //    void testFindByExpirationDate() {
     //

@@ -7,9 +7,8 @@
     <option name="rewriteBookmarkType" value="true" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7c4caa73-20ab-4765-9784-19538829fb77" name="Changes" comment="Correct save method Javadoc in ProductService">
+    <list default="true" id="7c4caa73-20ab-4765-9784-19538829fb77" name="Changes" comment="Add testUpdateProduct">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/service/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/service/ProductService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/com/example/supermarket/service/ProductServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/example/supermarket/service/ProductServiceTest.java" afterDir="false" />
     </list>
     <list id="6499c595-af5e-4d71-8893-8354dc300f9f" name="No commit" comment="" />
@@ -87,6 +86,9 @@
     "Application.Unnamed.executor": "Run",
     "JUnit.ProductServiceTest.executor": "Run",
     "JUnit.ProductServiceTest.save_ShouldSaveProduct_WhenValid.executor": "Run",
+    "JUnit.ProductServiceTest.testFindAll.executor": "Run",
+    "JUnit.ProductServiceTest.testFindById.executor": "Run",
+    "JUnit.ProductServiceTest.testFindByIdException.executor": "Run",
     "JUnit.ProductServiceTest.testSaveDuplicateException.executor": "Run",
     "JUnit.ProductServiceTest.testSaveProduct_Success.executor": "Run",
     "JUnit.ProductServiceTest.testSaveWhenProductAlreadyExist.executor": "Run",
@@ -113,7 +115,7 @@
       <recent name="com.example.supermarket.repo" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.ProductServiceTest.testUpdate">
+  <component name="RunManager" selected="JUnit.ProductServiceTest">
     <configuration name="ProductServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="supermarket" />
       <extension name="coverage">
@@ -129,7 +131,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ProductServiceTest.save_ShouldSaveProduct_WhenValid" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ProductServiceTest.testFindAll" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="supermarket" />
       <extension name="coverage">
         <pattern>
@@ -139,13 +141,13 @@
       </extension>
       <option name="PACKAGE_NAME" value="com.example.supermarket.service" />
       <option name="MAIN_CLASS_NAME" value="com.example.supermarket.service.ProductServiceTest" />
-      <option name="METHOD_NAME" value="save_ShouldSaveProduct_WhenValid" />
+      <option name="METHOD_NAME" value="testFindAll" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ProductServiceTest.testSaveWhenProductAlreadyExist" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ProductServiceTest.testFindById" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="supermarket" />
       <extension name="coverage">
         <pattern>
@@ -155,7 +157,23 @@
       </extension>
       <option name="PACKAGE_NAME" value="com.example.supermarket.service" />
       <option name="MAIN_CLASS_NAME" value="com.example.supermarket.service.ProductServiceTest" />
-      <option name="METHOD_NAME" value="testSaveWhenProductAlreadyExist" />
+      <option name="METHOD_NAME" value="testFindById" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ProductServiceTest.testFindByIdException" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="supermarket" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.supermarket.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.example.supermarket.service" />
+      <option name="MAIN_CLASS_NAME" value="com.example.supermarket.service.ProductServiceTest" />
+      <option name="METHOD_NAME" value="testFindByIdException" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -190,10 +208,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.ProductServiceTest.testUpdate" />
         <item itemvalue="JUnit.ProductServiceTest" />
-        <item itemvalue="JUnit.ProductServiceTest.testSaveWhenProductAlreadyExist" />
-        <item itemvalue="JUnit.ProductServiceTest.save_ShouldSaveProduct_WhenValid" />
+        <item itemvalue="JUnit.ProductServiceTest.testFindByIdException" />
+        <item itemvalue="JUnit.ProductServiceTest.testFindById" />
+        <item itemvalue="JUnit.ProductServiceTest.testFindAll" />
+        <item itemvalue="JUnit.ProductServiceTest.testUpdate" />
       </list>
     </recent_temporary>
   </component>
@@ -407,7 +426,15 @@
       <option name="project" value="LOCAL" />
       <updated>1742984671788</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="Add testUpdateProduct">
+      <option name="closed" value="true" />
+      <created>1742988551964</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1742988551964</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -422,7 +449,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="test" />
     <MESSAGE value="Update ProductRepository and StockRepository" />
     <MESSAGE value="Improve ProductRepository" />
     <MESSAGE value="Updated findAll method in ProductService" />
@@ -447,7 +473,8 @@
     <MESSAGE value="Add testSaveSuccessfully" />
     <MESSAGE value="Add testSaveWhenProductAlreadyExist" />
     <MESSAGE value="Correct save method Javadoc in ProductService" />
-    <option name="LAST_COMMIT_MESSAGE" value="Correct save method Javadoc in ProductService" />
+    <MESSAGE value="Add testUpdateProduct" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add testUpdateProduct" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
