@@ -258,7 +258,7 @@ public class ProductService {
     public List<Product> findBySupplierName(String supplierName) {
         List<Product> products = productRepository.findByStocks_Supplier_Name(supplierName);
         if (products.isEmpty()) {
-            throw new EntityNotFoundException("No product has a supplier with a name" + supplierName);
+            throw new EntityNotFoundException("No product has a supplier with a name " + supplierName);
         }
         return products;
     }
