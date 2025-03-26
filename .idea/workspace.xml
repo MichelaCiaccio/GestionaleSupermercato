@@ -7,9 +7,11 @@
     <option name="rewriteBookmarkType" value="true" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7c4caa73-20ab-4765-9784-19538829fb77" name="Changes" comment="Improve ProductServiceTest">
+    <list default="true" id="7c4caa73-20ab-4765-9784-19538829fb77" name="Changes" comment="Correct ProductController">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/controller/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/controller/ProductController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/controller/StockController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/repo/StockRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/repo/StockRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/service/StockService.java" beforeDir="false" />
     </list>
     <list id="6499c595-af5e-4d71-8893-8354dc300f9f" name="No commit" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -462,7 +464,23 @@
       <option name="project" value="LOCAL" />
       <updated>1742999552942</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="Add getByExpirationDate in ProductController">
+      <option name="closed" value="true" />
+      <created>1743000005518</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1743000005518</updated>
+    </task>
+    <task id="LOCAL-00031" summary="Correct ProductController">
+      <option name="closed" value="true" />
+      <created>1743000396179</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1743000396179</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -477,8 +495,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Updated findAll method in ProductController" />
-    <MESSAGE value="Star adding sort logic to findAll" />
     <MESSAGE value="complete findAllProductsSorted method in ProductService" />
     <MESSAGE value="Update findAll in ProductController" />
     <MESSAGE value="Add javadoc to findById and findByName" />
@@ -502,7 +518,9 @@
     <MESSAGE value="Add findById and findByCategoryName in ProductServiceTest" />
     <MESSAGE value="Complete ProductServiceTest" />
     <MESSAGE value="Improve ProductServiceTest" />
-    <option name="LAST_COMMIT_MESSAGE" value="Improve ProductServiceTest" />
+    <MESSAGE value="Add getByExpirationDate in ProductController" />
+    <MESSAGE value="Correct ProductController" />
+    <option name="LAST_COMMIT_MESSAGE" value="Correct ProductController" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
