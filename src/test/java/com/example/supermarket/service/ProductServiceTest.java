@@ -122,10 +122,6 @@ public class ProductServiceTest {
                                 supplier);
         Product product = new Product(1, "Apple", BigDecimal.valueOf(1.5), category,
                                       List.of(stock));
-        Supplier modSupplier = new Supplier(1, "Supplier", "Address", "123456789", "email" +
-                "@example.com");
-        Stock modStock = new Stock(1, 10, LocalDate.now(), LocalDate.now().plusDays(10), null,
-                                   supplier);
         Product modProduct = new Product(1, "modApple", BigDecimal.valueOf(1.5), category,
                                          List.of(stock));
 
@@ -172,7 +168,6 @@ public class ProductServiceTest {
 
         // Given
         int id = 1;
-        Product product = new Product(id, "Nome", new BigDecimal(id), null, null);
 
         // When
         when(productRepository.findById(id)).thenThrow(new EntityNotFoundException());
@@ -210,12 +205,6 @@ public class ProductServiceTest {
     @Test
     void testDeleteAllException() {
 
-        // Given
-        Category category = new Category(1, "Categoria");
-        List<Product> products = List.of(
-                new Product(1, "Nome", new BigDecimal(15), category, null),
-                new Product(2, "Nome", new BigDecimal(15), category, null));
-
         // When
         when(productRepository.findAll()).thenThrow(new EntityNotFoundException());
 
@@ -230,7 +219,6 @@ public class ProductServiceTest {
     void testFindAll() {
 
         // Given
-        int page = 0;
         Category category = new Category(1, "Categoria");
         List<Product> products = List.of(
                 new Product(1, "Nome", new BigDecimal(15), category, null),
@@ -250,11 +238,6 @@ public class ProductServiceTest {
     @Test
     void testFindAllException() {
 
-        // Given
-        Category category = new Category(1, "Categoria");
-        List<Product> products = List.of(
-                new Product(1, "Nome", new BigDecimal(15), category, null),
-                new Product(2, "Nome", new BigDecimal(15), category, null));
 
         // When
         when(productRepository.findAll()).thenThrow(new EntityNotFoundException());
@@ -288,10 +271,6 @@ public class ProductServiceTest {
 
         // Given
         int id = 1;
-        Category category = new Category(1, "Categoria");
-        List<Product> products = List.of(
-                new Product(1, "Nome", new BigDecimal(15), category, null),
-                new Product(2, "Nome", new BigDecimal(15), category, null));
 
         // When
         when(productRepository.findById(id)).thenThrow(new EntityNotFoundException());
@@ -327,9 +306,6 @@ public class ProductServiceTest {
 
         // Given
         String categoryName = "Categoria-A";
-        List<Product> products = List.of(
-                new Product(1, "Nome", new BigDecimal(22), null, null),
-                new Product(2, "Nome", new BigDecimal(26), null, null));
 
         // When
         when(productRepository.findByCategoryName(categoryName)).thenThrow(new EntityNotFoundException());
@@ -367,9 +343,6 @@ public class ProductServiceTest {
 
         // Given
         LocalDate expirationDate = LocalDate.now().plusDays(50);
-        List<Product> products = List.of(
-                new Product(1, "Nome", new BigDecimal(22), null, null),
-                new Product(2, "Nome", new BigDecimal(22), null, null));
 
         // When
         when(productRepository.findByStocks_ExpirationDate(expirationDate)).thenThrow(new EntityNotFoundException());
@@ -408,9 +381,6 @@ public class ProductServiceTest {
 
         // Given
         String name = "nome";
-        List<Product> products = List.of(
-                new Product(1, name, new BigDecimal(22), null, null),
-                new Product(2, name, new BigDecimal(15), null, null));
 
 
         // When
@@ -450,10 +420,6 @@ public class ProductServiceTest {
 
         // Given
         double sellingPrice = 15.24;
-        List<Product> products = List.of(
-                new Product(1, "Nome", new BigDecimal(sellingPrice), null, null),
-                new Product(2, "Nome", new BigDecimal(sellingPrice), null, null));
-
 
         // When
         when(productRepository.findBySellingPrice(sellingPrice)).thenThrow(new EntityNotFoundException());
@@ -493,9 +459,6 @@ public class ProductServiceTest {
 
         // Given
         int quantity = 15;
-        List<Product> products = List.of(
-                new Product(1, "Nome", new BigDecimal(22), null, null),
-                new Product(2, "Nome", new BigDecimal(22), null, null));
 
 
         // When
@@ -536,10 +499,6 @@ public class ProductServiceTest {
 
         // Given
         String supplierName = "Nome Fornitore";
-        List<Product> products = List.of(
-                new Product(1, "Nome", new BigDecimal(22), null, null),
-                new Product(2, "Nome", new BigDecimal(22), null, null));
-
 
         // When
         when(productRepository.findByStocks_Supplier_Name(supplierName)).thenThrow(new EntityNotFoundException());
