@@ -8,6 +8,7 @@ import com.example.supermarket.entity.Supplier;
 import com.example.supermarket.repo.CategoryRepository;
 import com.example.supermarket.repo.ProductRepository;
 import com.example.supermarket.repo.SupplierRepository;
+import com.sun.jdi.request.DuplicateRequestException;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
@@ -18,8 +19,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.*;
 
@@ -81,6 +81,32 @@ public class ProductServiceTest {
                                                                               stock.getSupplier().getId());
         verify(categoryRepository, times(1)).findByName(product.getCategory().getName());
         verify(productRepository, times(1)).save(product);
+
+
+    }
+
+    @Test
+    void testSaveWhenProductAlreadyExist() {
+
+        // Given
+        Supplier supplier = new Supplier(1, "Supplier Name", "Address", "123456789", "email" +
+                "@example.com");
+        Category category = new Category(1, "Food");
+        Stock stock = new Stock(1, 10, LocalDate.now(), LocalDate.now().plusDays(10), null,
+                                supplier);
+        Product product = new Product(1, "Apple", BigDecimal.valueOf(1.5), category,
+                                      List.of(stock));
+
+        // When
+        when(productRepository.existsByNameAndStocks_Supplier_Id(anyString(), anyInt())).thenThrow(new DuplicateRequestException());
+
+
+        // Verify
+        assertThrows(DuplicateRequestException.class,
+                     () -> productRepository.existsByNameAndStocks_Supplier_Id(product.getName(),
+                                                                               stock.getSupplier().getId()));
+        verify(productRepository, times(1)).existsByNameAndStocks_Supplier_Id(product.getName(),
+                                                                              stock.getSupplier().getId());
 
 
     }
