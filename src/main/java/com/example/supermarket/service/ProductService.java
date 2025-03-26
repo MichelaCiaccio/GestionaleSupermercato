@@ -3,6 +3,7 @@ package com.example.supermarket.service;
 import com.example.supermarket.entity.Category;
 import com.example.supermarket.entity.Product;
 import com.example.supermarket.entity.Stock;
+import com.example.supermarket.entity.Supplier;
 import com.example.supermarket.repo.CategoryRepository;
 import com.example.supermarket.repo.ProductRepository;
 import com.example.supermarket.repo.StockRepository;
@@ -105,20 +106,44 @@ public class ProductService {
      * @param id         The ID of the product to be updated.
      * @param modProduct The new product data to update with.
      */
+    // To do Non funziona,
+    // errore : org.hibernate.TransientObjectException:
+    // persistent instance references an unsaved transient instance of 'com.example.supermarket
+    // .entity.Product'
+    // (save the transient instance before flushing)
     public void updateProduct(int id, Product modProduct) {
         Product product = productRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Product with id " + id + " not " +
                                                                        "found"));
 
         Category category = categoryRepository.findByName(modProduct.getCategory().getName())
-                .orElse(categoryRepository.save(modProduct.getCategory()));
+                .orElseGet(() -> categoryRepository.save(modProduct.getCategory()));
+
+        List<Stock> stocks = new ArrayList<>();
+
+        for (Stock stock : modProduct.getStocks()) {
+            Optional<Supplier> modSupplier =
+                    supplierRepository.findByName(stock.getSupplier().getName());
+            if (modSupplier.isEmpty()) {
+                Supplier newSupplier = supplierService.createNewSupplier(stock.getSupplier());
+                stock.setSupplier(newSupplier);
+            } else {
+                stock.setSupplier(modSupplier.get());
+            }
 
 
-        product.setCategory(category);
+            stock.setProduct(modProduct);
+            stock.setQuantity(stock.getQuantity());
+            stock.setDeliveryDate(stock.getDeliveryDate());
+            stock.setExpirationDate(stock.getExpirationDate());
+            stocks.add(stock);
+
+        }
+
         product.setCategory(category);
         product.setName(modProduct.getName());
         product.setSellingPrice(modProduct.getSellingPrice());
-        product.setStocks(modProduct.getStocks());
+        product.setStocks(stocks);
         productRepository.save(product);
     }
 

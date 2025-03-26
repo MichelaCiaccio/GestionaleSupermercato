@@ -30,6 +30,9 @@ public class ProductServiceTest {
     private ProductRepository productRepository;
 
     @Mock
+    private ProductService productService;
+
+    @Mock
     private CategoryRepository categoryRepository;
 
     @Mock
@@ -62,6 +65,13 @@ public class ProductServiceTest {
         productRepository.save(product);
 
 
+        // Verify
+        verify(supplierService, times(1)).createNewSupplier(supplier);
+        verify(productRepository, times(1)).existsByNameAndStocks_Supplier_Id(product.getName(),
+                                                                              stock.getSupplier().getId());
+        verify(categoryRepository, times(1)).findByName(product.getCategory().getName());
+        verify(productRepository, times(1)).save(product);
+
         // Assert
         assertNotNull(supplier);
         assertNotNull(category);
@@ -70,13 +80,6 @@ public class ProductServiceTest {
         assertEquals(BigDecimal.valueOf(1.5), product.getSellingPrice());
         assertEquals(category, product.getCategory());
         assertEquals(1, product.getStocks().size());
-
-        // Verify
-        verify(supplierService, times(1)).createNewSupplier(supplier);
-        verify(productRepository, times(1)).existsByNameAndStocks_Supplier_Id(product.getName(),
-                                                                              stock.getSupplier().getId());
-        verify(categoryRepository, times(1)).findByName(product.getCategory().getName());
-        verify(productRepository, times(1)).save(product);
 
 
     }
@@ -98,13 +101,44 @@ public class ProductServiceTest {
 
 
         // Verify
+        verify(productRepository, times(1)).existsByNameAndStocks_Supplier_Id(product.getName(),
+                                                                              stock.getSupplier().getId());
         assertThrows(DuplicateRequestException.class,
                      () -> productRepository.existsByNameAndStocks_Supplier_Id(product.getName(),
                                                                                stock.getSupplier().getId()));
-        verify(productRepository, times(1)).existsByNameAndStocks_Supplier_Id(product.getName(),
-                                                                              stock.getSupplier().getId());
 
 
+    }
+
+    @Test
+    void testUpdate() {
+
+        // Given
+        Supplier supplier = new Supplier(1, "Supplier Name", "Address", "123456789", "email" +
+                "@example.com");
+        Category category = new Category(1, "Food");
+        Stock stock = new Stock(1, 10, LocalDate.now(), LocalDate.now().plusDays(10), null,
+                                supplier);
+        Product product = new Product(1, "Apple", BigDecimal.valueOf(1.5), category,
+                                      List.of(stock));
+        Supplier modSupplier = new Supplier(1, "Supplier", "Address", "123456789", "email" +
+                "@example.com");
+        Stock modStock = new Stock(1, 10, LocalDate.now(), LocalDate.now().plusDays(10), null,
+                                   supplier);
+        Product modProduct = new Product(1, "modApple", BigDecimal.valueOf(1.5), category,
+                                         List.of(stock));
+
+        // When
+        when(productRepository.findById(1)).thenReturn(Optional.of(product)).thenReturn(Optional.of(modProduct));
+        Optional<Product> existingProduct = productRepository.findById(1);
+        productService.updateProduct(1, modProduct);
+        Optional<Product> updatedProduct = productRepository.findById(1);
+
+        // Verify
+        verify(productRepository, times(2)).findById(1);
+        assertNotEquals(existingProduct, updatedProduct);
+        assertNotNull(existingProduct);
+        assertNotNull(updatedProduct);
     }
 
 

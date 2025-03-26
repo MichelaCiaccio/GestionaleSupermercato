@@ -90,6 +90,7 @@
     "JUnit.ProductServiceTest.testSaveDuplicateException.executor": "Run",
     "JUnit.ProductServiceTest.testSaveProduct_Success.executor": "Run",
     "JUnit.ProductServiceTest.testSaveWhenProductAlreadyExist.executor": "Run",
+    "JUnit.ProductServiceTest.testUpdate.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
@@ -112,7 +113,7 @@
       <recent name="com.example.supermarket.repo" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.ProductServiceTest">
+  <component name="RunManager" selected="JUnit.ProductServiceTest.testUpdate">
     <configuration name="ProductServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="supermarket" />
       <extension name="coverage">
@@ -160,6 +161,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="ProductServiceTest.testUpdate" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="supermarket" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.supermarket.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.example.supermarket.service" />
+      <option name="MAIN_CLASS_NAME" value="com.example.supermarket.service.ProductServiceTest" />
+      <option name="METHOD_NAME" value="testUpdate" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration default="true" type="JetRunConfigurationType">
       <module name="GestionaleSupermercato" />
       <method v="2">
@@ -173,6 +190,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.ProductServiceTest.testUpdate" />
         <item itemvalue="JUnit.ProductServiceTest" />
         <item itemvalue="JUnit.ProductServiceTest.testSaveWhenProductAlreadyExist" />
         <item itemvalue="JUnit.ProductServiceTest.save_ShouldSaveProduct_WhenValid" />
@@ -381,7 +399,15 @@
       <option name="project" value="LOCAL" />
       <updated>1742983637585</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="Correct save method Javadoc in ProductService">
+      <option name="closed" value="true" />
+      <created>1742984671788</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1742984671788</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
