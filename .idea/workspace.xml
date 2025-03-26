@@ -7,21 +7,9 @@
     <option name="rewriteBookmarkType" value="true" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7c4caa73-20ab-4765-9784-19538829fb77" name="Changes" comment="Correct Save method in ProductService">
+    <list default="true" id="7c4caa73-20ab-4765-9784-19538829fb77" name="Changes" comment="Change Stock, Product, Supplier entity and update save method in ProductService">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/DTO/Mapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/DTO/ProductDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/DTO/StockDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/controller/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/controller/ProductController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/entity/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/entity/Product.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/entity/Stock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/entity/Stock.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/entity/Supplier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/entity/Supplier.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/errorHandling/CustomRestExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/errorHandling/CustomRestExceptionHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/repo/ProductRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/repo/ProductRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/repo/StockRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/repo/StockRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/service/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/service/ProductService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/service/SupplierService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/service/SupplierService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/supermarket/service/ProductServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/example/supermarket/service/ProductServiceTest.java" afterDir="false" />
     </list>
     <list id="6499c595-af5e-4d71-8893-8354dc300f9f" name="No commit" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -96,6 +84,7 @@
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;Application.Unnamed.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ProductServiceTest.save_ShouldSaveProduct_WhenValid.executor&quot;: &quot;Run&quot;,
     &quot;JUnit.ProductServiceTest.testSaveDuplicateException.executor&quot;: &quot;Run&quot;,
     &quot;JUnit.ProductServiceTest.testSaveProduct_Success.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
@@ -121,6 +110,22 @@
     </key>
   </component>
   <component name="RunManager">
+    <configuration name="ProductServiceTest.save_ShouldSaveProduct_WhenValid" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="supermarket" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.supermarket.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.example.supermarket.service" />
+      <option name="MAIN_CLASS_NAME" value="com.example.supermarket.service.ProductServiceTest" />
+      <option name="METHOD_NAME" value="save_ShouldSaveProduct_WhenValid" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration default="true" type="JetRunConfigurationType">
       <module name="GestionaleSupermercato" />
       <method v="2">
@@ -132,6 +137,11 @@
       <option name="filePath" />
       <method v="2" />
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.ProductServiceTest.save_ShouldSaveProduct_WhenValid" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -311,7 +321,15 @@
       <option name="project" value="LOCAL" />
       <updated>1742895102884</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="Change Stock, Product, Supplier entity and update save method in ProductService">
+      <option name="closed" value="true" />
+      <created>1742921616314</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1742921616314</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -347,16 +365,12 @@
     <MESSAGE value="Update Product relation with Stock for delete" />
     <MESSAGE value="Change Stock,Supplier and Product and correct save method in ProductService" />
     <MESSAGE value="Correct Save method in ProductService" />
-    <option name="LAST_COMMIT_MESSAGE" value="Correct Save method in ProductService" />
+    <MESSAGE value="Change Stock, Product, Supplier entity and update save method in ProductService" />
+    <option name="LAST_COMMIT_MESSAGE" value="Change Stock, Product, Supplier entity and update save method in ProductService" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/test/java/com/example/supermarket/service/ProductServiceTest.java</url>
-          <line>3</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
         <breakpoint enabled="true" type="java-exception">
           <properties class="org.springframework.beans.factory.UnsatisfiedDependencyException" package="org.springframework.beans.factory" />
           <option name="timeStamp" value="4" />

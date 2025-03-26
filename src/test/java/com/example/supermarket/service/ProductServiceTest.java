@@ -1,10 +1,28 @@
 package com.example.supermarket.service;
 
 
+import com.example.supermarket.entity.Category;
+import com.example.supermarket.entity.Product;
+import com.example.supermarket.entity.Stock;
+import com.example.supermarket.entity.Supplier;
+import com.example.supermarket.repo.CategoryRepository;
 import com.example.supermarket.repo.ProductRepository;
+import com.example.supermarket.repo.SupplierRepository;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.util.List;
+import java.util.Optional;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.mockito.ArgumentMatchers.*;
+import static org.mockito.Mockito.*;
+
 
 @ExtendWith(MockitoExtension.class)
 public class ProductServiceTest {
@@ -12,21 +30,60 @@ public class ProductServiceTest {
     @Mock
     private ProductRepository productRepository;
 
-   /* @Test
-    void saveSuccessfull(){
-        //GIVEN
-        int page = 0;
-              Category category = new Category(1, "Categoria");
-        Supplier supplier = new Supplier(1, "Fornitore", "indirizzo", "3333");
+    @Mock
+    private CategoryRepository categoryRepository;
 
-        Product product = new Product(1, "Nome", new BigDecimal(15), category, supplier, ),
-        Product product1 =  new Product(2, "Nome", new BigDecimal(15), category, supplier,));
-        Stock stock = new Stock(1, 46, LocalDate.of(2025, 03, 01), LocalDate.of(2026, 03, 01),
-                                product, product.getId());
-    List<Product> products = new ArrayList<>();
-    products.add(product);
-    products.add(product1);
-    } */
+    @Mock
+    private SupplierRepository supplierRepository;
+
+    @Mock
+    private SupplierService supplierService;
+
+    @Test
+    void testSaveSuccessfully() {
+
+        // Given
+        Supplier supplier = new Supplier(1, "Supplier Name", "Address", "123456789", "email" +
+                "@example.com");
+        Category category = new Category(1, "Food");
+        Stock stock = new Stock(1, 10, LocalDate.now(), LocalDate.now().plusDays(10), null,
+                                supplier);
+        Product product = new Product(1, "Apple", BigDecimal.valueOf(1.5), category,
+                                      List.of(stock));
+
+
+        // When
+        when(supplierService.createNewSupplier(any(Supplier.class))).thenReturn(supplier);
+        when(productRepository.existsByNameAndStocks_Supplier_Id(anyString(), anyInt())).thenReturn(false);
+        when(categoryRepository.findByName(anyString())).thenReturn(Optional.of(category));
+        when(productRepository.save(any(Product.class))).thenReturn(product);
+
+
+        supplierService.createNewSupplier(supplier);
+        productRepository.existsByNameAndStocks_Supplier_Id(product.getName(),
+                                                            stock.getSupplier().getId());
+        categoryRepository.findByName(category.getName());
+        productRepository.save(product);
+
+
+        // Assert
+        assertNotNull(supplier);
+        assertNotNull(category);
+        assertNotNull(product);
+        assertEquals("Apple", product.getName());
+        assertEquals(BigDecimal.valueOf(1.5), product.getSellingPrice());
+        assertEquals(category, product.getCategory());
+        assertEquals(1, product.getStocks().size());
+
+        // Verify
+        verify(supplierService, times(1)).createNewSupplier(supplier);
+        verify(productRepository, times(1)).existsByNameAndStocks_Supplier_Id(product.getName(),
+                                                                              stock.getSupplier().getId());
+        verify(categoryRepository, times(1)).findByName(product.getCategory().getName());
+        verify(productRepository, times(1)).save(product);
+
+
+    }
 
 
 
@@ -106,7 +163,7 @@ products.size());
     //    }
     //
     //    @Test
-    //    void testfindByCategoryName() {
+    //    void testFindByCategoryName() {
     //
     //        // GIVEN
     //        String categoryName = "Categoria-A";
