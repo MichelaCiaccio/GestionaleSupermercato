@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -16,6 +17,14 @@ public class SupplierService {
 
     @Autowired
     private SupplierRepository supplierRepo;
+
+    public List<Supplier> findAll() {
+        List<Supplier> suppliers = supplierRepo.findAll();
+        if (suppliers.isEmpty()) {
+            throw new EntityNotFoundException("There are no suppliers");
+        }
+        return suppliers;
+    }
 
     /**
      * This method searches for a supplier by its ID.

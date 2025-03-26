@@ -321,6 +321,7 @@ public class ProductService {
         if (products.isEmpty()) {
             throw new EntityNotFoundException("There are no products to delete");
         }
+        supplierRepository.deleteAll();
         productRepository.deleteAll();
 
     }
