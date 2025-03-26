@@ -41,10 +41,12 @@ public class ProductService {
 
 
     /**
-     * This method creates a new product.
-     * Checks if the stock is present.
-     * If it does, proceed to create a stock and save the new product
-     * Otherwise, the new product is saved.
+     * This method creates a new product, along with its associated stock and supplier.
+     * Checks if the supplier already exists if it does associate with the stock of that product,
+     * otherwise it creates it.
+     * Check if a product-supplier combination already exists if it does throw a
+     * DuplicateRequestException.
+     * It associated every combination to stock and save the new product
      *
      * @param product The product to be saved
      */
@@ -58,7 +60,7 @@ public class ProductService {
         // Itero sugli stock del prodotto
         for (Stock stock : product.getStocks()) {
 
-            //Controllo se il supplier esiste, in caso contrario lo creo
+            //Controllo se il supplier esiste, in caso contrario lo creo e lo setto nello stock
             stock.setSupplier(supplierService.createNewSupplier(stock.getSupplier()));
 
 
@@ -71,7 +73,7 @@ public class ProductService {
                                                             "supplier with id " + stock.getSupplier().getId() + " already exists");
             }
 
-            // Per ogni stock setto il prodotto e il supplier, aggiungo lo stock alla Lista di
+            // Per ogni stock setto il prodotto, aggiungo lo stock alla Lista di
             // stocks
             stock.setProduct(product);
             stocks.add(stock);

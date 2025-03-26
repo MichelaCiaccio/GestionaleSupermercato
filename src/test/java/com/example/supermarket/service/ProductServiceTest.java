@@ -7,7 +7,6 @@ import com.example.supermarket.entity.Stock;
 import com.example.supermarket.entity.Supplier;
 import com.example.supermarket.repo.CategoryRepository;
 import com.example.supermarket.repo.ProductRepository;
-import com.example.supermarket.repo.SupplierRepository;
 import com.sun.jdi.request.DuplicateRequestException;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -32,9 +31,6 @@ public class ProductServiceTest {
 
     @Mock
     private CategoryRepository categoryRepository;
-
-    @Mock
-    private SupplierRepository supplierRepository;
 
     @Mock
     private SupplierService supplierService;
@@ -110,9 +106,6 @@ public class ProductServiceTest {
 
 
     }
-
-
-
 
 
     /*  @Test
