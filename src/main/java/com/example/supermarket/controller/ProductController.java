@@ -5,6 +5,7 @@ import com.example.supermarket.entity.Product;
 import com.example.supermarket.service.ProductService;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.Future;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 //TO DO 
@@ -26,10 +28,11 @@ public class ProductController {
     @Autowired
     private ProductService productService;
 
+
     @GetMapping("")
-    public Page<Product> findAll(@RequestParam(required = false) Integer page,
-                                 @RequestParam(required = false) String sortDirection,
-                                 @RequestParam(required = false) String dataType) throws EntityNotFoundException {
+    public Page<Product> getAll(@RequestParam(required = false) Integer page,
+                                @RequestParam(required = false) String sortDirection,
+                                @RequestParam(required = false) String dataType) throws EntityNotFoundException {
         return productService.findAllProductsSorted(page, sortDirection, dataType);
     }
 
@@ -55,28 +58,33 @@ public class ProductController {
     }
 
     @GetMapping("/id/")
-    public Product findById(@NotNull @RequestParam int id) {
+    public Product getById(@NotNull @RequestParam int id) {
         return productService.findById(id);
     }
 
     @GetMapping("/name/")
-    public List<Product> findByName(@NotBlank @RequestParam String name) {
+    public List<Product> getByName(@NotBlank @RequestParam String name) {
         return productService.findByName(name);
     }
 
     @GetMapping("/sellingPrice/")
-    public List<Product> findBySellingPrice(@NotNull @RequestParam double sellingPrice) {
+    public List<Product> getBySellingPrice(@NotNull @RequestParam double sellingPrice) {
         return productService.findBySellingPrice(sellingPrice);
     }
 
-    @GetMapping("/category/name/")
-    public List<Product> findByCategoryName(@NotBlank @RequestParam String name) {
+    @GetMapping("/category/")
+    public List<Product> getByCategory(@NotBlank @RequestParam String name) {
         return productService.findByCategoryName(name);
     }
 
-    @GetMapping("/supplier/name/")
-    public List<Product> findBySupplierName(@NotBlank @RequestParam String name) {
+    @GetMapping("/supplier/")
+    public List<Product> getBySupplier(@NotBlank @RequestParam String name) {
         return productService.findBySupplierName(name);
+    }
+
+    @GetMapping("/expirationDate")
+    public List<Product> getByExpirationDate(@Future @RequestParam LocalDate expirationDate) {
+        return productService.findByExpirationDate(expirationDate);
     }
 
 
@@ -94,7 +102,7 @@ public class ProductController {
 
     // CATEGORY
     @GetMapping("/all/category")
-    public List<Category> findAllCategories() {
+    public List<Category> getAllCategories() {
         return productService.findAllCategories();
     }
 
