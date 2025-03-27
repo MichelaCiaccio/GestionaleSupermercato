@@ -37,6 +37,7 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
 
     List<Product> findByStocks_ExpirationDate(LocalDate expirationDate);
 
+
     boolean existsByNameAndStocks_Supplier_Id(String productName, Integer supplierId);
 
 

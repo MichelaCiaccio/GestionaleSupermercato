@@ -86,6 +86,11 @@ public class ProductController {
         return productService.findByExpirationDate(expirationDate);
     }
 
+    @GetMapping("/quantity")
+    public List<Product> getByQuantity(@NotNull @RequestParam int quantity) {
+        return productService.findByQuantity(quantity);
+    }
+
 
     @DeleteMapping("/all")
     public ResponseEntity<String> deleteAll() {
