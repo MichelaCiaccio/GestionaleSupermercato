@@ -6,6 +6,8 @@ import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class StockService {
 
@@ -24,6 +26,7 @@ public class StockService {
                 .orElseThrow(() -> new EntityNotFoundException("There no stock for " +
                                                                        "product " + productName + " supplied by " + supplierName));
         stock.setQuantity(modQuantity + stock.getQuantity());
+        stockRepo.save(stock);
     }
 
     public void subStockQuantity(String productName, String supplierName, int modQuantity) {
@@ -31,5 +34,14 @@ public class StockService {
                 .orElseThrow(() -> new EntityNotFoundException("There no stock for " +
                                                                        "product " + productName + " supplied by " + supplierName));
         stock.setQuantity(stock.getQuantity() - modQuantity);
+        stockRepo.save(stock);
+    }
+
+    public List<Stock> findAll() {
+        List<Stock> stocks = stockRepo.findAll();
+        if (stocks.isEmpty()) {
+            throw new EntityNotFoundException("There are no stocks");
+        }
+        return stocks;
     }
 }
