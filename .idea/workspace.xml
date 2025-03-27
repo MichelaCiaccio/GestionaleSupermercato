@@ -7,10 +7,10 @@
     <option name="rewriteBookmarkType" value="true" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7c4caa73-20ab-4765-9784-19538829fb77" name="Changes" comment="Add sub and add quantity method in StockService">
+    <list default="true" id="7c4caa73-20ab-4765-9784-19538829fb77" name="Changes" comment="Add sub and add quantity method in StockController">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/controller/StockController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/controller/StockController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/service/StockService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/service/StockService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/supermarket/service/StockServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/example/supermarket/service/StockServiceTest.java" afterDir="false" />
     </list>
     <list id="6499c595-af5e-4d71-8893-8354dc300f9f" name="No commit" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -26,6 +26,7 @@
       <list>
         <option value="Interface" />
         <option value="Class" />
+        <option value="JUnit5 Test Class" />
       </list>
     </option>
   </component>
@@ -82,46 +83,60 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.Unnamed.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ProductServiceTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ProductServiceTest.save_ShouldSaveProduct_WhenValid.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ProductServiceTest.testDeleteAll.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ProductServiceTest.testDeleteById.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ProductServiceTest.testDeleteByIdException.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ProductServiceTest.testFindAll.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ProductServiceTest.testFindById.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ProductServiceTest.testFindByIdException.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ProductServiceTest.testSaveDuplicateException.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ProductServiceTest.testSaveProduct_Success.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ProductServiceTest.testSaveWhenProductAlreadyExist.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ProductServiceTest.testUpdate.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;code.cleanup.on.save&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;dev&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;rearrange.code.on.save&quot;: &quot;true&quot;,
-    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.sourceCode.Java&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Unnamed.executor": "Run",
+    "JUnit.ProductServiceTest.executor": "Run",
+    "JUnit.ProductServiceTest.save_ShouldSaveProduct_WhenValid.executor": "Run",
+    "JUnit.ProductServiceTest.testDeleteAll.executor": "Run",
+    "JUnit.ProductServiceTest.testDeleteById.executor": "Run",
+    "JUnit.ProductServiceTest.testDeleteByIdException.executor": "Run",
+    "JUnit.ProductServiceTest.testFindAll.executor": "Run",
+    "JUnit.ProductServiceTest.testFindById.executor": "Run",
+    "JUnit.ProductServiceTest.testFindByIdException.executor": "Run",
+    "JUnit.ProductServiceTest.testSaveDuplicateException.executor": "Run",
+    "JUnit.ProductServiceTest.testSaveProduct_Success.executor": "Run",
+    "JUnit.ProductServiceTest.testSaveWhenProductAlreadyExist.executor": "Run",
+    "JUnit.ProductServiceTest.testUpdate.executor": "Run",
+    "JUnit.StockServiceTest.addStockQuantity.executor": "Run",
+    "JUnit.StockServiceTest.addStockQuantityException.executor": "Run",
+    "JUnit.StockServiceTest.executor": "Run",
+    "JUnit.StockServiceTest.findStockByProductAndSupplier.executor": "Run",
+    "JUnit.StockServiceTest.findStockByProductAndSupplierException.executor": "Run",
+    "JUnit.StockServiceTest.subStockQuantity.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "code.cleanup.on.save": "true",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
+    "git-widget-placeholder": "dev",
+    "kotlin-language-version-configured": "true",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "rearrange.code.on.save": "true",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "settings.editor.selected.configurable": "preferences.sourceCode.Java"
   }
-}</component>
+}]]></component>
   <component name="ReadonlyStatusHandler">
     <option name="SHOW_DIALOG" value="false" />
   </component>
   <component name="RecentsManager">
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
     <key name="MoveInnerDialog.RECENTS_KEY">
       <recent name="" />
       <recent name="com.example.supermarket.repo" />
     </key>
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="com.example.supermarket.service" />
+    </key>
   </component>
-  <component name="RunManager" selected="JUnit.ProductServiceTest">
-    <configuration name="ProductServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.StockServiceTest">
+    <configuration name="StockServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="supermarket" />
       <extension name="coverage">
         <pattern>
@@ -130,13 +145,13 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="com.example.supermarket.service" />
-      <option name="MAIN_CLASS_NAME" value="com.example.supermarket.service.ProductServiceTest" />
+      <option name="MAIN_CLASS_NAME" value="com.example.supermarket.service.StockServiceTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ProductServiceTest.testDeleteAll" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="StockServiceTest.addStockQuantity" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="supermarket" />
       <extension name="coverage">
         <pattern>
@@ -145,14 +160,14 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="com.example.supermarket.service" />
-      <option name="MAIN_CLASS_NAME" value="com.example.supermarket.service.ProductServiceTest" />
-      <option name="METHOD_NAME" value="testDeleteAll" />
+      <option name="MAIN_CLASS_NAME" value="com.example.supermarket.service.StockServiceTest" />
+      <option name="METHOD_NAME" value="addStockQuantity" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ProductServiceTest.testDeleteById" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="StockServiceTest.addStockQuantityException" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="supermarket" />
       <extension name="coverage">
         <pattern>
@@ -161,14 +176,14 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="com.example.supermarket.service" />
-      <option name="MAIN_CLASS_NAME" value="com.example.supermarket.service.ProductServiceTest" />
-      <option name="METHOD_NAME" value="testDeleteById" />
+      <option name="MAIN_CLASS_NAME" value="com.example.supermarket.service.StockServiceTest" />
+      <option name="METHOD_NAME" value="addStockQuantityException" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ProductServiceTest.testDeleteByIdException" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="StockServiceTest.findStockByProductAndSupplierException" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="supermarket" />
       <extension name="coverage">
         <pattern>
@@ -177,14 +192,14 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="com.example.supermarket.service" />
-      <option name="MAIN_CLASS_NAME" value="com.example.supermarket.service.ProductServiceTest" />
-      <option name="METHOD_NAME" value="testDeleteByIdException" />
+      <option name="MAIN_CLASS_NAME" value="com.example.supermarket.service.StockServiceTest" />
+      <option name="METHOD_NAME" value="findStockByProductAndSupplierException" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ProductServiceTest.testFindByIdException" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="StockServiceTest.subStockQuantity" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="supermarket" />
       <extension name="coverage">
         <pattern>
@@ -193,8 +208,8 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="com.example.supermarket.service" />
-      <option name="MAIN_CLASS_NAME" value="com.example.supermarket.service.ProductServiceTest" />
-      <option name="METHOD_NAME" value="testFindByIdException" />
+      <option name="MAIN_CLASS_NAME" value="com.example.supermarket.service.StockServiceTest" />
+      <option name="METHOD_NAME" value="subStockQuantity" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -213,11 +228,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.ProductServiceTest" />
-        <item itemvalue="JUnit.ProductServiceTest.testDeleteAll" />
-        <item itemvalue="JUnit.ProductServiceTest.testDeleteByIdException" />
-        <item itemvalue="JUnit.ProductServiceTest.testDeleteById" />
-        <item itemvalue="JUnit.ProductServiceTest.testFindByIdException" />
+        <item itemvalue="JUnit.StockServiceTest" />
+        <item itemvalue="JUnit.StockServiceTest.addStockQuantityException" />
+        <item itemvalue="JUnit.StockServiceTest.subStockQuantity" />
+        <item itemvalue="JUnit.StockServiceTest.addStockQuantity" />
+        <item itemvalue="JUnit.StockServiceTest.findStockByProductAndSupplierException" />
       </list>
     </recent_temporary>
   </component>
@@ -503,7 +518,15 @@
       <option name="project" value="LOCAL" />
       <updated>1743070007940</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="Add sub and add quantity method in StockController">
+      <option name="closed" value="true" />
+      <created>1743072976361</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1743072976361</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -518,7 +541,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Add javadoc to all the find by method" />
     <MESSAGE value="Add javadoc to all the delete method" />
     <MESSAGE value="Finish to add javadoc to all the method in ProductService" />
     <MESSAGE value="Add JsonRefenrence to correct the infinite loop" />
@@ -543,7 +565,8 @@
     <MESSAGE value="Delete StockController and StockService" />
     <MESSAGE value="Update deleteAll in ProductService" />
     <MESSAGE value="Add sub and add quantity method in StockService" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add sub and add quantity method in StockService" />
+    <MESSAGE value="Add sub and add quantity method in StockController" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add sub and add quantity method in StockController" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
