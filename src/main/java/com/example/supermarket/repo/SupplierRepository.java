@@ -18,4 +18,5 @@ public interface SupplierRepository extends JpaRepository<Supplier, Integer> {
     @Override
     @Nonnull
     Optional<Supplier> findById(@Nullable Integer integer);
+
 }

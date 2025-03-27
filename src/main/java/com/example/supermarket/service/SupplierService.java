@@ -18,6 +18,13 @@ public class SupplierService {
     @Autowired
     private SupplierRepository supplierRepo;
 
+    /**
+     * This method searches for all the supplier.
+     * Check if any supplier exists and return them.
+     * Otherwise, it throws and EntityNotFoundException
+     *
+     * @return The found suppliers
+     */
     public List<Supplier> findAll() {
         List<Supplier> suppliers = supplierRepo.findAll();
         if (suppliers.isEmpty()) {
@@ -81,6 +88,13 @@ public class SupplierService {
         supplierRepo.deleteById(id);
     }
 
+    /**
+     * Creates a new supplier if it does not already exist in the database.
+     * If a supplier with the same name is found, the existing supplier is returned instead.
+     *
+     * @param supplier The supplier to be created
+     * @return The new supplier or the supplier found
+     */
     public Supplier createNewSupplier(@Valid Supplier supplier) {
         Optional<Supplier> existingSupplier =
                 supplierRepo.findByName(supplier.getName());
@@ -98,26 +112,20 @@ public class SupplierService {
     }
 
     /**
-     * This method updates a supplier identified by its ID.
-     * Checks if the supplier exists, and if it doesn't, throws an
-     * EntityNotFoundException.
-     * Otherwise, it proceeds to update the supplier's attribute with the new
-     * information and saves the modified supplier.
+     * Updates an existing supplier identified by its ID.
+     * If the supplier is not found, an EntityNotFoundException is thrown.
      *
-     * @param id          The ID of the supplier to be updated.
-     * @param modSupplier The new supplier data to update with.
+     * @param id          The ID of the supplier to be updated
+     * @param modSupplier The supplier entity containing the updated details
      */
-
-   /* public void update(int id, Supplier modSupplier) {
-        Supplier supplier = supplierRepo.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("No supplier with id " + id));
-
-        supplier.setName(modSupplier.getName());
-        supplier.setEmail(modSupplier.getEmail());
-        supplier.setPhoneNumber(modSupplier.getPhoneNumber());
-        supplier.setStocks(modSupplier.getStocks());
-        supplier.setAddress(modSupplier.getAddress());
-        supplier.setProducts(modSupplier.getProducts());
-        supplierRepo.save(supplier);
-    }*/
+    public void updateSupplier(int id, Supplier modSupplier) {
+        Supplier existingSupplier =
+                supplierRepo.findById(id).orElseThrow(() -> new EntityNotFoundException("No " +
+                                                                                                "supplier found"));
+        existingSupplier.setName(modSupplier.getName());
+        existingSupplier.setAddress(modSupplier.getAddress());
+        existingSupplier.setEmail(modSupplier.getEmail());
+        existingSupplier.setPhoneNumber(modSupplier.getPhoneNumber());
+        supplierRepo.save(existingSupplier);
+    }
 }

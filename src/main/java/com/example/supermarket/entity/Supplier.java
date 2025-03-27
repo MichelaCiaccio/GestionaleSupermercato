@@ -29,14 +29,4 @@ public class Supplier {
 
     @NotNull(message = "The supplier email is required")
     private String email;
-
-    // @ManyToMany(mappedBy = "suppliers", fetch = FetchType.LAZY)
-    // @Nullable
-    //private List<Product> products;
-
-    //@OneToMany(mappedBy = "supplier", cascade = CascadeType.REMOVE, orphanRemoval = true)
-    //@NotNull
-    //private List<Stock> stocks;
-
-
 }

@@ -30,17 +30,6 @@ public class Product {
     @JoinColumn(name = "category_id")
     private Category category;
 
-    /*@OneToOne(mappedBy = "product", orphanRemoval = true)
-    @NotNull
-    @Cascade(value = CascadeType.ALL)
-    private Stock stock;*/
-    /*@ManyToMany
-    @JoinTable(name = "product_supplier", joinColumns = @JoinColumn(name = "product_id"),
-            inverseJoinColumns = @JoinColumn(name = "supplier_id"))
-    @Cascade(CascadeType.PERSIST)
-    @NotNull
-    private List<Supplier> suppliers;*/
-
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
     @NotNull
     private List<Stock> stocks;
