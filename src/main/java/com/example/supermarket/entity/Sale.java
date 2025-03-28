@@ -2,6 +2,7 @@ package com.example.supermarket.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.PastOrPresent;
 import lombok.Data;
 
 import java.time.LocalDateTime;
@@ -23,6 +24,7 @@ public class Sale {
     private double discountPrice;
 
     @NotNull
+    @PastOrPresent
     private LocalDateTime saleDate;
 
     @OneToMany(mappedBy = "sale")
