@@ -34,4 +34,5 @@ public class Product {
     @NotNull
     private List<Stock> stocks;
 
+
 }
