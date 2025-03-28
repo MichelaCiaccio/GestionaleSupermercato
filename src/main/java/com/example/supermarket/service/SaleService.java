@@ -84,7 +84,12 @@ public class SaleService {
         return sales;
     }
 
-    public void createNewSupplier(Sale sale) {
+    /**
+     * Creates a new sale and automatically generates an associated receipt.
+     *
+     * @param sale The new sale
+     */
+    public void createNewSale(Sale sale) {
         Sale newSale = saleRepo.save(sale);
         receiptService.createNewReceipt(newSale);
     }
