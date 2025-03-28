@@ -19,6 +19,9 @@ public class SaleService {
     @Autowired
     private SaleRepository saleRepo;
 
+    @Autowired
+    private ReceiptService receiptService;
+
     /**
      * This method searches for all the sales, organizes them into pagination of 20 elements,
      * and sorts them according
@@ -65,6 +68,14 @@ public class SaleService {
         return sales;
     }
 
+    /**
+     * This method searches for sales that include a specific product.
+     * If no sales are found, throw an EntityNotFoundException.
+     * Otherwise, a list of found sales is returned
+     *
+     * @param productName The name of the product
+     * @return The sales found
+     */
     public List<Sale> findByProduct(String productName) {
         List<Sale> sales = saleRepo.findByProductSales_Product_Name(productName);
         if (sales.isEmpty()) {
@@ -72,5 +83,11 @@ public class SaleService {
         }
         return sales;
     }
+
+    public void createNewSupplier(Sale sale) {
+        Sale newSale = saleRepo.save(sale);
+        receiptService.createNewReceipt(newSale);
+    }
+
 
 }
