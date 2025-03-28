@@ -1,5 +1,6 @@
 package com.example.supermarket.entity;
 
+import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PastOrPresent;
@@ -30,15 +31,14 @@ public class Sale {
     @OneToMany(mappedBy = "sale")
     private List<ProductSale> productSales;
 
-    @OneToOne(mappedBy = "sale")
-    private Receipt receipt;
-
     @ManyToOne
     @JoinColumn(name = "discount_id")
+    @Nullable
     private Discount discount;
 
     @ManyToOne
     @JoinColumn(name = "deal_id")
+    @Nullable
     private Deal deal;
 
 }

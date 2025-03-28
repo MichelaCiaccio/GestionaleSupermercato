@@ -65,5 +65,12 @@ public class SaleService {
         return sales;
     }
 
+    public List<Sale> findByProduct(String productName) {
+        List<Sale> sales = saleRepo.findByProductSales_Product_Name(productName);
+        if (sales.isEmpty()) {
+            throw new EntityNotFoundException("There no sales for product " + productName);
+        }
+        return sales;
+    }
 
 }
