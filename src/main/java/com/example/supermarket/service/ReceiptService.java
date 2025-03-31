@@ -1,9 +1,16 @@
 package com.example.supermarket.service;
 
+import com.example.supermarket.DTO.Mapper.ReceiptMapper;
+import com.example.supermarket.DTO.ReceiptDTO;
 import com.example.supermarket.entity.Receipt;
 import com.example.supermarket.entity.Sale;
 import com.example.supermarket.repo.ReceiptRepository;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.nio.charset.StandardCharsets;
@@ -15,6 +22,9 @@ public class ReceiptService {
 
     @Autowired
     private ReceiptRepository receiptRepository;
+
+    @Autowired
+    private ReceiptMapper receiptMapper;
 
     /**
      * Creates a new receipt associated with the given sale and saves it.
@@ -59,6 +69,23 @@ public class ReceiptService {
         }
 
         return hexString.toString();
+    }
+
+
+    public Page<ReceiptDTO> findAllReceiptSorted(Integer page, String sortDirection) {
+        page = page == null ? 0 : page;
+
+        sortDirection = sortDirection == null || sortDirection.isBlank() ? "ASC" : sortDirection;
+
+
+        Sort.Direction direction = Sort.Direction.fromString(sortDirection.toUpperCase());
+        Pageable pageable = PageRequest.of(page, 20, Sort.by(direction, "sale.saleDate"));
+        Page<Receipt> receipts = receiptRepository.findAll(pageable);
+        if (receipts.isEmpty()) {
+            throw new EntityNotFoundException("There are no receipts");
+        }
+
+        return receipts.map(receiptMapper::toReceiptDTO);
     }
 
 }
