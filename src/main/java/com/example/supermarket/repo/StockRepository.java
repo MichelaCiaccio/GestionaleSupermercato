@@ -11,5 +11,5 @@ import java.util.Optional;
 @Transactional
 public interface StockRepository extends JpaRepository<Stock, Integer> {
 
-    Optional<Stock> findByProduct_NameAndSupplier_Name(String productName, String supplierName);
+    Optional<Stock> findByProduct_Id(int id);
 }

@@ -32,36 +32,34 @@ public class StockService {
 
     /**
      * This method increases the quantity in a specified stock.
-     * It searches for a stock with a specified product and supplier.
+     * It searches for a stock with a specified id.
      * Check if the stock exists if it doesn't throw an EntityNotFoundException.
      * If it does, set the new quantity
      *
-     * @param productName  The name of the product in the stock
-     * @param supplierName The name of the supplier in the stock
-     * @param modQuantity  The quantity to add to the existing stock
+     * @param id          The id of the product in the stock
+     * @param modQuantity The quantity to add to the existing stock
      */
-    public void addStockQuantity(String productName, String supplierName, int modQuantity) {
-        Stock stock = stockRepo.findByProduct_NameAndSupplier_Name(productName, supplierName)
+    public void addStockQuantity(int id, int modQuantity) {
+        Stock stock = stockRepo.findByProduct_Id(id)
                 .orElseThrow(() -> new EntityNotFoundException("There no stock for " +
-                                                                       "product " + productName + " supplied by " + supplierName));
+                                                                       "product with id " + id));
         stock.setQuantity(modQuantity + stock.getQuantity());
         stockRepo.save(stock);
     }
 
     /**
      * This method decreases the quantity in a specified stock.
-     * It searches for a stock with a specified product and supplier.
+     * It searches for a stock with a specified id.
      * Check if the stock exists if it doesn't throw an EntityNotFoundException.
      * If it does, set the new quantity
      *
-     * @param productName  The name of the product in the stock
-     * @param supplierName The name of the supplier in the stock
-     * @param modQuantity  The quantity to add to the existing stock
+     * @param id          The id of the product in the stock
+     * @param modQuantity The quantity to add to the existing stock
      */
-    public void subStockQuantity(String productName, String supplierName, int modQuantity) {
-        Stock stock = stockRepo.findByProduct_NameAndSupplier_Name(productName, supplierName)
+    public void subStockQuantity(int id, int modQuantity) {
+        Stock stock = stockRepo.findByProduct_Id(id)
                 .orElseThrow(() -> new EntityNotFoundException("There no stock for " +
-                                                                       "product " + productName + " supplied by " + supplierName));
+                                                                       "product  with id " + id));
         stock.setQuantity(stock.getQuantity() - modQuantity);
         stockRepo.save(stock);
     }
