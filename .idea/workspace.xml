@@ -7,14 +7,8 @@
     <option name="rewriteBookmarkType" value="true" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7c4caa73-20ab-4765-9784-19538829fb77" name="Changes" comment="Improve add method in SaleService">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/DTO/Mapper/ProductMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/DTO/Mapper/SaleMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/DTO/ProductSaleDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/DTO/ProductSummaryDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/DTO/SaleDTO.java" afterDir="false" />
+    <list default="true" id="7c4caa73-20ab-4765-9784-19538829fb77" name="Changes" comment="Correct subQuantity and addQuantity in StockService">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/controller/SaleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/controller/SaleController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/service/SaleService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/service/SaleService.java" afterDir="false" />
     </list>
     <list id="6499c595-af5e-4d71-8893-8354dc300f9f" name="No commit" comment="" />
@@ -261,30 +255,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1741276131044</updated>
-    </task>
-    <task id="LOCAL-00002" summary="Update ProductRepository and StockRepository">
-      <option name="closed" value="true" />
-      <created>1742311282634</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1742311282634</updated>
-    </task>
-    <task id="LOCAL-00003" summary="Improve ProductRepository">
-      <option name="closed" value="true" />
-      <created>1742311964868</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1742311964868</updated>
-    </task>
-    <task id="LOCAL-00004" summary="Updated findAll method in ProductService">
-      <option name="closed" value="true" />
-      <created>1742314589579</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1742314589579</updated>
     </task>
     <task id="LOCAL-00005" summary="Updated findAll method in ProductController">
       <option name="closed" value="true" />
@@ -654,7 +624,31 @@
       <option name="project" value="LOCAL" />
       <updated>1743416650546</updated>
     </task>
-    <option name="localTasksCounter" value="51" />
+    <task id="LOCAL-00051" summary="Add Dto logic for Sale findAll">
+      <option name="closed" value="true" />
+      <created>1743417915712</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1743417915712</updated>
+    </task>
+    <task id="LOCAL-00052" summary="Correct subQuantity and addQuantity in StockService">
+      <option name="closed" value="true" />
+      <created>1743419310418</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1743419310418</updated>
+    </task>
+    <task id="LOCAL-00053" summary="Correct subQuantity and addQuantity in StockService">
+      <option name="closed" value="true" />
+      <created>1743419370016</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1743419370017</updated>
+    </task>
+    <option name="localTasksCounter" value="54" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -669,8 +663,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Add testSaveWhenProductAlreadyExist" />
-    <MESSAGE value="Correct save method Javadoc in ProductService" />
     <MESSAGE value="Add testUpdateProduct" />
     <MESSAGE value="Add findById and findByCategoryName in ProductServiceTest" />
     <MESSAGE value="Complete ProductServiceTest" />
@@ -694,7 +686,9 @@
     <MESSAGE value="Add findBySaleDate test in SaleServiceTest" />
     <MESSAGE value="Add findByProduct test in SaleServiceTest" />
     <MESSAGE value="Improve add method in SaleService" />
-    <option name="LAST_COMMIT_MESSAGE" value="Improve add method in SaleService" />
+    <MESSAGE value="Add Dto logic for Sale findAll" />
+    <MESSAGE value="Correct subQuantity and addQuantity in StockService" />
+    <option name="LAST_COMMIT_MESSAGE" value="Correct subQuantity and addQuantity in StockService" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

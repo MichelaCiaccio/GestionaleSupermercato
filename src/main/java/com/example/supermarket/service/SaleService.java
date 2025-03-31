@@ -7,6 +7,7 @@ import com.example.supermarket.entity.Sale;
 import com.example.supermarket.repo.ReceiptRepository;
 import com.example.supermarket.repo.SaleRepository;
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -32,6 +33,9 @@ public class SaleService {
 
     @Autowired
     private SaleMapper saleMapper;
+
+    @Autowired
+    private StockService stockServ;
 
     /**
      * This method searches for all the sales, organizes them into pagination of 20 elements,
@@ -102,12 +106,15 @@ public class SaleService {
      *
      * @param sale The new sale
      */
+    @Transactional
     public void createNewSale(Sale sale) {
         List<ProductSale> productSales = new ArrayList<>();
         for (ProductSale productSale : sale.getProductSales()) {
             productSale.setProduct(productSale.getProduct());
             productSale.setSale(sale);
+            productSale.setQuantity(productSale.getQuantity());
             productSales.add(productSale);
+            stockServ.subStockQuantity(productSale.getProduct().getId(), productSale.getQuantity());
         }
         sale.setProductSales(productSales);
         Sale newSale = saleRepo.save(sale);
