@@ -79,12 +79,11 @@ class StockServiceTest {
         int quantity = 10;
 
         // When
-        when(stockRepo.findByProduct_NameAndSupplier_Name(product.getName(), supplier.getName())).thenReturn(Optional.of(stock));
-        stockServ.addStockQuantity(product.getName(), supplier.getName(), quantity);
+        when(stockRepo.findByProduct_Id(product.getId())).thenReturn(Optional.of(stock));
+        stockServ.addStockQuantity(product.getId(), quantity);
 
         // Verify
-        verify(stockRepo, times(1)).findByProduct_NameAndSupplier_Name(product.getName(),
-                                                                       supplier.getName());
+        verify(stockRepo, times(1)).findByProduct_Id(product.getId());
         verify(stockRepo, times(1)).save(stock);
         assertEquals(20, stock.getQuantity());
 
@@ -95,12 +94,12 @@ class StockServiceTest {
     void addStockQuantityException() {
 
         // When
-        when(stockRepo.findByProduct_NameAndSupplier_Name(anyString(), anyString())).thenThrow(new EntityNotFoundException());
+        when(stockRepo.findByProduct_Id(anyInt())).thenThrow(new EntityNotFoundException());
 
         // Verify
-        verify(stockRepo, times(0)).findByProduct_NameAndSupplier_Name(anyString(), anyString());
+        verify(stockRepo, times(0)).findByProduct_Id(anyInt());
         assertThrows(EntityNotFoundException.class,
-                     () -> stockRepo.findByProduct_NameAndSupplier_Name(anyString(), anyString()));
+                     () -> stockRepo.findByProduct_Id(anyInt()));
     }
 
     @Test
@@ -117,12 +116,11 @@ class StockServiceTest {
         int quantity = 10;
 
         // When
-        when(stockRepo.findByProduct_NameAndSupplier_Name(product.getName(), supplier.getName())).thenReturn(Optional.of(stock));
-        stockServ.subStockQuantity(product.getName(), supplier.getName(), quantity);
+        when(stockRepo.findByProduct_Id(product.getId())).thenReturn(Optional.of(stock));
+        stockServ.subStockQuantity(product.getId(), quantity);
 
         // Verify
-        verify(stockRepo, times(1)).findByProduct_NameAndSupplier_Name(product.getName(),
-                                                                       supplier.getName());
+        verify(stockRepo, times(1)).findByProduct_Id(product.getId());
         verify(stockRepo, times(1)).save(stock);
         assertEquals(0, stock.getQuantity());
     }
@@ -131,12 +129,12 @@ class StockServiceTest {
     void subStockQuantityException() {
 
         // When
-        when(stockRepo.findByProduct_NameAndSupplier_Name(anyString(), anyString())).thenThrow(new EntityNotFoundException());
+        when(stockRepo.findByProduct_Id(anyInt())).thenThrow(new EntityNotFoundException());
 
         // Verify
-        verify(stockRepo, times(0)).findByProduct_NameAndSupplier_Name(anyString(), anyString());
+        verify(stockRepo, times(0)).findByProduct_Id(anyInt());
         assertThrows(EntityNotFoundException.class,
-                     () -> stockRepo.findByProduct_NameAndSupplier_Name(anyString(), anyString()));
+                     () -> stockRepo.findByProduct_Id(anyInt()));
     }
 
 

@@ -7,9 +7,10 @@
     <option name="rewriteBookmarkType" value="true" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7c4caa73-20ab-4765-9784-19538829fb77" name="Changes" comment="add stock logic to createNewSale">
+    <list default="true" id="7c4caa73-20ab-4765-9784-19538829fb77" name="Changes" comment="add Javadoc for createNewSale in SaleService">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/service/SaleService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/service/SaleService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/controller/StockController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/controller/StockController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/supermarket/service/StockServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/example/supermarket/service/StockServiceTest.java" afterDir="false" />
     </list>
     <list id="6499c595-af5e-4d71-8893-8354dc300f9f" name="No commit" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -144,7 +145,7 @@
       <recent name="com.example.supermarket.service" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.SaleServiceTest.createNewSaleException">
+  <component name="RunManager" selected="JUnit.StockServiceTest">
     <configuration name="SaleServiceTest.createNewSale" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="supermarket" />
       <extension name="coverage">
@@ -177,22 +178,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="SaleServiceTest.findByProduct" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="supermarket" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.example.supermarket.service.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.example.supermarket.service" />
-      <option name="MAIN_CLASS_NAME" value="com.example.supermarket.service.SaleServiceTest" />
-      <option name="METHOD_NAME" value="findByProduct" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="SaleServiceTest.findByProductException" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="supermarket" />
       <extension name="coverage">
@@ -209,7 +194,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="SaleServiceTest.findBySaleDateException" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="StockServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="supermarket" />
       <extension name="coverage">
         <pattern>
@@ -218,8 +203,23 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="com.example.supermarket.service" />
-      <option name="MAIN_CLASS_NAME" value="com.example.supermarket.service.SaleServiceTest" />
-      <option name="METHOD_NAME" value="findBySaleDateException" />
+      <option name="MAIN_CLASS_NAME" value="com.example.supermarket.service.StockServiceTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="StockServiceTest.addStockQuantity" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="supermarket" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.supermarket.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.example.supermarket.service" />
+      <option name="MAIN_CLASS_NAME" value="com.example.supermarket.service.StockServiceTest" />
+      <option name="METHOD_NAME" value="addStockQuantity" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -238,11 +238,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.StockServiceTest" />
+        <item itemvalue="JUnit.StockServiceTest.addStockQuantity" />
         <item itemvalue="JUnit.SaleServiceTest.createNewSaleException" />
         <item itemvalue="JUnit.SaleServiceTest.createNewSale" />
         <item itemvalue="JUnit.SaleServiceTest.findByProductException" />
-        <item itemvalue="JUnit.SaleServiceTest.findByProduct" />
-        <item itemvalue="JUnit.SaleServiceTest.findBySaleDateException" />
       </list>
     </recent_temporary>
   </component>
@@ -255,14 +255,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1741276131044</updated>
-    </task>
-    <task id="LOCAL-00006" summary="Star adding sort logic to findAll">
-      <option name="closed" value="true" />
-      <created>1742317415608</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1742317415608</updated>
     </task>
     <task id="LOCAL-00007" summary="complete findAllProductsSorted method in ProductService">
       <option name="closed" value="true" />
@@ -648,7 +640,15 @@
       <option name="project" value="LOCAL" />
       <updated>1743419602466</updated>
     </task>
-    <option name="localTasksCounter" value="55" />
+    <task id="LOCAL-00055" summary="add Javadoc for createNewSale in SaleService">
+      <option name="closed" value="true" />
+      <created>1743424025991</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1743424025991</updated>
+    </task>
+    <option name="localTasksCounter" value="56" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -663,7 +663,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Add findById and findByCategoryName in ProductServiceTest" />
     <MESSAGE value="Complete ProductServiceTest" />
     <MESSAGE value="Improve ProductServiceTest" />
     <MESSAGE value="Add getByExpirationDate in ProductController" />
@@ -688,7 +687,8 @@
     <MESSAGE value="Add Dto logic for Sale findAll" />
     <MESSAGE value="Correct subQuantity and addQuantity in StockService" />
     <MESSAGE value="add stock logic to createNewSale" />
-    <option name="LAST_COMMIT_MESSAGE" value="add stock logic to createNewSale" />
+    <MESSAGE value="add Javadoc for createNewSale in SaleService" />
+    <option name="LAST_COMMIT_MESSAGE" value="add Javadoc for createNewSale in SaleService" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

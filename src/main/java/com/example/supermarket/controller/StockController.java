@@ -28,18 +28,16 @@ public class StockController {
     }
 
     @PutMapping("/addQuantity")
-    public ResponseEntity<String> addQuantity(@RequestParam String productName,
-                                              @RequestParam String supplierName,
+    public ResponseEntity<String> addQuantity(@RequestParam int productId,
                                               @RequestParam int quantity) {
-        stockServ.addStockQuantity(productName, supplierName, quantity);
+        stockServ.addStockQuantity(productId, quantity);
         return ResponseEntity.status(HttpStatus.ACCEPTED).body("Quantity added successfully");
     }
 
     @PutMapping("/subQuantity")
-    public ResponseEntity<String> subQuantity(@RequestParam String productName,
-                                              @RequestParam String supplierName,
+    public ResponseEntity<String> subQuantity(@RequestParam int productId,
                                               @RequestParam int quantity) {
-        stockServ.subStockQuantity(productName, supplierName, quantity);
+        stockServ.subStockQuantity(productId, quantity);
         return ResponseEntity.status(HttpStatus.ACCEPTED).body("Quantity reduced successfully");
     }
 }
