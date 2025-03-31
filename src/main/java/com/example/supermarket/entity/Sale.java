@@ -18,21 +18,21 @@ import java.util.List;
 public class Sale {
 
     @Id
-    @NotNull
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
     @NotNull
     private double totalPrice;
 
-    
+
     private double discountPrice;
 
     @NotNull
     @PastOrPresent
     private LocalDateTime saleDate;
 
-    @OneToMany(mappedBy = "sale")
+    @OneToMany(mappedBy = "sale", cascade = CascadeType.ALL, orphanRemoval = true)
+    @NotNull
     private List<ProductSale> productSales;
 
     @ManyToOne

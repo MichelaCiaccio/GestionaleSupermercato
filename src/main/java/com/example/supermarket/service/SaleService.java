@@ -1,6 +1,8 @@
 package com.example.supermarket.service;
 
+import com.example.supermarket.entity.ProductSale;
 import com.example.supermarket.entity.Sale;
+import com.example.supermarket.repo.ReceiptRepository;
 import com.example.supermarket.repo.SaleRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +13,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -18,6 +21,9 @@ public class SaleService {
 
     @Autowired
     private SaleRepository saleRepo;
+
+    @Autowired
+    private ReceiptRepository receiptRepo;
 
     @Autowired
     private ReceiptService receiptService;
@@ -36,14 +42,16 @@ public class SaleService {
      *                      Defaults to "ASC" if null or blank.
      * @return A Page containing the list of sales.
      */
-    public Page<Sale> findAllSalesSorted(Integer page, String sortDirection) {
+    public Page<Sale> findAllSalesSorted(Integer page, String sortDirection, String dataType) {
         page = page == null ? 0 : page;
 
         sortDirection = sortDirection == null || sortDirection.isBlank() ? "ASC" : sortDirection;
 
+        dataType = dataType == null || dataType.isBlank() ? "saleDate" : dataType;
+
 
         Sort.Direction direction = Sort.Direction.fromString(sortDirection.toUpperCase());
-        Pageable pageable = PageRequest.of(page, 20, Sort.by(direction));
+        Pageable pageable = PageRequest.of(page, 20, Sort.by(direction, dataType));
         Page<Sale> sales = saleRepo.findAll(pageable);
         if (sales.isEmpty()) {
             throw new EntityNotFoundException("There are no registered sales");
@@ -90,7 +98,28 @@ public class SaleService {
      * @param sale The new sale
      */
     public void createNewSale(Sale sale) {
+        List<ProductSale> productSales = new ArrayList<>();
+        for (ProductSale productSale : sale.getProductSales()) {
+            productSale.setProduct(productSale.getProduct());
+            productSale.setSale(sale);
+            productSales.add(productSale);
+        }
+        sale.setProductSales(productSales);
         Sale newSale = saleRepo.save(sale);
         receiptService.createNewReceipt(newSale);
+    }
+
+    /**
+     * This method deletes all the sales.
+     * Check if any sale exists if it doesn't throw an EntityNotFoundException.
+     * Otherwise, proceed to delete all the sales.
+     */
+    public void deleteAll() {
+        List<Sale> sales = saleRepo.findAll();
+        if (sales.isEmpty()) {
+            throw new EntityNotFoundException("There are no sales to delete");
+        }
+        receiptRepo.deleteAll();
+        saleRepo.deleteAll();
     }
 }
