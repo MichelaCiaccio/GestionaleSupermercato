@@ -102,7 +102,12 @@ public class SaleService {
     }
 
     /**
-     * Creates a new sale and automatically generates an associated receipt.
+     * Creates a new sale, updates stock quantities, and generates a receipt for the sale.
+     * This method processes the product sales associated with the given sale,
+     * setting the quantity, associating the sale and product, and updating the
+     * stock quantities by subtracting the quantities of the products sold.
+     * Once the product sales are processed, the sale is saved to the repository
+     * and a receipt is generated for the sale.
      *
      * @param sale The new sale
      */

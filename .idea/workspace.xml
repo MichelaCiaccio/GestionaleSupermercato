@@ -7,7 +7,7 @@
     <option name="rewriteBookmarkType" value="true" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7c4caa73-20ab-4765-9784-19538829fb77" name="Changes" comment="Correct subQuantity and addQuantity in StockService">
+    <list default="true" id="7c4caa73-20ab-4765-9784-19538829fb77" name="Changes" comment="add stock logic to createNewSale">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/service/SaleService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/service/SaleService.java" afterDir="false" />
     </list>
@@ -255,14 +255,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1741276131044</updated>
-    </task>
-    <task id="LOCAL-00005" summary="Updated findAll method in ProductController">
-      <option name="closed" value="true" />
-      <created>1742315442112</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1742315442112</updated>
     </task>
     <task id="LOCAL-00006" summary="Star adding sort logic to findAll">
       <option name="closed" value="true" />
@@ -648,7 +640,15 @@
       <option name="project" value="LOCAL" />
       <updated>1743419370017</updated>
     </task>
-    <option name="localTasksCounter" value="54" />
+    <task id="LOCAL-00054" summary="add stock logic to createNewSale">
+      <option name="closed" value="true" />
+      <created>1743419602466</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1743419602466</updated>
+    </task>
+    <option name="localTasksCounter" value="55" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -663,7 +663,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Add testUpdateProduct" />
     <MESSAGE value="Add findById and findByCategoryName in ProductServiceTest" />
     <MESSAGE value="Complete ProductServiceTest" />
     <MESSAGE value="Improve ProductServiceTest" />
@@ -688,7 +687,8 @@
     <MESSAGE value="Improve add method in SaleService" />
     <MESSAGE value="Add Dto logic for Sale findAll" />
     <MESSAGE value="Correct subQuantity and addQuantity in StockService" />
-    <option name="LAST_COMMIT_MESSAGE" value="Correct subQuantity and addQuantity in StockService" />
+    <MESSAGE value="add stock logic to createNewSale" />
+    <option name="LAST_COMMIT_MESSAGE" value="add stock logic to createNewSale" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
