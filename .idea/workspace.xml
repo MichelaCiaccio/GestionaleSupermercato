@@ -7,7 +7,7 @@
     <option name="rewriteBookmarkType" value="true" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7c4caa73-20ab-4765-9784-19538829fb77" name="Changes" comment="Add findBySaleDate test in SaleServiceTest">
+    <list default="true" id="7c4caa73-20ab-4765-9784-19538829fb77" name="Changes" comment="Add findByProduct test in SaleServiceTest">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/com/example/supermarket/service/SaleServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/example/supermarket/service/SaleServiceTest.java" afterDir="false" />
     </list>
@@ -97,8 +97,11 @@
     "JUnit.ProductServiceTest.testSaveProduct_Success.executor": "Run",
     "JUnit.ProductServiceTest.testSaveWhenProductAlreadyExist.executor": "Run",
     "JUnit.ProductServiceTest.testUpdate.executor": "Run",
+    "JUnit.SaleServiceTest.createNewSale.executor": "Run",
+    "JUnit.SaleServiceTest.createNewSaleException.executor": "Run",
     "JUnit.SaleServiceTest.findAllSalesSorted.executor": "Run",
     "JUnit.SaleServiceTest.findByProduct.executor": "Run",
+    "JUnit.SaleServiceTest.findByProductException.executor": "Run",
     "JUnit.SaleServiceTest.findBySaleDate.executor": "Run",
     "JUnit.SaleServiceTest.findBySaleDateException.executor": "Run",
     "JUnit.StockServiceTest.addStockQuantity.executor": "Run",
@@ -138,8 +141,8 @@
       <recent name="com.example.supermarket.service" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.SaleServiceTest.findByProductException">
-    <configuration name="SaleServiceTest.findAllSalesSorted" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.SaleServiceTest.createNewSaleException">
+    <configuration name="SaleServiceTest.createNewSale" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="supermarket" />
       <extension name="coverage">
         <pattern>
@@ -149,7 +152,23 @@
       </extension>
       <option name="PACKAGE_NAME" value="com.example.supermarket.service" />
       <option name="MAIN_CLASS_NAME" value="com.example.supermarket.service.SaleServiceTest" />
-      <option name="METHOD_NAME" value="findAllSalesSorted" />
+      <option name="METHOD_NAME" value="createNewSale" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SaleServiceTest.createNewSaleException" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="supermarket" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.supermarket.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.example.supermarket.service" />
+      <option name="MAIN_CLASS_NAME" value="com.example.supermarket.service.SaleServiceTest" />
+      <option name="METHOD_NAME" value="createNewSaleException" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -187,22 +206,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="SaleServiceTest.findBySaleDate" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="supermarket" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.example.supermarket.service.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.example.supermarket.service" />
-      <option name="MAIN_CLASS_NAME" value="com.example.supermarket.service.SaleServiceTest" />
-      <option name="METHOD_NAME" value="findBySaleDate" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="SaleServiceTest.findBySaleDateException" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="supermarket" />
       <extension name="coverage">
@@ -232,11 +235,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.SaleServiceTest.createNewSaleException" />
+        <item itemvalue="JUnit.SaleServiceTest.createNewSale" />
         <item itemvalue="JUnit.SaleServiceTest.findByProductException" />
         <item itemvalue="JUnit.SaleServiceTest.findByProduct" />
         <item itemvalue="JUnit.SaleServiceTest.findBySaleDateException" />
-        <item itemvalue="JUnit.SaleServiceTest.findBySaleDate" />
-        <item itemvalue="JUnit.SaleServiceTest.findAllSalesSorted" />
       </list>
     </recent_temporary>
   </component>
@@ -626,7 +629,15 @@
       <option name="project" value="LOCAL" />
       <updated>1743407487832</updated>
     </task>
-    <option name="localTasksCounter" value="48" />
+    <task id="LOCAL-00048" summary="Add findByProduct test in SaleServiceTest">
+      <option name="closed" value="true" />
+      <created>1743407786608</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1743407786608</updated>
+    </task>
+    <option name="localTasksCounter" value="49" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -641,7 +652,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Change Stock, Product, Supplier entity and update save method in ProductService" />
     <MESSAGE value="Add testSaveSuccessfully" />
     <MESSAGE value="Add testSaveWhenProductAlreadyExist" />
     <MESSAGE value="Correct save method Javadoc in ProductService" />
@@ -666,7 +676,8 @@
     <MESSAGE value="Add findAll test in SaleServiceTest" />
     <MESSAGE value="Add findAllException test in SaleServiceTest" />
     <MESSAGE value="Add findBySaleDate test in SaleServiceTest" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add findBySaleDate test in SaleServiceTest" />
+    <MESSAGE value="Add findByProduct test in SaleServiceTest" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add findByProduct test in SaleServiceTest" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

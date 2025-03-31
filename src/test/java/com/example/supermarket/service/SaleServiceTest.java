@@ -6,6 +6,7 @@ import com.example.supermarket.repo.SaleRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
@@ -20,6 +21,12 @@ class SaleServiceTest {
 
     @Mock
     private SaleRepository saleRepo;
+
+    @Mock
+    private ReceiptService receiptServ;
+
+    @InjectMocks
+    private SaleService saleServ;
 
 
     @Test
@@ -136,5 +143,37 @@ class SaleServiceTest {
 
     @Test
     void createNewSale() {
+
+        // Given
+        ProductSale productSale = new ProductSale();
+        Sale sale = new Sale(1, 100, 100, LocalDateTime.now(), List.of(productSale),
+                             null,
+                             null);
+
+
+        // When
+        when(saleRepo.save(sale)).thenReturn(sale);
+        saleServ.createNewSale(sale);
+
+        // Verify
+        verify(saleRepo, times(1)).save(sale);
+        verify(receiptServ, times(1)).createNewReceipt(sale);
+    }
+
+    @Test
+    void createNewSaleException() {
+
+        // Given
+        ProductSale productSale = new ProductSale();
+        Sale sale = new Sale(1, 100, 100, LocalDateTime.now(), List.of(productSale),
+                             null,
+                             null);
+
+        // When
+        when(saleRepo.save(sale)).thenThrow(new RuntimeException("Errore durante il salvataggio"));
+
+        // Verify
+        verify(receiptServ, never()).createNewReceipt(any());
+        assertThrows(RuntimeException.class, () -> saleServ.createNewSale(sale));
     }
 }
