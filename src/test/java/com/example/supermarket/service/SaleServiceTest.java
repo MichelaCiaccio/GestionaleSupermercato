@@ -3,6 +3,7 @@ package com.example.supermarket.service;
 import com.example.supermarket.entity.ProductSale;
 import com.example.supermarket.entity.Sale;
 import com.example.supermarket.repo.SaleRepository;
+import jakarta.persistence.EntityNotFoundException;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
@@ -11,8 +12,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
@@ -43,6 +43,17 @@ class SaleServiceTest {
         assertEquals(ret, sales);
         assertNotNull(ret);
         assertEquals(2, ret.size());
+    }
+
+    @Test
+    void findAllException() {
+
+        // When
+        when(saleRepo.findAll()).thenThrow(new EntityNotFoundException());
+
+        // Verify
+        verify(saleRepo, times(0)).findAll();
+        assertThrows(EntityNotFoundException.class, () -> saleRepo.findAll());
     }
 
     @Test
