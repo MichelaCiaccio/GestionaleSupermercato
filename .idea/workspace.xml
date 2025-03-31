@@ -7,12 +7,13 @@
     <option name="rewriteBookmarkType" value="true" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7c4caa73-20ab-4765-9784-19538829fb77" name="Changes" comment="Update StockController and StockServiceTest">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/DTO/Mapper/ReceiptMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/DTO/ReceiptDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/controller/ReceiptController.java" afterDir="false" />
+    <list default="true" id="7c4caa73-20ab-4765-9784-19538829fb77" name="Changes" comment="Add ReceiptDTO and correct findAll method in ReceiptService">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/service/ReceiptService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/service/ReceiptService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/entity/Deal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/entity/Deal.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/entity/Discount.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/entity/Discount.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/entity/ProductSale.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/entity/ProductSale.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/service/SaleService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/service/SaleService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/supermarket/service/SaleServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/example/supermarket/service/SaleServiceTest.java" afterDir="false" />
     </list>
     <list id="6499c595-af5e-4d71-8893-8354dc300f9f" name="No commit" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -100,8 +101,11 @@
     "JUnit.ProductServiceTest.testSaveProduct_Success.executor": "Run",
     "JUnit.ProductServiceTest.testSaveWhenProductAlreadyExist.executor": "Run",
     "JUnit.ProductServiceTest.testUpdate.executor": "Run",
+    "JUnit.SaleServiceTest,findAllSalesSorted and 7 more.executor": "Run",
     "JUnit.SaleServiceTest.createNewSale.executor": "Run",
+    "JUnit.SaleServiceTest.createNewSaleEntityNotFoundException.executor": "Run",
     "JUnit.SaleServiceTest.createNewSaleException.executor": "Run",
+    "JUnit.SaleServiceTest.executor": "Run",
     "JUnit.SaleServiceTest.findAllSalesSorted.executor": "Run",
     "JUnit.SaleServiceTest.findByProduct.executor": "Run",
     "JUnit.SaleServiceTest.findByProductException.executor": "Run",
@@ -147,7 +151,22 @@
       <recent name="com.example.supermarket.service" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.StockServiceTest">
+  <component name="RunManager" selected="JUnit.SaleServiceTest.createNewSaleEntityNotFoundException">
+    <configuration name="SaleServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="supermarket" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.supermarket.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.example.supermarket.service" />
+      <option name="MAIN_CLASS_NAME" value="com.example.supermarket.service.SaleServiceTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="SaleServiceTest.createNewSale" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="supermarket" />
       <extension name="coverage">
@@ -159,6 +178,22 @@
       <option name="PACKAGE_NAME" value="com.example.supermarket.service" />
       <option name="MAIN_CLASS_NAME" value="com.example.supermarket.service.SaleServiceTest" />
       <option name="METHOD_NAME" value="createNewSale" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SaleServiceTest.createNewSaleEntityNotFoundException" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="supermarket" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.supermarket.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.example.supermarket.service" />
+      <option name="MAIN_CLASS_NAME" value="com.example.supermarket.service.SaleServiceTest" />
+      <option name="METHOD_NAME" value="createNewSaleEntityNotFoundException" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -180,7 +215,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="SaleServiceTest.findByProductException" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="SaleServiceTest.findByProduct" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="supermarket" />
       <extension name="coverage">
         <pattern>
@@ -190,38 +225,7 @@
       </extension>
       <option name="PACKAGE_NAME" value="com.example.supermarket.service" />
       <option name="MAIN_CLASS_NAME" value="com.example.supermarket.service.SaleServiceTest" />
-      <option name="METHOD_NAME" value="findByProductException" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="StockServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="supermarket" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.example.supermarket.service.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.example.supermarket.service" />
-      <option name="MAIN_CLASS_NAME" value="com.example.supermarket.service.StockServiceTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="StockServiceTest.addStockQuantity" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="supermarket" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.example.supermarket.service.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.example.supermarket.service" />
-      <option name="MAIN_CLASS_NAME" value="com.example.supermarket.service.StockServiceTest" />
-      <option name="METHOD_NAME" value="addStockQuantity" />
+      <option name="METHOD_NAME" value="findByProduct" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -240,11 +244,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.StockServiceTest" />
-        <item itemvalue="JUnit.StockServiceTest.addStockQuantity" />
+        <item itemvalue="JUnit.SaleServiceTest.createNewSaleEntityNotFoundException" />
         <item itemvalue="JUnit.SaleServiceTest.createNewSaleException" />
         <item itemvalue="JUnit.SaleServiceTest.createNewSale" />
-        <item itemvalue="JUnit.SaleServiceTest.findByProductException" />
+        <item itemvalue="JUnit.SaleServiceTest" />
+        <item itemvalue="JUnit.SaleServiceTest.findByProduct" />
       </list>
     </recent_temporary>
   </component>
@@ -257,14 +261,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1741276131044</updated>
-    </task>
-    <task id="LOCAL-00008" summary="Update findAll in ProductController">
-      <option name="closed" value="true" />
-      <created>1742379881383</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1742379881384</updated>
     </task>
     <task id="LOCAL-00009" summary="Add javadoc to findById and findByName">
       <option name="closed" value="true" />
@@ -650,7 +646,15 @@
       <option name="project" value="LOCAL" />
       <updated>1743425059386</updated>
     </task>
-    <option name="localTasksCounter" value="57" />
+    <task id="LOCAL-00057" summary="Add ReceiptDTO and correct findAll method in ReceiptService">
+      <option name="closed" value="true" />
+      <created>1743427072060</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1743427072060</updated>
+    </task>
+    <option name="localTasksCounter" value="58" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -665,7 +669,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Improve ProductServiceTest" />
     <MESSAGE value="Add getByExpirationDate in ProductController" />
     <MESSAGE value="Correct ProductController" />
     <MESSAGE value="Delete StockController and StockService" />
@@ -690,7 +693,8 @@
     <MESSAGE value="add stock logic to createNewSale" />
     <MESSAGE value="add Javadoc for createNewSale in SaleService" />
     <MESSAGE value="Update StockController and StockServiceTest" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update StockController and StockServiceTest" />
+    <MESSAGE value="Add ReceiptDTO and correct findAll method in ReceiptService" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add ReceiptDTO and correct findAll method in ReceiptService" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -699,6 +703,15 @@
           <properties class="org.springframework.beans.factory.UnsatisfiedDependencyException" package="org.springframework.beans.factory" />
           <option name="timeStamp" value="4" />
         </breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/test/java/com/example/supermarket/service/SaleServiceTest.java</url>
+          <line>170</line>
+          <properties class="com.example.supermarket.service.SaleServiceTest" method="createNewSaleException">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>

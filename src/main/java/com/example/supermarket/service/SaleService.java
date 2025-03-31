@@ -119,6 +119,9 @@ public class SaleService {
             productSale.setSale(sale);
             productSale.setQuantity(productSale.getQuantity());
             productSales.add(productSale);
+            if (productSale.getProduct() == null) {
+                throw new EntityNotFoundException("A product is required");
+            }
             stockServ.subStockQuantity(productSale.getProduct().getId(), productSale.getQuantity());
         }
         sale.setProductSales(productSales);

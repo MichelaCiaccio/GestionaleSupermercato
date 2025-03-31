@@ -1,19 +1,17 @@
 package com.example.supermarket.entity;
 
-import java.util.Set;
-
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
+
+import java.util.List;
 
 @Entity
 @Data
 public class Discount {
 
     @Id
-    @NotNull
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
     @NotNull
@@ -29,7 +27,6 @@ public class Discount {
     private boolean active;
 
     @OneToMany(mappedBy = "discount")
-    @NotNull
-    private Set<Sale> sales;
+    private List<Sale> sales;
 
 }

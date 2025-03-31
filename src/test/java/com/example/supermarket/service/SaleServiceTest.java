@@ -1,5 +1,7 @@
 package com.example.supermarket.service;
 
+import com.example.supermarket.entity.Category;
+import com.example.supermarket.entity.Product;
 import com.example.supermarket.entity.ProductSale;
 import com.example.supermarket.entity.Sale;
 import com.example.supermarket.repo.SaleRepository;
@@ -10,6 +12,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -27,6 +30,9 @@ class SaleServiceTest {
 
     @InjectMocks
     private SaleService saleServ;
+
+    @Mock
+    private StockService stockServ;
 
 
     @Test
@@ -145,10 +151,10 @@ class SaleServiceTest {
     void createNewSale() {
 
         // Given
-        ProductSale productSale = new ProductSale();
-        Sale sale = new Sale(1, 100, 100, LocalDateTime.now(), List.of(productSale),
-                             null,
-                             null);
+        Category category = new Category(1, "Food");
+        Product product = new Product(1, "Apple", BigDecimal.valueOf(1.5), category, null);
+        ProductSale productSale = new ProductSale(1, 50, product, null);
+        Sale sale = new Sale(1, 100, 100, LocalDateTime.now(), List.of(productSale), null, null);
 
 
         // When
@@ -158,22 +164,44 @@ class SaleServiceTest {
         // Verify
         verify(saleRepo, times(1)).save(sale);
         verify(receiptServ, times(1)).createNewReceipt(sale);
+        assertDoesNotThrow(() -> saleServ.createNewSale(sale));
     }
 
     @Test
-    void createNewSaleException() {
+    void createNewSaleRuntimeException() {
 
         // Given
-        ProductSale productSale = new ProductSale();
-        Sale sale = new Sale(1, 100, 100, LocalDateTime.now(), List.of(productSale),
-                             null,
-                             null);
+        Category category = new Category(1, "Food");
+        Product product = new Product(1, "Apple", BigDecimal.valueOf(1.5), category, null);
+        ProductSale productSale = new ProductSale(1, 50, product, null);
+        Sale sale = new Sale(1, 100, 100, LocalDateTime.now(), List.of(productSale), null, null);
 
         // When
-        when(saleRepo.save(sale)).thenThrow(new RuntimeException("Errore durante il salvataggio"));
+        when(saleRepo.save(any(Sale.class))).thenThrow(new RuntimeException("Errore durante il " +
+                                                                                    "salvataggio"));
 
         // Verify
         verify(receiptServ, never()).createNewReceipt(any());
         assertThrows(RuntimeException.class, () -> saleServ.createNewSale(sale));
     }
+
+    @Test
+    void createNewSaleEntityNotFoundException() {
+        // Given
+        Category category = new Category(1, "Food");
+        Product product = new Product(1, "Apple", BigDecimal.valueOf(1.5), category, null);
+        ProductSale productSale = new ProductSale(1, 50, product, null);
+        Sale sale = new Sale(1, 100, 100, LocalDateTime.now(), List.of(productSale), null, null);
+
+        // When
+        when(saleRepo.save(any(Sale.class))).thenThrow(new EntityNotFoundException("Sale not found"));
+
+        // Then
+        assertThrows(EntityNotFoundException.class, () -> saleServ.createNewSale(sale));
+
+        verify(saleRepo, times(1)).save(any());
+        verify(receiptServ, never()).createNewReceipt(any());
+        verify(stockServ, times(1)).subStockQuantity(product.getId(), productSale.getQuantity());
+    }
+
 }

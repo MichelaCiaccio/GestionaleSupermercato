@@ -3,10 +3,14 @@ package com.example.supermarket.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.RequiredArgsConstructor;
 
 @Entity
 @Data
+@AllArgsConstructor
+@RequiredArgsConstructor
 public class ProductSale {
 
     @Id
