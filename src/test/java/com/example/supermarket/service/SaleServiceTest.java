@@ -95,6 +95,46 @@ class SaleServiceTest {
     }
 
     @Test
+    void findByProduct() {
+
+        // Given
+        String productName = "Prodotto";
+        ProductSale productSale = new ProductSale();
+        List<Sale> sales = List.of(new Sale(1, 100, 100, LocalDateTime.now(), List.of(productSale),
+                                            null,
+                                            null),
+                                   new Sale(1, 100, 100, LocalDateTime.now(),
+                                            List.of(productSale), null,
+                                            null));
+
+        // When
+        when(saleRepo.findByProductSales_Product_Name(productName)).thenReturn(sales);
+        List<Sale> ret = saleRepo.findByProductSales_Product_Name(productName);
+
+        // Verify
+        verify(saleRepo, times(1)).findByProductSales_Product_Name(productName);
+        assertEquals(ret, sales);
+        assertNotNull(ret);
+        assertEquals(2, ret.size());
+    }
+
+    @Test
+    void findByProductException() {
+
+        // Given
+        String productName = "Prodotto";
+
+        // When
+        when(saleRepo.findByProductSales_Product_Name(productName)).thenThrow(new EntityNotFoundException());
+
+        // Verify
+        verify(saleRepo, times(0)).findByProductSales_Product_Name(productName);
+        assertThrows(EntityNotFoundException.class,
+                     () -> saleRepo.findByProductSales_Product_Name(productName));
+
+    }
+
+    @Test
     void createNewSale() {
     }
 }
