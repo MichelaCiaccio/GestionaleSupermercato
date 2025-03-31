@@ -93,6 +93,4 @@ public class SaleService {
         Sale newSale = saleRepo.save(sale);
         receiptService.createNewReceipt(newSale);
     }
-
-
 }

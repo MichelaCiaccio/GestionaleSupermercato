@@ -4,13 +4,17 @@ import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PastOrPresent;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.RequiredArgsConstructor;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
 @Data
+@AllArgsConstructor
+@RequiredArgsConstructor
 public class Sale {
 
     @Id
@@ -21,7 +25,7 @@ public class Sale {
     @NotNull
     private double totalPrice;
 
-    @NotNull
+    
     private double discountPrice;
 
     @NotNull
