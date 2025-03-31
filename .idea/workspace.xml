@@ -7,9 +7,15 @@
     <option name="rewriteBookmarkType" value="true" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7c4caa73-20ab-4765-9784-19538829fb77" name="Changes" comment="Add findByProduct test in SaleServiceTest">
+    <list default="true" id="7c4caa73-20ab-4765-9784-19538829fb77" name="Changes" comment="Improve add method in SaleService">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/DTO/Mapper/ProductMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/DTO/Mapper/SaleMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/DTO/ProductSaleDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/DTO/ProductSummaryDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/DTO/SaleDTO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/supermarket/service/SaleServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/example/supermarket/service/SaleServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/controller/SaleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/controller/SaleController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/service/SaleService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/service/SaleService.java" afterDir="false" />
     </list>
     <list id="6499c595-af5e-4d71-8893-8354dc300f9f" name="No commit" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -24,8 +30,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
-        <option value="Class" />
         <option value="JUnit5 Test Class" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -130,6 +136,9 @@
     <option name="SHOW_DIALOG" value="false" />
   </component>
   <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.example.supermarket.DTO" />
+    </key>
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
     </key>
@@ -252,14 +261,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1741276131044</updated>
-    </task>
-    <task id="LOCAL-00001" summary="test">
-      <option name="closed" value="true" />
-      <created>1741348037760</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1741348037760</updated>
     </task>
     <task id="LOCAL-00002" summary="Update ProductRepository and StockRepository">
       <option name="closed" value="true" />
@@ -637,7 +638,23 @@
       <option name="project" value="LOCAL" />
       <updated>1743407786608</updated>
     </task>
-    <option name="localTasksCounter" value="49" />
+    <task id="LOCAL-00049" summary="Add findByProduct test in SaleServiceTest">
+      <option name="closed" value="true" />
+      <created>1743408997022</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1743408997022</updated>
+    </task>
+    <task id="LOCAL-00050" summary="Improve add method in SaleService">
+      <option name="closed" value="true" />
+      <created>1743416650546</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1743416650546</updated>
+    </task>
+    <option name="localTasksCounter" value="51" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -652,7 +669,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Add testSaveSuccessfully" />
     <MESSAGE value="Add testSaveWhenProductAlreadyExist" />
     <MESSAGE value="Correct save method Javadoc in ProductService" />
     <MESSAGE value="Add testUpdateProduct" />
@@ -677,7 +693,8 @@
     <MESSAGE value="Add findAllException test in SaleServiceTest" />
     <MESSAGE value="Add findBySaleDate test in SaleServiceTest" />
     <MESSAGE value="Add findByProduct test in SaleServiceTest" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add findByProduct test in SaleServiceTest" />
+    <MESSAGE value="Improve add method in SaleService" />
+    <option name="LAST_COMMIT_MESSAGE" value="Improve add method in SaleService" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -1,5 +1,7 @@
 package com.example.supermarket.service;
 
+import com.example.supermarket.DTO.Mapper.SaleMapper;
+import com.example.supermarket.DTO.SaleDTO;
 import com.example.supermarket.entity.ProductSale;
 import com.example.supermarket.entity.Sale;
 import com.example.supermarket.repo.ReceiptRepository;
@@ -28,6 +30,9 @@ public class SaleService {
     @Autowired
     private ReceiptService receiptService;
 
+    @Autowired
+    private SaleMapper saleMapper;
+
     /**
      * This method searches for all the sales, organizes them into pagination of 20 elements,
      * and sorts them according
@@ -42,7 +47,7 @@ public class SaleService {
      *                      Defaults to "ASC" if null or blank.
      * @return A Page containing the list of sales.
      */
-    public Page<Sale> findAllSalesSorted(Integer page, String sortDirection, String dataType) {
+    public Page<SaleDTO> findAllSalesSorted(Integer page, String sortDirection, String dataType) {
         page = page == null ? 0 : page;
 
         sortDirection = sortDirection == null || sortDirection.isBlank() ? "ASC" : sortDirection;
@@ -57,7 +62,7 @@ public class SaleService {
             throw new EntityNotFoundException("There are no registered sales");
         }
 
-        return sales;
+        return sales.map(saleMapper::toSaleDto);
     }
 
     /**
