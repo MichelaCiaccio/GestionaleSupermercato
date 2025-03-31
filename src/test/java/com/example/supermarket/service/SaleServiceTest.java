@@ -57,6 +57,44 @@ class SaleServiceTest {
     }
 
     @Test
+    void findBySaleDate() {
+
+        // Given
+        LocalDateTime saleDate = LocalDateTime.now();
+        ProductSale productSale = new ProductSale();
+        List<Sale> sales = List.of(new Sale(1, 100, 100, saleDate, List.of(productSale),
+                                            null,
+                                            null),
+                                   new Sale(1, 100, 100, saleDate,
+                                            List.of(productSale), null,
+                                            null));
+
+        // When
+        when(saleRepo.findBySaleDate(saleDate)).thenReturn(sales);
+        List<Sale> ret = saleRepo.findBySaleDate(saleDate);
+
+        // Verify
+        verify(saleRepo, times(1)).findBySaleDate(saleDate);
+        assertEquals(ret, sales);
+        assertNotNull(ret);
+        assertEquals(2, ret.size());
+    }
+
+    @Test
+    void findBySaleDateException() {
+
+        // Given
+        LocalDateTime saleDate = LocalDateTime.now();
+
+        // When
+        when(saleRepo.findBySaleDate(saleDate)).thenThrow(new EntityNotFoundException());
+
+        // Verify
+        verify(saleRepo, times(0)).findBySaleDate(saleDate);
+        assertThrows(EntityNotFoundException.class, () -> saleRepo.findBySaleDate(saleDate));
+    }
+
+    @Test
     void createNewSale() {
     }
 }

@@ -10,7 +10,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -60,7 +60,7 @@ public class SaleService {
      * @param saleDate The date of the sale
      * @return The sales found
      */
-    public List<Sale> findBySaleDate(LocalDate saleDate) {
+    public List<Sale> findBySaleDate(LocalDateTime saleDate) {
         List<Sale> sales = saleRepo.findBySaleDate(saleDate);
         if (sales.isEmpty()) {
             throw new EntityNotFoundException("There are no registered sales on " + saleDate);
