@@ -27,19 +27,19 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
 
     Page<Product> findByRemovedFalse(Pageable pageable);
 
-    List<Product> findByName(String name);
+    List<Product> findByNameAndRemovedFalse(String name);
 
-    List<Product> findByCategoryName(String categoryName);
+    List<Product> findByCategoryNameAndRemovedFalse(String categoryName);
 
-    List<Product> findBySellingPrice(double sellingPrice);
+    List<Product> findBySellingPriceAndRemovedFalse(double sellingPrice);
 
-    List<Product> findByStocks_Supplier_Name(String supplierName);
+    List<Product> findByStocks_Supplier_NameAndRemovedFalse(String supplierName);
 
-    List<Product> findByStocks_Quantity(int stockQuantity);
+    List<Product> findByStocks_QuantityAndRemovedFalse(int stockQuantity);
 
-    List<Product> findByStocks_ExpirationDate(LocalDate expirationDate);
+    List<Product> findByStocks_ExpirationDateAndRemovedFalse(LocalDate expirationDate);
 
-    boolean existsByNameAndStocks_Supplier_Id(String productName, Integer supplierId);
+    Optional<Product> findByNameAndStocks_Supplier_Id(String productName, Integer supplierId);
 
 
 }

@@ -5,7 +5,6 @@ import com.example.supermarket.entity.Product;
 import com.example.supermarket.entity.Stock;
 import com.example.supermarket.entity.Supplier;
 import com.example.supermarket.repo.*;
-import com.sun.jdi.request.DuplicateRequestException;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -70,13 +69,11 @@ public class ProductService {
 
 
             // Controllo se nello stock esiste già una coppia prodotto-fornitore
-            if (productRepository.existsByNameAndStocks_Supplier_Id(product.getName(),
-                                                                    stock.getSupplier().getId())) {
-                throw new DuplicateRequestException("A stock of the " +
-                                                            "product " + product.getName() + " " +
-                                                            "and " +
-                                                            "supplier with id " + stock.getSupplier().getId() + " already exists");
-            }
+            Optional<Product> existingProduct =
+                    productRepository.findByNameAndStocks_Supplier_Id(product.getName(),
+                                                                      stock.getSupplier().getId());
+            existingProduct.ifPresent(value -> value.setRemoved(false));
+
 
             // Per ogni stock setto il prodotto, aggiungo lo stock alla Lista di
             // stocks
@@ -211,7 +208,7 @@ public class ProductService {
      * @return The products found
      */
     public List<Product> findByName(String name) {
-        List<Product> products = productRepository.findByName(name);
+        List<Product> products = productRepository.findByNameAndRemovedFalse(name);
         if (products.isEmpty()) {
             throw new EntityNotFoundException("Product with name " + name + " not found");
         }
@@ -227,7 +224,7 @@ public class ProductService {
      * @return The products found
      */
     public List<Product> findByCategoryName(String categoryName) {
-        List<Product> products = productRepository.findByCategoryName(categoryName);
+        List<Product> products = productRepository.findByCategoryNameAndRemovedFalse(categoryName);
         if (products.isEmpty()) {
             throw new EntityNotFoundException("No product has a category with the name " + categoryName);
         }
@@ -243,7 +240,7 @@ public class ProductService {
      * @return the products found
      */
     public List<Product> findBySellingPrice(double sellingPrice) {
-        List<Product> products = productRepository.findBySellingPrice(sellingPrice);
+        List<Product> products = productRepository.findBySellingPriceAndRemovedFalse(sellingPrice);
         if (products.isEmpty()) {
             throw new EntityNotFoundException("No product has a selling price equal to " + sellingPrice);
         }
@@ -259,7 +256,8 @@ public class ProductService {
      * @return The products found
      */
     public List<Product> findBySupplierName(String supplierName) {
-        List<Product> products = productRepository.findByStocks_Supplier_Name(supplierName);
+        List<Product> products =
+                productRepository.findByStocks_Supplier_NameAndRemovedFalse(supplierName);
         if (products.isEmpty()) {
             throw new EntityNotFoundException("No product has a supplier with a name " + supplierName);
         }
@@ -275,7 +273,7 @@ public class ProductService {
      * @return The List of the products found
      */
     public List<Product> findByQuantity(int quantity) {
-        List<Product> products = productRepository.findByStocks_Quantity(quantity);
+        List<Product> products = productRepository.findByStocks_QuantityAndRemovedFalse(quantity);
         if (products.isEmpty()) {
             throw new EntityNotFoundException("No product found with stock quantity  " + quantity);
         }
@@ -291,7 +289,8 @@ public class ProductService {
      * @return The list of the products found
      */
     public List<Product> findByExpirationDate(LocalDate expirationDate) {
-        List<Product> products = productRepository.findByStocks_ExpirationDate(expirationDate);
+        List<Product> products =
+                productRepository.findByStocks_ExpirationDateAndRemovedFalse(expirationDate);
         if (products.isEmpty()) {
             throw new EntityNotFoundException("No product found with expiration date : " + expirationDate);
         }
@@ -375,7 +374,8 @@ public class ProductService {
         if (category.isEmpty()) {
             throw new EntityNotFoundException("There are no category with id " + id + " to delete");
         }
-        List<Product> products = productRepository.findByCategoryName(category.get().getName());
+        List<Product> products =
+                productRepository.findByCategoryNameAndRemovedFalse(category.get().getName());
         for (Product product : products) {
             removeCategoryFromProduct(product.getId());
         }
