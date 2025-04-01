@@ -1,9 +1,7 @@
 package com.example.supermarket.service;
 
-import com.example.supermarket.entity.Category;
-import com.example.supermarket.entity.Product;
-import com.example.supermarket.entity.ProductSale;
-import com.example.supermarket.entity.Sale;
+import com.example.supermarket.entity.*;
+import com.example.supermarket.repo.ReceiptRepository;
 import com.example.supermarket.repo.SaleRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.junit.jupiter.api.Test;
@@ -15,6 +13,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -28,11 +27,14 @@ class SaleServiceTest {
     @Mock
     private ReceiptService receiptServ;
 
-    @InjectMocks
-    private SaleService saleServ;
-
     @Mock
     private StockService stockServ;
+
+    @Mock
+    private ReceiptRepository receiptRepo;
+
+    @InjectMocks
+    private SaleService saleServ;
 
 
     @Test
@@ -68,6 +70,7 @@ class SaleServiceTest {
         verify(saleRepo, times(0)).findAll();
         assertThrows(EntityNotFoundException.class, () -> saleRepo.findAll());
     }
+
 
     @Test
     void findBySaleDate() {
@@ -204,4 +207,79 @@ class SaleServiceTest {
         verify(stockServ, times(1)).subStockQuantity(product.getId(), productSale.getQuantity());
     }
 
+    @Test
+    public void deleteAll() {
+
+        // Given
+        ProductSale productSale = new ProductSale();
+        List<Sale> sales = List.of(new Sale(1, 100, 100, LocalDateTime.now(), List.of(productSale),
+                                            null,
+                                            null),
+                                   new Sale(1, 100, 100, LocalDateTime.now(),
+                                            List.of(productSale), null,
+                                            null));
+
+        // When
+        when(saleRepo.findAll()).thenReturn(sales).thenReturn(null);
+        doNothing().when(saleRepo).deleteAll();
+        List<Sale> existingSales = saleRepo.findAll();
+        saleRepo.deleteAll();
+        List<Sale> deletedSales = saleRepo.findAll();
+
+
+        //Verify
+        verify(saleRepo, times(1)).deleteAll();
+        assertNotNull(existingSales);
+        assertNull(deletedSales);
+    }
+
+    @Test
+    public void deleteAllException() {
+
+        // When
+        when(saleRepo.findAll()).thenThrow(new EntityNotFoundException());
+
+        // Verify
+        verify(saleRepo, times(0)).findAll();
+        verify(saleRepo, never()).deleteAll();
+        assertThrows(EntityNotFoundException.class, () -> saleRepo.findAll());
+
+    }
+
+    @Test
+    public void deleteById() {
+
+        // Given
+        int id = 1;
+        ProductSale productSale = new ProductSale();
+        Sale sale = new Sale(id, 100, 100, LocalDateTime.now(), List.of(productSale),
+                             null,
+                             null);
+        Receipt receipt = new Receipt(id, "ABCDGUIJ", sale);
+
+
+        // When
+        when(saleRepo.findById(id)).thenReturn(Optional.of(sale)).thenReturn(Optional.empty());
+        when(receiptRepo.findById(id)).thenReturn(Optional.of(receipt)).thenReturn(Optional.empty());
+        doNothing().when(saleRepo).deleteById(id);
+        doNothing().when(receiptRepo).deleteBySale_Id(id);
+        
+        Optional<Sale> existingSale = saleRepo.findById(id);
+        Optional<Receipt> existingReceipt = receiptRepo.findById(id);
+        saleRepo.deleteById(id);
+        receiptRepo.deleteBySale_Id(id);
+        Optional<Sale> deletedSale = saleRepo.findById(id);
+        Optional<Receipt> deletedReceipt = receiptRepo.findById(id);
+
+
+        // Verify
+        verify(saleRepo, times(2)).findById(id);
+        verify(receiptRepo, times(2)).findById(id);
+        verify(saleRepo, times(1)).deleteById(id);
+        verify(receiptRepo, times(1)).deleteBySale_Id(id);
+        assertNull(deletedSale.orElse(null));
+        assertNull(deletedReceipt.orElse(null));
+        assertNotNull(existingSale);
+        assertNotNull(existingReceipt);
+    }
 }

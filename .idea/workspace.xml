@@ -7,12 +7,10 @@
     <option name="rewriteBookmarkType" value="true" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7c4caa73-20ab-4765-9784-19538829fb77" name="Changes" comment="Correct SaleServiceTest">
+    <list default="true" id="7c4caa73-20ab-4765-9784-19538829fb77" name="Changes" comment="Add deleteById in SaleService method">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/controller/SaleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/controller/SaleController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/entity/Receipt.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/entity/Receipt.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/repo/ReceiptRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/repo/ReceiptRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/service/SaleService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/service/SaleService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/supermarket/service/SaleServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/example/supermarket/service/SaleServiceTest.java" afterDir="false" />
     </list>
     <list id="6499c595-af5e-4d71-8893-8354dc300f9f" name="No commit" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -104,6 +102,9 @@
     "JUnit.SaleServiceTest.createNewSale.executor": "Run",
     "JUnit.SaleServiceTest.createNewSaleEntityNotFoundException.executor": "Run",
     "JUnit.SaleServiceTest.createNewSaleException.executor": "Run",
+    "JUnit.SaleServiceTest.deleteAll.executor": "Run",
+    "JUnit.SaleServiceTest.deleteAllException.executor": "Run",
+    "JUnit.SaleServiceTest.deleteById.executor": "Run",
     "JUnit.SaleServiceTest.executor": "Run",
     "JUnit.SaleServiceTest.findAllSalesSorted.executor": "Run",
     "JUnit.SaleServiceTest.findByProduct.executor": "Run",
@@ -150,7 +151,7 @@
       <recent name="com.example.supermarket.service" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.SaleServiceTest.createNewSaleEntityNotFoundException">
+  <component name="RunManager" selected="JUnit.SaleServiceTest">
     <configuration name="SaleServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="supermarket" />
       <extension name="coverage">
@@ -162,22 +163,6 @@
       <option name="PACKAGE_NAME" value="com.example.supermarket.service" />
       <option name="MAIN_CLASS_NAME" value="com.example.supermarket.service.SaleServiceTest" />
       <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="SaleServiceTest.createNewSale" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="supermarket" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.example.supermarket.service.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.example.supermarket.service" />
-      <option name="MAIN_CLASS_NAME" value="com.example.supermarket.service.SaleServiceTest" />
-      <option name="METHOD_NAME" value="createNewSale" />
-      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -198,7 +183,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="SaleServiceTest.createNewSaleException" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="SaleServiceTest.deleteAll" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="supermarket" />
       <extension name="coverage">
         <pattern>
@@ -208,13 +193,13 @@
       </extension>
       <option name="PACKAGE_NAME" value="com.example.supermarket.service" />
       <option name="MAIN_CLASS_NAME" value="com.example.supermarket.service.SaleServiceTest" />
-      <option name="METHOD_NAME" value="createNewSaleException" />
+      <option name="METHOD_NAME" value="deleteAll" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="SaleServiceTest.findByProduct" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="SaleServiceTest.deleteAllException" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="supermarket" />
       <extension name="coverage">
         <pattern>
@@ -224,7 +209,23 @@
       </extension>
       <option name="PACKAGE_NAME" value="com.example.supermarket.service" />
       <option name="MAIN_CLASS_NAME" value="com.example.supermarket.service.SaleServiceTest" />
-      <option name="METHOD_NAME" value="findByProduct" />
+      <option name="METHOD_NAME" value="deleteAllException" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SaleServiceTest.deleteById" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="supermarket" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.supermarket.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.example.supermarket.service" />
+      <option name="MAIN_CLASS_NAME" value="com.example.supermarket.service.SaleServiceTest" />
+      <option name="METHOD_NAME" value="deleteById" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -243,11 +244,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.SaleServiceTest.createNewSaleEntityNotFoundException" />
-        <item itemvalue="JUnit.SaleServiceTest.createNewSaleException" />
-        <item itemvalue="JUnit.SaleServiceTest.createNewSale" />
         <item itemvalue="JUnit.SaleServiceTest" />
-        <item itemvalue="JUnit.SaleServiceTest.findByProduct" />
+        <item itemvalue="JUnit.SaleServiceTest.deleteById" />
+        <item itemvalue="JUnit.SaleServiceTest.deleteAllException" />
+        <item itemvalue="JUnit.SaleServiceTest.deleteAll" />
+        <item itemvalue="JUnit.SaleServiceTest.createNewSaleEntityNotFoundException" />
       </list>
     </recent_temporary>
   </component>
@@ -260,14 +261,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1741276131044</updated>
-    </task>
-    <task id="LOCAL-00010" summary="Add javadoc to all the find by method">
-      <option name="closed" value="true" />
-      <created>1742381476379</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1742381476379</updated>
     </task>
     <task id="LOCAL-00011" summary="Add javadoc to all the delete method">
       <option name="closed" value="true" />
@@ -653,7 +646,15 @@
       <option name="project" value="LOCAL" />
       <updated>1743430649191</updated>
     </task>
-    <option name="localTasksCounter" value="59" />
+    <task id="LOCAL-00059" summary="Add deleteById in SaleService method">
+      <option name="closed" value="true" />
+      <created>1743495612399</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1743495612399</updated>
+    </task>
+    <option name="localTasksCounter" value="60" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -668,7 +669,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Correct ProductController" />
     <MESSAGE value="Delete StockController and StockService" />
     <MESSAGE value="Update deleteAll in ProductService" />
     <MESSAGE value="Add sub and add quantity method in StockService" />
@@ -693,7 +693,8 @@
     <MESSAGE value="Update StockController and StockServiceTest" />
     <MESSAGE value="Add ReceiptDTO and correct findAll method in ReceiptService" />
     <MESSAGE value="Correct SaleServiceTest" />
-    <option name="LAST_COMMIT_MESSAGE" value="Correct SaleServiceTest" />
+    <MESSAGE value="Add deleteById in SaleService method" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add deleteById in SaleService method" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -702,15 +703,6 @@
           <properties class="org.springframework.beans.factory.UnsatisfiedDependencyException" package="org.springframework.beans.factory" />
           <option name="timeStamp" value="4" />
         </breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/test/java/com/example/supermarket/service/SaleServiceTest.java</url>
-          <line>170</line>
-          <properties class="com.example.supermarket.service.SaleServiceTest" method="createNewSaleException">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="8" />
-        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
