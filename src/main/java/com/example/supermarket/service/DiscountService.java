@@ -11,8 +11,10 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -59,7 +61,7 @@ public class DiscountService {
     }
 
     /**
-     * Creates a new discount and assigns it to a list of products.
+     * This method creates a new discount and assigns it to a list of products.
      * This method first saves the discount.
      * Then, for each existing product assigns the saved discount to it.
      * If any product ID does not correspond to an existing
@@ -83,7 +85,7 @@ public class DiscountService {
 
 
     /**
-     * Updates the discount with new data.
+     * This method updates the discount with new data.
      * It removes the discount association from all currently linked products and then
      * assigns the discount to the products identified by the provided product IDs.
      * If any product or the discount is not found, an EntityNotFoundException is thrown.
@@ -102,7 +104,7 @@ public class DiscountService {
         // Modifico il discount con i nuove dati
         existingDiscount.setName(modDiscount.getName());
         existingDiscount.setDiscountPercentage(modDiscount.getDiscountPercentage());
-        existingDiscount.setDuration(modDiscount.getDuration());
+        existingDiscount.setEndDate(modDiscount.getEndDate());
         existingDiscount.setActive(modDiscount.isActive());
 
         // Trovo la lista di prodotti attualmente associati al discount
@@ -124,6 +126,27 @@ public class DiscountService {
         }
 
         discountRepo.save(existingDiscount);
+    }
 
+    /**
+     * This method is a scheduled task that updates the status of discounts based on their end date.
+     * Checks if the discount's end date has passed.
+     * If the discount's end date is before today's date, the discount is marked as inactive.
+     * It searches for all discounts and then checks if their
+     * end date is in the past.
+     * If the end date has passed, the discount's 'active' status is set
+     * to false.
+     */
+    @Scheduled(cron = "0 0 0 * * ?")
+    public void updateDiscountStatus() {
+        List<Discount> discounts = discountRepo.findAll();
+        LocalDate today = LocalDate.now();
+        for (Discount discount : discounts) {
+            LocalDate expiryDate = discount.getEndDate();
+            if (expiryDate.isBefore(today)) {
+                discount.setActive(false);
+            }
+            discountRepo.save(discount);
+        }
     }
 }

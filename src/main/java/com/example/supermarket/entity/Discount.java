@@ -7,6 +7,8 @@ import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
+import java.time.LocalDate;
+
 @Entity
 @Data
 public class Discount {
@@ -22,9 +24,9 @@ public class Discount {
     private int discountPercentage;
 
     @NotNull
-    private int duration;
+    private LocalDate endDate;
 
-    @NotNull
     private boolean active;
+
 
 }
