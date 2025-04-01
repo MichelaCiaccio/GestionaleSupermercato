@@ -7,9 +7,9 @@
     <option name="rewriteBookmarkType" value="true" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7c4caa73-20ab-4765-9784-19538829fb77" name="Changes" comment="Correct ProductService with soft delete">
+    <list default="true" id="7c4caa73-20ab-4765-9784-19538829fb77" name="Changes" comment="Update ProductServiceTest">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/supermarket/service/ProductServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/example/supermarket/service/ProductServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/service/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/service/ProductService.java" afterDir="false" />
     </list>
     <list id="6499c595-af5e-4d71-8893-8354dc300f9f" name="No commit" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -259,14 +259,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1741276131044</updated>
-    </task>
-    <task id="LOCAL-00017" summary="Update StockService">
-      <option name="closed" value="true" />
-      <created>1742485888554</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1742485888554</updated>
     </task>
     <task id="LOCAL-00018" summary="Update ProductController">
       <option name="closed" value="true" />
@@ -652,7 +644,15 @@
       <option name="project" value="LOCAL" />
       <updated>1743511137862</updated>
     </task>
-    <option name="localTasksCounter" value="66" />
+    <task id="LOCAL-00066" summary="Update ProductServiceTest">
+      <option name="closed" value="true" />
+      <created>1743511532830</created>
+      <option name="number" value="00066" />
+      <option name="presentableId" value="LOCAL-00066" />
+      <option name="project" value="LOCAL" />
+      <updated>1743511532830</updated>
+    </task>
+    <option name="localTasksCounter" value="67" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -667,7 +667,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Add SaleRepository" />
     <MESSAGE value="Add findAll method to SaleService" />
     <MESSAGE value="Add findBySaleDate method to SaleService" />
     <MESSAGE value="Add findByProduct method to SaleService" />
@@ -692,7 +691,8 @@
     <MESSAGE value="Correct Discount Entity and relation with Product" />
     <MESSAGE value="Add soft delete for product" />
     <MESSAGE value="Correct ProductService with soft delete" />
-    <option name="LAST_COMMIT_MESSAGE" value="Correct ProductService with soft delete" />
+    <MESSAGE value="Update ProductServiceTest" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update ProductServiceTest" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

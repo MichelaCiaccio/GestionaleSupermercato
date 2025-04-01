@@ -5,6 +5,7 @@ import com.example.supermarket.entity.Product;
 import com.example.supermarket.entity.Stock;
 import com.example.supermarket.entity.Supplier;
 import com.example.supermarket.repo.*;
+import com.sun.jdi.request.DuplicateRequestException;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -68,10 +69,17 @@ public class ProductService {
             stock.setSupplier(supplierService.createNewSupplier(stock.getSupplier()));
 
 
-            // Controllo se nello stock esiste già una coppia prodotto-fornitore
+            // Controllo se nello stock esiste già una coppia prodotto-fornitore non rimossa.
             Optional<Product> existingProduct =
                     productRepository.findByNameAndStocks_Supplier_Id(product.getName(),
                                                                       stock.getSupplier().getId());
+            // Se esiste lancia una DuplicateRequestException
+            if (existingProduct.isPresent() && !existingProduct.get().isRemoved()) {
+                throw new DuplicateRequestException("Product  " + product.getName() + "supplied " +
+                                                            "by " + stock.getSupplier().getName() + " already exists");
+            }
+
+            // Se esiste ma è rimossa la ripristina
             existingProduct.ifPresent(value -> value.setRemoved(false));
 
 
