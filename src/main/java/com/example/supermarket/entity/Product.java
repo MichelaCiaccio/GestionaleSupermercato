@@ -1,5 +1,6 @@
 package com.example.supermarket.entity;
 
+import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -33,6 +34,11 @@ public class Product {
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
     @NotNull
     private List<Stock> stocks;
+
+    @ManyToOne
+    @JoinColumn(name = "discount_id")
+    @Nullable
+    private Discount discount;
 
 
 }

@@ -43,10 +43,9 @@ class SaleServiceTest {
         // Given
         ProductSale productSale = new ProductSale();
         List<Sale> sales = List.of(new Sale(1, 100, 100, LocalDateTime.now(), List.of(productSale),
-                                            null,
                                             null),
                                    new Sale(1, 100, 100, LocalDateTime.now(),
-                                            List.of(productSale), null,
+                                            List.of(productSale),
                                             null));
 
         // When
@@ -79,10 +78,9 @@ class SaleServiceTest {
         LocalDateTime saleDate = LocalDateTime.now();
         ProductSale productSale = new ProductSale();
         List<Sale> sales = List.of(new Sale(1, 100, 100, saleDate, List.of(productSale),
-                                            null,
                                             null),
                                    new Sale(1, 100, 100, saleDate,
-                                            List.of(productSale), null,
+                                            List.of(productSale),
                                             null));
 
         // When
@@ -117,10 +115,10 @@ class SaleServiceTest {
         String productName = "Prodotto";
         ProductSale productSale = new ProductSale();
         List<Sale> sales = List.of(new Sale(1, 100, 100, LocalDateTime.now(), List.of(productSale),
-                                            null,
+
                                             null),
                                    new Sale(1, 100, 100, LocalDateTime.now(),
-                                            List.of(productSale), null,
+                                            List.of(productSale),
                                             null));
 
         // When
@@ -155,9 +153,9 @@ class SaleServiceTest {
 
         // Given
         Category category = new Category(1, "Food");
-        Product product = new Product(1, "Apple", BigDecimal.valueOf(1.5), category, null);
+        Product product = new Product(1, "Apple", BigDecimal.valueOf(1.5), category, null, null);
         ProductSale productSale = new ProductSale(1, 50, product, null);
-        Sale sale = new Sale(1, 100, 100, LocalDateTime.now(), List.of(productSale), null, null);
+        Sale sale = new Sale(1, 100, 100, LocalDateTime.now(), List.of(productSale), null);
 
 
         // When
@@ -175,9 +173,9 @@ class SaleServiceTest {
 
         // Given
         Category category = new Category(1, "Food");
-        Product product = new Product(1, "Apple", BigDecimal.valueOf(1.5), category, null);
+        Product product = new Product(1, "Apple", BigDecimal.valueOf(1.5), category, null, null);
         ProductSale productSale = new ProductSale(1, 50, product, null);
-        Sale sale = new Sale(1, 100, 100, LocalDateTime.now(), List.of(productSale), null, null);
+        Sale sale = new Sale(1, 100, 100, LocalDateTime.now(), List.of(productSale), null);
 
         // When
         when(saleRepo.save(any(Sale.class))).thenThrow(new RuntimeException("Errore durante il " +
@@ -192,9 +190,9 @@ class SaleServiceTest {
     void createNewSaleEntityNotFoundException() {
         // Given
         Category category = new Category(1, "Food");
-        Product product = new Product(1, "Apple", BigDecimal.valueOf(1.5), category, null);
+        Product product = new Product(1, "Apple", BigDecimal.valueOf(1.5), category, null, null);
         ProductSale productSale = new ProductSale(1, 50, product, null);
-        Sale sale = new Sale(1, 100, 100, LocalDateTime.now(), List.of(productSale), null, null);
+        Sale sale = new Sale(1, 100, 100, LocalDateTime.now(), List.of(productSale), null);
 
         // When
         when(saleRepo.save(any(Sale.class))).thenThrow(new EntityNotFoundException("Sale not found"));
@@ -213,10 +211,10 @@ class SaleServiceTest {
         // Given
         ProductSale productSale = new ProductSale();
         List<Sale> sales = List.of(new Sale(1, 100, 100, LocalDateTime.now(), List.of(productSale),
-                                            null,
+
                                             null),
                                    new Sale(1, 100, 100, LocalDateTime.now(),
-                                            List.of(productSale), null,
+                                            List.of(productSale),
                                             null));
 
         // When
@@ -253,7 +251,6 @@ class SaleServiceTest {
         int id = 1;
         ProductSale productSale = new ProductSale();
         Sale sale = new Sale(id, 100, 100, LocalDateTime.now(), List.of(productSale),
-                             null,
                              null);
         Receipt receipt = new Receipt(id, "ABCDGUIJ", sale);
 
@@ -263,7 +260,7 @@ class SaleServiceTest {
         when(receiptRepo.findById(id)).thenReturn(Optional.of(receipt)).thenReturn(Optional.empty());
         doNothing().when(saleRepo).deleteById(id);
         doNothing().when(receiptRepo).deleteBySale_Id(id);
-        
+
         Optional<Sale> existingSale = saleRepo.findById(id);
         Optional<Receipt> existingReceipt = receiptRepo.findById(id);
         saleRepo.deleteById(id);

@@ -23,9 +23,9 @@ public class SaleMapper {
                                               productMapper.toProductSummaryDTO(productSale.getProduct()));
                 })
                 .toList();
-        
+
         return new SaleDTO(sale.getId(), sale.getTotalPrice(), sale.getDiscountPrice()
-                , sale.getSaleDate(), productSaleDTOList, sale.getDiscount(), sale.getDeal());
+                , sale.getSaleDate(), productSaleDTOList, sale.getDeal());
     }
 
 }

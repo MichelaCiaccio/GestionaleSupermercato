@@ -1,7 +1,6 @@
 package com.example.supermarket.DTO;
 
 import com.example.supermarket.entity.Deal;
-import com.example.supermarket.entity.Discount;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
@@ -19,7 +18,6 @@ public class SaleDTO {
     private double discountPrice;
     private LocalDateTime saleDate;
     private List<ProductSaleDTO> productSales;
-    private Discount discount;
     private Deal deal;
 
 }
