@@ -7,7 +7,6 @@ import com.example.supermarket.entity.Stock;
 import com.example.supermarket.entity.Supplier;
 import com.example.supermarket.repo.CategoryRepository;
 import com.example.supermarket.repo.ProductRepository;
-import com.sun.jdi.request.DuplicateRequestException;
 import jakarta.persistence.EntityNotFoundException;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -54,22 +53,22 @@ public class ProductServiceTest {
 
         // When
         when(supplierService.createNewSupplier(any(Supplier.class))).thenReturn(supplier);
-        when(productRepository.existsByNameAndStocks_Supplier_Id(anyString(), anyInt())).thenReturn(false);
+        when(productRepository.findByNameAndStocks_Supplier_Id(anyString(), anyInt())).thenReturn(Optional.empty());
         when(categoryRepository.findByName(anyString())).thenReturn(Optional.of(category));
         when(productRepository.save(any(Product.class))).thenReturn(product);
 
 
         supplierService.createNewSupplier(supplier);
-        productRepository.existsByNameAndStocks_Supplier_Id(product.getName(),
-                                                            stock.getSupplier().getId());
+        productRepository.findByNameAndStocks_Supplier_Id(product.getName(),
+                                                          stock.getSupplier().getId());
         categoryRepository.findByName(category.getName());
         productRepository.save(product);
 
 
         // Verify
         verify(supplierService, times(1)).createNewSupplier(supplier);
-        verify(productRepository, times(1)).existsByNameAndStocks_Supplier_Id(product.getName(),
-                                                                              stock.getSupplier().getId());
+        verify(productRepository, times(1)).findByNameAndStocks_Supplier_Id(product.getName(),
+                                                                            stock.getSupplier().getId());
         verify(categoryRepository, times(1)).findByName(product.getCategory().getName());
         verify(productRepository, times(1)).save(product);
 
@@ -81,32 +80,6 @@ public class ProductServiceTest {
         assertEquals(BigDecimal.valueOf(1.5), product.getSellingPrice());
         assertEquals(category, product.getCategory());
         assertEquals(1, product.getStocks().size());
-
-
-    }
-
-    @Test
-    void testSaveWhenProductAlreadyExist() {
-
-        // Given
-        Supplier supplier = new Supplier(1, "Supplier Name", "Address", "123456789", "email" +
-                "@example.com");
-        Category category = new Category(1, "Food");
-        Stock stock = new Stock(1, 10, LocalDate.now(), LocalDate.now().plusDays(10), null,
-                                supplier);
-        Product product = new Product(1, "Apple", BigDecimal.valueOf(1.5), false, category,
-                                      List.of(stock), null);
-
-        // When
-        when(productRepository.existsByNameAndStocks_Supplier_Id(anyString(), anyInt())).thenThrow(new DuplicateRequestException());
-
-
-        // Verify
-        verify(productRepository, times(0)).existsByNameAndStocks_Supplier_Id(product.getName(),
-                                                                              stock.getSupplier().getId());
-        assertThrows(DuplicateRequestException.class,
-                     () -> productRepository.existsByNameAndStocks_Supplier_Id(product.getName(),
-                                                                               stock.getSupplier().getId()));
 
 
     }
@@ -291,14 +264,14 @@ public class ProductServiceTest {
                 new Product(2, "Nome", new BigDecimal(26), false, null, null, null));
 
         // When
-        when(productRepository.findByCategoryName(categoryName)).thenReturn(products);
-        List<Product> ret = productRepository.findByCategoryName(categoryName);
+        when(productRepository.findByCategoryNameAndRemovedFalse(categoryName)).thenReturn(products);
+        List<Product> ret = productRepository.findByCategoryNameAndRemovedFalse(categoryName);
 
         // Verify
         assertEquals(products, ret);
         assertNotNull(ret);
         assertEquals(2, ret.size());
-        verify(productRepository, times(1)).findByCategoryName(categoryName);
+        verify(productRepository, times(1)).findByCategoryNameAndRemovedFalse(categoryName);
     }
 
     @Test
@@ -308,12 +281,12 @@ public class ProductServiceTest {
         String categoryName = "Categoria-A";
 
         // When
-        when(productRepository.findByCategoryName(categoryName)).thenThrow(new EntityNotFoundException());
+        when(productRepository.findByCategoryNameAndRemovedFalse(categoryName)).thenThrow(new EntityNotFoundException());
 
         // Verify
-        verify(productRepository, times(0)).findByCategoryName(categoryName);
+        verify(productRepository, times(0)).findByCategoryNameAndRemovedFalse(categoryName);
         assertThrows(EntityNotFoundException.class,
-                     () -> productRepository.findByCategoryName(categoryName));
+                     () -> productRepository.findByCategoryNameAndRemovedFalse(categoryName));
 
     }
 
@@ -327,11 +300,12 @@ public class ProductServiceTest {
                 new Product(2, "Nome", new BigDecimal(22), false, null, null, null));
 
         // When
-        when(productRepository.findByStocks_ExpirationDate(expirationDate)).thenReturn(products);
-        List<Product> ret = productRepository.findByStocks_ExpirationDate(expirationDate);
+        when(productRepository.findByStocks_ExpirationDateAndRemovedFalse(expirationDate)).thenReturn(products);
+        List<Product> ret =
+                productRepository.findByStocks_ExpirationDateAndRemovedFalse(expirationDate);
 
         // Verify
-        verify(productRepository, times(1)).findByStocks_ExpirationDate(expirationDate);
+        verify(productRepository, times(1)).findByStocks_ExpirationDateAndRemovedFalse(expirationDate);
         assertEquals(products, ret);
         assertNotNull(ret);
         assertEquals(2, ret.size());
@@ -345,13 +319,13 @@ public class ProductServiceTest {
         LocalDate expirationDate = LocalDate.now().plusDays(50);
 
         // When
-        when(productRepository.findByStocks_ExpirationDate(expirationDate)).thenThrow(new EntityNotFoundException());
+        when(productRepository.findByStocks_ExpirationDateAndRemovedFalse(expirationDate)).thenThrow(new EntityNotFoundException());
 
 
         // Verify
-        verify(productRepository, times(0)).findByStocks_ExpirationDate(expirationDate);
+        verify(productRepository, times(0)).findByStocks_ExpirationDateAndRemovedFalse(expirationDate);
         assertThrows(EntityNotFoundException.class,
-                     () -> productRepository.findByStocks_ExpirationDate(expirationDate));
+                     () -> productRepository.findByStocks_ExpirationDateAndRemovedFalse(expirationDate));
 
     }
 
@@ -365,14 +339,14 @@ public class ProductServiceTest {
                 new Product(2, name, new BigDecimal(15), false, null, null, null));
 
         // When
-        when(productRepository.findByName(name)).thenReturn(products);
-        List<Product> ret = productRepository.findByName(name);
+        when(productRepository.findByNameAndRemovedFalse(name)).thenReturn(products);
+        List<Product> ret = productRepository.findByNameAndRemovedFalse(name);
 
         // Verify
         assertEquals(products, ret);
         assertNotNull(ret);
         assertEquals(2, ret.size());
-        verify(productRepository, times(1)).findByName(name);
+        verify(productRepository, times(1)).findByNameAndRemovedFalse(name);
 
     }
 
@@ -384,13 +358,13 @@ public class ProductServiceTest {
 
 
         // When
-        when(productRepository.findByName(name)).thenThrow(new EntityNotFoundException());
+        when(productRepository.findByNameAndRemovedFalse(name)).thenThrow(new EntityNotFoundException());
 
 
         // Verify
-        verify(productRepository, times(0)).findByName(name);
+        verify(productRepository, times(0)).findByNameAndRemovedFalse(name);
         assertThrows(EntityNotFoundException.class,
-                     () -> productRepository.findByName(name));
+                     () -> productRepository.findByNameAndRemovedFalse(name));
 
 
     }
@@ -405,14 +379,14 @@ public class ProductServiceTest {
                 new Product(2, "Nome", new BigDecimal(sellingPrice), false, null, null, null));
 
         // WHEN
-        when(productRepository.findBySellingPrice(sellingPrice)).thenReturn(products);
-        List<Product> ret = productRepository.findBySellingPrice(sellingPrice);
+        when(productRepository.findBySellingPriceAndRemovedFalse(sellingPrice)).thenReturn(products);
+        List<Product> ret = productRepository.findBySellingPriceAndRemovedFalse(sellingPrice);
 
         // Verify
         assertEquals(products, ret);
         assertEquals(2, ret.size());
         assertNotNull(ret);
-        verify(productRepository, times(1)).findBySellingPrice(sellingPrice);
+        verify(productRepository, times(1)).findBySellingPriceAndRemovedFalse(sellingPrice);
     }
 
     @Test
@@ -422,13 +396,13 @@ public class ProductServiceTest {
         double sellingPrice = 15.24;
 
         // When
-        when(productRepository.findBySellingPrice(sellingPrice)).thenThrow(new EntityNotFoundException());
+        when(productRepository.findBySellingPriceAndRemovedFalse(sellingPrice)).thenThrow(new EntityNotFoundException());
 
 
         // Verify
-        verify(productRepository, times(0)).findBySellingPrice(sellingPrice);
+        verify(productRepository, times(0)).findBySellingPriceAndRemovedFalse(sellingPrice);
         assertThrows(EntityNotFoundException.class,
-                     () -> productRepository.findBySellingPrice(sellingPrice));
+                     () -> productRepository.findBySellingPriceAndRemovedFalse(sellingPrice));
 
 
     }
@@ -443,14 +417,14 @@ public class ProductServiceTest {
                 new Product(2, "Nome", new BigDecimal(22), false, null, null, null));
 
         // When
-        when(productRepository.findByStocks_Quantity(quantity)).thenReturn(products);
-        List<Product> ret = productRepository.findByStocks_Quantity(quantity);
+        when(productRepository.findByStocks_QuantityAndRemovedFalse(quantity)).thenReturn(products);
+        List<Product> ret = productRepository.findByStocks_QuantityAndRemovedFalse(quantity);
 
         // Verify
         assertEquals(products, ret);
         assertNotNull(ret);
         assertEquals(2, ret.size());
-        verify(productRepository, times(1)).findByStocks_Quantity(quantity);
+        verify(productRepository, times(1)).findByStocks_QuantityAndRemovedFalse(quantity);
 
     }
 
@@ -462,13 +436,13 @@ public class ProductServiceTest {
 
 
         // When
-        when(productRepository.findByStocks_Quantity(quantity)).thenThrow(new EntityNotFoundException());
+        when(productRepository.findByStocks_QuantityAndRemovedFalse(quantity)).thenThrow(new EntityNotFoundException());
 
 
         // Verify
-        verify(productRepository, times(0)).findByStocks_Quantity(quantity);
+        verify(productRepository, times(0)).findByStocks_QuantityAndRemovedFalse(quantity);
         assertThrows(EntityNotFoundException.class,
-                     () -> productRepository.findByStocks_Quantity(quantity));
+                     () -> productRepository.findByStocks_QuantityAndRemovedFalse(quantity));
 
 
     }
@@ -484,14 +458,15 @@ public class ProductServiceTest {
                 new Product(2, "Nome", new BigDecimal(22), false, null, null, null));
 
         // When
-        when(productRepository.findByStocks_Supplier_Name(supplierName)).thenReturn(products);
-        List<Product> ret = productRepository.findByStocks_Supplier_Name(supplierName);
+        when(productRepository.findByStocks_Supplier_NameAndRemovedFalse(supplierName)).thenReturn(products);
+        List<Product> ret =
+                productRepository.findByStocks_Supplier_NameAndRemovedFalse(supplierName);
 
         // Verify
         assertEquals(products, ret);
         assertNotNull(ret);
         assertEquals(2, ret.size());
-        verify(productRepository, times(1)).findByStocks_Supplier_Name(supplierName);
+        verify(productRepository, times(1)).findByStocks_Supplier_NameAndRemovedFalse(supplierName);
     }
 
     @Test
@@ -501,13 +476,13 @@ public class ProductServiceTest {
         String supplierName = "Nome Fornitore";
 
         // When
-        when(productRepository.findByStocks_Supplier_Name(supplierName)).thenThrow(new EntityNotFoundException());
+        when(productRepository.findByStocks_Supplier_NameAndRemovedFalse(supplierName)).thenThrow(new EntityNotFoundException());
 
 
         // Verify
-        verify(productRepository, times(0)).findByStocks_Supplier_Name(supplierName);
+        verify(productRepository, times(0)).findByStocks_Supplier_NameAndRemovedFalse(supplierName);
         assertThrows(EntityNotFoundException.class,
-                     () -> productRepository.findByStocks_Supplier_Name(supplierName));
+                     () -> productRepository.findByStocks_Supplier_NameAndRemovedFalse(supplierName));
 
 
     }
