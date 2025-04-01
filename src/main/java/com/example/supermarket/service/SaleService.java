@@ -143,6 +143,13 @@ public class SaleService {
         saleRepo.deleteAll();
     }
 
+    /**
+     * This method delete a sale identified by its id.
+     * If the sale doesn't exist, an EntityNotFoundException is thrown.
+     * Otherwise, it deletes both the sale and the associated receipt.
+     *
+     * @param id The ID of the sale to delete
+     */
     @Transactional
     public void deleteByID(int id) {
         Sale sale = saleRepo.findById(id).orElseThrow(() -> new EntityNotFoundException("No sale" +
