@@ -56,4 +56,10 @@ public class SaleController {
         return ResponseEntity.ok("All sales deleted successfully");
     }
 
+    @DeleteMapping("/id")
+    public ResponseEntity<String> deleteById(@RequestParam int id) {
+        saleServ.deleteByID(id);
+        return ResponseEntity.ok("Sale with id " + id + " deleted successfully");
+    }
+
 }

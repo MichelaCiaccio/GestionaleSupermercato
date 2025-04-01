@@ -142,4 +142,16 @@ public class SaleService {
         receiptRepo.deleteAll();
         saleRepo.deleteAll();
     }
+
+    @Transactional
+    public void deleteByID(int id) {
+        Sale sale = saleRepo.findById(id).orElseThrow(() -> new EntityNotFoundException("No sale" +
+                                                                                                " " +
+                                                                                                "with " +
+                                                                                                "id " + id + " to delete"));
+        receiptRepo.deleteBySale_Id(id);
+        saleRepo.deleteById(id);
+
+
+    }
 }

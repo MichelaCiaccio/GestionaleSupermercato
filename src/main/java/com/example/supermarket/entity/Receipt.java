@@ -15,7 +15,7 @@ public class Receipt {
     @NotNull
     private String receiptCode;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "sale_id")
     private Sale sale;
 
