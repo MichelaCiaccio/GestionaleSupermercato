@@ -20,7 +20,7 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
 
 
     @Nonnull
-    Optional<Product> findByIdAndRemoveFalse(Integer id);
+    Optional<Product> findByIdAndRemovedFalse(Integer id);
 
     @Nonnull
     Page<Product> findAll(@Nullable Pageable pageable);
@@ -40,6 +40,8 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
     List<Product> findByStocks_ExpirationDateAndRemovedFalse(LocalDate expirationDate);
 
     Optional<Product> findByNameAndStocks_Supplier_Id(String productName, Integer supplierId);
+
+    List<Product> findByDiscountId(int discountId);
 
 
 }

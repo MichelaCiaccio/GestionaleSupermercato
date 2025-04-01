@@ -5,6 +5,7 @@ import com.example.supermarket.entity.Product;
 import com.example.supermarket.repo.DiscountRepository;
 import com.example.supermarket.repo.ProductRepository;
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
+@Transactional
 public class DiscountService {
 
     @Autowired
@@ -38,8 +40,8 @@ public class DiscountService {
      * @param dataType      The data by which the discount should be ordered.
      * @return A Page containing the list of discounts.
      */
-    public Page<Discount> findAllDiscountSorted(Integer page, String sortDirection, String dataType,
-                                                boolean showRemoved) {
+    public Page<Discount> findAllDiscountSorted(Integer page, String sortDirection,
+                                                String dataType) {
 
         page = page == null ? 0 : page;
 
@@ -49,8 +51,7 @@ public class DiscountService {
 
         Sort.Direction direction = Sort.Direction.fromString(sortDirection.toUpperCase());
         Pageable pageable = PageRequest.of(page, 20, Sort.by(direction, dataType));
-        Page<Discount> discounts = showRemoved ? discountRepo.findAll(pageable) :
-                discountRepo.findByRemovedFalse(pageable);
+        Page<Discount> discounts = discountRepo.findAll(pageable);
         if (discounts.isEmpty()) {
             throw new EntityNotFoundException("There are no discounts");
         }
@@ -73,10 +74,56 @@ public class DiscountService {
 
         // Per ogni productId, cerca il prodotto e impostagli il discount
         for (Integer productId : productIds) {
-            Product product = productRepo.findByIdAndRemoveFalse(productId)
+            Product product = productRepo.findByIdAndRemovedFalse(productId)
                     .orElseThrow(() -> new EntityNotFoundException("Product with id " + productId + " not found"));
             product.setDiscount(savedDiscount);
             productRepo.save(product);
         }
+    }
+
+
+    /**
+     * Updates the discount with new data.
+     * It removes the discount association from all currently linked products and then
+     * assigns the discount to the products identified by the provided product IDs.
+     * If any product or the discount is not found, an EntityNotFoundException is thrown.
+     *
+     * @param discountId    The ID of the new discount.
+     * @param modDiscount   The new discount.
+     * @param modProductIds The list of product IDs to associate with the new discount.
+     */
+    public void updateDiscount(Integer discountId, Discount modDiscount,
+                               List<Integer> modProductIds) {
+
+        // Trova il discount esistente
+        Discount existingDiscount = discountRepo.findById(discountId)
+                .orElseThrow(() -> new EntityNotFoundException("Discount with id " + discountId + " not found"));
+
+        // Modifico il discount con i nuove dati
+        existingDiscount.setName(modDiscount.getName());
+        existingDiscount.setDiscountPercentage(modDiscount.getDiscountPercentage());
+        existingDiscount.setDuration(modDiscount.getDuration());
+        existingDiscount.setActive(modDiscount.isActive());
+
+        // Trovo la lista di prodotti attualmente associati al discount
+        List<Integer> currentProductIds =
+                productRepo.findByDiscountId(discountId).stream().map(Product::getId).toList();
+
+        // Trovo la lista di prodotti attualmente associati al discount e ne rimuovo l'associazione
+        for (Product product : productRepo.findByDiscountId(discountId)) {
+            product.setDiscount(null);
+            productRepo.save(product);
+        }
+
+        // Assegno i nuovi prodotti, se esistono, al discount
+        for (Integer productId : modProductIds) {
+            Product product = productRepo.findByIdAndRemovedFalse(productId)
+                    .orElseThrow(() -> new EntityNotFoundException("Product with id " + productId + " not found"));
+            product.setDiscount(existingDiscount);
+            productRepo.save(product);
+        }
+
+        discountRepo.save(existingDiscount);
+
     }
 }

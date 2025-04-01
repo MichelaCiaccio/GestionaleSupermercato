@@ -7,8 +7,9 @@
     <option name="rewriteBookmarkType" value="true" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7c4caa73-20ab-4765-9784-19538829fb77" name="Changes" comment="Add findAll in DiscountService">
+    <list default="true" id="7c4caa73-20ab-4765-9784-19538829fb77" name="Changes" comment="Add createNewDiscount in DiscountService">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/repo/DiscountRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/repo/DiscountRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/repo/ProductRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/repo/ProductRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/service/DiscountService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/service/DiscountService.java" afterDir="false" />
     </list>
@@ -260,14 +261,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1741276131044</updated>
-    </task>
-    <task id="LOCAL-00020" summary="Change Stock,Supplier and Product and correct save method in ProductService">
-      <option name="closed" value="true" />
-      <created>1742817709247</created>
-      <option name="number" value="00020" />
-      <option name="presentableId" value="LOCAL-00020" />
-      <option name="project" value="LOCAL" />
-      <updated>1742817709247</updated>
     </task>
     <task id="LOCAL-00021" summary="Correct Save method in ProductService">
       <option name="closed" value="true" />
@@ -653,7 +646,15 @@
       <option name="project" value="LOCAL" />
       <updated>1743514340956</updated>
     </task>
-    <option name="localTasksCounter" value="69" />
+    <task id="LOCAL-00069" summary="Add createNewDiscount in DiscountService">
+      <option name="closed" value="true" />
+      <created>1743516129339</created>
+      <option name="number" value="00069" />
+      <option name="presentableId" value="LOCAL-00069" />
+      <option name="project" value="LOCAL" />
+      <updated>1743516129339</updated>
+    </task>
+    <option name="localTasksCounter" value="70" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -668,7 +669,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Add findByProduct method to SaleService" />
     <MESSAGE value="Add createNewSale, createNewReceipt, createNewReceiptCode" />
     <MESSAGE value="Add javadoc" />
     <MESSAGE value="Add findAll test in SaleServiceTest" />
@@ -693,7 +693,8 @@
     <MESSAGE value="Update ProductServiceTest" />
     <MESSAGE value="Update createNewProduct in ProductService" />
     <MESSAGE value="Add findAll in DiscountService" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add findAll in DiscountService" />
+    <MESSAGE value="Add createNewDiscount in DiscountService" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add createNewDiscount in DiscountService" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
