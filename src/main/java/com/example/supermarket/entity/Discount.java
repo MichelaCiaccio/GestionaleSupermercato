@@ -1,5 +1,6 @@
 package com.example.supermarket.entity;
 
+import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
@@ -27,6 +28,7 @@ public class Discount {
     private boolean active;
 
     @OneToMany(mappedBy = "discount")
+    @Nullable
     private List<Sale> sales;
 
 }
