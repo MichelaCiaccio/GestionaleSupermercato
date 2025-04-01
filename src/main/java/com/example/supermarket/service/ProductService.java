@@ -131,6 +131,7 @@ public class ProductService {
         List<Stock> stocks = new ArrayList<>();
 
         for (Stock stock : modProduct.getStocks()) {
+
             Optional<Supplier> modSupplier =
                     supplierRepository.findByName(stock.getSupplier().getName());
             if (modSupplier.isEmpty()) {
