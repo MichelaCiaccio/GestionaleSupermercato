@@ -20,7 +20,7 @@ public class ProductSale {
     @NotNull
     private int quantity;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "product_id", unique = true)
     private Product product;
 

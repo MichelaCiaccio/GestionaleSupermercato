@@ -27,6 +27,8 @@ public class Product {
     @NotNull(message = "The selling price is required")
     private BigDecimal sellingPrice;
 
+    private boolean removed;
+
     @ManyToOne
     @JoinColumn(name = "category_id")
     private Category category;

@@ -31,8 +31,9 @@ public class ProductController {
     @GetMapping("")
     public Page<Product> getAll(@RequestParam(required = false) Integer page,
                                 @RequestParam(required = false) String sortDirection,
-                                @RequestParam(required = false) String dataType) throws EntityNotFoundException {
-        return productService.findAllProductsSorted(page, sortDirection, dataType);
+                                @RequestParam(required = false) String dataType,
+                                @RequestParam(required = false) boolean showRemoved) throws EntityNotFoundException {
+        return productService.findAllProductsSorted(page, sortDirection, dataType, showRemoved);
     }
 
     @PostMapping("/add")

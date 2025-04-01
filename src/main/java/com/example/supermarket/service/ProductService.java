@@ -4,10 +4,7 @@ import com.example.supermarket.entity.Category;
 import com.example.supermarket.entity.Product;
 import com.example.supermarket.entity.Stock;
 import com.example.supermarket.entity.Supplier;
-import com.example.supermarket.repo.CategoryRepository;
-import com.example.supermarket.repo.ProductRepository;
-import com.example.supermarket.repo.StockRepository;
-import com.example.supermarket.repo.SupplierRepository;
+import com.example.supermarket.repo.*;
 import com.sun.jdi.request.DuplicateRequestException;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
@@ -37,6 +34,12 @@ public class ProductService {
 
     @Autowired
     private SupplierRepository supplierRepository;
+
+    @Autowired
+    private SaleRepository saleRepository;
+
+    @Autowired
+    private ProductSaleRepository productSaleRepository;
 
     @Autowired
     private SupplierService supplierService;
@@ -164,7 +167,7 @@ public class ProductService {
      * @return A Page containing the list of products.
      */
     public Page<Product> findAllProductsSorted(Integer page, String sortDirection,
-                                               String dataType) {
+                                               String dataType, boolean showRemoved) {
         page = page == null ? 0 : page;
 
         sortDirection = sortDirection == null || sortDirection.isBlank() ? "ASC" : sortDirection;
@@ -173,11 +176,11 @@ public class ProductService {
 
         Sort.Direction direction = Sort.Direction.fromString(sortDirection.toUpperCase());
         Pageable pageable = PageRequest.of(page, 20, Sort.by(direction, dataType));
-        Page<Product> products = productRepository.findAll(pageable);
+        Page<Product> products = showRemoved ? productRepository.findAll(pageable) :
+                productRepository.findByRemovedFalse(pageable);
         if (products.isEmpty()) {
             throw new EntityNotFoundException("There are no products");
         }
-
         return products;
 
     }
@@ -321,8 +324,10 @@ public class ProductService {
         if (products.isEmpty()) {
             throw new EntityNotFoundException("There are no products to delete");
         }
-        supplierRepository.deleteAll();
+        productSaleRepository.deleteAll();
         productRepository.deleteAll();
+        supplierRepository.deleteAll();
+        saleRepository.deleteAll();
 
     }
 

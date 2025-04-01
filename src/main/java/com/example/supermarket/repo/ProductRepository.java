@@ -25,6 +25,8 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
     @Nonnull
     Page<Product> findAll(@Nullable Pageable pageable);
 
+    Page<Product> findByRemovedFalse(Pageable pageable);
+
     List<Product> findByName(String name);
 
     List<Product> findByCategoryName(String categoryName);
@@ -36,7 +38,6 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
     List<Product> findByStocks_Quantity(int stockQuantity);
 
     List<Product> findByStocks_ExpirationDate(LocalDate expirationDate);
-
 
     boolean existsByNameAndStocks_Supplier_Id(String productName, Integer supplierId);
 

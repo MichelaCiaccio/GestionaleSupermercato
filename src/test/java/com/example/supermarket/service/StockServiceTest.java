@@ -36,7 +36,7 @@ class StockServiceTest {
         Supplier supplier = new Supplier(1, "Supplier Name", "Address", "123456789", "email" +
                 "@example.com");
         Category category = new Category(1, "Food");
-        Product product = new Product(1, "Apple", BigDecimal.valueOf(1.5), category,
+        Product product = new Product(1, "Apple", BigDecimal.valueOf(1.5), false, category,
                                       null, null);
         Stock stock = new Stock(1, 10, LocalDate.now(), LocalDate.now().plusDays(10), product,
                                 supplier);
@@ -72,7 +72,7 @@ class StockServiceTest {
         Supplier supplier = new Supplier(1, "Supplier Name", "Address", "123456789", "email" +
                 "@example.com");
         Category category = new Category(1, "Food");
-        Product product = new Product(1, "Apple", BigDecimal.valueOf(1.5), category,
+        Product product = new Product(1, "Apple", BigDecimal.valueOf(1.5), false, category,
                                       null, null);
         Stock stock = new Stock(1, 10, LocalDate.now(), LocalDate.now().plusDays(10), product,
                                 supplier);
@@ -109,7 +109,7 @@ class StockServiceTest {
         Supplier supplier = new Supplier(1, "Supplier Name", "Address", "123456789", "email" +
                 "@example.com");
         Category category = new Category(1, "Food");
-        Product product = new Product(1, "Apple", BigDecimal.valueOf(1.5), category,
+        Product product = new Product(1, "Apple", BigDecimal.valueOf(1.5), false, category,
                                       null, null);
         Stock stock = new Stock(1, 10, LocalDate.now(), LocalDate.now().plusDays(10), product,
                                 supplier);
@@ -145,7 +145,7 @@ class StockServiceTest {
         Supplier supplier = new Supplier(1, "Supplier Name", "Address", "123456789", "email" +
                 "@example.com");
         Category category = new Category(1, "Food");
-        Product product = new Product(1, "Apple", BigDecimal.valueOf(1.5), category,
+        Product product = new Product(1, "Apple", BigDecimal.valueOf(1.5), false, category,
                                       null, null);
         List<Stock> stocks = List.of(
                 new Stock(1, 10, LocalDate.now(), LocalDate.now().plusDays(10), product,
