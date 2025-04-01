@@ -18,9 +18,9 @@ import java.util.Optional;
 @Transactional
 public interface ProductRepository extends JpaRepository<Product, Integer> {
 
-    @Override
+
     @Nonnull
-    Optional<Product> findById(@Nullable Integer id);
+    Optional<Product> findByIdAndRemoveFalse(Integer id);
 
     @Nonnull
     Page<Product> findAll(@Nullable Pageable pageable);
