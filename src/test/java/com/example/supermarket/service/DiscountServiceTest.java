@@ -34,9 +34,9 @@ class DiscountServiceTest {
     @Test
     void findAllDiscountSorted() {
         // Given
-        List<Discount> discounts = List.of(new Discount(1, "Discount", 30, LocalDate.of(2026, 06,
+        List<Discount> discounts = List.of(new Discount(1, "Discount", 30, LocalDate.of(2026, 6,
                                                                                         30)
-                , true), new Discount(1, "Discount", 30, LocalDate.of(2026, 06,
+                , true), new Discount(1, "Discount", 30, LocalDate.of(2026, 6,
                                                                       30)
                 , true));
 
@@ -66,7 +66,7 @@ class DiscountServiceTest {
     void createNewDiscount() {
 
         // Given
-        Discount discount = new Discount(1, "Discount", 30, LocalDate.of(2026, 06,
+        Discount discount = new Discount(1, "Discount", 30, LocalDate.of(2026, 6,
                                                                          30)
                 , true);
         Product product1 = new Product(1, "Nome", new BigDecimal(12), false, null, null,
@@ -89,10 +89,6 @@ class DiscountServiceTest {
     @Test
     void createNewDiscountException() {
 
-        // Given
-        Product product1 = new Product(1, "Nome", new BigDecimal(12), false, null, null,
-                                       null, null);
-
         // When
         when(productRepo.findByIdAndRemovedFalse(1)).thenThrow(new EntityNotFoundException());
 
@@ -113,7 +109,7 @@ class DiscountServiceTest {
     void deleteAll() {
 
         // Given
-        Discount discount = new Discount(1, "Discount", 30, LocalDate.of(2026, 06,
+        Discount discount = new Discount(1, "Discount", 30, LocalDate.of(2026, 6,
                                                                          30)
                 , true);
         Product product = new Product(1, "Nome", new BigDecimal(12), false, null, null,
@@ -148,7 +144,7 @@ class DiscountServiceTest {
     void deleteById() {
 
         // Given
-        Discount discount = new Discount(1, "Discount", 30, LocalDate.of(2026, 06,
+        Discount discount = new Discount(1, "Discount", 30, LocalDate.of(2026, 6,
                                                                          30)
                 , true);
         Product product1 = new Product(1, "Nome", new BigDecimal(12), false, null, null,
@@ -172,11 +168,7 @@ class DiscountServiceTest {
 
     @Test
     void deleteByIdException() {
-
-        // Given
-        Discount discount = new Discount(1, "Discount", 30, LocalDate.of(2026, 06,
-                                                                         30)
-                , true);
+        
 
         // When
         when(discountRepo.findById(1)).thenThrow(new EntityNotFoundException());
