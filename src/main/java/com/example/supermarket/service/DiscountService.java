@@ -107,9 +107,6 @@ public class DiscountService {
         existingDiscount.setEndDate(modDiscount.getEndDate());
         existingDiscount.setActive(modDiscount.isActive());
 
-        // Trovo la lista di prodotti attualmente associati al discount
-        List<Integer> currentProductIds =
-                productRepo.findByDiscountId(discountId).stream().map(Product::getId).toList();
 
         // Trovo la lista di prodotti attualmente associati al discount e ne rimuovo l'associazione
         for (Product product : productRepo.findByDiscountId(discountId)) {
@@ -148,5 +145,18 @@ public class DiscountService {
             }
             discountRepo.save(discount);
         }
+    }
+
+    public void deleteAll() {
+        List<Discount> discounts = discountRepo.findAll();
+        if (discounts.isEmpty()) {
+            throw new EntityNotFoundException("There are no discount to delete");
+        }
+        List<Product> currentProducts = productRepo.findByDiscountIn(discounts);
+        for (Product product : currentProducts) {
+            product.setDiscount(null);
+        }
+        productRepo.saveAll(currentProducts);
+        discountRepo.deleteAll();
     }
 }

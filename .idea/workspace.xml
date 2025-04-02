@@ -7,9 +7,10 @@
     <option name="rewriteBookmarkType" value="true" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7c4caa73-20ab-4765-9784-19538829fb77" name="Changes" comment="Add updatedNewDiscount in DiscountService">
+    <list default="true" id="7c4caa73-20ab-4765-9784-19538829fb77" name="Changes" comment="Add updatedDiscountStatus in DiscountService">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/controller/DiscountController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/entity/Discount.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/entity/Discount.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/repo/ProductRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/repo/ProductRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/service/DiscountService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/service/DiscountService.java" afterDir="false" />
     </list>
     <list id="6499c595-af5e-4d71-8893-8354dc300f9f" name="No commit" comment="" />
@@ -25,8 +26,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="JUnit5 Test Class" />
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -83,56 +84,56 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.Unnamed.executor": "Run",
-    "JUnit.ProductServiceTest.executor": "Run",
-    "JUnit.ProductServiceTest.save_ShouldSaveProduct_WhenValid.executor": "Run",
-    "JUnit.ProductServiceTest.testDeleteAll.executor": "Run",
-    "JUnit.ProductServiceTest.testDeleteById.executor": "Run",
-    "JUnit.ProductServiceTest.testDeleteByIdException.executor": "Run",
-    "JUnit.ProductServiceTest.testFindAll.executor": "Run",
-    "JUnit.ProductServiceTest.testFindById.executor": "Run",
-    "JUnit.ProductServiceTest.testFindByIdException.executor": "Run",
-    "JUnit.ProductServiceTest.testSaveDuplicateException.executor": "Run",
-    "JUnit.ProductServiceTest.testSaveProduct_Success.executor": "Run",
-    "JUnit.ProductServiceTest.testSaveWhenProductAlreadyExist.executor": "Run",
-    "JUnit.ProductServiceTest.testUpdate.executor": "Run",
-    "JUnit.SaleServiceTest,findAllSalesSorted and 7 more.executor": "Run",
-    "JUnit.SaleServiceTest.createNewSale.executor": "Run",
-    "JUnit.SaleServiceTest.createNewSaleEntityNotFoundException.executor": "Run",
-    "JUnit.SaleServiceTest.createNewSaleException.executor": "Run",
-    "JUnit.SaleServiceTest.deleteAll.executor": "Run",
-    "JUnit.SaleServiceTest.deleteAllException.executor": "Run",
-    "JUnit.SaleServiceTest.deleteById.executor": "Run",
-    "JUnit.SaleServiceTest.executor": "Run",
-    "JUnit.SaleServiceTest.findAllSalesSorted.executor": "Run",
-    "JUnit.SaleServiceTest.findByProduct.executor": "Run",
-    "JUnit.SaleServiceTest.findByProductException.executor": "Run",
-    "JUnit.SaleServiceTest.findBySaleDate.executor": "Run",
-    "JUnit.SaleServiceTest.findBySaleDateException.executor": "Run",
-    "JUnit.StockServiceTest.addStockQuantity.executor": "Run",
-    "JUnit.StockServiceTest.addStockQuantityException.executor": "Run",
-    "JUnit.StockServiceTest.executor": "Run",
-    "JUnit.StockServiceTest.findStockByProductAndSupplier.executor": "Run",
-    "JUnit.StockServiceTest.findStockByProductAndSupplierException.executor": "Run",
-    "JUnit.StockServiceTest.subStockQuantity.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "code.cleanup.on.save": "true",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
-    "git-widget-placeholder": "dev",
-    "kotlin-language-version-configured": "true",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "rearrange.code.on.save": "true",
-    "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "preferences.sourceCode.Java"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Unnamed.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ProductServiceTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ProductServiceTest.save_ShouldSaveProduct_WhenValid.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ProductServiceTest.testDeleteAll.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ProductServiceTest.testDeleteById.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ProductServiceTest.testDeleteByIdException.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ProductServiceTest.testFindAll.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ProductServiceTest.testFindById.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ProductServiceTest.testFindByIdException.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ProductServiceTest.testSaveDuplicateException.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ProductServiceTest.testSaveProduct_Success.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ProductServiceTest.testSaveWhenProductAlreadyExist.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ProductServiceTest.testUpdate.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.SaleServiceTest,findAllSalesSorted and 7 more.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.SaleServiceTest.createNewSale.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.SaleServiceTest.createNewSaleEntityNotFoundException.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.SaleServiceTest.createNewSaleException.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.SaleServiceTest.deleteAll.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.SaleServiceTest.deleteAllException.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.SaleServiceTest.deleteById.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.SaleServiceTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.SaleServiceTest.findAllSalesSorted.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.SaleServiceTest.findByProduct.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.SaleServiceTest.findByProductException.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.SaleServiceTest.findBySaleDate.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.SaleServiceTest.findBySaleDateException.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.StockServiceTest.addStockQuantity.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.StockServiceTest.addStockQuantityException.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.StockServiceTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.StockServiceTest.findStockByProductAndSupplier.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.StockServiceTest.findStockByProductAndSupplierException.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.StockServiceTest.subStockQuantity.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;code.cleanup.on.save&quot;: &quot;true&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;dev&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;rearrange.code.on.save&quot;: &quot;true&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.sourceCode.Java&quot;
   }
-}]]></component>
+}</component>
   <component name="ReadonlyStatusHandler">
     <option name="SHOW_DIALOG" value="false" />
   </component>
@@ -260,14 +261,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1741276131044</updated>
-    </task>
-    <task id="LOCAL-00022" summary="Change Stock, Product, Supplier entity and update save method in ProductService">
-      <option name="closed" value="true" />
-      <created>1742921616314</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1742921616314</updated>
     </task>
     <task id="LOCAL-00023" summary="Add testSaveSuccessfully">
       <option name="closed" value="true" />
@@ -653,7 +646,15 @@
       <option name="project" value="LOCAL" />
       <updated>1743519229159</updated>
     </task>
-    <option name="localTasksCounter" value="71" />
+    <task id="LOCAL-00071" summary="Add updatedDiscountStatus in DiscountService">
+      <option name="closed" value="true" />
+      <created>1743523442727</created>
+      <option name="number" value="00071" />
+      <option name="presentableId" value="LOCAL-00071" />
+      <option name="project" value="LOCAL" />
+      <updated>1743523442727</updated>
+    </task>
+    <option name="localTasksCounter" value="72" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -668,7 +669,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Add javadoc" />
     <MESSAGE value="Add findAll test in SaleServiceTest" />
     <MESSAGE value="Add findAllException test in SaleServiceTest" />
     <MESSAGE value="Add findBySaleDate test in SaleServiceTest" />
@@ -693,7 +693,8 @@
     <MESSAGE value="Add findAll in DiscountService" />
     <MESSAGE value="Add createNewDiscount in DiscountService" />
     <MESSAGE value="Add updatedNewDiscount in DiscountService" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add updatedNewDiscount in DiscountService" />
+    <MESSAGE value="Add updatedDiscountStatus in DiscountService" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add updatedDiscountStatus in DiscountService" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

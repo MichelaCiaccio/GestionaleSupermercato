@@ -1,5 +1,6 @@
 package com.example.supermarket.repo;
 
+import com.example.supermarket.entity.Discount;
 import com.example.supermarket.entity.Product;
 import jakarta.annotation.Nonnull;
 import jakarta.annotation.Nullable;
@@ -42,6 +43,8 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
     Optional<Product> findByNameAndStocks_Supplier_Id(String productName, Integer supplierId);
 
     List<Product> findByDiscountId(int discountId);
+
+    List<Product> findByDiscountIn(List<Discount> discounts);
 
 
 }
