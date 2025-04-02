@@ -7,7 +7,7 @@
     <option name="rewriteBookmarkType" value="true" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7c4caa73-20ab-4765-9784-19538829fb77" name="Changes" comment="Add createNewDiscount test in DiscountServiceTest">
+    <list default="true" id="7c4caa73-20ab-4765-9784-19538829fb77" name="Changes" comment="Add deleteAll test in DiscountServiceTest">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/com/example/supermarket/service/DiscountServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/example/supermarket/service/DiscountServiceTest.java" afterDir="false" />
     </list>
@@ -88,6 +88,7 @@
     "JUnit.DiscountServiceTest.createNewDiscount.executor": "Run",
     "JUnit.DiscountServiceTest.createNewDiscountException.executor": "Run",
     "JUnit.DiscountServiceTest.deleteAll.executor": "Run",
+    "JUnit.DiscountServiceTest.deleteAllException.executor": "Run",
     "JUnit.DiscountServiceTest.executor": "Run",
     "JUnit.DiscountServiceTest.findAllDiscountSorted.executor": "Run",
     "JUnit.DiscountServiceTest.findAllDiscountSortedException.executor": "Run",
@@ -266,14 +267,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1741276131044</updated>
-    </task>
-    <task id="LOCAL-00033" summary="Update deleteAll in ProductService">
-      <option name="closed" value="true" />
-      <created>1743004130017</created>
-      <option name="number" value="00033" />
-      <option name="presentableId" value="LOCAL-00033" />
-      <option name="project" value="LOCAL" />
-      <updated>1743004130017</updated>
     </task>
     <task id="LOCAL-00034" summary="Add sub and add quantity method in StockService">
       <option name="closed" value="true" />
@@ -659,7 +652,15 @@
       <option name="project" value="LOCAL" />
       <updated>1743591864439</updated>
     </task>
-    <option name="localTasksCounter" value="82" />
+    <task id="LOCAL-00082" summary="Add deleteAll test in DiscountServiceTest">
+      <option name="closed" value="true" />
+      <created>1743596714969</created>
+      <option name="number" value="00082" />
+      <option name="presentableId" value="LOCAL-00082" />
+      <option name="project" value="LOCAL" />
+      <updated>1743596714969</updated>
+    </task>
+    <option name="localTasksCounter" value="83" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -674,7 +675,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Add ReceiptDTO and correct findAll method in ReceiptService" />
     <MESSAGE value="Correct SaleServiceTest" />
     <MESSAGE value="Add deleteById in SaleService method" />
     <MESSAGE value="Add deleteById test in SaleServiceTest" />
@@ -699,7 +699,8 @@
     <MESSAGE value="Update Deal entity" />
     <MESSAGE value="Add findAll test in DiscountServiceTest" />
     <MESSAGE value="Add createNewDiscount test in DiscountServiceTest" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add createNewDiscount test in DiscountServiceTest" />
+    <MESSAGE value="Add deleteAll test in DiscountServiceTest" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add deleteAll test in DiscountServiceTest" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

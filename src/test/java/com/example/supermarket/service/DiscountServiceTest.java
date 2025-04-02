@@ -146,5 +146,44 @@ class DiscountServiceTest {
 
     @Test
     void deleteById() {
+
+        // Given
+        Discount discount = new Discount(1, "Discount", 30, LocalDate.of(2026, 06,
+                                                                         30)
+                , true);
+        Product product1 = new Product(1, "Nome", new BigDecimal(12), false, null, null,
+                                       discount, null);
+        Product product2 = new Product(2, "Nome", new BigDecimal(15), false, null, null, discount
+                , null);
+
+        // When
+        when(discountRepo.findById(1)).thenReturn(Optional.of(discount));
+        when(productRepo.findByDiscountId(1)).thenReturn(List.of(product1, product2));
+        doNothing().when(discountRepo).deleteById(1);
+        discountServ.deleteById(1);
+
+        // Verify
+        verify(discountRepo, times(1)).findById(1);
+        verify(productRepo, times(1)).findByDiscountId(1);
+        assertNull(product1.getDiscount());
+        assertNull(product2.getDiscount());
+    }
+
+
+    @Test
+    void deleteByIdException() {
+
+        // Given
+        Discount discount = new Discount(1, "Discount", 30, LocalDate.of(2026, 06,
+                                                                         30)
+                , true);
+
+        // When
+        when(discountRepo.findById(1)).thenThrow(new EntityNotFoundException());
+
+        // Verify
+        // Verify
+        verify(discountRepo, times(0)).findById(1);
+        assertThrows(EntityNotFoundException.class, () -> discountRepo.findById(1));
     }
 }
