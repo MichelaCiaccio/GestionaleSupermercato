@@ -42,5 +42,10 @@ public class Product {
     @Nullable
     private Discount discount;
 
+    @ManyToOne
+    @JoinColumn(name = "deal_id")
+    @Nullable
+    private Deal deal;
+
 
 }

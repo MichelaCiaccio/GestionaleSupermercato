@@ -1,11 +1,14 @@
 package com.example.supermarket.entity;
 
 import com.example.supermarket.entity.enums.DealType;
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
-import java.util.List;
+import java.time.LocalDate;
 
 @Entity
 @Data
@@ -22,12 +25,9 @@ public class Deal {
     private DealType dealType;
 
     @NotNull
-    private int duration;
-
-    @NotNull
+    private LocalDate endDate;
+    
     private boolean active;
 
-    @OneToMany(mappedBy = "deal")
-    private List<Sale> sales;
 
 }
