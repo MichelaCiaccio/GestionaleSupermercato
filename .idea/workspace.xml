@@ -7,10 +7,10 @@
     <option name="rewriteBookmarkType" value="true" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7c4caa73-20ab-4765-9784-19538829fb77" name="Changes" comment="Add DealRepository">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/service/DealService.java" afterDir="false" />
+    <list default="true" id="7c4caa73-20ab-4765-9784-19538829fb77" name="Changes" comment="Add findAllDealSorted in DealService">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/service/DiscountService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/service/DiscountService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/entity/enums/DealType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/entity/enums/DealType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/service/DealService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/service/DealService.java" afterDir="false" />
     </list>
     <list id="6499c595-af5e-4d71-8893-8354dc300f9f" name="No commit" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -268,22 +268,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1741276131044</updated>
-    </task>
-    <task id="LOCAL-00037" summary="Complete the StockServiceTest">
-      <option name="closed" value="true" />
-      <created>1743090137903</created>
-      <option name="number" value="00037" />
-      <option name="presentableId" value="LOCAL-00037" />
-      <option name="project" value="LOCAL" />
-      <updated>1743090137903</updated>
-    </task>
-    <task id="LOCAL-00038" summary="Update SupplierService">
-      <option name="closed" value="true" />
-      <created>1743094673632</created>
-      <option name="number" value="00038" />
-      <option name="presentableId" value="LOCAL-00038" />
-      <option name="project" value="LOCAL" />
-      <updated>1743094673632</updated>
     </task>
     <task id="LOCAL-00039" summary="Add SaleRepository">
       <option name="closed" value="true" />
@@ -661,7 +645,23 @@
       <option name="project" value="LOCAL" />
       <updated>1743597590427</updated>
     </task>
-    <option name="localTasksCounter" value="86" />
+    <task id="LOCAL-00086" summary="Complete the Javadoc from DiscountService">
+      <option name="closed" value="true" />
+      <created>1743597944786</created>
+      <option name="number" value="00086" />
+      <option name="presentableId" value="LOCAL-00086" />
+      <option name="project" value="LOCAL" />
+      <updated>1743597944786</updated>
+    </task>
+    <task id="LOCAL-00087" summary="Add findAllDealSorted in DealService">
+      <option name="closed" value="true" />
+      <created>1743597965688</created>
+      <option name="number" value="00087" />
+      <option name="presentableId" value="LOCAL-00087" />
+      <option name="project" value="LOCAL" />
+      <updated>1743597965688</updated>
+    </task>
+    <option name="localTasksCounter" value="88" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -676,8 +676,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Add Javadoc to deleteById method in SaleService" />
-    <MESSAGE value="Add DiscountRepository" />
     <MESSAGE value="Correct Discount Entity and relation with Product" />
     <MESSAGE value="Add soft delete for product" />
     <MESSAGE value="Correct ProductService with soft delete" />
@@ -701,7 +699,9 @@
     <MESSAGE value="Add deleteById test in DiscountServiceTest" />
     <MESSAGE value="Improve DiscountServiceTest" />
     <MESSAGE value="Add DealRepository" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add DealRepository" />
+    <MESSAGE value="Complete the Javadoc from DiscountService" />
+    <MESSAGE value="Add findAllDealSorted in DealService" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add findAllDealSorted in DealService" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
