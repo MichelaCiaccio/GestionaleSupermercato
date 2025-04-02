@@ -42,4 +42,10 @@ public class DiscountController {
         discountServ.updateDiscount(discountId, modDiscount, modProductIds);
         return ResponseEntity.ok("Discount " + modDiscount.getName() + " updated successfully");
     }
+
+    @DeleteMapping("/deleteAll")
+    public ResponseEntity<String> deleteAllDiscount() {
+        discountServ.deleteAll();
+        return ResponseEntity.ok("All the discount have been deleted");
+    }
 }
