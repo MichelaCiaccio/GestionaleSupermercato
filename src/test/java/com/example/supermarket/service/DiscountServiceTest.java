@@ -69,9 +69,10 @@ class DiscountServiceTest {
         Discount discount = new Discount(1, "Discount", 30, LocalDate.of(2026, 6,
                                                                          30)
                 , true);
-        Product product1 = new Product(1, "Nome", new BigDecimal(12), false, null, null,
+        Product product1 = new Product(1, "Nome", new BigDecimal(12), null, false, null, null,
                                        discount, null);
-        Product product2 = new Product(2, "Nome", new BigDecimal(15), false, null, null, discount
+        Product product2 = new Product(2, "Nome", new BigDecimal(15), null, false, null, null,
+                                       discount
                 , null);
 
         // When
@@ -112,7 +113,7 @@ class DiscountServiceTest {
         Discount discount = new Discount(1, "Discount", 30, LocalDate.of(2026, 6,
                                                                          30)
                 , true);
-        Product product = new Product(1, "Nome", new BigDecimal(12), false, null, null,
+        Product product = new Product(1, "Nome", new BigDecimal(12), null, false, null, null,
                                       discount, null);
 
         // When
@@ -147,9 +148,10 @@ class DiscountServiceTest {
         Discount discount = new Discount(1, "Discount", 30, LocalDate.of(2026, 6,
                                                                          30)
                 , true);
-        Product product1 = new Product(1, "Nome", new BigDecimal(12), false, null, null,
+        Product product1 = new Product(1, "Nome", new BigDecimal(12), null, false, null, null,
                                        discount, null);
-        Product product2 = new Product(2, "Nome", new BigDecimal(15), false, null, null, discount
+        Product product2 = new Product(2, "Nome", new BigDecimal(15), null, false, null, null,
+                                       discount
                 , null);
 
         // When
@@ -168,7 +170,7 @@ class DiscountServiceTest {
 
     @Test
     void deleteByIdException() {
-        
+
 
         // When
         when(discountRepo.findById(1)).thenThrow(new EntityNotFoundException());

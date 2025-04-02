@@ -7,10 +7,16 @@
     <option name="rewriteBookmarkType" value="true" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7c4caa73-20ab-4765-9784-19538829fb77" name="Changes" comment="Add findAllDealSorted in DealService">
+    <list default="true" id="7c4caa73-20ab-4765-9784-19538829fb77" name="Changes" comment="Add another DealType">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/entity/enums/DealType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/entity/enums/DealType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/entity/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/entity/Product.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/repo/DiscountRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/repo/DiscountRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/service/DealService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/service/DealService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/service/DiscountService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/service/DiscountService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/supermarket/service/DiscountServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/example/supermarket/service/DiscountServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/supermarket/service/ProductServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/example/supermarket/service/ProductServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/supermarket/service/SaleServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/example/supermarket/service/SaleServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/supermarket/service/StockServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/example/supermarket/service/StockServiceTest.java" afterDir="false" />
     </list>
     <list id="6499c595-af5e-4d71-8893-8354dc300f9f" name="No commit" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -268,14 +274,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1741276131044</updated>
-    </task>
-    <task id="LOCAL-00039" summary="Add SaleRepository">
-      <option name="closed" value="true" />
-      <created>1743159556709</created>
-      <option name="number" value="00039" />
-      <option name="presentableId" value="LOCAL-00039" />
-      <option name="project" value="LOCAL" />
-      <updated>1743159556709</updated>
     </task>
     <task id="LOCAL-00040" summary="Add findAll method to SaleService">
       <option name="closed" value="true" />
@@ -661,7 +659,15 @@
       <option name="project" value="LOCAL" />
       <updated>1743597965688</updated>
     </task>
-    <option name="localTasksCounter" value="88" />
+    <task id="LOCAL-00088" summary="Add another DealType">
+      <option name="closed" value="true" />
+      <created>1743599886625</created>
+      <option name="number" value="00088" />
+      <option name="presentableId" value="LOCAL-00088" />
+      <option name="project" value="LOCAL" />
+      <updated>1743599886625</updated>
+    </task>
+    <option name="localTasksCounter" value="89" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -676,7 +682,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Correct Discount Entity and relation with Product" />
     <MESSAGE value="Add soft delete for product" />
     <MESSAGE value="Correct ProductService with soft delete" />
     <MESSAGE value="Update ProductServiceTest" />
@@ -701,7 +706,8 @@
     <MESSAGE value="Add DealRepository" />
     <MESSAGE value="Complete the Javadoc from DiscountService" />
     <MESSAGE value="Add findAllDealSorted in DealService" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add findAllDealSorted in DealService" />
+    <MESSAGE value="Add another DealType" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add another DealType" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -153,7 +153,8 @@ class SaleServiceTest {
 
         // Given
         Category category = new Category(1, "Food");
-        Product product = new Product(1, "Apple", BigDecimal.valueOf(1.5), false, category, null,
+        Product product = new Product(1, "Apple", BigDecimal.valueOf(1.5), null, false, category,
+                                      null,
                                       null, null);
         ProductSale productSale = new ProductSale(1, 50, product, null);
         Sale sale = new Sale(1, 100, 100, LocalDateTime.now(), List.of(productSale), null);
@@ -174,7 +175,8 @@ class SaleServiceTest {
 
         // Given
         Category category = new Category(1, "Food");
-        Product product = new Product(1, "Apple", BigDecimal.valueOf(1.5), false, category, null,
+        Product product = new Product(1, "Apple", BigDecimal.valueOf(1.5), null, false, category,
+                                      null,
                                       null, null);
         ProductSale productSale = new ProductSale(1, 50, product, null);
         Sale sale = new Sale(1, 100, 100, LocalDateTime.now(), List.of(productSale), null);
@@ -192,7 +194,8 @@ class SaleServiceTest {
     void createNewSaleEntityNotFoundException() {
         // Given
         Category category = new Category(1, "Food");
-        Product product = new Product(1, "Apple", BigDecimal.valueOf(1.5), false, category, null,
+        Product product = new Product(1, "Apple", BigDecimal.valueOf(1.5), null, false, category,
+                                      null,
                                       null, null);
         ProductSale productSale = new ProductSale(1, 50, product, null);
         Sale sale = new Sale(1, 100, 100, LocalDateTime.now(), List.of(productSale), null);

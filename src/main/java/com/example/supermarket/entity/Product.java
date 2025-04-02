@@ -27,6 +27,8 @@ public class Product {
     @NotNull(message = "The selling price is required")
     private BigDecimal sellingPrice;
 
+    private BigDecimal discountedSellingPrice;
+
     private boolean removed;
 
     @ManyToOne

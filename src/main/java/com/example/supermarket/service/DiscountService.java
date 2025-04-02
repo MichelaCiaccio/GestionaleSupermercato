@@ -14,6 +14,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -134,7 +135,7 @@ public class DiscountService {
      * If the end date has passed, the discount's 'active' status is set
      * to false.
      */
-    @Scheduled(cron = "0 0 0 * * ?")
+    @Scheduled(cron = "0 0 0 * * ? ", zone = "Europe/Rome")
     public void updateDiscountStatus() {
         List<Discount> discounts = discountRepo.findAll();
         LocalDate today = LocalDate.now();
@@ -148,7 +149,7 @@ public class DiscountService {
     }
 
     /**
-     * Deletes all discounts.
+     * This method deletes all discounts.
      * Checks if there are any discounts.
      * If no discounts are found, an exception is thrown.
      * For each product associated with a discount, the discount is removed
@@ -169,7 +170,7 @@ public class DiscountService {
     }
 
     /**
-     * Deletes a specific discount identified by its ID.
+     * This method deletes a specific discount identified by its ID.
      * Check if the discount with the provided ID exists.
      * If no discount is found with the given ID, an EntityNotFoundException is thrown.
      * Then, for each product associated with the discount,
@@ -189,4 +190,32 @@ public class DiscountService {
         productRepo.saveAll(currentProducts);
         discountRepo.deleteById(discountId);
     }
+
+
+    /**
+     * This method applies active discounts to products by updating their selling prices.
+     * It runs daily at 00:30 AM (Rome time) and adjusts the selling prices
+     * of products based on their associated active discounts.
+     * If no active discounts are found, the method does nothing.
+     */
+    @Scheduled(cron = "0 30 0 * * ?", zone = "Europe/Rome")
+    public void applyDiscount() {
+
+        // Recupero tutti i discount attivi
+        List<Discount> discounts = discountRepo.findByActiveTrue();
+        if (discounts.isEmpty()) {
+            return;
+        }
+        // Recupero tutti i prodotti collegati questi discount
+        List<Product> products = productRepo.findByDiscountIn(discounts);
+        for (Product product : products) {
+            if (product.getDiscount() != null) {
+                product.setDiscountedSellingPrice(product.getSellingPrice()
+                                                          .multiply(BigDecimal.valueOf(1 - (product.getDiscount().getDiscountPercentage() / 100.0))));
+            }
+        }
+        productRepo.saveAll(products);
+    }
+
+
 }
