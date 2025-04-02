@@ -7,11 +7,10 @@
     <option name="rewriteBookmarkType" value="true" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7c4caa73-20ab-4765-9784-19538829fb77" name="Changes" comment="Add updatedDiscountStatus in DiscountService">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/controller/DiscountController.java" afterDir="false" />
+    <list default="true" id="7c4caa73-20ab-4765-9784-19538829fb77" name="Changes" comment="Add DiscountController">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/db/migration/V3__Remove_duration_column.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/repo/ProductRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/repo/ProductRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/service/DiscountService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/service/DiscountService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/controller/DiscountController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/controller/DiscountController.java" afterDir="false" />
     </list>
     <list id="6499c595-af5e-4d71-8893-8354dc300f9f" name="No commit" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -261,22 +260,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1741276131044</updated>
-    </task>
-    <task id="LOCAL-00023" summary="Add testSaveSuccessfully">
-      <option name="closed" value="true" />
-      <created>1742982342652</created>
-      <option name="number" value="00023" />
-      <option name="presentableId" value="LOCAL-00023" />
-      <option name="project" value="LOCAL" />
-      <updated>1742982342652</updated>
-    </task>
-    <task id="LOCAL-00024" summary="Add testSaveWhenProductAlreadyExist">
-      <option name="closed" value="true" />
-      <created>1742983637585</created>
-      <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL-00024" />
-      <option name="project" value="LOCAL" />
-      <updated>1742983637585</updated>
     </task>
     <task id="LOCAL-00025" summary="Correct save method Javadoc in ProductService">
       <option name="closed" value="true" />
@@ -654,7 +637,23 @@
       <option name="project" value="LOCAL" />
       <updated>1743523442727</updated>
     </task>
-    <option name="localTasksCounter" value="72" />
+    <task id="LOCAL-00072" summary="Add deleteAll in DiscountService">
+      <option name="closed" value="true" />
+      <created>1743584454226</created>
+      <option name="number" value="00072" />
+      <option name="presentableId" value="LOCAL-00072" />
+      <option name="project" value="LOCAL" />
+      <updated>1743584454227</updated>
+    </task>
+    <task id="LOCAL-00073" summary="Add DiscountController">
+      <option name="closed" value="true" />
+      <created>1743584470733</created>
+      <option name="number" value="00073" />
+      <option name="presentableId" value="LOCAL-00073" />
+      <option name="project" value="LOCAL" />
+      <updated>1743584470733</updated>
+    </task>
+    <option name="localTasksCounter" value="74" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -669,8 +668,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Add findAll test in SaleServiceTest" />
-    <MESSAGE value="Add findAllException test in SaleServiceTest" />
     <MESSAGE value="Add findBySaleDate test in SaleServiceTest" />
     <MESSAGE value="Add findByProduct test in SaleServiceTest" />
     <MESSAGE value="Improve add method in SaleService" />
@@ -694,7 +691,9 @@
     <MESSAGE value="Add createNewDiscount in DiscountService" />
     <MESSAGE value="Add updatedNewDiscount in DiscountService" />
     <MESSAGE value="Add updatedDiscountStatus in DiscountService" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add updatedDiscountStatus in DiscountService" />
+    <MESSAGE value="Add deleteAll in DiscountService" />
+    <MESSAGE value="Add DiscountController" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add DiscountController" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
