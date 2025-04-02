@@ -147,6 +147,14 @@ public class DiscountService {
         }
     }
 
+    /**
+     * Deletes all discounts.
+     * Checks if there are any discounts.
+     * If no discounts are found, an exception is thrown.
+     * For each product associated with a discount, the discount is removed
+     * from the product.
+     * All the discounts are deleted from the discount repository.
+     */
     public void deleteAll() {
         List<Discount> discounts = discountRepo.findAll();
         if (discounts.isEmpty()) {
@@ -160,6 +168,16 @@ public class DiscountService {
         discountRepo.deleteAll();
     }
 
+    /**
+     * Deletes a specific discount identified by its ID.
+     * Check if the discount with the provided ID exists.
+     * If no discount is found with the given ID, an EntityNotFoundException is thrown.
+     * Then, for each product associated with the discount,
+     * the discount is removed from the product.
+     * The discount is deleted from the discount repository.
+     *
+     * @param discountId The ID of the discount to be deleted
+     */
     public void deleteById(Integer discountId) {
         Discount existingDiscount =
                 discountRepo.findById(discountId).orElseThrow(() -> new EntityNotFoundException(
