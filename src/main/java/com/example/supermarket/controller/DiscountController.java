@@ -48,4 +48,10 @@ public class DiscountController {
         discountServ.deleteAll();
         return ResponseEntity.ok("All the discount have been deleted");
     }
+
+    @DeleteMapping("/delete")
+    public ResponseEntity<String> deleteById(Integer id) {
+        discountServ.deleteById(id);
+        return ResponseEntity.ok("Discount with id " + id + " have been deleted");
+    }
 }
