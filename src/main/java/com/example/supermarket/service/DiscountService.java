@@ -159,4 +159,16 @@ public class DiscountService {
         productRepo.saveAll(currentProducts);
         discountRepo.deleteAll();
     }
+
+    public void deleteById(Integer discountId) {
+        Discount existingDiscount =
+                discountRepo.findById(discountId).orElseThrow(() -> new EntityNotFoundException(
+                        "No discount with this id to delete"));
+        List<Product> currentProducts = productRepo.findByDiscountId(discountId);
+        for (Product product : currentProducts) {
+            product.setDiscount(null);
+        }
+        productRepo.saveAll(currentProducts);
+        discountRepo.deleteById(discountId);
+    }
 }
