@@ -1,15 +1,20 @@
 package com.example.supermarket.service;
 
 import com.example.supermarket.entity.Discount;
+import com.example.supermarket.entity.Product;
 import com.example.supermarket.repo.DiscountRepository;
+import com.example.supermarket.repo.ProductRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -19,6 +24,12 @@ class DiscountServiceTest {
 
     @Mock
     private DiscountRepository discountRepo;
+
+    @Mock
+    private ProductRepository productRepo;
+
+    @InjectMocks
+    private DiscountService discountServ;
 
     @Test
     void findAllDiscountSorted() {
@@ -53,6 +64,41 @@ class DiscountServiceTest {
 
     @Test
     void createNewDiscount() {
+
+        // Given
+        Discount discount = new Discount(1, "Discount", 30, LocalDate.of(2026, 06,
+                                                                         30)
+                , true);
+        Product product1 = new Product(1, "Nome", new BigDecimal(12), false, null, null,
+                                       discount, null);
+        Product product2 = new Product(2, "Nome", new BigDecimal(15), false, null, null, discount
+                , null);
+
+        // When
+        when(productRepo.findByIdAndRemovedFalse(1)).thenReturn(Optional.of(product1));
+        when(productRepo.findByIdAndRemovedFalse(2)).thenReturn(Optional.of(product2));
+        when(discountRepo.save(any(Discount.class))).thenReturn(discount);
+        discountServ.createNewDiscount(discount, List.of(1, 2));
+
+        // Verify
+        verify(productRepo, times(2)).save(any(Product.class));
+        assertEquals(discount, product1.getDiscount());
+        assertEquals(discount, product2.getDiscount());
+    }
+
+    @Test
+    void createNewDiscountException() {
+
+        // Given
+        Product product1 = new Product(1, "Nome", new BigDecimal(12), false, null, null,
+                                       null, null);
+
+        // When
+        when(productRepo.findByIdAndRemovedFalse(1)).thenThrow(new EntityNotFoundException());
+
+        // Verify
+        verify(productRepo, times(0)).findByIdAndRemovedFalse(1);
+        assertThrows(EntityNotFoundException.class, () -> productRepo.findByIdAndRemovedFalse(1));
     }
 
     @Test
