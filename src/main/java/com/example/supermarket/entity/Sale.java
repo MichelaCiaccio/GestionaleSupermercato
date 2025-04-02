@@ -34,7 +34,6 @@ public class Sale {
     @OneToMany(mappedBy = "sale", cascade = CascadeType.ALL, orphanRemoval = true)
     @NotNull
     private List<ProductSale> productSales;
-    
 
     @ManyToOne
     @JoinColumn(name = "deal_id")

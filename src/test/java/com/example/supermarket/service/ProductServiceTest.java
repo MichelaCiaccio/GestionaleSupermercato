@@ -48,7 +48,7 @@ public class ProductServiceTest {
         Stock stock = new Stock(1, 10, LocalDate.now(), LocalDate.now().plusDays(10), null,
                                 supplier);
         Product product = new Product(1, "Apple", BigDecimal.valueOf(1.5), null, false, category,
-                                      List.of(stock), null, null);
+                                      List.of(stock), null);
 
 
         // When
@@ -94,10 +94,10 @@ public class ProductServiceTest {
         Stock stock = new Stock(1, 10, LocalDate.now(), LocalDate.now().plusDays(10), null,
                                 supplier);
         Product product = new Product(1, "Apple", BigDecimal.valueOf(1.5), null, false, category,
-                                      List.of(stock), null, null);
+                                      List.of(stock), null);
         Product modProduct = new Product(1, "modApple", BigDecimal.valueOf(1.5), null, false,
                                          category,
-                                         List.of(stock), null, null);
+                                         List.of(stock), null);
 
         // When
         when(productRepository.findById(1)).thenReturn(Optional.of(product)).thenReturn(Optional.of(modProduct));
@@ -117,7 +117,7 @@ public class ProductServiceTest {
 
         // Given
         int id = 1;
-        Product product = new Product(id, "Nome", new BigDecimal(id), null, false, null, null, null,
+        Product product = new Product(id, "Nome", new BigDecimal(id), null, false, null, null,
                                       null);
 
         // When
@@ -158,8 +158,8 @@ public class ProductServiceTest {
 
         // Given
         List<Product> products = List.of(
-                new Product(1, "Nome", new BigDecimal(12), null, false, null, null, null, null),
-                new Product(2, "Nome", new BigDecimal(15), null, false, null, null, null, null));
+                new Product(1, "Nome", new BigDecimal(12), null, false, null, null, null),
+                new Product(2, "Nome", new BigDecimal(15), null, false, null, null, null));
 
 
         // When
@@ -196,9 +196,8 @@ public class ProductServiceTest {
         // Given
         Category category = new Category(1, "Categoria");
         List<Product> products = List.of(
-                new Product(1, "Nome", new BigDecimal(15), null, false, category, null, null, null),
-                new Product(2, "Nome", new BigDecimal(15), null, false, category, null, null,
-                            null));
+                new Product(1, "Nome", new BigDecimal(15), null, false, category, null, null),
+                new Product(2, "Nome", new BigDecimal(15), null, false, category, null, null));
 
         // When
         when(productRepository.findAll()).thenReturn(products);
@@ -229,7 +228,7 @@ public class ProductServiceTest {
 
         // GIVEN
         int id = 1;
-        Product product = new Product(id, "Nome", new BigDecimal(id), null, false, null, null, null,
+        Product product = new Product(id, "Nome", new BigDecimal(id), null, false, null, null,
                                       null);
 
         // WHEN
@@ -264,8 +263,8 @@ public class ProductServiceTest {
         // Given
         String categoryName = "Categoria-A";
         List<Product> products = List.of(
-                new Product(1, "Nome", new BigDecimal(22), null, false, null, null, null, null),
-                new Product(2, "Nome", new BigDecimal(26), null, false, null, null, null, null));
+                new Product(1, "Nome", new BigDecimal(22), null, false, null, null, null),
+                new Product(2, "Nome", new BigDecimal(26), null, false, null, null, null));
 
         // When
         when(productRepository.findByCategoryNameAndRemovedFalse(categoryName)).thenReturn(products);
@@ -300,8 +299,8 @@ public class ProductServiceTest {
         // Given
         LocalDate expirationDate = LocalDate.now().plusDays(50);
         List<Product> products = List.of(
-                new Product(1, "Nome", new BigDecimal(22), null, false, null, null, null, null),
-                new Product(2, "Nome", new BigDecimal(22), null, false, null, null, null, null));
+                new Product(1, "Nome", new BigDecimal(22), null, false, null, null, null),
+                new Product(2, "Nome", new BigDecimal(22), null, false, null, null, null));
 
         // When
         when(productRepository.findByStocks_ExpirationDateAndRemovedFalse(expirationDate)).thenReturn(products);
@@ -339,8 +338,8 @@ public class ProductServiceTest {
         // Given
         String name = "nome";
         List<Product> products = List.of(
-                new Product(1, name, new BigDecimal(22), null, false, null, null, null, null),
-                new Product(2, name, new BigDecimal(15), null, false, null, null, null, null));
+                new Product(1, name, new BigDecimal(22), null, false, null, null, null),
+                new Product(2, name, new BigDecimal(15), null, false, null, null, null));
 
         // When
         when(productRepository.findByNameAndRemovedFalse(name)).thenReturn(products);
@@ -380,8 +379,8 @@ public class ProductServiceTest {
         double sellingPrice = 15.24;
         List<Product> products = List.of(
                 new Product(1, "Nome", new BigDecimal(sellingPrice), null, false, null, null,
-                            null, null),
-                new Product(2, "Nome", new BigDecimal(sellingPrice), null, false, null, null, null,
+                            null),
+                new Product(2, "Nome", new BigDecimal(sellingPrice), null, false, null, null,
                             null));
 
         // WHEN
@@ -419,8 +418,8 @@ public class ProductServiceTest {
         // Given
         int quantity = 15;
         List<Product> products = List.of(
-                new Product(1, "Nome", new BigDecimal(22), null, false, null, null, null, null),
-                new Product(2, "Nome", new BigDecimal(22), null, false, null, null, null, null));
+                new Product(1, "Nome", new BigDecimal(22), null, false, null, null, null),
+                new Product(2, "Nome", new BigDecimal(22), null, false, null, null, null));
 
         // When
         when(productRepository.findByStocks_QuantityAndRemovedFalse(quantity)).thenReturn(products);
@@ -460,8 +459,8 @@ public class ProductServiceTest {
         // Given
         String supplierName = "Nome Fornitore";
         List<Product> products = List.of(
-                new Product(1, "Nome", new BigDecimal(22), null, false, null, null, null, null),
-                new Product(2, "Nome", new BigDecimal(22), null, false, null, null, null, null));
+                new Product(1, "Nome", new BigDecimal(22), null, false, null, null, null),
+                new Product(2, "Nome", new BigDecimal(22), null, false, null, null, null));
 
         // When
         when(productRepository.findByStocks_Supplier_NameAndRemovedFalse(supplierName)).thenReturn(products);

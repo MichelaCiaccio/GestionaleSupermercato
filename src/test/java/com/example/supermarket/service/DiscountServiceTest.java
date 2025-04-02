@@ -70,10 +70,10 @@ class DiscountServiceTest {
                                                                          30)
                 , true);
         Product product1 = new Product(1, "Nome", new BigDecimal(12), null, false, null, null,
-                                       discount, null);
+                                       discount);
         Product product2 = new Product(2, "Nome", new BigDecimal(15), null, false, null, null,
                                        discount
-                , null);
+        );
 
         // When
         when(productRepo.findByIdAndRemovedFalse(1)).thenReturn(Optional.of(product1));
@@ -114,7 +114,7 @@ class DiscountServiceTest {
                                                                          30)
                 , true);
         Product product = new Product(1, "Nome", new BigDecimal(12), null, false, null, null,
-                                      discount, null);
+                                      discount);
 
         // When
         when(discountRepo.findAll()).thenReturn(List.of(discount));
@@ -149,10 +149,10 @@ class DiscountServiceTest {
                                                                          30)
                 , true);
         Product product1 = new Product(1, "Nome", new BigDecimal(12), null, false, null, null,
-                                       discount, null);
+                                       discount);
         Product product2 = new Product(2, "Nome", new BigDecimal(15), null, false, null, null,
                                        discount
-                , null);
+        );
 
         // When
         when(discountRepo.findById(1)).thenReturn(Optional.of(discount));

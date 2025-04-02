@@ -155,7 +155,7 @@ class SaleServiceTest {
         Category category = new Category(1, "Food");
         Product product = new Product(1, "Apple", BigDecimal.valueOf(1.5), null, false, category,
                                       null,
-                                      null, null);
+                                      null);
         ProductSale productSale = new ProductSale(1, 50, product, null);
         Sale sale = new Sale(1, 100, 100, LocalDateTime.now(), List.of(productSale), null);
 
@@ -177,7 +177,7 @@ class SaleServiceTest {
         Category category = new Category(1, "Food");
         Product product = new Product(1, "Apple", BigDecimal.valueOf(1.5), null, false, category,
                                       null,
-                                      null, null);
+                                      null);
         ProductSale productSale = new ProductSale(1, 50, product, null);
         Sale sale = new Sale(1, 100, 100, LocalDateTime.now(), List.of(productSale), null);
 
@@ -196,7 +196,7 @@ class SaleServiceTest {
         Category category = new Category(1, "Food");
         Product product = new Product(1, "Apple", BigDecimal.valueOf(1.5), null, false, category,
                                       null,
-                                      null, null);
+                                      null);
         ProductSale productSale = new ProductSale(1, 50, product, null);
         Sale sale = new Sale(1, 100, 100, LocalDateTime.now(), List.of(productSale), null);
 
