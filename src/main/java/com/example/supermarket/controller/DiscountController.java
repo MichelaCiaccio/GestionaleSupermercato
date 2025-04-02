@@ -33,4 +33,13 @@ public class DiscountController {
         return ResponseEntity.status(HttpStatus.CREATED).body("Discount " + discount.getName() +
                                                                       " created successfully");
     }
+
+    @PutMapping("/update")
+    public ResponseEntity<String> updateDiscount(@Valid @RequestBody Discount modDiscount,
+                                                 @RequestParam Integer discountId,
+                                                 @RequestParam List<Integer> modProductIds) {
+
+        discountServ.updateDiscount(discountId, modDiscount, modProductIds);
+        return ResponseEntity.ok("Discount " + modDiscount.getName() + " updated successfully");
+    }
 }
