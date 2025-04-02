@@ -8,6 +8,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -21,11 +22,11 @@ public class Sale {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-    @NotNull
-    private double totalPrice;
+    
+    private BigDecimal totalPrice;
 
 
-    private double discountPrice;
+    private BigDecimal discountPrice;
 
     @NotNull
     @PastOrPresent

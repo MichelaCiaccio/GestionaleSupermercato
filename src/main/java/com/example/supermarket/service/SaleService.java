@@ -15,6 +15,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -102,29 +103,57 @@ public class SaleService {
     }
 
     /**
-     * Creates a new sale, updates stock quantities, and generates a receipt for the sale.
-     * This method processes the product sales associated with the given sale,
-     * setting the quantity, associating the sale and product, and updating the
-     * stock quantities by subtracting the quantities of the products sold.
-     * Once the product sales are processed, the sale is saved to the repository
-     * and a receipt is generated for the sale.
+     * This method processes and creates a new sale, updates product stock quantities, and
+     * generates a receipt.
+     * It updates the stock quantities by subtracting the quantities of the products sold.
+     * The method calculates the total price of the sale based on the products' selling
+     * prices and their quantities.
+     * If discounted prices are available, the discount price is
+     * also calculated.
+     * The sale is saved and a corresponding receipt is generated.
      *
-     * @param sale The new sale
+     * @param sale The new sale.
      */
     @Transactional
     public void createNewSale(Sale sale) {
+
         List<ProductSale> productSales = new ArrayList<>();
+        BigDecimal totalPrice = BigDecimal.ZERO;
+        BigDecimal discountPrice = BigDecimal.ZERO;
+
         for (ProductSale productSale : sale.getProductSales()) {
+
+            // Verifico se il prodotto è nullo
+            if (productSale.getProduct() == null) {
+                throw new EntityNotFoundException("A product is required");
+            }
+
+            // Imposto prodotti e vendita
             productSale.setProduct(productSale.getProduct());
             productSale.setSale(sale);
             productSale.setQuantity(productSale.getQuantity());
             productSales.add(productSale);
-            if (productSale.getProduct() == null) {
-                throw new EntityNotFoundException("A product is required");
-            }
+
+            // Sottrai la quantità dei prodotti venduti nello stock
             stockServ.subStockQuantity(productSale.getProduct().getId(), productSale.getQuantity());
+
+            // Aggiungo il prezzo totale
+            totalPrice =
+                    totalPrice.add(productSale.getProduct().getSellingPrice().multiply(BigDecimal.valueOf(productSale.getQuantity())));
+
+            // Aggiungi il prezzo scontato se disponibile
+            if (productSale.getProduct().getDiscountedSellingPrice() != null) {
+                discountPrice =
+                        discountPrice.add(productSale.getProduct().getDiscountedSellingPrice().multiply(BigDecimal.valueOf(productSale.getQuantity())));
+            }
         }
+
+        // Imposto il prezzo totale della vendita
+        sale.setTotalPrice(totalPrice);
+        sale.setDiscountPrice(discountPrice);
         sale.setProductSales(productSales);
+
+        //Salvo la vendita e creo la ricevuta
         Sale newSale = saleRepo.save(sale);
         receiptService.createNewReceipt(newSale);
     }
@@ -158,7 +187,5 @@ public class SaleService {
                                                                                                 "id " + id + " to delete"));
         receiptRepo.deleteBySale_Id(id);
         saleRepo.deleteById(id);
-
-
     }
 }
