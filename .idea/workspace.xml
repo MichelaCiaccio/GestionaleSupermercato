@@ -7,7 +7,7 @@
     <option name="rewriteBookmarkType" value="true" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7c4caa73-20ab-4765-9784-19538829fb77" name="Changes" comment="Add findAll test in DiscountServiceTest">
+    <list default="true" id="7c4caa73-20ab-4765-9784-19538829fb77" name="Changes" comment="Add createNewDiscount test in DiscountServiceTest">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/com/example/supermarket/service/DiscountServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/example/supermarket/service/DiscountServiceTest.java" afterDir="false" />
     </list>
@@ -86,6 +86,9 @@
   "keyToString": {
     "Application.Unnamed.executor": "Run",
     "JUnit.DiscountServiceTest.createNewDiscount.executor": "Run",
+    "JUnit.DiscountServiceTest.createNewDiscountException.executor": "Run",
+    "JUnit.DiscountServiceTest.deleteAll.executor": "Run",
+    "JUnit.DiscountServiceTest.executor": "Run",
     "JUnit.DiscountServiceTest.findAllDiscountSorted.executor": "Run",
     "JUnit.DiscountServiceTest.findAllDiscountSortedException.executor": "Run",
     "JUnit.ProductServiceTest.executor": "Run",
@@ -201,7 +204,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="DiscountServiceTest.findAllDiscountSorted" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="DiscountServiceTest.deleteAll" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="supermarket" />
       <extension name="coverage">
         <pattern>
@@ -211,13 +214,13 @@
       </extension>
       <option name="PACKAGE_NAME" value="com.example.supermarket.service" />
       <option name="MAIN_CLASS_NAME" value="com.example.supermarket.service.DiscountServiceTest" />
-      <option name="METHOD_NAME" value="findAllDiscountSorted" />
+      <option name="METHOD_NAME" value="deleteAll" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="DiscountServiceTest.findAllDiscountSortedException" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="DiscountServiceTest.deleteAllException" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="supermarket" />
       <extension name="coverage">
         <pattern>
@@ -227,7 +230,7 @@
       </extension>
       <option name="PACKAGE_NAME" value="com.example.supermarket.service" />
       <option name="MAIN_CLASS_NAME" value="com.example.supermarket.service.DiscountServiceTest" />
-      <option name="METHOD_NAME" value="findAllDiscountSortedException" />
+      <option name="METHOD_NAME" value="deleteAllException" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -247,10 +250,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.DiscountServiceTest" />
+        <item itemvalue="JUnit.DiscountServiceTest.deleteAllException" />
+        <item itemvalue="JUnit.DiscountServiceTest.deleteAll" />
         <item itemvalue="JUnit.DiscountServiceTest.createNewDiscountException" />
         <item itemvalue="JUnit.DiscountServiceTest.createNewDiscount" />
-        <item itemvalue="JUnit.DiscountServiceTest.findAllDiscountSortedException" />
-        <item itemvalue="JUnit.DiscountServiceTest.findAllDiscountSorted" />
       </list>
     </recent_temporary>
   </component>
@@ -263,14 +266,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1741276131044</updated>
-    </task>
-    <task id="LOCAL-00032" summary="Delete StockController and StockService">
-      <option name="closed" value="true" />
-      <created>1743001879936</created>
-      <option name="number" value="00032" />
-      <option name="presentableId" value="LOCAL-00032" />
-      <option name="project" value="LOCAL" />
-      <updated>1743001879936</updated>
     </task>
     <task id="LOCAL-00033" summary="Update deleteAll in ProductService">
       <option name="closed" value="true" />
@@ -656,7 +651,15 @@
       <option name="project" value="LOCAL" />
       <updated>1743590509765</updated>
     </task>
-    <option name="localTasksCounter" value="81" />
+    <task id="LOCAL-00081" summary="Add createNewDiscount test in DiscountServiceTest">
+      <option name="closed" value="true" />
+      <created>1743591864438</created>
+      <option name="number" value="00081" />
+      <option name="presentableId" value="LOCAL-00081" />
+      <option name="project" value="LOCAL" />
+      <updated>1743591864439</updated>
+    </task>
+    <option name="localTasksCounter" value="82" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -671,7 +674,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Update StockController and StockServiceTest" />
     <MESSAGE value="Add ReceiptDTO and correct findAll method in ReceiptService" />
     <MESSAGE value="Correct SaleServiceTest" />
     <MESSAGE value="Add deleteById in SaleService method" />
@@ -696,7 +698,8 @@
     <MESSAGE value="Add deleteById in DiscountController" />
     <MESSAGE value="Update Deal entity" />
     <MESSAGE value="Add findAll test in DiscountServiceTest" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add findAll test in DiscountServiceTest" />
+    <MESSAGE value="Add createNewDiscount test in DiscountServiceTest" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add createNewDiscount test in DiscountServiceTest" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
