@@ -9,7 +9,11 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
+
+import java.time.LocalDate;
+import java.util.List;
 
 @Service
 @Transactional
@@ -51,5 +55,26 @@ public class DealService {
         return deals;
     }
 
+    /**
+     * This method is a scheduled task that updates the status of deal based on their end date.
+     * Checks if the deal's end date has passed.
+     * If the deal's end date is before today's date, the discount is marked as inactive.
+     * It searches for all deals and then checks if their
+     * end date is in the past.
+     * If the end date has passed, the deal's 'active' status is set
+     * to false.
+     */
+    @Scheduled(cron = "0 0 0 * * ? ", zone = "Europe/Rome")
+    public void updateDealStatus() {
+        List<Deal> deals = dealRepo.findAll();
+        LocalDate today = LocalDate.now();
+        for (Deal deal : deals) {
+            LocalDate expiryDate = deal.getEndDate();
+            if (expiryDate.isBefore(today)) {
+                deal.setActive(false);
+            }
+            dealRepo.save(deal);
+        }
+    }
 
 }

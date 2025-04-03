@@ -42,9 +42,12 @@ class SaleServiceTest {
 
         // Given
         ProductSale productSale = new ProductSale();
-        List<Sale> sales = List.of(new Sale(1, 100, 100, LocalDateTime.now(), List.of(productSale),
+        List<Sale> sales = List.of(new Sale(1, BigDecimal.valueOf(100), BigDecimal.valueOf(100),
+                                            LocalDateTime.now(),
+                                            List.of(productSale),
                                             null),
-                                   new Sale(1, 100, 100, LocalDateTime.now(),
+                                   new Sale(1, BigDecimal.valueOf(100), BigDecimal.valueOf(100),
+                                            LocalDateTime.now(),
                                             List.of(productSale),
                                             null));
 
@@ -77,9 +80,11 @@ class SaleServiceTest {
         // Given
         LocalDateTime saleDate = LocalDateTime.now();
         ProductSale productSale = new ProductSale();
-        List<Sale> sales = List.of(new Sale(1, 100, 100, saleDate, List.of(productSale),
+        List<Sale> sales = List.of(new Sale(1, BigDecimal.valueOf(100), BigDecimal.valueOf(100),
+                                            saleDate, List.of(productSale),
                                             null),
-                                   new Sale(1, 100, 100, saleDate,
+                                   new Sale(1, BigDecimal.valueOf(100), BigDecimal.valueOf(100),
+                                            saleDate,
                                             List.of(productSale),
                                             null));
 
@@ -114,10 +119,12 @@ class SaleServiceTest {
         // Given
         String productName = "Prodotto";
         ProductSale productSale = new ProductSale();
-        List<Sale> sales = List.of(new Sale(1, 100, 100, LocalDateTime.now(), List.of(productSale),
+        List<Sale> sales = List.of(new Sale(1, BigDecimal.valueOf(100), BigDecimal.valueOf(100),
+                                            LocalDateTime.now(), List.of(productSale),
 
                                             null),
-                                   new Sale(1, 100, 100, LocalDateTime.now(),
+                                   new Sale(1, BigDecimal.valueOf(100), BigDecimal.valueOf(100),
+                                            LocalDateTime.now(),
                                             List.of(productSale),
                                             null));
 
@@ -157,7 +164,8 @@ class SaleServiceTest {
                                       null,
                                       null);
         ProductSale productSale = new ProductSale(1, 50, product, null);
-        Sale sale = new Sale(1, 100, 100, LocalDateTime.now(), List.of(productSale), null);
+        Sale sale = new Sale(1, BigDecimal.valueOf(100), BigDecimal.valueOf(100),
+                             LocalDateTime.now(), List.of(productSale), null);
 
 
         // When
@@ -179,7 +187,8 @@ class SaleServiceTest {
                                       null,
                                       null);
         ProductSale productSale = new ProductSale(1, 50, product, null);
-        Sale sale = new Sale(1, 100, 100, LocalDateTime.now(), List.of(productSale), null);
+        Sale sale = new Sale(1, BigDecimal.valueOf(100), BigDecimal.valueOf(100),
+                             LocalDateTime.now(), List.of(productSale), null);
 
         // When
         when(saleRepo.save(any(Sale.class))).thenThrow(new RuntimeException("Errore durante il " +
@@ -198,7 +207,8 @@ class SaleServiceTest {
                                       null,
                                       null);
         ProductSale productSale = new ProductSale(1, 50, product, null);
-        Sale sale = new Sale(1, 100, 100, LocalDateTime.now(), List.of(productSale), null);
+        Sale sale = new Sale(1, BigDecimal.valueOf(100), BigDecimal.valueOf(100),
+                             LocalDateTime.now(), List.of(productSale), null);
 
         // When
         when(saleRepo.save(any(Sale.class))).thenThrow(new EntityNotFoundException("Sale not found"));
@@ -216,10 +226,12 @@ class SaleServiceTest {
 
         // Given
         ProductSale productSale = new ProductSale();
-        List<Sale> sales = List.of(new Sale(1, 100, 100, LocalDateTime.now(), List.of(productSale),
+        List<Sale> sales = List.of(new Sale(1, BigDecimal.valueOf(100), BigDecimal.valueOf(100),
+                                            LocalDateTime.now(), List.of(productSale),
 
                                             null),
-                                   new Sale(1, 100, 100, LocalDateTime.now(),
+                                   new Sale(1, BigDecimal.valueOf(100), BigDecimal.valueOf(100),
+                                            LocalDateTime.now(),
                                             List.of(productSale),
                                             null));
 
@@ -256,7 +268,8 @@ class SaleServiceTest {
         // Given
         int id = 1;
         ProductSale productSale = new ProductSale();
-        Sale sale = new Sale(id, 100, 100, LocalDateTime.now(), List.of(productSale),
+        Sale sale = new Sale(id, BigDecimal.valueOf(100), BigDecimal.valueOf(100),
+                             LocalDateTime.now(), List.of(productSale),
                              null);
         Receipt receipt = new Receipt(id, "ABCDGUIJ", sale);
 
