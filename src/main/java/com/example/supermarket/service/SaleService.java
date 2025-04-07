@@ -155,7 +155,7 @@ public class SaleService {
             }
         }
 
-Ad         // Applico la logica della promozione se esiste
+        // Applico la logica della promozione se esiste
         DealStrategy dealStrategy = this.getDealStrategy(sale.getDeal());
         discountPrice = (dealStrategy != null) ?
                 discountPrice.subtract(dealStrategy.applyDeal(sale.getProductSales(),
