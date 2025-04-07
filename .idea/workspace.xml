@@ -7,12 +7,10 @@
     <option name="rewriteBookmarkType" value="true" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7c4caa73-20ab-4765-9784-19538829fb77" name="Changes" comment="Correct Category-Deal relation">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/DTO/Mapper/StockMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/DTO/Mapper/SupplierMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/DTO/StockDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/DTO/SupplierDTO.java" afterDir="false" />
+    <list default="true" id="7c4caa73-20ab-4765-9784-19538829fb77" name="Changes" comment="Add StockDTO and SupplierDTO">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/DTO/ProductDTO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/DTO/Mapper/ProductMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/DTO/Mapper/ProductMapper.java" afterDir="false" />
     </list>
     <list id="6499c595-af5e-4d71-8893-8354dc300f9f" name="No commit" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -269,14 +267,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1741276131044</updated>
-    </task>
-    <task id="LOCAL-00051" summary="Add Dto logic for Sale findAll">
-      <option name="closed" value="true" />
-      <created>1743417915712</created>
-      <option name="number" value="00051" />
-      <option name="presentableId" value="LOCAL-00051" />
-      <option name="project" value="LOCAL" />
-      <updated>1743417915712</updated>
     </task>
     <task id="LOCAL-00052" summary="Correct subQuantity and addQuantity in StockService">
       <option name="closed" value="true" />
@@ -662,7 +652,15 @@
       <option name="project" value="LOCAL" />
       <updated>1744033025547</updated>
     </task>
-    <option name="localTasksCounter" value="100" />
+    <task id="LOCAL-00100" summary="Add StockDTO and SupplierDTO">
+      <option name="closed" value="true" />
+      <created>1744033688540</created>
+      <option name="number" value="00100" />
+      <option name="presentableId" value="LOCAL-00100" />
+      <option name="project" value="LOCAL" />
+      <updated>1744033688540</updated>
+    </task>
+    <option name="localTasksCounter" value="101" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -677,7 +675,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Add updateDiscount in DiscountController" />
     <MESSAGE value="Add deleteAllDiscount in DiscountController" />
     <MESSAGE value="Add deleteById in DiscountService" />
     <MESSAGE value="Add deleteById in DiscountController" />
@@ -702,7 +699,8 @@
     <MESSAGE value="Correct BUY3PAY2Deal" />
     <MESSAGE value="Add DISCOUNTONTOTALDeal" />
     <MESSAGE value="Correct Category-Deal relation" />
-    <option name="LAST_COMMIT_MESSAGE" value="Correct Category-Deal relation" />
+    <MESSAGE value="Add StockDTO and SupplierDTO" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add StockDTO and SupplierDTO" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
