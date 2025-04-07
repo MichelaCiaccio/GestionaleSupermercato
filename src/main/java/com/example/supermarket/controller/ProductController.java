@@ -1,5 +1,6 @@
 package com.example.supermarket.controller;
 
+import com.example.supermarket.DTO.ProductDTO;
 import com.example.supermarket.entity.Category;
 import com.example.supermarket.entity.Product;
 import com.example.supermarket.service.ProductService;
@@ -29,10 +30,10 @@ public class ProductController {
 
 
     @GetMapping("")
-    public Page<Product> getAll(@RequestParam(required = false) Integer page,
-                                @RequestParam(required = false) String sortDirection,
-                                @RequestParam(required = false) String dataType,
-                                @RequestParam(required = false) boolean showRemoved) throws EntityNotFoundException {
+    public Page<ProductDTO> getAll(@RequestParam(required = false) Integer page,
+                                   @RequestParam(required = false) String sortDirection,
+                                   @RequestParam(required = false) String dataType,
+                                   @RequestParam(required = false) boolean showRemoved) throws EntityNotFoundException {
         return productService.findAllProductsSorted(page, sortDirection, dataType, showRemoved);
     }
 
@@ -58,37 +59,37 @@ public class ProductController {
     }
 
     @GetMapping("/id/")
-    public Product getById(@NotNull @RequestParam int id) {
+    public ProductDTO getById(@NotNull @RequestParam int id) {
         return productService.findById(id);
     }
 
     @GetMapping("/name/")
-    public List<Product> getByName(@NotBlank @RequestParam String name) {
+    public List<ProductDTO> getByName(@NotBlank @RequestParam String name) {
         return productService.findByName(name);
     }
 
     @GetMapping("/sellingPrice/")
-    public List<Product> getBySellingPrice(@NotNull @RequestParam double sellingPrice) {
+    public List<ProductDTO> getBySellingPrice(@NotNull @RequestParam double sellingPrice) {
         return productService.findBySellingPrice(sellingPrice);
     }
 
     @GetMapping("/category/")
-    public List<Product> getByCategory(@NotBlank @RequestParam String name) {
+    public List<ProductDTO> getByCategory(@NotBlank @RequestParam String name) {
         return productService.findByCategoryName(name);
     }
 
     @GetMapping("/supplier/")
-    public List<Product> getBySupplier(@NotBlank @RequestParam String name) {
+    public List<ProductDTO> getBySupplier(@NotBlank @RequestParam String name) {
         return productService.findBySupplierName(name);
     }
 
     @GetMapping("/expirationDate")
-    public List<Product> getByExpirationDate(@Future @RequestParam LocalDate expirationDate) {
+    public List<ProductDTO> getByExpirationDate(@Future @RequestParam LocalDate expirationDate) {
         return productService.findByExpirationDate(expirationDate);
     }
 
     @GetMapping("/quantity")
-    public List<Product> getByQuantity(@NotNull @RequestParam int quantity) {
+    public List<ProductDTO> getByQuantity(@NotNull @RequestParam int quantity) {
         return productService.findByQuantity(quantity);
     }
 

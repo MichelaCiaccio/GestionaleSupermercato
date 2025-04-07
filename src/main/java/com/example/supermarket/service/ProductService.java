@@ -1,5 +1,7 @@
 package com.example.supermarket.service;
 
+import com.example.supermarket.DTO.Mapper.ProductMapper;
+import com.example.supermarket.DTO.ProductDTO;
 import com.example.supermarket.entity.Category;
 import com.example.supermarket.entity.Product;
 import com.example.supermarket.entity.Stock;
@@ -43,6 +45,9 @@ public class ProductService {
 
     @Autowired
     private SupplierService supplierService;
+
+    @Autowired
+    private ProductMapper productMapper;
 
 
     /**
@@ -172,8 +177,8 @@ public class ProductService {
      * @param dataType      The data by which the products should be ordered.
      * @return A Page containing the list of products.
      */
-    public Page<Product> findAllProductsSorted(Integer page, String sortDirection,
-                                               String dataType, boolean showRemoved) {
+    public Page<ProductDTO> findAllProductsSorted(Integer page, String sortDirection,
+                                                  String dataType, boolean showRemoved) {
         page = page == null ? 0 : page;
 
         sortDirection = sortDirection == null || sortDirection.isBlank() ? "ASC" : sortDirection;
@@ -187,7 +192,7 @@ public class ProductService {
         if (products.isEmpty()) {
             throw new EntityNotFoundException("There are no products");
         }
-        return products;
+        return products.map(productMapper::toProductDTO);
 
     }
 
@@ -202,10 +207,11 @@ public class ProductService {
      * @param id The id of the product to search for
      * @return The product found
      */
-    public Product findById(Integer id) {
-        return productRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("Product with id " + id + " not " +
-                                                                       "found"));
+    public ProductDTO findById(Integer id) {
+        return productMapper.toProductDTO(productRepository.findById(id)
+                                                  .orElseThrow(() -> new EntityNotFoundException(
+                                                          "Product with id " + id + " not " +
+                                                                  "found")));
     }
 
     /**
@@ -216,12 +222,12 @@ public class ProductService {
      * @param name The name of the products
      * @return The products found
      */
-    public List<Product> findByName(String name) {
+    public List<ProductDTO> findByName(String name) {
         List<Product> products = productRepository.findByNameAndRemovedFalse(name);
         if (products.isEmpty()) {
             throw new EntityNotFoundException("Product with name " + name + " not found");
         }
-        return products;
+        return products.stream().map(productMapper::toProductDTO).toList();
     }
 
     /**
@@ -232,12 +238,12 @@ public class ProductService {
      * @param categoryName The name of the category
      * @return The products found
      */
-    public List<Product> findByCategoryName(String categoryName) {
+    public List<ProductDTO> findByCategoryName(String categoryName) {
         List<Product> products = productRepository.findByCategoryNameAndRemovedFalse(categoryName);
         if (products.isEmpty()) {
             throw new EntityNotFoundException("No product has a category with the name " + categoryName);
         }
-        return products;
+        return products.stream().map(productMapper::toProductDTO).toList();
     }
 
     /**
@@ -248,12 +254,12 @@ public class ProductService {
      * @param sellingPrice The selling price of the products
      * @return the products found
      */
-    public List<Product> findBySellingPrice(double sellingPrice) {
+    public List<ProductDTO> findBySellingPrice(double sellingPrice) {
         List<Product> products = productRepository.findBySellingPriceAndRemovedFalse(sellingPrice);
         if (products.isEmpty()) {
             throw new EntityNotFoundException("No product has a selling price equal to " + sellingPrice);
         }
-        return products;
+        return products.stream().map(productMapper::toProductDTO).toList();
     }
 
     /**
@@ -264,13 +270,13 @@ public class ProductService {
      * @param supplierName The name of the supplier
      * @return The products found
      */
-    public List<Product> findBySupplierName(String supplierName) {
+    public List<ProductDTO> findBySupplierName(String supplierName) {
         List<Product> products =
                 productRepository.findByStocks_Supplier_NameAndRemovedFalse(supplierName);
         if (products.isEmpty()) {
             throw new EntityNotFoundException("No product has a supplier with a name " + supplierName);
         }
-        return products;
+        return products.stream().map(productMapper::toProductDTO).toList();
     }
 
     /**
@@ -281,12 +287,12 @@ public class ProductService {
      * @param quantity The stock quantity of the products
      * @return The List of the products found
      */
-    public List<Product> findByQuantity(int quantity) {
+    public List<ProductDTO> findByQuantity(int quantity) {
         List<Product> products = productRepository.findByStocks_QuantityAndRemovedFalse(quantity);
         if (products.isEmpty()) {
             throw new EntityNotFoundException("No product found with stock quantity  " + quantity);
         }
-        return products;
+        return products.stream().map(productMapper::toProductDTO).toList();
     }
 
     /**
@@ -297,13 +303,13 @@ public class ProductService {
      * @param expirationDate The expiration date of the products
      * @return The list of the products found
      */
-    public List<Product> findByExpirationDate(LocalDate expirationDate) {
+    public List<ProductDTO> findByExpirationDate(LocalDate expirationDate) {
         List<Product> products =
                 productRepository.findByStocks_ExpirationDateAndRemovedFalse(expirationDate);
         if (products.isEmpty()) {
             throw new EntityNotFoundException("No product found with expiration date : " + expirationDate);
         }
-        return products;
+        return products.stream().map(productMapper::toProductDTO).toList();
     }
 
     /**
