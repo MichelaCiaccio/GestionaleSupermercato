@@ -11,12 +11,22 @@ import java.util.Comparator;
 import java.util.List;
 
 public class BUY3PAY2Deal implements DealStrategy {
-    
+
+    /**
+     * This method applies the deal.
+     * It identifies the products belonging to the same category as the deal's target
+     * category,
+     * calculates the number of groups of 3 products,
+     * selects the least expensive products from
+     * those groups,
+     * and returns the total price of the free products.
+     *
+     * @param productSales The list of product sales to apply the deal to.
+     * @param deal         The deal to apply.
+     * @return The total price of the free products based on the deal.
+     */
     @Override
     public BigDecimal applyDeal(List<ProductSale> productSales, Deal deal) {
-        if (deal == null) {
-            return BigDecimal.ZERO;
-        }
         // Recuperare la categoria a cui fa riferimento la promozione
         List<Category> targetCategories = deal.getCategory();
 
