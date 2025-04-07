@@ -7,11 +7,16 @@
     <option name="rewriteBookmarkType" value="true" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7c4caa73-20ab-4765-9784-19538829fb77" name="Changes" comment="Update createNewSale in SaleService">
+    <list default="true" id="7c4caa73-20ab-4765-9784-19538829fb77" name="Changes" comment="Update updateDealStatus in DealService">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/deals/BUY3PAY2Deal.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/deals/DISCOUNTONTOTALDeal.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/deals/DealStrategy.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/DTO/SaleDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/DTO/SaleDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/entity/Deal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/entity/Deal.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/entity/enums/DealType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/entity/enums/DealType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/repo/CategoryRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/repo/CategoryRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/service/DealService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/service/DealService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/supermarket/service/SaleServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/example/supermarket/service/SaleServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/service/SaleService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/service/SaleService.java" afterDir="false" />
     </list>
     <list id="6499c595-af5e-4d71-8893-8354dc300f9f" name="No commit" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -25,8 +30,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
         <option value="JUnit5 Test Class" />
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -269,14 +274,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1741276131044</updated>
-    </task>
-    <task id="LOCAL-00043" summary="Add createNewSale, createNewReceipt, createNewReceiptCode">
-      <option name="closed" value="true" />
-      <created>1743176453762</created>
-      <option name="number" value="00043" />
-      <option name="presentableId" value="LOCAL-00043" />
-      <option name="project" value="LOCAL" />
-      <updated>1743176453762</updated>
     </task>
     <task id="LOCAL-00044" summary="Add javadoc">
       <option name="closed" value="true" />
@@ -662,7 +659,15 @@
       <option name="project" value="LOCAL" />
       <updated>1743607221887</updated>
     </task>
-    <option name="localTasksCounter" value="92" />
+    <task id="LOCAL-00092" summary="Update updateDealStatus in DealService">
+      <option name="closed" value="true" />
+      <created>1743674255723</created>
+      <option name="number" value="00092" />
+      <option name="presentableId" value="LOCAL-00092" />
+      <option name="project" value="LOCAL" />
+      <updated>1743674255723</updated>
+    </task>
+    <option name="localTasksCounter" value="93" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -677,7 +682,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Update createNewProduct in ProductService" />
     <MESSAGE value="Add findAll in DiscountService" />
     <MESSAGE value="Add createNewDiscount in DiscountService" />
     <MESSAGE value="Add updatedNewDiscount in DiscountService" />
@@ -702,7 +706,8 @@
     <MESSAGE value="Add applyDiscount in DiscountService" />
     <MESSAGE value="Modify Deal and Sale entity" />
     <MESSAGE value="Update createNewSale in SaleService" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update createNewSale in SaleService" />
+    <MESSAGE value="Update updateDealStatus in DealService" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update updateDealStatus in DealService" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

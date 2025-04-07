@@ -2,6 +2,10 @@ package com.example.supermarket.service;
 
 import com.example.supermarket.DTO.Mapper.SaleMapper;
 import com.example.supermarket.DTO.SaleDTO;
+import com.example.supermarket.deals.BUY3PAY2Deal;
+import com.example.supermarket.deals.DISCOUNTONTOTALDeal;
+import com.example.supermarket.deals.DealStrategy;
+import com.example.supermarket.entity.Deal;
 import com.example.supermarket.entity.ProductSale;
 import com.example.supermarket.entity.Sale;
 import com.example.supermarket.repo.ReceiptRepository;
@@ -31,6 +35,9 @@ public class SaleService {
 
     @Autowired
     private ReceiptService receiptService;
+
+    @Autowired
+    private DealService dealServ;
 
     @Autowired
     private SaleMapper saleMapper;
@@ -148,6 +155,12 @@ public class SaleService {
             }
         }
 
+        DealStrategy dealStrategy = this.getDealStrategy(sale.getDeal());
+        discountPrice = (dealStrategy != null) ?
+                discountPrice.subtract(dealStrategy.applyDeal(sale.getProductSales(),
+                                                              sale.getDeal())) : discountPrice;
+
+
         // Imposto il prezzo totale della vendita
         sale.setTotalPrice(totalPrice);
         sale.setDiscountPrice(discountPrice);
@@ -187,5 +200,19 @@ public class SaleService {
                                                                                                 "id " + id + " to delete"));
         receiptRepo.deleteBySale_Id(id);
         saleRepo.deleteById(id);
+    }
+
+    public DealStrategy getDealStrategy(Deal deal) {
+        switch (deal.getDealType()) {
+            case BUY3PAY2 -> {
+                return new BUY3PAY2Deal();
+            }
+            case DISCOUNTONTOTAL -> {
+                return new DISCOUNTONTOTALDeal();
+            }
+            default -> {
+                return null;
+            }
+        }
     }
 }

@@ -1,14 +1,12 @@
 package com.example.supermarket.entity;
 
 import com.example.supermarket.entity.enums.DealType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Data
@@ -26,8 +24,12 @@ public class Deal {
 
     @NotNull
     private LocalDate endDate;
-    
+
     private boolean active;
+
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    private List<Category> category;
 
 
 }
