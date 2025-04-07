@@ -13,7 +13,7 @@ public class DISCOUNTONTOTALDeal implements DealStrategy {
     public BigDecimal applyDeal(List<ProductSale> productSales, Deal deal) {
 
         // Recuperare la categoria a cui fa riferimento la promozione
-        List<Category> targetCategories = deal.getCategory();
+        List<Category> targetCategories = deal.getCategories();
 
         // Recupero i prodotti che hanno la stessa categoria di quelle in promozione
         List<Product> targetProducts =

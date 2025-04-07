@@ -7,9 +7,16 @@
     <option name="rewriteBookmarkType" value="true" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7c4caa73-20ab-4765-9784-19538829fb77" name="Changes" comment="Correct BUY3PAY2Deal">
+    <list default="true" id="7c4caa73-20ab-4765-9784-19538829fb77" name="Changes" comment="Add DISCOUNTONTOTALDeal">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/deals/BUY3PAY2Deal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/deals/BUY3PAY2Deal.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/deals/DISCOUNTONTOTALDeal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/deals/DISCOUNTONTOTALDeal.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/entity/Category.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/entity/Category.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/entity/Deal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/entity/Deal.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/service/SaleService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/service/SaleService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/supermarket/service/ProductServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/example/supermarket/service/ProductServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/supermarket/service/SaleServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/example/supermarket/service/SaleServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/supermarket/service/StockServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/example/supermarket/service/StockServiceTest.java" afterDir="false" />
     </list>
     <list id="6499c595-af5e-4d71-8893-8354dc300f9f" name="No commit" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -157,7 +164,7 @@
       <recent name="com.example.supermarket.service" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.DiscountServiceTest">
+  <component name="RunManager" selected="JUnit.SaleServiceTest">
     <configuration name="DiscountServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="supermarket" />
       <extension name="coverage">
@@ -169,22 +176,6 @@
       <option name="PACKAGE_NAME" value="com.example.supermarket.service" />
       <option name="MAIN_CLASS_NAME" value="com.example.supermarket.service.DiscountServiceTest" />
       <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="DiscountServiceTest.createNewDiscount" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="supermarket" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.example.supermarket.service.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.example.supermarket.service" />
-      <option name="MAIN_CLASS_NAME" value="com.example.supermarket.service.DiscountServiceTest" />
-      <option name="METHOD_NAME" value="createNewDiscount" />
-      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -237,6 +228,21 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="SaleServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="supermarket" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.supermarket.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.example.supermarket.service" />
+      <option name="MAIN_CLASS_NAME" value="com.example.supermarket.service.SaleServiceTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration default="true" type="JetRunConfigurationType">
       <module name="GestionaleSupermercato" />
       <method v="2">
@@ -250,11 +256,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.SaleServiceTest" />
         <item itemvalue="JUnit.DiscountServiceTest" />
         <item itemvalue="JUnit.DiscountServiceTest.deleteAllException" />
         <item itemvalue="JUnit.DiscountServiceTest.deleteAll" />
         <item itemvalue="JUnit.DiscountServiceTest.createNewDiscountException" />
-        <item itemvalue="JUnit.DiscountServiceTest.createNewDiscount" />
       </list>
     </recent_temporary>
   </component>
@@ -267,14 +273,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1741276131044</updated>
-    </task>
-    <task id="LOCAL-00049" summary="Add findByProduct test in SaleServiceTest">
-      <option name="closed" value="true" />
-      <created>1743408997022</created>
-      <option name="number" value="00049" />
-      <option name="presentableId" value="LOCAL-00049" />
-      <option name="project" value="LOCAL" />
-      <updated>1743408997022</updated>
     </task>
     <task id="LOCAL-00050" summary="Improve add method in SaleService">
       <option name="closed" value="true" />
@@ -660,7 +658,15 @@
       <option name="project" value="LOCAL" />
       <updated>1744023417594</updated>
     </task>
-    <option name="localTasksCounter" value="98" />
+    <task id="LOCAL-00098" summary="Add DISCOUNTONTOTALDeal">
+      <option name="closed" value="true" />
+      <created>1744030482890</created>
+      <option name="number" value="00098" />
+      <option name="presentableId" value="LOCAL-00098" />
+      <option name="project" value="LOCAL" />
+      <updated>1744030482890</updated>
+    </task>
+    <option name="localTasksCounter" value="99" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -675,7 +681,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Add DiscountController" />
     <MESSAGE value="Add addDiscount in DiscountController" />
     <MESSAGE value="Add updateDiscount in DiscountController" />
     <MESSAGE value="Add deleteAllDiscount in DiscountController" />
@@ -700,7 +705,8 @@
     <MESSAGE value="Add Javadoc on BUY3PAY2Deal" />
     <MESSAGE value="Correct SaleService" />
     <MESSAGE value="Correct BUY3PAY2Deal" />
-    <option name="LAST_COMMIT_MESSAGE" value="Correct BUY3PAY2Deal" />
+    <MESSAGE value="Add DISCOUNTONTOTALDeal" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add DISCOUNTONTOTALDeal" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

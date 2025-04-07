@@ -156,10 +156,11 @@ public class SaleService {
         }
 
         // Applico la logica della promozione se esiste
-        DealStrategy dealStrategy = this.getDealStrategy(sale.getDeal());
-        discountPrice = (dealStrategy != null) ?
-                discountPrice.subtract(dealStrategy.applyDeal(sale.getProductSales(),
-                                                              sale.getDeal())) : discountPrice;
+        if (sale.getDeal() != null) {
+            DealStrategy dealStrategy = this.getDealStrategy(sale.getDeal());
+            discountPrice = discountPrice.subtract(dealStrategy.applyDeal(sale.getProductSales(),
+                                                                          sale.getDeal()));
+        }
 
 
         // Imposto il prezzo totale della vendita

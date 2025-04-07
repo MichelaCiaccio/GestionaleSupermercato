@@ -1,10 +1,7 @@
 package com.example.supermarket.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -23,5 +20,10 @@ public class Category {
     @NotNull(message = "The name is required")
     @Column(unique = true)
     private String name;
+
+    @ManyToOne
+    @JoinColumn(name = "deal_id")
+    @JsonIgnore
+    private Deal deal;
 
 }
