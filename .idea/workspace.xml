@@ -7,9 +7,9 @@
     <option name="rewriteBookmarkType" value="true" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7c4caa73-20ab-4765-9784-19538829fb77" name="Changes" comment="Add getBestSellingProducts in SaleServiceTest">
+    <list default="true" id="7c4caa73-20ab-4765-9784-19538829fb77" name="Changes" comment="Made the getBestSelling function generic to retrieve the best products and categories">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/service/SaleService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/service/SaleService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/supermarket/service/SaleServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/example/supermarket/service/SaleServiceTest.java" afterDir="false" />
     </list>
     <list id="6499c595-af5e-4d71-8893-8354dc300f9f" name="No commit" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -162,7 +162,7 @@
       <recent name="com.example.supermarket.service" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.SaleServiceTest.getBestSellingProducts">
+  <component name="RunManager" selected="JUnit.SaleServiceTest">
     <configuration name="SaleServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="supermarket" />
       <extension name="coverage">
@@ -255,11 +255,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.SaleServiceTest" />
         <item itemvalue="JUnit.SaleServiceTest.getBestSellingProducts" />
         <item itemvalue="JUnit.SaleServiceTest.getTotalSalesAmountBetween" />
         <item itemvalue="JUnit.SaleServiceTest.getTotalProductSaleBetween" />
         <item itemvalue="JUnit.SaleServiceTest.findBetweenDate" />
-        <item itemvalue="JUnit.SaleServiceTest" />
       </list>
     </recent_temporary>
   </component>
@@ -272,14 +272,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1741276131044</updated>
-    </task>
-    <task id="LOCAL-00068" summary="Add findAll in DiscountService">
-      <option name="closed" value="true" />
-      <created>1743514340955</created>
-      <option name="number" value="00068" />
-      <option name="presentableId" value="LOCAL-00068" />
-      <option name="project" value="LOCAL" />
-      <updated>1743514340956</updated>
     </task>
     <task id="LOCAL-00069" summary="Add createNewDiscount in DiscountService">
       <option name="closed" value="true" />
@@ -665,7 +657,15 @@
       <option name="project" value="LOCAL" />
       <updated>1744118567390</updated>
     </task>
-    <option name="localTasksCounter" value="117" />
+    <task id="LOCAL-00117" summary="Made the getBestSelling function generic to retrieve the best products and categories">
+      <option name="closed" value="true" />
+      <created>1744122211540</created>
+      <option name="number" value="00117" />
+      <option name="presentableId" value="LOCAL-00117" />
+      <option name="project" value="LOCAL" />
+      <updated>1744122211540</updated>
+    </task>
+    <option name="localTasksCounter" value="118" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -680,7 +680,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Update createNewSale in SaleService" />
     <MESSAGE value="Update updateDealStatus in DealService" />
     <MESSAGE value="Add apply deal logic" />
     <MESSAGE value="Update DealService" />
@@ -705,7 +704,8 @@
     <MESSAGE value="Add getTotalSalesAmountBetween in SaleServiceTest" />
     <MESSAGE value="Add getBestSellingProducts in SaleService" />
     <MESSAGE value="Add getBestSellingProducts in SaleServiceTest" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add getBestSellingProducts in SaleServiceTest" />
+    <MESSAGE value="Made the getBestSelling function generic to retrieve the best products and categories" />
+    <option name="LAST_COMMIT_MESSAGE" value="Made the getBestSelling function generic to retrieve the best products and categories" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
