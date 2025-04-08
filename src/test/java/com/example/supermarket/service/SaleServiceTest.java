@@ -305,4 +305,30 @@ class SaleServiceTest {
         assertNotNull(existingSale);
         assertNotNull(existingReceipt);
     }
+
+    @Test
+    void findBetweenDate() {
+
+        // Given
+        ProductSale productSale = new ProductSale();
+        List<Sale> sales = List.of(new Sale(1, BigDecimal.valueOf(100), BigDecimal.valueOf(100),
+                                            LocalDateTime.now(),
+                                            List.of(productSale),
+                                            null),
+                                   new Sale(1, BigDecimal.valueOf(100), BigDecimal.valueOf(100),
+                                            LocalDateTime.now(),
+                                            List.of(productSale),
+                                            null));
+        LocalDateTime startDate = LocalDateTime.now().minusDays(1);
+        LocalDateTime endDate = LocalDateTime.now().plusDays(1);
+
+        // When
+        when(saleRepo.findBySaleDateBetween(startDate, endDate)).thenReturn(sales);
+        List<Sale> ret = saleRepo.findBySaleDateBetween(startDate, endDate);
+
+        // Verify
+        verify(saleRepo, times(1)).findBySaleDateBetween(startDate, endDate);
+        assertEquals(ret, sales);
+        assertEquals(2, ret.size());
+    }
 }
