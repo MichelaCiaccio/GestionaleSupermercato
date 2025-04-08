@@ -1,6 +1,7 @@
 package com.example.supermarket.service;
 
 import com.example.supermarket.DTO.Mapper.SaleMapper;
+import com.example.supermarket.DTO.ProductSaleDTO;
 import com.example.supermarket.DTO.SaleDTO;
 import com.example.supermarket.deals.BUY3PAY2Deal;
 import com.example.supermarket.deals.DISCOUNTONTOTALDeal;
@@ -252,5 +253,22 @@ public class SaleService {
                 return null;
             }
         }
+    }
+
+    /**
+     * This method retrieves the total quantity of products sold between the specified start and
+     * end dates.
+     * It first retrieves the sales within the given date range and calculates the total quantity
+     * of all the products sold.
+     *
+     * @param startDate The start date of the range
+     * @param endDate   The end date of the range
+     * @return The total quantity of products sold
+     */
+    public int getTotalProductSaleBetween(LocalDate startDate, LocalDate endDate) {
+        List<SaleDTO> targetSale = this.findBetweenDate(startDate, endDate);
+        List<ProductSaleDTO> productSales = targetSale.stream()
+                .flatMap(sale -> sale.getProductSales().stream()).toList();
+        return productSales.stream().mapToInt(ProductSaleDTO::getQuantity).sum();
     }
 }

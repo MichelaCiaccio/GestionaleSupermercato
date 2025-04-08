@@ -7,9 +7,8 @@
     <option name="rewriteBookmarkType" value="true" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7c4caa73-20ab-4765-9784-19538829fb77" name="Changes" comment="Add findBetweenDate method in SaleService">
+    <list default="true" id="7c4caa73-20ab-4765-9784-19538829fb77" name="Changes" comment="Add getSaleBetweenDate in SaleController">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/controller/SaleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/controller/SaleController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/service/SaleService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/service/SaleService.java" afterDir="false" />
     </list>
     <list id="6499c595-af5e-4d71-8893-8354dc300f9f" name="No commit" comment="" />
@@ -268,14 +267,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1741276131044</updated>
-    </task>
-    <task id="LOCAL-00060" summary="Add deleteById test in SaleServiceTest">
-      <option name="closed" value="true" />
-      <created>1743496908390</created>
-      <option name="number" value="00060" />
-      <option name="presentableId" value="LOCAL-00060" />
-      <option name="project" value="LOCAL" />
-      <updated>1743496908390</updated>
     </task>
     <task id="LOCAL-00061" summary="Add Javadoc to deleteById method in SaleService">
       <option name="closed" value="true" />
@@ -661,7 +652,15 @@
       <option name="project" value="LOCAL" />
       <updated>1744105018832</updated>
     </task>
-    <option name="localTasksCounter" value="109" />
+    <task id="LOCAL-00109" summary="Add getSaleBetweenDate in SaleController">
+      <option name="closed" value="true" />
+      <created>1744105769786</created>
+      <option name="number" value="00109" />
+      <option name="presentableId" value="LOCAL-00109" />
+      <option name="project" value="LOCAL" />
+      <updated>1744105769786</updated>
+    </task>
+    <option name="localTasksCounter" value="110" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -676,7 +675,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Add deleteById test in DiscountServiceTest" />
     <MESSAGE value="Improve DiscountServiceTest" />
     <MESSAGE value="Add DealRepository" />
     <MESSAGE value="Complete the Javadoc from DiscountService" />
@@ -701,7 +699,8 @@
     <MESSAGE value="Add Javadoc to getDealStrategy" />
     <MESSAGE value="Correct SaleServiceTest" />
     <MESSAGE value="Add findBetweenDate method in SaleService" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add findBetweenDate method in SaleService" />
+    <MESSAGE value="Add getSaleBetweenDate in SaleController" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add getSaleBetweenDate in SaleController" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
