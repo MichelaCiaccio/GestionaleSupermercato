@@ -1,5 +1,6 @@
 package com.example.supermarket.controller;
 
+import com.example.supermarket.DTO.DealDTO;
 import com.example.supermarket.entity.Deal;
 import com.example.supermarket.service.DealService;
 import jakarta.persistence.EntityNotFoundException;
@@ -18,9 +19,9 @@ public class DealController {
     private DealService dealServ;
 
     @GetMapping("")
-    public Page<Deal> getAllDeal(@RequestParam(required = false) Integer page,
-                                 @RequestParam(required = false) String sortDirection,
-                                 @RequestParam(required = false) String dataType) throws EntityNotFoundException {
+    public Page<DealDTO> getAllDeal(@RequestParam(required = false) Integer page,
+                                    @RequestParam(required = false) String sortDirection,
+                                    @RequestParam(required = false) String dataType) throws EntityNotFoundException {
         return dealServ.findAllDealSorted(page, sortDirection, dataType);
     }
 

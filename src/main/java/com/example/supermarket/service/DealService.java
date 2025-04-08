@@ -1,5 +1,7 @@
 package com.example.supermarket.service;
 
+import com.example.supermarket.DTO.DealDTO;
+import com.example.supermarket.DTO.Mapper.DealMapper;
 import com.example.supermarket.entity.Category;
 import com.example.supermarket.entity.Deal;
 import com.example.supermarket.repo.CategoryRepository;
@@ -27,6 +29,9 @@ public class DealService {
     @Autowired
     private CategoryRepository categoryRepo;
 
+    @Autowired
+    private DealMapper dealMapper;
+
     /**
      * This method searches for all the deal, organizes them into pagination of 20 elements,
      * and sorts them according
@@ -42,8 +47,8 @@ public class DealService {
      * @param dataType      The data by which the deal should be ordered.
      * @return A Page containing the list of deal.
      */
-    public Page<Deal> findAllDealSorted(Integer page, String sortDirection,
-                                        String dataType) {
+    public Page<DealDTO> findAllDealSorted(Integer page, String sortDirection,
+                                           String dataType) {
 
         page = page == null ? 0 : page;
 
@@ -57,7 +62,7 @@ public class DealService {
         if (deals.isEmpty()) {
             throw new EntityNotFoundException("There are no discounts");
         }
-        return deals;
+        return deals.map(dealMapper::toDealDTO);
     }
 
     /**
