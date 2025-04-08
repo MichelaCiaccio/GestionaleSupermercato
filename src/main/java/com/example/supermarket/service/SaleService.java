@@ -28,6 +28,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Function;
 
 @Service
 public class SaleService {
@@ -78,31 +79,33 @@ public class SaleService {
     }
 
     /**
-     * This method computes the total quantity sold for each product from a list of sales.
-     * This method iterates through the provided sales and accumulates the quantities
-     * of each product sold, returning a map where each product is associated with its
-     * total quantity sold.
+     * Creates a map of keys (e.g., Product or Category) and their corresponding sales quantities.
+     * The key is extracted from the product of each sale using the provided keyExtractor.
      *
-     * @param targetSale The list of sales
-     * @return A map containing products as keys and the corresponding total quantities sold as
-     * values
+     * @param targetSale   A list of sales to process
+     * @param keyExtractor A function to extract the key from each sale
+     * @param <T>          The type of the key
+     * @return A map of keys and their total sales quantities
      */
-    private static Map<Product, Integer> getProductIntegerMap(List<Sale> targetSale) {
-        Map<Product, Integer> productSalesCount = new HashMap<>();
+    private static <T> Map<T, Integer> getSalesCountMap(List<Sale> targetSale,
+                                                        Function<Product, T> keyExtractor) {
+        Map<T, Integer> salesCountMap = new HashMap<>();
 
-        // Recupero il prodotto e la quantità associata
+        // Recupero prodotto o categoria e la quantità associata
         for (Sale sale : targetSale) {
             for (ProductSale productSale : sale.getProductSales()) {
-                Product product = productSale.getProduct();
+
+                // Estraggo il prodotto o la categoria
+                T key = keyExtractor.apply(productSale.getProduct());
                 int quantity = productSale.getQuantity();
 
-                // Inserisco i prodotti e le quantità sommate
-                productSalesCount.put(product,
-                                      productSalesCount.getOrDefault(product, 0) + quantity);
+                // Inserisco nella mappa e sommo le quantità
+                salesCountMap.put(key, salesCountMap.getOrDefault(key, 0) + quantity);
             }
         }
-        return productSalesCount;
+        return salesCountMap;
     }
+
 
     /**
      * This method searches for all the sales, organizes them into pagination of 20 elements,
@@ -317,27 +320,31 @@ public class SaleService {
 
 
     /**
-     * This method retrieves the top 3 best-selling products within a specified date range.
-     * It counts the total quantity sold for each product, and then sorts the products for the
-     * top 3.
-     * Finally, it returns products.
+     * This method retrieves the top-selling items (either products or categories) within the
+     * specified date range.
+     * The method uses the provided key extractor function
+     * to determine the items.
+     * It returns a list of the top-selling items sorted by the quantity sold in descending order.
      *
-     * @param startDate The start date of the sales period.
-     * @param endDate   The end date of the sales period.
-     * @return A list of the top 3 best-selling products
+     * @param startDate    The start date of the sales period.
+     * @param endDate      The end date of the sales period.
+     * @param keyExtractor A function that extracts the key from the product in each sale.
+     * @param <T>          The type of the key (e.g., Product or Category).
+     * @return A list of the top-selling items, ordered by the quantity sold in descending order.
      */
-    public List<Product> getBestSellingProducts(LocalDate startDate, LocalDate endDate) {
+    public <T> List<T> getBestSelling(LocalDate startDate, LocalDate endDate,
+                                      Function<Product, T> keyExtractor) {
 
         // Recupero le vendite
         List<Sale> targetSale = this.findBetweenDate(startDate, endDate);
 
-        // Creo una mappa di prodotti-quantità
-        Map<Product, Integer> productSalesCount = getProductIntegerMap(targetSale);
+        // Recupero una mappa di prodotti-quantità
+        Map<T, Integer> categorySalesCount = getSalesCountMap(targetSale,
+                                                              keyExtractor);
 
         // Confronto le quantità di prodotto ed estraggo i primi 3
-        return productSalesCount.entrySet().stream()
+        return categorySalesCount.entrySet().stream()
                 .sorted((entry1, entry2) -> entry2.getValue().compareTo(entry1.getValue()))
-                .limit(3)
                 .map(Map.Entry::getKey)
                 .toList();
     }
