@@ -320,7 +320,8 @@ public class SaleService {
 
 
     /**
-     * This method retrieves the top-selling items (either products or categories) within the
+     * This method retrieves the top-selling items (either products, categories or discount) within
+     * the
      * specified date range.
      * The method uses the provided key extractor function
      * to determine the items.

@@ -7,9 +7,9 @@
     <option name="rewriteBookmarkType" value="true" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7c4caa73-20ab-4765-9784-19538829fb77" name="Changes" comment="Delete getBestSellingProducts test in SaleServiceTest">
+    <list default="true" id="7c4caa73-20ab-4765-9784-19538829fb77" name="Changes" comment="Add getBestSellingProducts and getBestSellingCategories in SaleServiceTest">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/supermarket/service/SaleServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/example/supermarket/service/SaleServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/service/SaleService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/service/SaleService.java" afterDir="false" />
     </list>
     <list id="6499c595-af5e-4d71-8893-8354dc300f9f" name="No commit" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -119,6 +119,7 @@
     "JUnit.SaleServiceTest.findByProductException.executor": "Run",
     "JUnit.SaleServiceTest.findBySaleDate.executor": "Run",
     "JUnit.SaleServiceTest.findBySaleDateException.executor": "Run",
+    "JUnit.SaleServiceTest.getBestSellingCategories.executor": "Run",
     "JUnit.SaleServiceTest.getBestSellingProducts.executor": "Run",
     "JUnit.SaleServiceTest.getTotalProductSaleBetween.executor": "Run",
     "JUnit.SaleServiceTest.getTotalSalesAmountBetween.executor": "Run",
@@ -272,14 +273,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1741276131044</updated>
-    </task>
-    <task id="LOCAL-00070" summary="Add updatedNewDiscount in DiscountService">
-      <option name="closed" value="true" />
-      <created>1743519229159</created>
-      <option name="number" value="00070" />
-      <option name="presentableId" value="LOCAL-00070" />
-      <option name="project" value="LOCAL" />
-      <updated>1743519229159</updated>
     </task>
     <task id="LOCAL-00071" summary="Add updatedDiscountStatus in DiscountService">
       <option name="closed" value="true" />
@@ -665,7 +658,15 @@
       <option name="project" value="LOCAL" />
       <updated>1744122342138</updated>
     </task>
-    <option name="localTasksCounter" value="119" />
+    <task id="LOCAL-00119" summary="Add getBestSellingProducts and getBestSellingCategories in SaleServiceTest">
+      <option name="closed" value="true" />
+      <created>1744122820975</created>
+      <option name="number" value="00119" />
+      <option name="presentableId" value="LOCAL-00119" />
+      <option name="project" value="LOCAL" />
+      <updated>1744122820975</updated>
+    </task>
+    <option name="localTasksCounter" value="120" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -680,7 +681,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Add apply deal logic" />
     <MESSAGE value="Update DealService" />
     <MESSAGE value="Add Javadoc on BUY3PAY2Deal" />
     <MESSAGE value="Correct SaleService" />
@@ -705,7 +705,8 @@
     <MESSAGE value="Add getBestSellingProducts in SaleServiceTest" />
     <MESSAGE value="Made the getBestSelling function generic to retrieve the best products and categories" />
     <MESSAGE value="Delete getBestSellingProducts test in SaleServiceTest" />
-    <option name="LAST_COMMIT_MESSAGE" value="Delete getBestSellingProducts test in SaleServiceTest" />
+    <MESSAGE value="Add getBestSellingProducts and getBestSellingCategories in SaleServiceTest" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add getBestSellingProducts and getBestSellingCategories in SaleServiceTest" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
