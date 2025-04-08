@@ -12,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -60,6 +61,12 @@ public class SaleController {
     public ResponseEntity<String> deleteById(@RequestParam int id) {
         saleServ.deleteByID(id);
         return ResponseEntity.ok("Sale with id " + id + " deleted successfully");
+    }
+
+    @GetMapping("/between-dates")
+    public List<SaleDTO> getSaleBetweenDate(@RequestParam LocalDate startDate,
+                                            @RequestParam LocalDate endDate) {
+        return saleServ.findBetweenDate(startDate, endDate);
     }
 
 }

@@ -194,10 +194,10 @@ public class SaleService {
      * @param endDate   The end date of the range (inclusive).
      * @return The list of sales found
      */
-    public List<Sale> findBetweenDate(LocalDate startDate, LocalDate endDate) {
+    public List<SaleDTO> findBetweenDate(LocalDate startDate, LocalDate endDate) {
         LocalDateTime startTime = startDate.atStartOfDay();
-        LocalDateTime endTime = endDate.atStartOfDay();
-        return saleRepo.findBySaleDateBetween(startTime, endTime);
+        LocalDateTime endTime = endDate.atTime(23, 59, 59);
+        return saleRepo.findBySaleDateBetween(startTime, endTime).stream().map(saleMapper::toSaleDto).toList();
     }
 
     /**
