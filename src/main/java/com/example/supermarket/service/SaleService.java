@@ -22,6 +22,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -181,6 +182,22 @@ public class SaleService {
         //Salvo la vendita e creo la ricevuta
         Sale newSale = saleRepo.save(sale);
         receiptService.createNewReceipt(newSale);
+    }
+
+    /**
+     * This method retrieves a list of sales that occurred between the specified start and end
+     * dates.
+     * The sales are filtered based on the sale date,
+     * including the start of the day for both the start and end dates.
+     *
+     * @param startDate The start date of the range (inclusive).
+     * @param endDate   The end date of the range (inclusive).
+     * @return The list of sales found
+     */
+    public List<Sale> findBetweenDate(LocalDate startDate, LocalDate endDate) {
+        LocalDateTime startTime = startDate.atStartOfDay();
+        LocalDateTime endTime = endDate.atStartOfDay();
+        return saleRepo.findBySaleDateBetween(startTime, endTime);
     }
 
     /**

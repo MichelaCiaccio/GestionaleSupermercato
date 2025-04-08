@@ -7,12 +7,10 @@
     <option name="rewriteBookmarkType" value="true" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7c4caa73-20ab-4765-9784-19538829fb77" name="Changes" comment="Add Javadoc to getDealStrategy">
+    <list default="true" id="7c4caa73-20ab-4765-9784-19538829fb77" name="Changes" comment="Correct SaleServiceTest">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/repo/ProductRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/repo/ProductRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/repo/SaleRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/repo/SaleRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/service/SaleService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/service/SaleService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/supermarket/service/SaleServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/example/supermarket/service/SaleServiceTest.java" afterDir="false" />
     </list>
     <list id="6499c595-af5e-4d71-8893-8354dc300f9f" name="No commit" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -270,14 +268,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1741276131044</updated>
-    </task>
-    <task id="LOCAL-00058" summary="Correct SaleServiceTest">
-      <option name="closed" value="true" />
-      <created>1743430649191</created>
-      <option name="number" value="00058" />
-      <option name="presentableId" value="LOCAL-00058" />
-      <option name="project" value="LOCAL" />
-      <updated>1743430649191</updated>
     </task>
     <task id="LOCAL-00059" summary="Add deleteById in SaleService method">
       <option name="closed" value="true" />
@@ -663,7 +653,15 @@
       <option name="project" value="LOCAL" />
       <updated>1744101089658</updated>
     </task>
-    <option name="localTasksCounter" value="107" />
+    <task id="LOCAL-00107" summary="Correct SaleServiceTest">
+      <option name="closed" value="true" />
+      <created>1744103794380</created>
+      <option name="number" value="00107" />
+      <option name="presentableId" value="LOCAL-00107" />
+      <option name="project" value="LOCAL" />
+      <updated>1744103794380</updated>
+    </task>
+    <option name="localTasksCounter" value="108" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -699,11 +697,11 @@
     <MESSAGE value="Add StockDTO and SupplierDTO" />
     <MESSAGE value="Add ProductDTO" />
     <MESSAGE value="Update ProductService and ProductController with ProductDTO" />
-    <MESSAGE value="Correct SaleServiceTest" />
     <MESSAGE value="Add DealController" />
     <MESSAGE value="Add DealDTO" />
     <MESSAGE value="Add Javadoc to getDealStrategy" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add Javadoc to getDealStrategy" />
+    <MESSAGE value="Correct SaleServiceTest" />
+    <option name="LAST_COMMIT_MESSAGE" value="Correct SaleServiceTest" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
