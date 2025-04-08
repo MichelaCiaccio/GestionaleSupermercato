@@ -270,4 +270,20 @@ public class SaleService {
                 .flatMap(sale -> sale.getProductSales().stream()).toList();
         return productSales.stream().mapToInt(ProductSale::getQuantity).sum();
     }
+
+    /**
+     * This method calculates the total sales amount between the specified start and end dates.
+     * It retrieves the sales within the given date range
+     * and sums up the prices of each sale.
+     *
+     * @param startDate The start date of the range
+     * @param endDate   The end date of the range
+     * @return The total sales amount
+     */
+    public BigDecimal getTotalSalesBetween(LocalDate startDate, LocalDate endDate) {
+        List<Sale> targetSale = this.findBetweenDate(startDate, endDate);
+        return targetSale.stream().map(Sale::getDiscountPrice).reduce(BigDecimal.ZERO,
+                                                                      BigDecimal::add);
+
+    }
 }
