@@ -1,7 +1,6 @@
 package com.example.supermarket.service;
 
 import com.example.supermarket.DTO.Mapper.SaleMapper;
-import com.example.supermarket.DTO.ProductSaleDTO;
 import com.example.supermarket.DTO.SaleDTO;
 import com.example.supermarket.deals.BUY3PAY2Deal;
 import com.example.supermarket.deals.DISCOUNTONTOTALDeal;
@@ -195,10 +194,10 @@ public class SaleService {
      * @param endDate   The end date of the range (inclusive).
      * @return The list of sales found
      */
-    public List<SaleDTO> findBetweenDate(LocalDate startDate, LocalDate endDate) {
+    public List<Sale> findBetweenDate(LocalDate startDate, LocalDate endDate) {
         LocalDateTime startTime = startDate.atStartOfDay();
         LocalDateTime endTime = endDate.atTime(23, 59, 59);
-        return saleRepo.findBySaleDateBetween(startTime, endTime).stream().map(saleMapper::toSaleDto).toList();
+        return saleRepo.findBySaleDateBetween(startTime, endTime);
     }
 
     /**
@@ -266,9 +265,9 @@ public class SaleService {
      * @return The total quantity of products sold
      */
     public int getTotalProductSaleBetween(LocalDate startDate, LocalDate endDate) {
-        List<SaleDTO> targetSale = this.findBetweenDate(startDate, endDate);
-        List<ProductSaleDTO> productSales = targetSale.stream()
+        List<Sale> targetSale = this.findBetweenDate(startDate, endDate);
+        List<ProductSale> productSales = targetSale.stream()
                 .flatMap(sale -> sale.getProductSales().stream()).toList();
-        return productSales.stream().mapToInt(ProductSaleDTO::getQuantity).sum();
+        return productSales.stream().mapToInt(ProductSale::getQuantity).sum();
     }
 }

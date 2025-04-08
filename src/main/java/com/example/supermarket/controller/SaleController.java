@@ -64,8 +64,8 @@ public class SaleController {
     }
 
     @GetMapping("/between-dates")
-    public List<SaleDTO> getSaleBetweenDate(@RequestParam LocalDate startDate,
-                                            @RequestParam LocalDate endDate) {
+    public List<Sale> getSaleBetweenDate(@RequestParam LocalDate startDate,
+                                         @RequestParam LocalDate endDate) {
         return saleServ.findBetweenDate(startDate, endDate);
     }
 

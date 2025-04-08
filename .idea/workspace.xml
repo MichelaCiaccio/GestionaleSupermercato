@@ -7,8 +7,10 @@
     <option name="rewriteBookmarkType" value="true" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7c4caa73-20ab-4765-9784-19538829fb77" name="Changes" comment="Add getTotalProductSaleBetween in SaleService">
+    <list default="true" id="7c4caa73-20ab-4765-9784-19538829fb77" name="Changes" comment="Add findBetweenDateTest in SaleServiceTest">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/controller/SaleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/controller/SaleController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/service/SaleService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/service/SaleService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/com/example/supermarket/service/SaleServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/example/supermarket/service/SaleServiceTest.java" afterDir="false" />
     </list>
     <list id="6499c595-af5e-4d71-8893-8354dc300f9f" name="No commit" comment="" />
@@ -119,6 +121,7 @@
     "JUnit.SaleServiceTest.findByProductException.executor": "Run",
     "JUnit.SaleServiceTest.findBySaleDate.executor": "Run",
     "JUnit.SaleServiceTest.findBySaleDateException.executor": "Run",
+    "JUnit.SaleServiceTest.getTotalProductSaleBetween.executor": "Run",
     "JUnit.StockServiceTest.addStockQuantity.executor": "Run",
     "JUnit.StockServiceTest.addStockQuantityException.executor": "Run",
     "JUnit.StockServiceTest.executor": "Run",
@@ -159,7 +162,7 @@
       <recent name="com.example.supermarket.service" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.SaleServiceTest.findBetweenDate">
+  <component name="RunManager" selected="JUnit.SaleServiceTest.getTotalProductSaleBetween">
     <configuration name="SaleServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="supermarket" />
       <extension name="coverage">
@@ -171,22 +174,6 @@
       <option name="PACKAGE_NAME" value="com.example.supermarket.service" />
       <option name="MAIN_CLASS_NAME" value="com.example.supermarket.service.SaleServiceTest" />
       <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="SaleServiceTest.createNewSale" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="supermarket" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.example.supermarket.service.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.example.supermarket.service" />
-      <option name="MAIN_CLASS_NAME" value="com.example.supermarket.service.SaleServiceTest" />
-      <option name="METHOD_NAME" value="createNewSale" />
-      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -239,6 +226,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="SaleServiceTest.getTotalProductSaleBetween" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="supermarket" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.supermarket.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.example.supermarket.service" />
+      <option name="MAIN_CLASS_NAME" value="com.example.supermarket.service.SaleServiceTest" />
+      <option name="METHOD_NAME" value="getTotalProductSaleBetween" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration default="true" type="JetRunConfigurationType">
       <module name="GestionaleSupermercato" />
       <method v="2">
@@ -252,11 +255,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.SaleServiceTest.getTotalProductSaleBetween" />
         <item itemvalue="JUnit.SaleServiceTest.findBetweenDate" />
         <item itemvalue="JUnit.SaleServiceTest" />
         <item itemvalue="JUnit.SaleServiceTest.createNewSaleEntityNotFoundException" />
         <item itemvalue="JUnit.SaleServiceTest.createNewSaleRuntimeException" />
-        <item itemvalue="JUnit.SaleServiceTest.createNewSale" />
       </list>
     </recent_temporary>
   </component>
@@ -269,14 +272,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1741276131044</updated>
-    </task>
-    <task id="LOCAL-00062" summary="Add DiscountRepository">
-      <option name="closed" value="true" />
-      <created>1743497885279</created>
-      <option name="number" value="00062" />
-      <option name="presentableId" value="LOCAL-00062" />
-      <option name="project" value="LOCAL" />
-      <updated>1743497885279</updated>
     </task>
     <task id="LOCAL-00063" summary="Correct Discount Entity and relation with Product">
       <option name="closed" value="true" />
@@ -662,7 +657,15 @@
       <option name="project" value="LOCAL" />
       <updated>1744107449361</updated>
     </task>
-    <option name="localTasksCounter" value="111" />
+    <task id="LOCAL-00111" summary="Add findBetweenDateTest in SaleServiceTest">
+      <option name="closed" value="true" />
+      <created>1744107929799</created>
+      <option name="number" value="00111" />
+      <option name="presentableId" value="LOCAL-00111" />
+      <option name="project" value="LOCAL" />
+      <updated>1744107929799</updated>
+    </task>
+    <option name="localTasksCounter" value="112" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -677,7 +680,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Add DealRepository" />
     <MESSAGE value="Complete the Javadoc from DiscountService" />
     <MESSAGE value="Add findAllDealSorted in DealService" />
     <MESSAGE value="Add another DealType" />
@@ -702,7 +704,8 @@
     <MESSAGE value="Add findBetweenDate method in SaleService" />
     <MESSAGE value="Add getSaleBetweenDate in SaleController" />
     <MESSAGE value="Add getTotalProductSaleBetween in SaleService" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add getTotalProductSaleBetween in SaleService" />
+    <MESSAGE value="Add findBetweenDateTest in SaleServiceTest" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add findBetweenDateTest in SaleServiceTest" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

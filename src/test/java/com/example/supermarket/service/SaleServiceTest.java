@@ -12,6 +12,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -330,5 +331,28 @@ class SaleServiceTest {
         verify(saleRepo, times(1)).findBySaleDateBetween(startDate, endDate);
         assertEquals(ret, sales);
         assertEquals(2, ret.size());
+    }
+
+    @Test
+    void getTotalProductSaleBetween() {
+        // Given
+        List<ProductSale> productSales = List.of(new ProductSale(1, 10, null, null),
+                                                 new ProductSale(2, 20, null, null));
+        Sale sale = new Sale(1, BigDecimal.valueOf(100), BigDecimal.valueOf(100),
+                             LocalDateTime.now(),
+                             productSales,
+                             null);
+        LocalDate startDate = LocalDate.now().minusDays(1);
+        LocalDate endDate = LocalDate.now().plusDays(1);
+
+        // When
+        when(saleServ.findBetweenDate(startDate, endDate)).thenReturn(List.of(sale));
+        int totalQuantity = saleServ.getTotalProductSaleBetween(startDate, endDate);
+
+        // Verify
+        verify(saleRepo, times(1)).findBySaleDateBetween(any(LocalDateTime.class),
+                                                         any(LocalDateTime.class));
+        assertEquals(30, totalQuantity);
+
     }
 }
