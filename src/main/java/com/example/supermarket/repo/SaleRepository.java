@@ -28,4 +28,6 @@ public interface SaleRepository extends JpaRepository<Sale, Integer> {
 
     List<Sale> findBySaleDate(LocalDateTime saleDate);
 
+    List<Sale> findBySaleDateBetween(LocalDateTime startDate, LocalDateTime endDate);
+
 }

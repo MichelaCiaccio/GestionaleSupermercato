@@ -1,6 +1,7 @@
 package com.example.supermarket.service;
 
 import com.example.supermarket.entity.*;
+import com.example.supermarket.repo.ProductRepository;
 import com.example.supermarket.repo.ReceiptRepository;
 import com.example.supermarket.repo.SaleRepository;
 import jakarta.persistence.EntityNotFoundException;
@@ -32,6 +33,10 @@ class SaleServiceTest {
 
     @Mock
     private ReceiptRepository receiptRepo;
+
+    @Mock
+    private ProductRepository productRepo;
+
 
     @InjectMocks
     private SaleService saleServ;
@@ -170,6 +175,7 @@ class SaleServiceTest {
 
         // When
         when(saleRepo.save(sale)).thenReturn(sale);
+        when(productRepo.findByIdAndRemovedFalse(1)).thenReturn(Optional.of(product));
         doNothing().when(receiptServ).createNewReceipt(sale);
         saleServ.createNewSale(sale);
 
@@ -193,13 +199,15 @@ class SaleServiceTest {
                              LocalDateTime.now(), List.of(productSale), null);
 
         // When
-        when(saleRepo.save(any(Sale.class))).thenThrow(new RuntimeException("Errore durante " +
-                                                                                    "il " +
-                                                                                    "salvataggio"));
+        when(productRepo.findByIdAndRemovedFalse(1)).thenReturn(Optional.of(product));
+        when(saleRepo.save(any(Sale.class)))
+                .thenThrow(new RuntimeException("Errore durante il salvataggio"));
+
 
         // Verify
-        verify(receiptServ, never()).createNewReceipt(any());
         assertThrows(RuntimeException.class, () -> saleServ.createNewSale(sale));
+        verify(saleRepo, times(1)).save(any(Sale.class));
+
     }
 
     @Test
@@ -207,23 +215,17 @@ class SaleServiceTest {
         // Given
         Category category = new Category(1, "Food", null);
         Product product = new Product(1, "Apple", BigDecimal.valueOf(1.5), null, false, category,
-                                      null,
-                                      null);
+                                      null, null);
         ProductSale productSale = new ProductSale(1, 50, product, null);
         Sale sale = new Sale(1, BigDecimal.valueOf(100), BigDecimal.valueOf(100),
                              LocalDateTime.now(), List.of(productSale), null);
 
         // When
-        when(saleRepo.save(any(Sale.class))).thenThrow(new EntityNotFoundException("Sale not " +
-                                                                                           "found"
-        ));
+        when(productRepo.findByIdAndRemovedFalse(1)).thenReturn(Optional.empty());
 
-        // Then
+        // Verify
         assertThrows(EntityNotFoundException.class, () -> saleServ.createNewSale(sale));
-
-        verify(saleRepo, times(1)).save(any());
-        verify(receiptServ, never()).createNewReceipt(any());
-        verify(stockServ, times(1)).subStockQuantity(product.getId(), productSale.getQuantity());
+        verify(saleRepo, never()).save(any(Sale.class));
     }
 
     @Test

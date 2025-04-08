@@ -14,7 +14,6 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
-// Paginazione a 20
 @Repository
 @Transactional
 public interface ProductRepository extends JpaRepository<Product, Integer> {

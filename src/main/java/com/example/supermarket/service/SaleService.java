@@ -114,6 +114,7 @@ public class SaleService {
         return sales;
     }
 
+
     /**
      * This method processes and creates a new sale, updates product stock quantities, and
      * generates a receipt.
