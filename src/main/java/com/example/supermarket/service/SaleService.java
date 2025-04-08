@@ -25,7 +25,9 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class SaleService {
@@ -50,6 +52,57 @@ public class SaleService {
 
     @Autowired
     private StockService stockServ;
+
+
+    /**
+     * Returns the appropriate implementation based on the given deal's type.
+     * This method selects the correct strategy pattern implementation for handling a deal,
+     * depending on its dealType.
+     * If the type is not recognized, it is returned.
+     *
+     * @param deal The deal from which to determine the strategy
+     * @return The corresponding DealStrategy implementation
+     */
+    private static DealStrategy getDealStrategy(Deal deal) {
+        switch (deal.getDealType()) {
+            case BUY3PAY2 -> {
+                return new BUY3PAY2Deal();
+            }
+            case DISCOUNTONTOTAL -> {
+                return new DISCOUNTONTOTALDeal();
+            }
+            default -> {
+                return null;
+            }
+        }
+    }
+
+    /**
+     * This method computes the total quantity sold for each product from a list of sales.
+     * This method iterates through the provided sales and accumulates the quantities
+     * of each product sold, returning a map where each product is associated with its
+     * total quantity sold.
+     *
+     * @param targetSale The list of sales
+     * @return A map containing products as keys and the corresponding total quantities sold as
+     * values
+     */
+    private static Map<Product, Integer> getProductIntegerMap(List<Sale> targetSale) {
+        Map<Product, Integer> productSalesCount = new HashMap<>();
+
+        // Recupero il prodotto e la quantità associata
+        for (Sale sale : targetSale) {
+            for (ProductSale productSale : sale.getProductSales()) {
+                Product product = productSale.getProduct();
+                int quantity = productSale.getQuantity();
+
+                // Inserisco i prodotti e le quantità sommate
+                productSalesCount.put(product,
+                                      productSalesCount.getOrDefault(product, 0) + quantity);
+            }
+        }
+        return productSalesCount;
+    }
 
     /**
      * This method searches for all the sales, organizes them into pagination of 20 elements,
@@ -115,7 +168,6 @@ public class SaleService {
         return sales;
     }
 
-
     /**
      * This method processes and creates a new sale, updates product stock quantities, and
      * generates a receipt.
@@ -168,7 +220,7 @@ public class SaleService {
 
         // Applico la logica della promozione se esiste
         if (sale.getDeal() != null) {
-            DealStrategy dealStrategy = this.getDealStrategy(sale.getDeal());
+            DealStrategy dealStrategy = getDealStrategy(sale.getDeal());
             discountPrice = discountPrice.subtract(dealStrategy.applyDeal(sale.getProductSales(),
                                                                           sale.getDeal()));
         }
@@ -232,29 +284,6 @@ public class SaleService {
     }
 
     /**
-     * Returns the appropriate implementation based on the given deal's type.
-     * This method selects the correct strategy pattern implementation for handling a deal,
-     * depending on its dealType.
-     * If the type is not recognized, it is returned.
-     *
-     * @param deal The deal from which to determine the strategy
-     * @return The corresponding DealStrategy implementation
-     */
-    public DealStrategy getDealStrategy(Deal deal) {
-        switch (deal.getDealType()) {
-            case BUY3PAY2 -> {
-                return new BUY3PAY2Deal();
-            }
-            case DISCOUNTONTOTAL -> {
-                return new DISCOUNTONTOTALDeal();
-            }
-            default -> {
-                return null;
-            }
-        }
-    }
-
-    /**
      * This method retrieves the total quantity of products sold between the specified start and
      * end dates.
      * It first retrieves the sales within the given date range and calculates the total quantity
@@ -284,6 +313,33 @@ public class SaleService {
         List<Sale> targetSale = this.findBetweenDate(startDate, endDate);
         return targetSale.stream().map(Sale::getDiscountPrice).reduce(BigDecimal.ZERO,
                                                                       BigDecimal::add);
-
     }
+
+
+    /**
+     * This method retrieves the top 3 best-selling products within a specified date range.
+     * It counts the total quantity sold for each product, and then sorts the products for the
+     * top 3.
+     * Finally, it returns products.
+     *
+     * @param startDate The start date of the sales period.
+     * @param endDate   The end date of the sales period.
+     * @return A list of the top 3 best-selling products
+     */
+    public List<Product> getBestSellingProducts(LocalDate startDate, LocalDate endDate) {
+
+        // Recupero le vendite
+        List<Sale> targetSale = this.findBetweenDate(startDate, endDate);
+
+        // Creo una mappa di prodotti-quantità
+        Map<Product, Integer> productSalesCount = getProductIntegerMap(targetSale);
+
+        // Confronto le quantità di prodotto ed estraggo i primi 3
+        return productSalesCount.entrySet().stream()
+                .sorted((entry1, entry2) -> entry2.getValue().compareTo(entry1.getValue()))
+                .limit(3)
+                .map(Map.Entry::getKey)
+                .toList();
+    }
+
 }
