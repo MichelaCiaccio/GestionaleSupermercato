@@ -7,9 +7,12 @@
     <option name="rewriteBookmarkType" value="true" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7c4caa73-20ab-4765-9784-19538829fb77" name="Changes" comment="Update ProductService and ProductController with ProductDTO">
+    <list default="true" id="7c4caa73-20ab-4765-9784-19538829fb77" name="Changes" comment="Correct SaleServiceTest">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/controller/DealController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/supermarket/service/SaleServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/example/supermarket/service/SaleServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/repo/CategoryRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/repo/CategoryRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/service/DealService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/service/DealService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/service/SaleService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/service/SaleService.java" afterDir="false" />
     </list>
     <list id="6499c595-af5e-4d71-8893-8354dc300f9f" name="No commit" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -267,14 +270,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1741276131044</updated>
-    </task>
-    <task id="LOCAL-00054" summary="add stock logic to createNewSale">
-      <option name="closed" value="true" />
-      <created>1743419602466</created>
-      <option name="number" value="00054" />
-      <option name="presentableId" value="LOCAL-00054" />
-      <option name="project" value="LOCAL" />
-      <updated>1743419602466</updated>
     </task>
     <task id="LOCAL-00055" summary="add Javadoc for createNewSale in SaleService">
       <option name="closed" value="true" />
@@ -660,7 +655,15 @@
       <option name="project" value="LOCAL" />
       <updated>1744035502926</updated>
     </task>
-    <option name="localTasksCounter" value="103" />
+    <task id="LOCAL-00103" summary="Correct SaleServiceTest">
+      <option name="closed" value="true" />
+      <created>1744038073404</created>
+      <option name="number" value="00103" />
+      <option name="presentableId" value="LOCAL-00103" />
+      <option name="project" value="LOCAL" />
+      <updated>1744038073404</updated>
+    </task>
+    <option name="localTasksCounter" value="104" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -675,7 +678,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Add deleteById in DiscountController" />
     <MESSAGE value="Update Deal entity" />
     <MESSAGE value="Add findAll test in DiscountServiceTest" />
     <MESSAGE value="Add createNewDiscount test in DiscountServiceTest" />
@@ -700,7 +702,8 @@
     <MESSAGE value="Add StockDTO and SupplierDTO" />
     <MESSAGE value="Add ProductDTO" />
     <MESSAGE value="Update ProductService and ProductController with ProductDTO" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update ProductService and ProductController with ProductDTO" />
+    <MESSAGE value="Correct SaleServiceTest" />
+    <option name="LAST_COMMIT_MESSAGE" value="Correct SaleServiceTest" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

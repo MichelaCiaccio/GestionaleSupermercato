@@ -6,8 +6,10 @@ import com.example.supermarket.deals.BUY3PAY2Deal;
 import com.example.supermarket.deals.DISCOUNTONTOTALDeal;
 import com.example.supermarket.deals.DealStrategy;
 import com.example.supermarket.entity.Deal;
+import com.example.supermarket.entity.Product;
 import com.example.supermarket.entity.ProductSale;
 import com.example.supermarket.entity.Sale;
+import com.example.supermarket.repo.ProductRepository;
 import com.example.supermarket.repo.ReceiptRepository;
 import com.example.supermarket.repo.SaleRepository;
 import jakarta.persistence.EntityNotFoundException;
@@ -32,6 +34,9 @@ public class SaleService {
 
     @Autowired
     private ReceiptRepository receiptRepo;
+
+    @Autowired
+    private ProductRepository productRepo;
 
     @Autowired
     private ReceiptService receiptService;
@@ -135,8 +140,12 @@ public class SaleService {
                 throw new EntityNotFoundException("A product is required");
             }
 
+            // Recupero il prodotto
+            Product product =
+                    productRepo.findByIdAndRemovedFalse(productSale.getProduct().getId()).orElseThrow(() -> new EntityNotFoundException("Product" + productSale.getProduct().getName() + "not found"));
+
             // Imposto prodotti e vendita
-            productSale.setProduct(productSale.getProduct());
+            productSale.setProduct(product);
             productSale.setSale(sale);
             productSale.setQuantity(productSale.getQuantity());
             productSales.add(productSale);

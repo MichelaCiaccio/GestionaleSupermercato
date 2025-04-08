@@ -1,6 +1,8 @@
 package com.example.supermarket.service;
 
+import com.example.supermarket.entity.Category;
 import com.example.supermarket.entity.Deal;
+import com.example.supermarket.repo.CategoryRepository;
 import com.example.supermarket.repo.DealRepository;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
@@ -21,6 +23,9 @@ public class DealService {
 
     @Autowired
     private DealRepository dealRepo;
+
+    @Autowired
+    private CategoryRepository categoryRepo;
 
     /**
      * This method searches for all the deal, organizes them into pagination of 20 elements,
@@ -75,5 +80,19 @@ public class DealService {
             }
             dealRepo.save(deal);
         }
+    }
+
+    public void createDeal(Deal deal) {
+        List<Integer> categoryIds = deal.getCategories().stream()
+                .map(Category::getId)
+                .toList();
+
+        // Recuperi le categorie
+        List<Category> categories = categoryRepo.findByIdIn(categoryIds);
+
+        // Impostiamo il deal per ciascuna categoria
+        categories.forEach(category -> category.setDeal(deal));
+        deal.setCategories(categories);
+        dealRepo.save(deal);
     }
 }
