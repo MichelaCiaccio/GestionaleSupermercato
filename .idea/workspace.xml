@@ -7,14 +7,9 @@
     <option name="rewriteBookmarkType" value="true" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7c4caa73-20ab-4765-9784-19538829fb77" name="Changes" comment="Add DealController">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/DTO/DealDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/DTO/Mapper/DealMapper.java" afterDir="false" />
+    <list default="true" id="7c4caa73-20ab-4765-9784-19538829fb77" name="Changes" comment="Add DealDTO">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/controller/DealController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/controller/DealController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/deals/DISCOUNTONTOTALDeal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/deals/DISCOUNTONTOTALDeal.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/entity/Deal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/entity/Deal.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/service/DealService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/service/DealService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/service/SaleService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/service/SaleService.java" afterDir="false" />
     </list>
     <list id="6499c595-af5e-4d71-8893-8354dc300f9f" name="No commit" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -272,14 +267,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1741276131044</updated>
-    </task>
-    <task id="LOCAL-00056" summary="Update StockController and StockServiceTest">
-      <option name="closed" value="true" />
-      <created>1743425059385</created>
-      <option name="number" value="00056" />
-      <option name="presentableId" value="LOCAL-00056" />
-      <option name="project" value="LOCAL" />
-      <updated>1743425059386</updated>
     </task>
     <task id="LOCAL-00057" summary="Add ReceiptDTO and correct findAll method in ReceiptService">
       <option name="closed" value="true" />
@@ -665,7 +652,15 @@
       <option name="project" value="LOCAL" />
       <updated>1744099804655</updated>
     </task>
-    <option name="localTasksCounter" value="105" />
+    <task id="LOCAL-00105" summary="Add DealDTO">
+      <option name="closed" value="true" />
+      <created>1744100538897</created>
+      <option name="number" value="00105" />
+      <option name="presentableId" value="LOCAL-00105" />
+      <option name="project" value="LOCAL" />
+      <updated>1744100538897</updated>
+    </task>
+    <option name="localTasksCounter" value="106" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -680,7 +675,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Add findAll test in DiscountServiceTest" />
     <MESSAGE value="Add createNewDiscount test in DiscountServiceTest" />
     <MESSAGE value="Add deleteAll test in DiscountServiceTest" />
     <MESSAGE value="Add deleteById test in DiscountServiceTest" />
@@ -705,7 +699,8 @@
     <MESSAGE value="Update ProductService and ProductController with ProductDTO" />
     <MESSAGE value="Correct SaleServiceTest" />
     <MESSAGE value="Add DealController" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add DealController" />
+    <MESSAGE value="Add DealDTO" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add DealDTO" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -213,6 +213,15 @@ public class SaleService {
         saleRepo.deleteById(id);
     }
 
+    /**
+     * Returns the appropriate implementation based on the given deal's type.
+     * This method selects the correct strategy pattern implementation for handling a deal,
+     * depending on its dealType.
+     * If the type is not recognized, it is returned.
+     *
+     * @param deal The deal from which to determine the strategy
+     * @return The corresponding DealStrategy implementation
+     */
     public DealStrategy getDealStrategy(Deal deal) {
         switch (deal.getDealType()) {
             case BUY3PAY2 -> {
