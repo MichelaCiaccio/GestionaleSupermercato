@@ -7,9 +7,9 @@
     <option name="rewriteBookmarkType" value="true" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7c4caa73-20ab-4765-9784-19538829fb77" name="Changes" comment="Add getBestSellingProducts and getBestSellingCategories in SaleServiceTest">
+    <list default="true" id="7c4caa73-20ab-4765-9784-19538829fb77" name="Changes" comment="Update Javadoc of getBestSelling method in SaleService">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/service/SaleService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/service/SaleService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/supermarket/service/SaleServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/example/supermarket/service/SaleServiceTest.java" afterDir="false" />
     </list>
     <list id="6499c595-af5e-4d71-8893-8354dc300f9f" name="No commit" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -120,6 +120,7 @@
     "JUnit.SaleServiceTest.findBySaleDate.executor": "Run",
     "JUnit.SaleServiceTest.findBySaleDateException.executor": "Run",
     "JUnit.SaleServiceTest.getBestSellingCategories.executor": "Run",
+    "JUnit.SaleServiceTest.getBestSellingDiscount.executor": "Run",
     "JUnit.SaleServiceTest.getBestSellingProducts.executor": "Run",
     "JUnit.SaleServiceTest.getTotalProductSaleBetween.executor": "Run",
     "JUnit.SaleServiceTest.getTotalSalesAmountBetween.executor": "Run",
@@ -195,6 +196,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="SaleServiceTest.getBestSellingDiscount" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="supermarket" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.supermarket.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.example.supermarket.service" />
+      <option name="MAIN_CLASS_NAME" value="com.example.supermarket.service.SaleServiceTest" />
+      <option name="METHOD_NAME" value="getBestSellingDiscount" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="SaleServiceTest.getBestSellingProducts" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="supermarket" />
       <extension name="coverage">
@@ -206,22 +223,6 @@
       <option name="PACKAGE_NAME" value="com.example.supermarket.service" />
       <option name="MAIN_CLASS_NAME" value="com.example.supermarket.service.SaleServiceTest" />
       <option name="METHOD_NAME" value="getBestSellingProducts" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="SaleServiceTest.getTotalProductSaleBetween" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="supermarket" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.example.supermarket.service.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.example.supermarket.service" />
-      <option name="MAIN_CLASS_NAME" value="com.example.supermarket.service.SaleServiceTest" />
-      <option name="METHOD_NAME" value="getTotalProductSaleBetween" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -257,10 +258,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.SaleServiceTest" />
+        <item itemvalue="JUnit.SaleServiceTest.getBestSellingDiscount" />
         <item itemvalue="JUnit.SaleServiceTest.getBestSellingCategories" />
         <item itemvalue="JUnit.SaleServiceTest.getBestSellingProducts" />
         <item itemvalue="JUnit.SaleServiceTest.getTotalSalesAmountBetween" />
-        <item itemvalue="JUnit.SaleServiceTest.getTotalProductSaleBetween" />
       </list>
     </recent_temporary>
   </component>
@@ -273,14 +274,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1741276131044</updated>
-    </task>
-    <task id="LOCAL-00071" summary="Add updatedDiscountStatus in DiscountService">
-      <option name="closed" value="true" />
-      <created>1743523442727</created>
-      <option name="number" value="00071" />
-      <option name="presentableId" value="LOCAL-00071" />
-      <option name="project" value="LOCAL" />
-      <updated>1743523442727</updated>
     </task>
     <task id="LOCAL-00072" summary="Add deleteAll in DiscountService">
       <option name="closed" value="true" />
@@ -666,7 +659,15 @@
       <option name="project" value="LOCAL" />
       <updated>1744122820975</updated>
     </task>
-    <option name="localTasksCounter" value="120" />
+    <task id="LOCAL-00120" summary="Update Javadoc of getBestSelling method in SaleService">
+      <option name="closed" value="true" />
+      <created>1744123212216</created>
+      <option name="number" value="00120" />
+      <option name="presentableId" value="LOCAL-00120" />
+      <option name="project" value="LOCAL" />
+      <updated>1744123212216</updated>
+    </task>
+    <option name="localTasksCounter" value="121" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -681,7 +682,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Update DealService" />
     <MESSAGE value="Add Javadoc on BUY3PAY2Deal" />
     <MESSAGE value="Correct SaleService" />
     <MESSAGE value="Correct BUY3PAY2Deal" />
@@ -706,7 +706,8 @@
     <MESSAGE value="Made the getBestSelling function generic to retrieve the best products and categories" />
     <MESSAGE value="Delete getBestSellingProducts test in SaleServiceTest" />
     <MESSAGE value="Add getBestSellingProducts and getBestSellingCategories in SaleServiceTest" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add getBestSellingProducts and getBestSellingCategories in SaleServiceTest" />
+    <MESSAGE value="Update Javadoc of getBestSelling method in SaleService" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update Javadoc of getBestSelling method in SaleService" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

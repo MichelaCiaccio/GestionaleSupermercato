@@ -452,7 +452,7 @@ class SaleServiceTest {
         // When
         when(saleServ.findBetweenDate(startDate, endDate)).thenReturn(List.of(sale1, sale2));
         List<Category> bestSellingCategories =
-                saleServ.getBestSelling(startDate, endDate, product -> product.getCategory());
+                saleServ.getBestSelling(startDate, endDate, Product::getCategory);
 
         // Verify
         verify(saleRepo, times(1)).findBySaleDateBetween(any(LocalDateTime.class),
@@ -461,6 +461,53 @@ class SaleServiceTest {
         assertEquals(category3, bestSellingCategories.get(0)); // Il prodotto più venduto
         assertEquals(category2, bestSellingCategories.get(1)); // Il secondo più venduto
         assertEquals(category1, bestSellingCategories.get(2)); // Il terzo più venduto
+    }
+
+    @Test
+    void getBestSellingDiscount() {
+
+        // Given
+        Discount discount1 = new Discount(1, "Discount 1", 10, LocalDate.now(), true);
+        Discount discount2 = new Discount(2, "Discount 2", 20, LocalDate.now(), true);
+        Discount discount3 = new Discount(3, "Discount 3", 30, LocalDate.now(), true);
+
+        Product product1 = new Product(1, "Product 1", BigDecimal.valueOf(10),
+                                       BigDecimal.valueOf(10), false, null,
+                                       null,
+                                       discount1);
+        Product product2 = new Product(2, "Product 2", BigDecimal.valueOf(20),
+                                       BigDecimal.valueOf(20), false, null,
+                                       null,
+                                       discount2);
+        Product product3 = new Product(3, "Product 3", BigDecimal.valueOf(30),
+                                       BigDecimal.valueOf(30), false, null,
+                                       null,
+                                       discount3);
+
+        ProductSale productSale1 = new ProductSale(1, 5, product1, null);
+        ProductSale productSale2 = new ProductSale(2, 15, product2, null);
+        ProductSale productSale3 = new ProductSale(3, 25, product3, null);
+
+        Sale sale1 = new Sale(1, BigDecimal.valueOf(100), BigDecimal.valueOf(100),
+                              LocalDateTime.now(), List.of(productSale1, productSale2), null);
+        Sale sale2 = new Sale(2, BigDecimal.valueOf(100), BigDecimal.valueOf(100),
+                              LocalDateTime.now(), List.of(productSale3), null);
+
+        LocalDate startDate = LocalDate.now().minusDays(1);
+        LocalDate endDate = LocalDate.now().plusDays(1);
+
+        // When
+        when(saleServ.findBetweenDate(startDate, endDate)).thenReturn(List.of(sale1, sale2));
+        List<Discount> bestSellingDeals =
+                saleServ.getBestSelling(startDate, endDate, Product::getDiscount);
+
+        // Verify
+        verify(saleRepo, times(1)).findBySaleDateBetween(any(LocalDateTime.class),
+                                                         any(LocalDateTime.class));
+        assertEquals(3, bestSellingDeals.size()); // Verifica che siano 3 prodotti
+        assertEquals(discount3, bestSellingDeals.get(0)); // Il prodotto più venduto
+        assertEquals(discount2, bestSellingDeals.get(1)); // Il secondo più venduto
+        assertEquals(discount1, bestSellingDeals.get(2)); // Il terzo più venduto
 
     }
 }
