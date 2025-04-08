@@ -355,4 +355,27 @@ class SaleServiceTest {
         assertEquals(30, totalQuantity);
 
     }
+
+    @Test
+    void getTotalSalesAmountBetween() {
+
+        // Given
+        List<ProductSale> productSales = List.of(new ProductSale(1, 10, null, null),
+                                                 new ProductSale(2, 20, null, null));
+        Sale sale = new Sale(1, BigDecimal.valueOf(100), BigDecimal.valueOf(100),
+                             LocalDateTime.now(),
+                             productSales,
+                             null);
+        LocalDate startDate = LocalDate.now().minusDays(1);
+        LocalDate endDate = LocalDate.now().plusDays(1);
+
+        // When
+        when(saleServ.findBetweenDate(startDate, endDate)).thenReturn(List.of(sale));
+        BigDecimal totalAmount = saleServ.getTotalSalesAmountBetween(startDate, endDate);
+
+        // Verify
+        verify(saleRepo, times(1)).findBySaleDateBetween(any(LocalDateTime.class),
+                                                         any(LocalDateTime.class));
+        assertEquals(BigDecimal.valueOf(100), totalAmount);
+    }
 }

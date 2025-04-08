@@ -280,7 +280,7 @@ public class SaleService {
      * @param endDate   The end date of the range
      * @return The total sales amount
      */
-    public BigDecimal getTotalSalesBetween(LocalDate startDate, LocalDate endDate) {
+    public BigDecimal getTotalSalesAmountBetween(LocalDate startDate, LocalDate endDate) {
         List<Sale> targetSale = this.findBetweenDate(startDate, endDate);
         return targetSale.stream().map(Sale::getDiscountPrice).reduce(BigDecimal.ZERO,
                                                                       BigDecimal::add);
