@@ -1,8 +1,6 @@
 package com.example.supermarket.DTO.Mapper;
 
-import com.example.supermarket.DTO.ProductDTO;
-import com.example.supermarket.DTO.ProductSummaryDTO;
-import com.example.supermarket.DTO.StockDTO;
+import com.example.supermarket.DTO.*;
 import com.example.supermarket.entity.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -18,6 +16,9 @@ public class ProductMapper {
     @Autowired
     private SupplierMapper supplierMapper;
 
+    @Autowired
+    private CategoryMapper categoryMapper;
+
     public ProductSummaryDTO toProductSummaryDTO(Product product) {
         return new ProductSummaryDTO(product.getId(),
                                      product.getName());
@@ -32,8 +33,16 @@ public class ProductMapper {
                                                                        stock.getExpirationDate(),
                                                                        supplierMapper.toSupperDTO(stock.getSupplier()))).toList();
 
+        CategoryDTO categoryDTO = categoryMapper.toCategoryDTO(product.getCategory());
+
         return new ProductDTO(product.getName(), product.getSellingPrice(),
-                              product.getDiscountedSellingPrice(), product.getCategory(),
+                              product.getDiscountedSellingPrice(), categoryDTO,
                               stockDTOS, product.getDiscount());
+    }
+
+    public ProductReportDTO toProductReportDTO(ProductDTO productDTO) {
+        return new ProductReportDTO(productDTO.getName(), productDTO.getSellingPrice(),
+                                    productDTO.getDiscountedSellingPrice(),
+                                    productDTO.getCategory());
     }
 }

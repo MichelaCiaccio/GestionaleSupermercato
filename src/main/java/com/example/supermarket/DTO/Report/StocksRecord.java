@@ -1,7 +1,7 @@
 package com.example.supermarket.DTO.Report;
 
 
-import com.example.supermarket.DTO.ProductDTO;
+import com.example.supermarket.DTO.ProductReportDTO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
@@ -13,7 +13,7 @@ import java.time.LocalDate;
 @RequiredArgsConstructor
 public class StocksRecord {
 
-    private ProductDTO product;
+    private ProductReportDTO product;
     private LocalDate expirationDate;
     private int quantity;
 }

@@ -1,6 +1,7 @@
 package com.example.supermarket.service;
 
-import com.example.supermarket.DTO.ProductDTO;
+import com.example.supermarket.DTO.Mapper.ProductMapper;
+import com.example.supermarket.DTO.ProductReportDTO;
 import com.example.supermarket.DTO.Report.StocksRecord;
 import com.example.supermarket.DTO.Report.StocksReport;
 import com.example.supermarket.entity.Stock;
@@ -18,6 +19,9 @@ public class StocksReportService {
 
     @Autowired
     private ProductService productServ;
+
+    @Autowired
+    private ProductMapper productMapper;
 
     /**
      * Calculates the total quantity of all items in the warehouse.
@@ -47,7 +51,8 @@ public class StocksReportService {
 
         // Recupero le informazioni dallo stock e creo i record per ciascun prodotto
         return stocks.stream().map(stock -> {
-            ProductDTO product = productServ.findById(stock.getProduct().getId());
+            ProductReportDTO product =
+                    productMapper.toProductReportDTO(productServ.findById(stock.getProduct().getId()));
             return new StocksRecord(product, stock.getExpirationDate(), stock.getQuantity());
         }).toList();
     }

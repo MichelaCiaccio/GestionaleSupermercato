@@ -7,10 +7,14 @@
     <option name="rewriteBookmarkType" value="true" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7c4caa73-20ab-4765-9784-19538829fb77" name="Changes" comment="Add StockReportController">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/DTO/CategoryDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/DTO/ProductReportDTO.java" afterDir="false" />
+    <list default="true" id="7c4caa73-20ab-4765-9784-19538829fb77" name="Changes" comment="Add ProductReportDTO and CategoryDTO">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/DTO/Mapper/CategoryMapper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/DTO/Mapper/ProductMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/DTO/Mapper/ProductMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/DTO/ProductDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/DTO/ProductDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/DTO/ProductReportDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/DTO/ProductReportDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/DTO/Report/StocksRecord.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/DTO/Report/StocksRecord.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/service/StocksReportService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/service/StocksReportService.java" afterDir="false" />
     </list>
     <list id="6499c595-af5e-4d71-8893-8354dc300f9f" name="No commit" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -276,14 +280,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1741276131044</updated>
-    </task>
-    <task id="LOCAL-00087" summary="Add findAllDealSorted in DealService">
-      <option name="closed" value="true" />
-      <created>1743597965688</created>
-      <option name="number" value="00087" />
-      <option name="presentableId" value="LOCAL-00087" />
-      <option name="project" value="LOCAL" />
-      <updated>1743597965688</updated>
     </task>
     <task id="LOCAL-00088" summary="Add another DealType">
       <option name="closed" value="true" />
@@ -669,7 +665,15 @@
       <option name="project" value="LOCAL" />
       <updated>1744213423183</updated>
     </task>
-    <option name="localTasksCounter" value="136" />
+    <task id="LOCAL-00136" summary="Add ProductReportDTO and CategoryDTO">
+      <option name="closed" value="true" />
+      <created>1744213842043</created>
+      <option name="number" value="00136" />
+      <option name="presentableId" value="LOCAL-00136" />
+      <option name="project" value="LOCAL" />
+      <updated>1744213842043</updated>
+    </task>
+    <option name="localTasksCounter" value="137" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -684,7 +688,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Add findBetweenDateTest in SaleServiceTest" />
     <MESSAGE value="Add TotalProductSaleBetween test in SaleServiceTest" />
     <MESSAGE value="Add getTotalSalesBetween in SaleService" />
     <MESSAGE value="Add getTotalSalesAmountBetween in SaleServiceTest" />
@@ -709,7 +712,8 @@
     <MESSAGE value="Add getStocksRecords in StocksReportService" />
     <MESSAGE value="Add generateStockReport in StocksReportService" />
     <MESSAGE value="Add StockReportController" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add StockReportController" />
+    <MESSAGE value="Add ProductReportDTO and CategoryDTO" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add ProductReportDTO and CategoryDTO" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
