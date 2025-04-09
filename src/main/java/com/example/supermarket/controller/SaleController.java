@@ -24,20 +24,20 @@ public class SaleController {
     private SaleService saleServ;
 
     @GetMapping("")
-    public Page<SaleDTO> getAll(@RequestParam(required = false) Integer page,
-                                @RequestParam(required = false) String sortDirection,
-                                @RequestParam(required = false) String dataType) throws EntityNotFoundException {
-        return saleServ.findAllSalesSorted(page, sortDirection, dataType);
+    public ResponseEntity<Page<SaleDTO>> getAll(@RequestParam(required = false) Integer page,
+                                                @RequestParam(required = false) String sortDirection,
+                                                @RequestParam(required = false) String dataType) throws EntityNotFoundException {
+        return ResponseEntity.ok(saleServ.findAllSalesSorted(page, sortDirection, dataType));
     }
 
     @GetMapping("/saleDate")
-    public List<Sale> getBySaleDate(@RequestParam LocalDateTime saleDate) {
-        return saleServ.findBySaleDate(saleDate);
+    public ResponseEntity<List<Sale>> getBySaleDate(@RequestParam LocalDateTime saleDate) {
+        return ResponseEntity.ok(saleServ.findBySaleDate(saleDate));
     }
 
     @GetMapping("/product")
-    public List<Sale> getByProduct(@RequestParam String productName) {
-        return saleServ.findByProduct(productName);
+    public ResponseEntity<List<Sale>> getByProduct(@RequestParam String productName) {
+        return ResponseEntity.ok(saleServ.findByProduct(productName));
     }
 
     @PostMapping("/new")
@@ -64,9 +64,9 @@ public class SaleController {
     }
 
     @GetMapping("/between-dates")
-    public List<Sale> getSaleBetweenDate(@RequestParam LocalDate startDate,
-                                         @RequestParam LocalDate endDate) {
-        return saleServ.findBetweenDate(startDate, endDate);
+    public ResponseEntity<List<Sale>> getSaleBetweenDate(@RequestParam LocalDate startDate,
+                                                         @RequestParam LocalDate endDate) {
+        return ResponseEntity.ok(saleServ.findBetweenDate(startDate, endDate));
     }
 
 

@@ -7,10 +7,9 @@
     <option name="rewriteBookmarkType" value="true" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7c4caa73-20ab-4765-9784-19538829fb77" name="Changes" comment="Correct Deal logic in SaleService">
+    <list default="true" id="7c4caa73-20ab-4765-9784-19538829fb77" name="Changes" comment="Add some Javadoc">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/service/DealService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/service/DealService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/service/SalesReportService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/service/SalesReportService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/controller/SaleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/controller/SaleController.java" afterDir="false" />
     </list>
     <list id="6499c595-af5e-4d71-8893-8354dc300f9f" name="No commit" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -276,14 +275,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1741276131044</updated>
-    </task>
-    <task id="LOCAL-00080" summary="Add findAll test in DiscountServiceTest">
-      <option name="closed" value="true" />
-      <created>1743590509765</created>
-      <option name="number" value="00080" />
-      <option name="presentableId" value="LOCAL-00080" />
-      <option name="project" value="LOCAL" />
-      <updated>1743590509765</updated>
     </task>
     <task id="LOCAL-00081" summary="Add createNewDiscount test in DiscountServiceTest">
       <option name="closed" value="true" />
@@ -669,7 +660,15 @@
       <option name="project" value="LOCAL" />
       <updated>1744201815963</updated>
     </task>
-    <option name="localTasksCounter" value="129" />
+    <task id="LOCAL-00129" summary="Add some Javadoc">
+      <option name="closed" value="true" />
+      <created>1744204224240</created>
+      <option name="number" value="00129" />
+      <option name="presentableId" value="LOCAL-00129" />
+      <option name="project" value="LOCAL" />
+      <updated>1744204224240</updated>
+    </task>
+    <option name="localTasksCounter" value="130" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -684,7 +683,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Add DealController" />
     <MESSAGE value="Add DealDTO" />
     <MESSAGE value="Add Javadoc to getDealStrategy" />
     <MESSAGE value="Correct SaleServiceTest" />
@@ -709,7 +707,8 @@
     <MESSAGE value="Add generateReport in SalesReportService" />
     <MESSAGE value="Add SalesReportController" />
     <MESSAGE value="Correct Deal logic in SaleService" />
-    <option name="LAST_COMMIT_MESSAGE" value="Correct Deal logic in SaleService" />
+    <MESSAGE value="Add some Javadoc" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add some Javadoc" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
