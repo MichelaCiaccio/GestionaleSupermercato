@@ -116,6 +116,22 @@ public class SalesReportService {
                 .toList();
     }
 
+
+    /**
+     * Generates a sales report for a given time period.
+     * This method calculates
+     * and compiles sales statistics between the specified start and end dates.
+     * The report includes:
+     * Total quantity of products sold
+     * Total revenue generated
+     * List of best-selling products
+     * List of best-selling categories
+     * List of best-selling discounts
+     *
+     * @param startDate the start date of the reporting period (inclusive)
+     * @param endDate   the end date of the reporting period (inclusive)
+     * @return a {@link SalesReport} object containing all relevant sales statistics
+     */
     public SalesReport generateReport(LocalDate startDate, LocalDate endDate) {
 
         SalesReport salesReport = new SalesReport();

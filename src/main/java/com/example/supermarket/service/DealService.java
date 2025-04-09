@@ -87,6 +87,13 @@ public class DealService {
         }
     }
 
+    /**
+     * Creates and saves a new Deal
+     * This method retrieves the list of category associated with the deal
+     * based on their IDs, and sets them into the deal before saving it.
+     *
+     * @param deal The deal to be saved
+     */
     public void createDeal(Deal deal) {
         List<Integer> categoryIds = deal.getCategories().stream()
                 .map(Category::getId)
