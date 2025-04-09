@@ -2,10 +2,12 @@ package com.example.supermarket.service;
 
 import com.example.supermarket.DTO.ProductDTO;
 import com.example.supermarket.DTO.Report.StocksRecord;
+import com.example.supermarket.DTO.Report.StocksReport;
 import com.example.supermarket.entity.Stock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -23,7 +25,7 @@ public class StocksReportService {
      *
      * @return The total number of units in stocks
      */
-    public int getTotalUnit() {
+    private int getTotalUnit() {
 
         // Recupero tutti gli stock
         List<Stock> stocks = stockServ.findAll();
@@ -38,7 +40,7 @@ public class StocksReportService {
      *
      * @return a list of StocksRecord
      */
-    public List<StocksRecord> getStocksRecords() {
+    private List<StocksRecord> getStocksRecords() {
 
         // Recupero tutti gli stock
         List<Stock> stocks = stockServ.findAll();
@@ -48,6 +50,13 @@ public class StocksReportService {
             ProductDTO product = productServ.findById(stock.getProduct().getId());
             return new StocksRecord(product, stock.getExpirationDate(), stock.getQuantity());
         }).toList();
+    }
 
+
+    public StocksReport generateStocksReport() {
+        List<StocksRecord> stocksRecords = this.getStocksRecords();
+        int totalUnit = this.getTotalUnit();
+
+        return new StocksReport(LocalDate.now(), stocksRecords, totalUnit);
     }
 }
