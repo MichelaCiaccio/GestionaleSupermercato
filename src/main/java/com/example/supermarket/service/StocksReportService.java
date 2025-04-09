@@ -57,7 +57,12 @@ public class StocksReportService {
         }).toList();
     }
 
-
+    /**
+     * Generates a stock report containing the list of all stock records and the total quantity
+     * of units in stock.
+     *
+     * @return StocksReport
+     */
     public StocksReport generateStocksReport() {
         List<StocksRecord> stocksRecords = this.getStocksRecords();
         int totalUnit = this.getTotalUnit();
