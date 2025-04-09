@@ -44,7 +44,7 @@ public class ProductServiceTest {
         // Given
         Supplier supplier = new Supplier(1, "Supplier Name", "Address", "123456789", "email" +
                 "@example.com");
-        Category category = new Category(1, "Food", null);
+        Category category = new Category(1, "Food");
         Stock stock = new Stock(1, 10, LocalDate.now(), LocalDate.now().plusDays(10), null,
                                 supplier);
         Product product = new Product(1, "Apple", BigDecimal.valueOf(1.5), null, false, category,
@@ -90,7 +90,7 @@ public class ProductServiceTest {
         // Given
         Supplier supplier = new Supplier(1, "Supplier Name", "Address", "123456789", "email" +
                 "@example.com");
-        Category category = new Category(1, "Food", null);
+        Category category = new Category(1, "Food");
         Stock stock = new Stock(1, 10, LocalDate.now(), LocalDate.now().plusDays(10), null,
                                 supplier);
         Product product = new Product(1, "Apple", BigDecimal.valueOf(1.5), null, false, category,
@@ -194,7 +194,7 @@ public class ProductServiceTest {
     void testFindAll() {
 
         // Given
-        Category category = new Category(1, "Categoria", null);
+        Category category = new Category(1, "Categoria");
         List<Product> products = List.of(
                 new Product(1, "Nome", new BigDecimal(15), null, false, category, null, null),
                 new Product(2, "Nome", new BigDecimal(15), null, false, category, null, null));

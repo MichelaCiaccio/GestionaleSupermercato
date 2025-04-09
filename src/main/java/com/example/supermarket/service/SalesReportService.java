@@ -1,5 +1,7 @@
 package com.example.supermarket.service;
 
+import com.example.supermarket.DTO.Mapper.ProductMapper;
+import com.example.supermarket.DTO.ProductDTO;
 import com.example.supermarket.DTO.SalesReport;
 import com.example.supermarket.entity.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +19,9 @@ public class SalesReportService {
 
     @Autowired
     private SaleService saleServ;
+
+    @Autowired
+    private ProductMapper productMapper;
 
 
     /**
@@ -123,8 +128,8 @@ public class SalesReportService {
         BigDecimal totalAmountSold = this.getTotalAmountSoldBetween(startDate, endDate);
         salesReport.setTotalAmountSold(totalAmountSold);
 
-        List<Product> bestSellingProducts = this.getBestSelling(startDate, endDate,
-                                                                product -> product);
+        List<ProductDTO> bestSellingProducts = this.getBestSelling(startDate, endDate,
+                                                                   product -> product).stream().map(productMapper::toProductDTO).toList();
         salesReport.setBestSellingProducts(bestSellingProducts);
 
         List<Category> bestSellingCategories = this.getBestSelling(startDate, endDate,

@@ -1,6 +1,5 @@
 package com.example.supermarket.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -21,9 +20,5 @@ public class Category {
     @Column(unique = true)
     private String name;
 
-    @ManyToOne
-    @JoinColumn(name = "deal_id")
-    @JsonIgnore
-    private Deal deal;
 
 }

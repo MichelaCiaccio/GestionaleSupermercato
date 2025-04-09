@@ -9,6 +9,7 @@ import com.example.supermarket.entity.Deal;
 import com.example.supermarket.entity.Product;
 import com.example.supermarket.entity.ProductSale;
 import com.example.supermarket.entity.Sale;
+import com.example.supermarket.repo.DealRepository;
 import com.example.supermarket.repo.ProductRepository;
 import com.example.supermarket.repo.ReceiptRepository;
 import com.example.supermarket.repo.SaleRepository;
@@ -40,6 +41,9 @@ public class SaleService {
     private ProductRepository productRepo;
 
     @Autowired
+    private DealRepository dealRepo;
+
+    @Autowired
     private ReceiptService receiptService;
 
     @Autowired
@@ -61,7 +65,7 @@ public class SaleService {
      * @param deal The deal from which to determine the strategy
      * @return The corresponding DealStrategy implementation
      */
-    private static DealStrategy getDealStrategy(Deal deal) {
+    private DealStrategy getDealStrategy(Deal deal) {
         switch (deal.getDealType()) {
             case BUY3PAY2 -> {
                 return new BUY3PAY2Deal();
@@ -187,14 +191,17 @@ public class SaleService {
             if (productSale.getProduct().getDiscountedSellingPrice() != null) {
                 discountPrice =
                         discountPrice.add(productSale.getProduct().getDiscountedSellingPrice().multiply(BigDecimal.valueOf(productSale.getQuantity())));
-            }
+            } else
+                discountPrice = totalPrice;
         }
 
         // Applico la logica della promozione se esiste
-        if (sale.getDeal() != null) {
-            DealStrategy dealStrategy = getDealStrategy(sale.getDeal());
+        if (sale.getDeal() != null && sale.getDeal().getId() != null) {
+            Deal existingDeal =
+                    dealRepo.findById(sale.getDeal().getId()).orElseThrow(() -> new EntityNotFoundException("Deal not found"));
+            DealStrategy dealStrategy = getDealStrategy(existingDeal);
             discountPrice = discountPrice.subtract(dealStrategy.applyDeal(sale.getProductSales(),
-                                                                          sale.getDeal()));
+                                                                          existingDeal));
         }
 
 

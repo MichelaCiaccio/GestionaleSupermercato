@@ -35,7 +35,7 @@ class StockServiceTest {
         // Given
         Supplier supplier = new Supplier(1, "Supplier Name", "Address", "123456789", "email" +
                 "@example.com");
-        Category category = new Category(1, "Food", null);
+        Category category = new Category(1, "Food");
         Product product = new Product(1, "Apple", BigDecimal.valueOf(1.5), null, false, category,
                                       null, null);
         Stock stock = new Stock(1, 10, LocalDate.now(), LocalDate.now().plusDays(10), product,
@@ -71,7 +71,7 @@ class StockServiceTest {
         // Given
         Supplier supplier = new Supplier(1, "Supplier Name", "Address", "123456789", "email" +
                 "@example.com");
-        Category category = new Category(1, "Food", null);
+        Category category = new Category(1, "Food");
         Product product = new Product(1, "Apple", BigDecimal.valueOf(1.5), null, false, category,
                                       null, null);
         Stock stock = new Stock(1, 10, LocalDate.now(), LocalDate.now().plusDays(10), product,
@@ -108,7 +108,7 @@ class StockServiceTest {
         // Given
         Supplier supplier = new Supplier(1, "Supplier Name", "Address", "123456789", "email" +
                 "@example.com");
-        Category category = new Category(1, "Food", null);
+        Category category = new Category(1, "Food");
         Product product = new Product(1, "Apple", BigDecimal.valueOf(1.5), null, false, category,
                                       null, null);
         Stock stock = new Stock(1, 10, LocalDate.now(), LocalDate.now().plusDays(10), product,
@@ -144,7 +144,7 @@ class StockServiceTest {
         // Given
         Supplier supplier = new Supplier(1, "Supplier Name", "Address", "123456789", "email" +
                 "@example.com");
-        Category category = new Category(1, "Food", null);
+        Category category = new Category(1, "Food");
         Product product = new Product(1, "Apple", BigDecimal.valueOf(1.5), null, false, category,
                                       null, null);
         List<Stock> stocks = List.of(

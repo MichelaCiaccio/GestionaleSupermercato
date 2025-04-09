@@ -27,6 +27,7 @@ public class BUY3PAY2Deal implements DealStrategy {
     @Override
     public BigDecimal applyDeal(List<ProductSale> productSales, Deal deal) {
 
+        System.out.println(deal.toString());
         // Recuperare la categoria a cui fa riferimento la promozione
         List<Category> targetCategories = deal.getCategories();
 

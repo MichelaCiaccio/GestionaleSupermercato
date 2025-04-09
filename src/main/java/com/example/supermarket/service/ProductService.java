@@ -103,6 +103,7 @@ public class ProductService {
 
         // Setto la lista di stock del prodotto
         product.setStocks(stocks);
+        
 
         // Salvo il prodotto
         productRepository.save(product);

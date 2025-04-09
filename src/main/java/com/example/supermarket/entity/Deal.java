@@ -32,7 +32,7 @@ public class Deal {
 
     private boolean active;
 
-    @OneToMany(mappedBy = "deal")
+    @OneToMany
     private List<Category> categories;
 
 

@@ -96,7 +96,6 @@ public class DealService {
         List<Category> categories = categoryRepo.findByIdIn(categoryIds);
 
         // Impostiamo il deal per ciascuna categoria
-        categories.forEach(category -> category.setDeal(deal));
         deal.setCategories(categories);
         dealRepo.save(deal);
     }

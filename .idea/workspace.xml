@@ -7,9 +7,20 @@
     <option name="rewriteBookmarkType" value="true" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7c4caa73-20ab-4765-9784-19538829fb77" name="Changes" comment="Add generateReport in SalesReportService">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/controller/SalesReportController.java" afterDir="false" />
+    <list default="true" id="7c4caa73-20ab-4765-9784-19538829fb77" name="Changes" comment="Add SalesReportController">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/DTO/SalesReport.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/DTO/SalesReport.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/deals/BUY3PAY2Deal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/deals/BUY3PAY2Deal.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/entity/Category.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/entity/Category.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/entity/Deal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/entity/Deal.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/service/DealService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/service/DealService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/service/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/service/ProductService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/service/SaleService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/service/SaleService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/service/SalesReportService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/service/SalesReportService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/supermarket/service/ProductServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/example/supermarket/service/ProductServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/supermarket/service/SaleServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/example/supermarket/service/SaleServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/supermarket/service/SalesReportServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/example/supermarket/service/SalesReportServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/supermarket/service/StockServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/example/supermarket/service/StockServiceTest.java" afterDir="false" />
     </list>
     <list id="6499c595-af5e-4d71-8893-8354dc300f9f" name="No commit" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -275,14 +286,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1741276131044</updated>
-    </task>
-    <task id="LOCAL-00078" summary="Add deleteById in DiscountController">
-      <option name="closed" value="true" />
-      <created>1743588161749</created>
-      <option name="number" value="00078" />
-      <option name="presentableId" value="LOCAL-00078" />
-      <option name="project" value="LOCAL" />
-      <updated>1743588161750</updated>
     </task>
     <task id="LOCAL-00079" summary="Update Deal entity">
       <option name="closed" value="true" />
@@ -668,7 +671,15 @@
       <option name="project" value="LOCAL" />
       <updated>1744191423672</updated>
     </task>
-    <option name="localTasksCounter" value="127" />
+    <task id="LOCAL-00127" summary="Add SalesReportController">
+      <option name="closed" value="true" />
+      <created>1744192257623</created>
+      <option name="number" value="00127" />
+      <option name="presentableId" value="LOCAL-00127" />
+      <option name="project" value="LOCAL" />
+      <updated>1744192257623</updated>
+    </task>
+    <option name="localTasksCounter" value="128" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -683,7 +694,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Add ProductDTO" />
     <MESSAGE value="Update ProductService and ProductController with ProductDTO" />
     <MESSAGE value="Add DealController" />
     <MESSAGE value="Add DealDTO" />
@@ -708,7 +718,8 @@
     <MESSAGE value="Add SalesReportServiceTest" />
     <MESSAGE value="Correct SalesReportServiceTest" />
     <MESSAGE value="Add generateReport in SalesReportService" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add generateReport in SalesReportService" />
+    <MESSAGE value="Add SalesReportController" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add SalesReportController" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

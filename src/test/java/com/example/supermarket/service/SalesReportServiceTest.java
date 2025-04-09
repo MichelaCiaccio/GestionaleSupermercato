@@ -121,9 +121,9 @@ class SalesReportServiceTest {
     void getBestSellingCategories() {
 
         // Given
-        Category category1 = new Category(1, "Category1", null);
-        Category category2 = new Category(2, "Category2", null);
-        Category category3 = new Category(3, "Category3", null);
+        Category category1 = new Category(1, "Category1");
+        Category category2 = new Category(2, "Category2");
+        Category category3 = new Category(3, "Category3");
         Product product1 = new Product(1, "Product 1", BigDecimal.valueOf(10),
                                        BigDecimal.valueOf(10), false, category1, null, null);
         Product product2 = new Product(2, "Product 2", BigDecimal.valueOf(20),
