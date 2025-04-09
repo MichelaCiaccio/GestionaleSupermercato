@@ -7,10 +7,9 @@
     <option name="rewriteBookmarkType" value="true" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7c4caa73-20ab-4765-9784-19538829fb77" name="Changes" comment="Add SalesReportService">
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/example/supermarket/service/SalesReportServiceTest.java" afterDir="false" />
+    <list default="true" id="7c4caa73-20ab-4765-9784-19538829fb77" name="Changes" comment="Add SalesReportServiceTest">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/supermarket/service/SaleServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/example/supermarket/service/SaleServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/supermarket/service/SalesReportServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/example/supermarket/service/SalesReportServiceTest.java" afterDir="false" />
     </list>
     <list id="6499c595-af5e-4d71-8893-8354dc300f9f" name="No commit" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -276,14 +275,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1741276131044</updated>
-    </task>
-    <task id="LOCAL-00075" summary="Add updateDiscount in DiscountController">
-      <option name="closed" value="true" />
-      <created>1743587130382</created>
-      <option name="number" value="00075" />
-      <option name="presentableId" value="LOCAL-00075" />
-      <option name="project" value="LOCAL" />
-      <updated>1743587130382</updated>
     </task>
     <task id="LOCAL-00076" summary="Add deleteAllDiscount in DiscountController">
       <option name="closed" value="true" />
@@ -669,7 +660,15 @@
       <option name="project" value="LOCAL" />
       <updated>1744186778230</updated>
     </task>
-    <option name="localTasksCounter" value="124" />
+    <task id="LOCAL-00124" summary="Add SalesReportServiceTest">
+      <option name="closed" value="true" />
+      <created>1744188549701</created>
+      <option name="number" value="00124" />
+      <option name="presentableId" value="LOCAL-00124" />
+      <option name="project" value="LOCAL" />
+      <updated>1744188549701</updated>
+    </task>
+    <option name="localTasksCounter" value="125" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -684,7 +683,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Add DISCOUNTONTOTALDeal" />
     <MESSAGE value="Correct Category-Deal relation" />
     <MESSAGE value="Add StockDTO and SupplierDTO" />
     <MESSAGE value="Add ProductDTO" />
@@ -709,7 +707,8 @@
     <MESSAGE value="Add getBestSellingDiscount test in SaleServiceTest" />
     <MESSAGE value="Add SalesReport DTO" />
     <MESSAGE value="Add SalesReportService" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add SalesReportService" />
+    <MESSAGE value="Add SalesReportServiceTest" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add SalesReportServiceTest" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

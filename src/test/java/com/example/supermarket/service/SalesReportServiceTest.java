@@ -1,7 +1,6 @@
 package com.example.supermarket.service;
 
 import com.example.supermarket.entity.*;
-import com.example.supermarket.repo.SaleRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -21,13 +20,11 @@ import static org.mockito.Mockito.*;
 class SalesReportServiceTest {
 
     @Mock
-    private SaleRepository saleRepo;
+    private SaleService saleServ;
+
 
     @InjectMocks
     private SalesReportService salesReportServ;
-
-    @Mock
-    private SaleService saleServ;
 
 
     @Test
