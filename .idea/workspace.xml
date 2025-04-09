@@ -7,10 +7,10 @@
     <option name="rewriteBookmarkType" value="true" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7c4caa73-20ab-4765-9784-19538829fb77" name="Changes" comment="Add generateStockReport in StocksReportService">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/controller/StockReportController.java" afterDir="false" />
+    <list default="true" id="7c4caa73-20ab-4765-9784-19538829fb77" name="Changes" comment="Add StockReportController">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/DTO/CategoryDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/DTO/ProductReportDTO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/service/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/service/ProductService.java" afterDir="false" />
     </list>
     <list id="6499c595-af5e-4d71-8893-8354dc300f9f" name="No commit" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -276,14 +276,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1741276131044</updated>
-    </task>
-    <task id="LOCAL-00086" summary="Complete the Javadoc from DiscountService">
-      <option name="closed" value="true" />
-      <created>1743597944786</created>
-      <option name="number" value="00086" />
-      <option name="presentableId" value="LOCAL-00086" />
-      <option name="project" value="LOCAL" />
-      <updated>1743597944786</updated>
     </task>
     <task id="LOCAL-00087" summary="Add findAllDealSorted in DealService">
       <option name="closed" value="true" />
@@ -669,7 +661,15 @@
       <option name="project" value="LOCAL" />
       <updated>1744213102945</updated>
     </task>
-    <option name="localTasksCounter" value="135" />
+    <task id="LOCAL-00135" summary="Add StockReportController">
+      <option name="closed" value="true" />
+      <created>1744213423183</created>
+      <option name="number" value="00135" />
+      <option name="presentableId" value="LOCAL-00135" />
+      <option name="project" value="LOCAL" />
+      <updated>1744213423183</updated>
+    </task>
+    <option name="localTasksCounter" value="136" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -684,7 +684,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Add getTotalProductSaleBetween in SaleService" />
     <MESSAGE value="Add findBetweenDateTest in SaleServiceTest" />
     <MESSAGE value="Add TotalProductSaleBetween test in SaleServiceTest" />
     <MESSAGE value="Add getTotalSalesBetween in SaleService" />
@@ -709,7 +708,8 @@
     <MESSAGE value="Add getTotalUnit in StocksReportService" />
     <MESSAGE value="Add getStocksRecords in StocksReportService" />
     <MESSAGE value="Add generateStockReport in StocksReportService" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add generateStockReport in StocksReportService" />
+    <MESSAGE value="Add StockReportController" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add StockReportController" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
