@@ -2,7 +2,7 @@ package com.example.supermarket.service;
 
 import com.example.supermarket.DTO.Mapper.ProductMapper;
 import com.example.supermarket.DTO.ProductDTO;
-import com.example.supermarket.DTO.SalesReport;
+import com.example.supermarket.DTO.Report.SalesReport;
 import com.example.supermarket.entity.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

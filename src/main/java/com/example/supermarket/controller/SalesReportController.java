@@ -1,7 +1,7 @@
 package com.example.supermarket.controller;
 
 
-import com.example.supermarket.DTO.SalesReport;
+import com.example.supermarket.DTO.Report.SalesReport;
 import com.example.supermarket.service.SalesReportService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

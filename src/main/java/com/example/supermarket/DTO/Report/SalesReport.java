@@ -1,5 +1,6 @@
-package com.example.supermarket.DTO;
+package com.example.supermarket.DTO.Report;
 
+import com.example.supermarket.DTO.ProductDTO;
 import com.example.supermarket.entity.Category;
 import com.example.supermarket.entity.Discount;
 import lombok.AllArgsConstructor;
