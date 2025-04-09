@@ -1,19 +1,19 @@
 package com.example.supermarket.DTO.Report;
 
+
+import com.example.supermarket.DTO.ProductDTO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
 import java.time.LocalDate;
-import java.util.List;
 
 @Data
 @AllArgsConstructor
 @RequiredArgsConstructor
-public class StockReport {
+public class StocksRecord {
 
-    private LocalDate generatedAt;
-    private List<StockRecord> stockRecords;
-    private int totalUnit;
-    
+    private ProductDTO product;
+    private LocalDate expirationDate;
+    private int quantity;
 }
