@@ -80,7 +80,7 @@ public class ProductService {
                                                                       stock.getSupplier().getId());
             // Se esiste lancia una DuplicateRequestException
             if (existingProduct.isPresent() && !existingProduct.get().isRemoved()) {
-                throw new DuplicateRequestException("Product  " + product.getName() + "supplied " +
+                throw new DuplicateRequestException("Product  " + product.getName() + " supplied " +
                                                             "by " + stock.getSupplier().getName() + " already exists");
             }
 
@@ -103,7 +103,7 @@ public class ProductService {
 
         // Setto la lista di stock del prodotto
         product.setStocks(stocks);
-        
+
 
         // Salvo il prodotto
         productRepository.save(product);
