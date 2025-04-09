@@ -1,8 +1,7 @@
 package com.example.supermarket.service;
 
-import com.example.supermarket.entity.Product;
-import com.example.supermarket.entity.ProductSale;
-import com.example.supermarket.entity.Sale;
+import com.example.supermarket.DTO.SalesReport;
+import com.example.supermarket.entity.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -110,5 +109,33 @@ public class SalesReportService {
                 .sorted((entry1, entry2) -> entry2.getValue().compareTo(entry1.getValue()))
                 .map(Map.Entry::getKey)
                 .toList();
+    }
+
+    public SalesReport generateReport(LocalDate startDate, LocalDate endDate) {
+
+        SalesReport salesReport = new SalesReport();
+        salesReport.setStartDate(startDate);
+        salesReport.setEndDate(endDate);
+
+        int totalQuantitySold = this.getTotalProductSoldBetween(startDate, endDate);
+        salesReport.setTotalQuantitySold(totalQuantitySold);
+
+        BigDecimal totalAmountSold = this.getTotalAmountSoldBetween(startDate, endDate);
+        salesReport.setTotalAmountSold(totalAmountSold);
+
+        List<Product> bestSellingProducts = this.getBestSelling(startDate, endDate,
+                                                                product -> product);
+        salesReport.setBestSellingProducts(bestSellingProducts);
+
+        List<Category> bestSellingCategories = this.getBestSelling(startDate, endDate,
+                                                                   Product::getCategory);
+        salesReport.setBestSellingCategories(bestSellingCategories);
+
+        List<Discount> bestSellingDiscounts = this.getBestSelling(startDate, endDate,
+                                                                  Product::getDiscount);
+        salesReport.setBestSellingDiscounts(bestSellingDiscounts);
+
+        return salesReport;
+
     }
 }
