@@ -30,9 +30,6 @@ class SaleServiceTest {
     private ReceiptService receiptServ;
 
     @Mock
-    private StockService stockServ;
-
-    @Mock
     private ReceiptRepository receiptRepo;
 
     @Mock
@@ -347,7 +344,7 @@ class SaleServiceTest {
 
         // When
         when(saleServ.findBetweenDate(startDate, endDate)).thenReturn(List.of(sale));
-        int totalQuantity = saleServ.getTotalProductSaleBetween(startDate, endDate);
+        int totalQuantity = saleServ.getTotalProductSoldBetween(startDate, endDate);
 
         // Verify
         verify(saleRepo, times(1)).findBySaleDateBetween(any(LocalDateTime.class),
@@ -371,7 +368,7 @@ class SaleServiceTest {
 
         // When
         when(saleServ.findBetweenDate(startDate, endDate)).thenReturn(List.of(sale));
-        BigDecimal totalAmount = saleServ.getTotalSalesAmountBetween(startDate, endDate);
+        BigDecimal totalAmount = saleServ.getTotalAmountSoldBetween(startDate, endDate);
 
         // Verify
         verify(saleRepo, times(1)).findBySaleDateBetween(any(LocalDateTime.class),

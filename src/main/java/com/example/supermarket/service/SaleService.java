@@ -296,7 +296,7 @@ public class SaleService {
      * @param endDate   The end date of the range
      * @return The total quantity of products sold
      */
-    public int getTotalProductSaleBetween(LocalDate startDate, LocalDate endDate) {
+    public int getTotalProductSoldBetween(LocalDate startDate, LocalDate endDate) {
         List<Sale> targetSale = this.findBetweenDate(startDate, endDate);
         List<ProductSale> productSales = targetSale.stream()
                 .flatMap(sale -> sale.getProductSales().stream()).toList();
@@ -312,7 +312,7 @@ public class SaleService {
      * @param endDate   The end date of the range
      * @return The total sales amount
      */
-    public BigDecimal getTotalSalesAmountBetween(LocalDate startDate, LocalDate endDate) {
+    public BigDecimal getTotalAmountSoldBetween(LocalDate startDate, LocalDate endDate) {
         List<Sale> targetSale = this.findBetweenDate(startDate, endDate);
         return targetSale.stream().map(Sale::getDiscountPrice).reduce(BigDecimal.ZERO,
                                                                       BigDecimal::add);
