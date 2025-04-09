@@ -7,9 +7,9 @@
     <option name="rewriteBookmarkType" value="true" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7c4caa73-20ab-4765-9784-19538829fb77" name="Changes" comment="Correct SalesReportServiceTest">
+    <list default="true" id="7c4caa73-20ab-4765-9784-19538829fb77" name="Changes" comment="Add generateReport in SalesReportService">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/controller/SalesReportController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/service/SalesReportService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/service/SalesReportService.java" afterDir="false" />
     </list>
     <list id="6499c595-af5e-4d71-8893-8354dc300f9f" name="No commit" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -275,14 +275,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1741276131044</updated>
-    </task>
-    <task id="LOCAL-00077" summary="Add deleteById in DiscountService">
-      <option name="closed" value="true" />
-      <created>1743588036572</created>
-      <option name="number" value="00077" />
-      <option name="presentableId" value="LOCAL-00077" />
-      <option name="project" value="LOCAL" />
-      <updated>1743588036572</updated>
     </task>
     <task id="LOCAL-00078" summary="Add deleteById in DiscountController">
       <option name="closed" value="true" />
@@ -668,7 +660,15 @@
       <option name="project" value="LOCAL" />
       <updated>1744188600047</updated>
     </task>
-    <option name="localTasksCounter" value="126" />
+    <task id="LOCAL-00126" summary="Add generateReport in SalesReportService">
+      <option name="closed" value="true" />
+      <created>1744191423672</created>
+      <option name="number" value="00126" />
+      <option name="presentableId" value="LOCAL-00126" />
+      <option name="project" value="LOCAL" />
+      <updated>1744191423672</updated>
+    </task>
+    <option name="localTasksCounter" value="127" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -683,7 +683,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Add StockDTO and SupplierDTO" />
     <MESSAGE value="Add ProductDTO" />
     <MESSAGE value="Update ProductService and ProductController with ProductDTO" />
     <MESSAGE value="Add DealController" />
@@ -708,7 +707,8 @@
     <MESSAGE value="Add SalesReportService" />
     <MESSAGE value="Add SalesReportServiceTest" />
     <MESSAGE value="Correct SalesReportServiceTest" />
-    <option name="LAST_COMMIT_MESSAGE" value="Correct SalesReportServiceTest" />
+    <MESSAGE value="Add generateReport in SalesReportService" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add generateReport in SalesReportService" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
