@@ -74,14 +74,16 @@ public class ProductService {
             stock.setSupplier(supplierService.createNewSupplier(stock.getSupplier()));
 
 
-            // Controllo se nello stock esiste già una coppia prodotto-fornitore non rimossa.
+            // Controllo se nello stock esiste già una combinazione prodotto-fornitore-data di
+            // scadenza non rimossa.
             Optional<Product> existingProduct =
-                    productRepository.findByNameAndStocks_Supplier_Id(product.getName(),
-                                                                      stock.getSupplier().getId());
+                    productRepository.findByNameAndStocks_Supplier_IdAndStocks_ExpirationDate(product.getName(),
+                                                                                              stock.getSupplier().getId()
+                            , stock.getExpirationDate());
             // Se esiste lancia una DuplicateRequestException
             if (existingProduct.isPresent() && !existingProduct.get().isRemoved()) {
                 throw new DuplicateRequestException("Product  " + product.getName() + " supplied " +
-                                                            "by " + stock.getSupplier().getName() + " already exists");
+                                                            "by " + stock.getSupplier().getName() + "that expired on " + stock.getExpirationDate() + " already exists");
             }
 
             // Se esiste ma è rimossa la ripristina

@@ -53,22 +53,22 @@ public class ProductServiceTest {
 
         // When
         when(supplierService.createNewSupplier(any(Supplier.class))).thenReturn(supplier);
-        when(productRepository.findByNameAndStocks_Supplier_Id(anyString(), anyInt())).thenReturn(Optional.empty());
+        when(productRepository.findByNameAndStocks_Supplier_IdAndStocks_ExpirationDate(anyString(), anyInt(), any(LocalDate.class))).thenReturn(Optional.empty());
         when(categoryRepository.findByName(anyString())).thenReturn(Optional.of(category));
         when(productRepository.save(any(Product.class))).thenReturn(product);
 
 
         supplierService.createNewSupplier(supplier);
-        productRepository.findByNameAndStocks_Supplier_Id(product.getName(),
-                                                          stock.getSupplier().getId());
+        productRepository.findByNameAndStocks_Supplier_IdAndStocks_ExpirationDate(product.getName(),
+                                                                                  stock.getSupplier().getId(), stock.getExpirationDate());
         categoryRepository.findByName(category.getName());
         productRepository.save(product);
 
 
         // Verify
         verify(supplierService, times(1)).createNewSupplier(supplier);
-        verify(productRepository, times(1)).findByNameAndStocks_Supplier_Id(product.getName(),
-                                                                            stock.getSupplier().getId());
+        verify(productRepository, times(1)).findByNameAndStocks_Supplier_IdAndStocks_ExpirationDate(product.getName(),
+                                                                                                    stock.getSupplier().getId(), stock.getExpirationDate());
         verify(categoryRepository, times(1)).findByName(product.getCategory().getName());
         verify(productRepository, times(1)).save(product);
 

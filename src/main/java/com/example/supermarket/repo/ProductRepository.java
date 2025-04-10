@@ -38,8 +38,10 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
     List<Product> findByStocks_QuantityAndRemovedFalse(int stockQuantity);
 
     List<Product> findByStocks_ExpirationDateAndRemovedFalse(LocalDate expirationDate);
-
-    Optional<Product> findByNameAndStocks_Supplier_Id(String productName, Integer supplierId);
+    
+    Optional<Product> findByNameAndStocks_Supplier_IdAndStocks_ExpirationDate(String productName,
+                                                                              Integer supplierId,
+                                                                              LocalDate expirationDate);
 
     List<Product> findByDiscountId(int discountId);
 
