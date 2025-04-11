@@ -7,7 +7,7 @@
     <option name="rewriteBookmarkType" value="true" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7c4caa73-20ab-4765-9784-19538829fb77" name="Changes" comment="Correct save method in ProductService">
+    <list default="true" id="7c4caa73-20ab-4765-9784-19538829fb77" name="Changes" comment="Correct update method in ProductService">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/service/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/service/ProductService.java" afterDir="false" />
     </list>
@@ -274,14 +274,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1741276131044</updated>
-    </task>
-    <task id="LOCAL-00091" summary="Update createNewSale in SaleService">
-      <option name="closed" value="true" />
-      <created>1743607221887</created>
-      <option name="number" value="00091" />
-      <option name="presentableId" value="LOCAL-00091" />
-      <option name="project" value="LOCAL" />
-      <updated>1743607221887</updated>
     </task>
     <task id="LOCAL-00092" summary="Update updateDealStatus in DealService">
       <option name="closed" value="true" />
@@ -667,7 +659,15 @@
       <option name="project" value="LOCAL" />
       <updated>1744291952376</updated>
     </task>
-    <option name="localTasksCounter" value="140" />
+    <task id="LOCAL-00140" summary="Correct update method in ProductService">
+      <option name="closed" value="true" />
+      <created>1744363720916</created>
+      <option name="number" value="00140" />
+      <option name="presentableId" value="LOCAL-00140" />
+      <option name="project" value="LOCAL" />
+      <updated>1744363720916</updated>
+    </task>
+    <option name="localTasksCounter" value="141" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -682,7 +682,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Add getBestSellingProducts in SaleService" />
     <MESSAGE value="Add getBestSellingProducts in SaleServiceTest" />
     <MESSAGE value="Made the getBestSelling function generic to retrieve the best products and categories" />
     <MESSAGE value="Delete getBestSellingProducts test in SaleServiceTest" />
@@ -707,7 +706,8 @@
     <MESSAGE value="Improve StockReportService" />
     <MESSAGE value="Add Javadoc to generateStocksReport" />
     <MESSAGE value="Correct save method in ProductService" />
-    <option name="LAST_COMMIT_MESSAGE" value="Correct save method in ProductService" />
+    <MESSAGE value="Correct update method in ProductService" />
+    <option name="LAST_COMMIT_MESSAGE" value="Correct update method in ProductService" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

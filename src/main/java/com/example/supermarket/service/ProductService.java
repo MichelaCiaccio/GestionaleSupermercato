@@ -127,22 +127,21 @@ public class ProductService {
      * @param id         The ID of the product to be updated.
      * @param modProduct The new product data to update with.
      */
-    // To do Non funziona,
-    // errore : org.hibernate.TransientObjectException:
-    // persistent instance references an unsaved transient instance of 'com.example.supermarket
-    // .entity.Product'
-    // (save the transient instance before flushing)
     public void updateProduct(int id, Product modProduct) {
+
+        // Recupero il prodotto tramite id
         Product product = productRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Product with id " + id + " not " +
                                                                        "found"));
-
+        // Recupero la categoria tramite nome altrimenti la creo e la salvo
         Category category = categoryRepository.findByName(modProduct.getCategory().getName())
                 .orElseGet(() -> categoryRepository.save(modProduct.getCategory()));
 
+        // Creo una nuova lista di stock
         List<Stock> stocks = new ArrayList<>();
         for (Stock stock : modProduct.getStocks()) {
 
+            // Cerco il supplier, se non esiste lo creo
             Optional<Supplier> modSupplier =
                     supplierRepository.findByName(stock.getSupplier().getName());
             if (modSupplier.isEmpty()) {
@@ -152,7 +151,7 @@ public class ProductService {
                 stock.setSupplier(modSupplier.get());
             }
 
-
+            // Imposto tutti i campi degli stock
             stock.setProduct(product);
             stock.setQuantity(stock.getQuantity());
             stock.setDeliveryDate(stock.getDeliveryDate());
@@ -161,16 +160,7 @@ public class ProductService {
 
         }
 
-        //if (modProduct.getDiscountedSellingPrice() == null)
-        //    product.setDiscountedSellingPrice(modProduct.getSellingPrice());
-
-        //  product.setCategory(category);
-        // product.setName(modProduct.getName());
-        // product.setSellingPrice(modProduct.getSellingPrice());
-        // product.setStocks(stocks);
-        // productRepository.save(product);
-
-        // Step 4: Aggiorna i campi del prodotto
+        // Imposto il nuovo prodotto
         product.setCategory(category);
         product.setName(modProduct.getName());
         product.setSellingPrice(modProduct.getSellingPrice());
@@ -179,13 +169,8 @@ public class ProductService {
         } else {
             product.setDiscountedSellingPrice(modProduct.getDiscountedSellingPrice());
         }
-
-        // Step 5: Sostituisci la lista degli stock esistente con quella nuova
-        // Utilizza clear() e addAll() per gestire correttamente l'orphan removal
         product.getStocks().clear();
         product.getStocks().addAll(stocks);
-
-        // Step 6: Salva il prodotto aggiornato
         productRepository.save(product);
     }
 
