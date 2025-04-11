@@ -23,6 +23,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@Transactional
 public class ProductService {
 
     @Autowired
@@ -106,6 +107,9 @@ public class ProductService {
         // Setto la lista di stock del prodotto
         product.setStocks(stocks);
 
+        // In caso di assenza di prezzo scontato, lo imposto uguale a quello di vendita
+        if (product.getDiscountedSellingPrice() == null)
+            product.setDiscountedSellingPrice(product.getSellingPrice());
 
         // Salvo il prodotto
         productRepository.save(product);
@@ -137,7 +141,6 @@ public class ProductService {
                 .orElseGet(() -> categoryRepository.save(modProduct.getCategory()));
 
         List<Stock> stocks = new ArrayList<>();
-
         for (Stock stock : modProduct.getStocks()) {
 
             Optional<Supplier> modSupplier =
@@ -150,7 +153,7 @@ public class ProductService {
             }
 
 
-            stock.setProduct(modProduct);
+            stock.setProduct(product);
             stock.setQuantity(stock.getQuantity());
             stock.setDeliveryDate(stock.getDeliveryDate());
             stock.setExpirationDate(stock.getExpirationDate());
@@ -158,10 +161,31 @@ public class ProductService {
 
         }
 
+        //if (modProduct.getDiscountedSellingPrice() == null)
+        //    product.setDiscountedSellingPrice(modProduct.getSellingPrice());
+
+        //  product.setCategory(category);
+        // product.setName(modProduct.getName());
+        // product.setSellingPrice(modProduct.getSellingPrice());
+        // product.setStocks(stocks);
+        // productRepository.save(product);
+
+        // Step 4: Aggiorna i campi del prodotto
         product.setCategory(category);
         product.setName(modProduct.getName());
         product.setSellingPrice(modProduct.getSellingPrice());
-        product.setStocks(stocks);
+        if (modProduct.getDiscountedSellingPrice() == null) {
+            product.setDiscountedSellingPrice(modProduct.getSellingPrice());
+        } else {
+            product.setDiscountedSellingPrice(modProduct.getDiscountedSellingPrice());
+        }
+
+        // Step 5: Sostituisci la lista degli stock esistente con quella nuova
+        // Utilizza clear() e addAll() per gestire correttamente l'orphan removal
+        product.getStocks().clear();
+        product.getStocks().addAll(stocks);
+
+        // Step 6: Salva il prodotto aggiornato
         productRepository.save(product);
     }
 
