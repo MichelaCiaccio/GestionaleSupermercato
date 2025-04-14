@@ -19,7 +19,8 @@ import java.util.List;
 
 import static org.junit.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.when;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class DealServiceTest {
@@ -74,9 +75,21 @@ class DealServiceTest {
                                                                                         "active"));
     }
 
-
     @Test
     void updateDealStatus() {
+
+        // Given
+        Deal expiredDeal = new Deal(1, "Expired Deal", null, LocalDate.now().minusDays(1), true,
+                                    null);
+        List<Deal> deals = List.of(expiredDeal);
+
+        // When
+        when(dealRepo.findAll()).thenReturn(deals);
+        dealService.updateDealStatus();
+
+        // Then
+        verify(dealRepo, times(1)).save(expiredDeal);
+        assertFalse(expiredDeal.isActive(), "Expired deal should be inactive.");
     }
 
     @Test
