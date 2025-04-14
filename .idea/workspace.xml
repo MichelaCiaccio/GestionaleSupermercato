@@ -7,7 +7,7 @@
     <option name="rewriteBookmarkType" value="true" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7c4caa73-20ab-4765-9784-19538829fb77" name="Changes" comment="Add testFindAllDealSorted_NoDeals in DealServiceTest">
+    <list default="true" id="7c4caa73-20ab-4765-9784-19538829fb77" name="Changes" comment="Add updateDealStatus in DealServiceTest">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/com/example/supermarket/service/DealServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/example/supermarket/service/DealServiceTest.java" afterDir="false" />
     </list>
@@ -85,6 +85,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Application.Unnamed.executor": "Run",
+    "JUnit.DealServiceTest.createDeal.executor": "Run",
     "JUnit.DealServiceTest.findAllDealSorted.executor": "Run",
     "JUnit.DealServiceTest.testFindAllDealSorted_NoDeals.executor": "Run",
     "JUnit.DealServiceTest.updateDealStatus.executor": "Run",
@@ -169,7 +170,23 @@
       <recent name="com.example.supermarket.service" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.DealServiceTest.updateDealStatus">
+  <component name="RunManager" selected="JUnit.DealServiceTest.createDeal">
+    <configuration name="DealServiceTest.createDeal" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="supermarket" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.supermarket.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.example.supermarket.service" />
+      <option name="MAIN_CLASS_NAME" value="com.example.supermarket.service.DealServiceTest" />
+      <option name="METHOD_NAME" value="createDeal" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="DealServiceTest.findAllDealSorted" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="supermarket" />
       <extension name="coverage">
@@ -218,21 +235,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ProductServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="supermarket" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.example.supermarket.service.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.example.supermarket.service" />
-      <option name="MAIN_CLASS_NAME" value="com.example.supermarket.service.ProductServiceTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="StockServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="supermarket" />
       <extension name="coverage">
@@ -261,11 +263,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.DealServiceTest.createDeal" />
         <item itemvalue="JUnit.DealServiceTest.updateDealStatus" />
         <item itemvalue="JUnit.DealServiceTest.testFindAllDealSorted_NoDeals" />
         <item itemvalue="JUnit.DealServiceTest.findAllDealSorted" />
         <item itemvalue="JUnit.StockServiceTest" />
-        <item itemvalue="JUnit.ProductServiceTest" />
       </list>
     </recent_temporary>
   </component>
@@ -278,14 +280,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1741276131044</updated>
-    </task>
-    <task id="LOCAL-00104" summary="Add DealController">
-      <option name="closed" value="true" />
-      <created>1744099804655</created>
-      <option name="number" value="00104" />
-      <option name="presentableId" value="LOCAL-00104" />
-      <option name="project" value="LOCAL" />
-      <updated>1744099804655</updated>
     </task>
     <task id="LOCAL-00105" summary="Add DealDTO">
       <option name="closed" value="true" />
@@ -671,7 +665,15 @@
       <option name="project" value="LOCAL" />
       <updated>1744634864567</updated>
     </task>
-    <option name="localTasksCounter" value="153" />
+    <task id="LOCAL-00153" summary="Add updateDealStatus in DealServiceTest">
+      <option name="closed" value="true" />
+      <created>1744635460110</created>
+      <option name="number" value="00153" />
+      <option name="presentableId" value="LOCAL-00153" />
+      <option name="project" value="LOCAL" />
+      <updated>1744635460110</updated>
+    </task>
+    <option name="localTasksCounter" value="154" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -686,7 +688,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Correct Deal logic in SaleService" />
     <MESSAGE value="Add some Javadoc" />
     <MESSAGE value="Correct SaleController" />
     <MESSAGE value="Add StockRecord and StockReport DTO" />
@@ -711,7 +712,8 @@
     <MESSAGE value="Update StockReportService" />
     <MESSAGE value="Add findAllDealSorted in DealServiceTest" />
     <MESSAGE value="Add testFindAllDealSorted_NoDeals in DealServiceTest" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add testFindAllDealSorted_NoDeals in DealServiceTest" />
+    <MESSAGE value="Add updateDealStatus in DealServiceTest" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add updateDealStatus in DealServiceTest" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

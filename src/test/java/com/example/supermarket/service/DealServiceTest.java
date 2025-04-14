@@ -87,12 +87,30 @@ class DealServiceTest {
         when(dealRepo.findAll()).thenReturn(deals);
         dealService.updateDealStatus();
 
-        // Then
+        // Verify
         verify(dealRepo, times(1)).save(expiredDeal);
         assertFalse(expiredDeal.isActive(), "Expired deal should be inactive.");
     }
 
+
     @Test
     void createDeal() {
+
+        // Given
+        Category categoryInput = new Category(1, "Food");
+        Deal inputDeal = new Deal(null, "Spring Deal", null, LocalDate.now().plusDays(10), true,
+                                  List.of(categoryInput));
+        Category categoryFromDb = new Category(1, "Food");
+        List<Category> categoriesFromDb = List.of(categoryFromDb);
+
+        // When
+        when(categoryRepo.findByIdIn(List.of(1))).thenReturn(categoriesFromDb);
+        dealService.createDeal(inputDeal);
+
+
+        // Verify
+        verify(dealRepo).save(inputDeal);
+        assertEquals(categoriesFromDb, inputDeal.getCategories());
+
     }
 }
