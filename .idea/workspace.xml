@@ -9,7 +9,8 @@
   <component name="ChangeListManager">
     <list default="true" id="7c4caa73-20ab-4765-9784-19538829fb77" name="Changes" comment="Correct update method in ProductService">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/service/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/service/ProductService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
     </list>
     <list id="6499c595-af5e-4d71-8893-8354dc300f9f" name="No commit" comment="" />
     <option name="SHOW_DIALOG" value="false" />
