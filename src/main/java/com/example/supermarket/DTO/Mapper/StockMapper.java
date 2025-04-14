@@ -13,7 +13,7 @@ public class StockMapper {
     private SupplierMapper supplierMapper;
 
     public StockDTO toStockDTO(Stock stock) {
-        SupplierDTO supplierDTO = supplierMapper.toSupperDTO(stock.getSupplier());
+        SupplierDTO supplierDTO = supplierMapper.toSupplierDTO(stock.getSupplier());
         return new StockDTO(stock.getQuantity(), stock.getDeliveryDate(),
                             stock.getExpirationDate(), supplierDTO);
     }

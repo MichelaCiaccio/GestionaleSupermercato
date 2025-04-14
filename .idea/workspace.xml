@@ -7,11 +7,12 @@
     <option name="rewriteBookmarkType" value="true" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7c4caa73-20ab-4765-9784-19538829fb77" name="Changes" comment="Add Mapstruct dependency">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+    <list default="true" id="7c4caa73-20ab-4765-9784-19538829fb77" name="Changes" comment="Update CategoryMapper">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/DTO/Mapper/CategoryMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/DTO/Mapper/CategoryMapper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/DTO/Mapper/ProductMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/DTO/Mapper/ProductMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/DTO/Mapper/StockMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/DTO/Mapper/StockMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/DTO/Mapper/SupplierMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/DTO/Mapper/SupplierMapper.java" afterDir="false" />
     </list>
     <list id="6499c595-af5e-4d71-8893-8354dc300f9f" name="No commit" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -276,14 +277,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1741276131044</updated>
-    </task>
-    <task id="LOCAL-00093" summary="Add apply deal logic">
-      <option name="closed" value="true" />
-      <created>1744022414408</created>
-      <option name="number" value="00093" />
-      <option name="presentableId" value="LOCAL-00093" />
-      <option name="project" value="LOCAL" />
-      <updated>1744022414408</updated>
     </task>
     <task id="LOCAL-00094" summary="Update DealService">
       <option name="closed" value="true" />
@@ -669,7 +662,15 @@
       <option name="project" value="LOCAL" />
       <updated>1744620981971</updated>
     </task>
-    <option name="localTasksCounter" value="142" />
+    <task id="LOCAL-00142" summary="Update CategoryMapper">
+      <option name="closed" value="true" />
+      <created>1744622176561</created>
+      <option name="number" value="00142" />
+      <option name="presentableId" value="LOCAL-00142" />
+      <option name="project" value="LOCAL" />
+      <updated>1744622176561</updated>
+    </task>
+    <option name="localTasksCounter" value="143" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -684,7 +685,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Made the getBestSelling function generic to retrieve the best products and categories" />
     <MESSAGE value="Delete getBestSellingProducts test in SaleServiceTest" />
     <MESSAGE value="Add getBestSellingProducts and getBestSellingCategories in SaleServiceTest" />
     <MESSAGE value="Update Javadoc of getBestSelling method in SaleService" />
@@ -709,7 +709,8 @@
     <MESSAGE value="Correct save method in ProductService" />
     <MESSAGE value="Correct update method in ProductService" />
     <MESSAGE value="Add Mapstruct dependency" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add Mapstruct dependency" />
+    <MESSAGE value="Update CategoryMapper" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update CategoryMapper" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

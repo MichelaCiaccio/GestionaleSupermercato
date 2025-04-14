@@ -31,7 +31,7 @@ public class ProductMapper {
                 product.getStocks().stream().map(stock -> new StockDTO(stock.getQuantity(),
                                                                        stock.getDeliveryDate(),
                                                                        stock.getExpirationDate(),
-                                                                       supplierMapper.toSupperDTO(stock.getSupplier()))).toList();
+                                                                       supplierMapper.toSupplierDTO(stock.getSupplier()))).toList();
 
         CategoryDTO categoryDTO = categoryMapper.categoryToCategoryDTO(product.getCategory());
 
