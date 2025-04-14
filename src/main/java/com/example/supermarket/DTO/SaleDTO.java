@@ -1,6 +1,5 @@
 package com.example.supermarket.DTO;
 
-import com.example.supermarket.entity.Deal;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
@@ -13,12 +12,11 @@ import java.util.List;
 @RequiredArgsConstructor
 @AllArgsConstructor
 public class SaleDTO {
-
-    private Integer id;
+    
     private BigDecimal totalPrice;
     private BigDecimal discountPrice;
     private LocalDateTime saleDate;
     private List<ProductSaleDTO> productSales;
-    private Deal deal;
+    private DealDTO deal;
 
 }

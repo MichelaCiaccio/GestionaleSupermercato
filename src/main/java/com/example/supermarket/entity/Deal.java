@@ -32,7 +32,7 @@ public class Deal {
 
     private boolean active;
 
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER)
     private List<Category> categories;
 
 

@@ -6,7 +6,6 @@ import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring", uses = SaleMapper.class)
 public interface ReceiptMapper {
-
-
+    
     ReceiptDTO toReceiptDTO(Receipt receipt);
 }

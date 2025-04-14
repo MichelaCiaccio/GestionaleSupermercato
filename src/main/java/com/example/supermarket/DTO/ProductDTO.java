@@ -17,7 +17,7 @@ public class ProductDTO {
     private BigDecimal sellingPrice;
     private BigDecimal discountedSellingPrice;
     private CategoryDTO category;
-    private List<StockDTO> stockDTOS;
+    private List<StockDTO> stocks;
     private Discount discount;
 
 }

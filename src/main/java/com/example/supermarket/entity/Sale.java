@@ -22,7 +22,7 @@ public class Sale {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-    
+
     private BigDecimal totalPrice;
 
 
@@ -32,7 +32,8 @@ public class Sale {
     @PastOrPresent
     private LocalDateTime saleDate;
 
-    @OneToMany(mappedBy = "sale", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "sale", cascade = CascadeType.ALL, orphanRemoval = true, fetch =
+            FetchType.EAGER)
     @NotNull
     private List<ProductSale> productSales;
 
