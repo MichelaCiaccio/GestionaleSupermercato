@@ -7,9 +7,9 @@
     <option name="rewriteBookmarkType" value="true" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7c4caa73-20ab-4765-9784-19538829fb77" name="Changes" comment="Update StockReportService">
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/example/supermarket/service/DealServiceTest.java" afterDir="false" />
+    <list default="true" id="7c4caa73-20ab-4765-9784-19538829fb77" name="Changes" comment="Add findAllDealSorted in DealServiceTest">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/supermarket/service/DealServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/example/supermarket/service/DealServiceTest.java" afterDir="false" />
     </list>
     <list id="6499c595-af5e-4d71-8893-8354dc300f9f" name="No commit" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -167,7 +167,7 @@
       <recent name="com.example.supermarket.service" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.DealServiceTest.findAllDealSorted">
+  <component name="RunManager" selected="JUnit.DealServiceTest.testFindAllDealSorted_NoDeals">
     <configuration name="DealServiceTest.findAllDealSorted" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="supermarket" />
       <extension name="coverage">
@@ -179,6 +179,22 @@
       <option name="PACKAGE_NAME" value="com.example.supermarket.service" />
       <option name="MAIN_CLASS_NAME" value="com.example.supermarket.service.DealServiceTest" />
       <option name="METHOD_NAME" value="findAllDealSorted" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DealServiceTest.testFindAllDealSorted_NoDeals" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="supermarket" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.supermarket.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.example.supermarket.service" />
+      <option name="MAIN_CLASS_NAME" value="com.example.supermarket.service.DealServiceTest" />
+      <option name="METHOD_NAME" value="testFindAllDealSorted_NoDeals" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -214,22 +230,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="SalesReportServiceTest.getTotalProductSoldBetween" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="supermarket" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.example.supermarket.service.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.example.supermarket.service" />
-      <option name="MAIN_CLASS_NAME" value="com.example.supermarket.service.SalesReportServiceTest" />
-      <option name="METHOD_NAME" value="getTotalProductSoldBetween" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="StockServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="supermarket" />
       <extension name="coverage">
@@ -258,11 +258,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.DealServiceTest.testFindAllDealSorted_NoDeals" />
         <item itemvalue="JUnit.DealServiceTest.findAllDealSorted" />
         <item itemvalue="JUnit.StockServiceTest" />
         <item itemvalue="JUnit.ProductServiceTest" />
         <item itemvalue="JUnit.SalesReportServiceTest" />
-        <item itemvalue="JUnit.SalesReportServiceTest.getTotalProductSoldBetween" />
       </list>
     </recent_temporary>
   </component>
@@ -275,14 +275,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1741276131044</updated>
-    </task>
-    <task id="LOCAL-00102" summary="Update ProductService and ProductController with ProductDTO">
-      <option name="closed" value="true" />
-      <created>1744035502926</created>
-      <option name="number" value="00102" />
-      <option name="presentableId" value="LOCAL-00102" />
-      <option name="project" value="LOCAL" />
-      <updated>1744035502926</updated>
     </task>
     <task id="LOCAL-00103" summary="Correct SaleServiceTest">
       <option name="closed" value="true" />
@@ -668,7 +660,15 @@
       <option name="project" value="LOCAL" />
       <updated>1744628697286</updated>
     </task>
-    <option name="localTasksCounter" value="151" />
+    <task id="LOCAL-00151" summary="Add findAllDealSorted in DealServiceTest">
+      <option name="closed" value="true" />
+      <created>1744634574480</created>
+      <option name="number" value="00151" />
+      <option name="presentableId" value="LOCAL-00151" />
+      <option name="project" value="LOCAL" />
+      <updated>1744634574480</updated>
+    </task>
+    <option name="localTasksCounter" value="152" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -683,7 +683,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Add generateReport in SalesReportService" />
     <MESSAGE value="Add SalesReportController" />
     <MESSAGE value="Correct Deal logic in SaleService" />
     <MESSAGE value="Add some Javadoc" />
@@ -708,7 +707,8 @@
     <MESSAGE value="Update SaleMapper" />
     <MESSAGE value="Update Product Entity" />
     <MESSAGE value="Update StockReportService" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update StockReportService" />
+    <MESSAGE value="Add findAllDealSorted in DealServiceTest" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add findAllDealSorted in DealServiceTest" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

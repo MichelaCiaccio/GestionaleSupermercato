@@ -6,6 +6,7 @@ import com.example.supermarket.entity.Category;
 import com.example.supermarket.entity.Deal;
 import com.example.supermarket.repo.CategoryRepository;
 import com.example.supermarket.repo.DealRepository;
+import jakarta.persistence.EntityNotFoundException;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -16,6 +17,7 @@ import org.springframework.data.domain.*;
 import java.time.LocalDate;
 import java.util.List;
 
+import static org.junit.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
@@ -57,6 +59,19 @@ class DealServiceTest {
         assertEquals(1, ret.getContent().size());  // Verifica che ci sia 1 deal nel contenuto
         assertEquals(dealDTO, ret.getContent().get(0));  // Verifica che l'elemento sia il nostro
         // dealDTO
+    }
+
+    @Test
+    void testFindAllDealSorted_NoDeals() {
+
+        Pageable pageable = PageRequest.of(0, 20, Sort.by(Sort.Direction.ASC, "active"));
+
+        // When
+        when(dealRepo.findAll(pageable)).thenThrow(new EntityNotFoundException());
+
+        // Verify
+        assertThrows(EntityNotFoundException.class, () -> dealService.findAllDealSorted(0, "ASC",
+                                                                                        "active"));
     }
 
 
