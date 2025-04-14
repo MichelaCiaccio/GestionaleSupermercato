@@ -2,14 +2,11 @@ package com.example.supermarket.DTO.Mapper;
 
 import com.example.supermarket.DTO.DealDTO;
 import com.example.supermarket.entity.Deal;
-import org.springframework.stereotype.Component;
+import org.mapstruct.Mapper;
 
-@Component
-public class DealMapper {
+@Mapper(componentModel = "spring")
+public interface DealMapper {
 
-    public DealDTO toDealDTO(Deal deal) {
-        return new DealDTO(deal.getName(), deal.getDealType(), deal.getEndDate(), deal.isActive(),
-                           deal.getCategories());
-    }
+    DealDTO toDealDTO(Deal deal);
 
 }
