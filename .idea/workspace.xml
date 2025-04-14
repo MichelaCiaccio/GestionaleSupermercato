@@ -7,18 +7,8 @@
     <option name="rewriteBookmarkType" value="true" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7c4caa73-20ab-4765-9784-19538829fb77" name="Changes" comment="Update ReceiptMapper">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/DTO/DealDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/DTO/DealDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/DTO/Mapper/CategoryMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/DTO/Mapper/CategoryMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/DTO/Mapper/ProductMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/DTO/Mapper/ProductMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/DTO/Mapper/ReceiptMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/DTO/Mapper/ReceiptMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/DTO/Mapper/SaleMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/DTO/Mapper/SaleMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/DTO/ProductDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/DTO/ProductDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/DTO/SaleDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/DTO/SaleDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/entity/Deal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/entity/Deal.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/entity/Sale.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/entity/Sale.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/service/SaleService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/service/SaleService.java" afterDir="false" />
+    <list default="true" id="7c4caa73-20ab-4765-9784-19538829fb77" name="Changes" comment="Update SaleMapper">
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/entity/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/entity/Product.java" afterDir="false" />
     </list>
     <list id="6499c595-af5e-4d71-8893-8354dc300f9f" name="No commit" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -283,14 +273,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1741276131044</updated>
-    </task>
-    <task id="LOCAL-00099" summary="Correct Category-Deal relation">
-      <option name="closed" value="true" />
-      <created>1744033025547</created>
-      <option name="number" value="00099" />
-      <option name="presentableId" value="LOCAL-00099" />
-      <option name="project" value="LOCAL" />
-      <updated>1744033025547</updated>
     </task>
     <task id="LOCAL-00100" summary="Add StockDTO and SupplierDTO">
       <option name="closed" value="true" />
@@ -676,7 +658,15 @@
       <option name="project" value="LOCAL" />
       <updated>1744624554671</updated>
     </task>
-    <option name="localTasksCounter" value="148" />
+    <task id="LOCAL-00148" summary="Update SaleMapper">
+      <option name="closed" value="true" />
+      <created>1744626745234</created>
+      <option name="number" value="00148" />
+      <option name="presentableId" value="LOCAL-00148" />
+      <option name="project" value="LOCAL" />
+      <updated>1744626745234</updated>
+    </task>
+    <option name="localTasksCounter" value="149" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -691,7 +681,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Add SalesReportService" />
     <MESSAGE value="Add SalesReportServiceTest" />
     <MESSAGE value="Correct SalesReportServiceTest" />
     <MESSAGE value="Add generateReport in SalesReportService" />
@@ -716,7 +705,8 @@
     <MESSAGE value="Update StockMapper" />
     <MESSAGE value="Update ProductMapper" />
     <MESSAGE value="Update ReceiptMapper" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update ReceiptMapper" />
+    <MESSAGE value="Update SaleMapper" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update SaleMapper" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
