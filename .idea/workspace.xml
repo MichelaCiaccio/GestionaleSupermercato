@@ -7,9 +7,9 @@
     <option name="rewriteBookmarkType" value="true" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7c4caa73-20ab-4765-9784-19538829fb77" name="Changes" comment="Update SupplierMapper">
+    <list default="true" id="7c4caa73-20ab-4765-9784-19538829fb77" name="Changes" comment="Update DealMapper">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/DTO/Mapper/DealMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/DTO/Mapper/DealMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/DTO/Mapper/StockMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/DTO/Mapper/StockMapper.java" afterDir="false" />
     </list>
     <list id="6499c595-af5e-4d71-8893-8354dc300f9f" name="No commit" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -274,14 +274,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1741276131044</updated>
-    </task>
-    <task id="LOCAL-00095" summary="Add Javadoc on BUY3PAY2Deal">
-      <option name="closed" value="true" />
-      <created>1744022752472</created>
-      <option name="number" value="00095" />
-      <option name="presentableId" value="LOCAL-00095" />
-      <option name="project" value="LOCAL" />
-      <updated>1744022752472</updated>
     </task>
     <task id="LOCAL-00096" summary="Correct SaleService">
       <option name="closed" value="true" />
@@ -667,7 +659,15 @@
       <option name="project" value="LOCAL" />
       <updated>1744622418735</updated>
     </task>
-    <option name="localTasksCounter" value="144" />
+    <task id="LOCAL-00144" summary="Update DealMapper">
+      <option name="closed" value="true" />
+      <created>1744622483386</created>
+      <option name="number" value="00144" />
+      <option name="presentableId" value="LOCAL-00144" />
+      <option name="project" value="LOCAL" />
+      <updated>1744622483386</updated>
+    </task>
+    <option name="localTasksCounter" value="145" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -682,7 +682,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Add getBestSellingProducts and getBestSellingCategories in SaleServiceTest" />
     <MESSAGE value="Update Javadoc of getBestSelling method in SaleService" />
     <MESSAGE value="Add getBestSellingDiscount test in SaleServiceTest" />
     <MESSAGE value="Add SalesReport DTO" />
@@ -707,7 +706,8 @@
     <MESSAGE value="Add Mapstruct dependency" />
     <MESSAGE value="Update CategoryMapper" />
     <MESSAGE value="Update SupplierMapper" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update SupplierMapper" />
+    <MESSAGE value="Update DealMapper" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update DealMapper" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
