@@ -33,7 +33,7 @@ public class ProductMapper {
                                                                        stock.getExpirationDate(),
                                                                        supplierMapper.toSupperDTO(stock.getSupplier()))).toList();
 
-        CategoryDTO categoryDTO = categoryMapper.toCategoryDTO(product.getCategory());
+        CategoryDTO categoryDTO = categoryMapper.categoryToCategoryDTO(product.getCategory());
 
         return new ProductDTO(product.getName(), product.getSellingPrice(),
                               product.getDiscountedSellingPrice(), categoryDTO,

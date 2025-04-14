@@ -2,12 +2,13 @@ package com.example.supermarket.DTO.Mapper;
 
 import com.example.supermarket.DTO.CategoryDTO;
 import com.example.supermarket.entity.Category;
-import org.springframework.stereotype.Component;
+import org.mapstruct.Mapper;
+import org.mapstruct.factory.Mappers;
 
-@Component
-public class CategoryMapper {
+@Mapper(componentModel = "spring")
+public interface CategoryMapper {
 
-    public CategoryDTO toCategoryDTO(Category category) {
-        return new CategoryDTO(category.getName());
-    }
+    CategoryMapper INSTANCE = Mappers.getMapper(CategoryMapper.class);
+
+    CategoryDTO categoryToCategoryDTO(Category category);
 }
