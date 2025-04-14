@@ -32,11 +32,12 @@ import java.util.List;
 public class SaleService {
 
     @Autowired
-    private final SaleMapper saleMapper;
+    private SaleMapper saleMapper;
     @Autowired
     private SaleRepository saleRepo;
     @Autowired
     private ReceiptRepository receiptRepo;
+
     @Autowired
     private ProductRepository productRepo;
     @Autowired
@@ -47,10 +48,6 @@ public class SaleService {
     private DealService dealServ;
     @Autowired
     private StockService stockServ;
-
-    public SaleService(SaleMapper saleMapper) {
-        this.saleMapper = saleMapper;
-    }
 
 
     /**

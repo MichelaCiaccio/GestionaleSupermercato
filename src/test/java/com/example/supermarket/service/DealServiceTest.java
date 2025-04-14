@@ -57,9 +57,9 @@ class DealServiceTest {
         Page<DealDTO> ret = dealService.findAllDealSorted(0, "ASC", "active");
 
         // Verify
-        assertEquals(1, ret.getContent().size());  // Verifica che ci sia 1 deal nel contenuto
-        assertEquals(dealDTO, ret.getContent().get(0));  // Verifica che l'elemento sia il nostro
-        // dealDTO
+        verify(dealRepo, times(1)).findAll(pageable);
+        assertEquals(1, ret.getContent().size());
+        assertEquals(dealDTO, ret.getContent().get(0));
     }
 
     @Test

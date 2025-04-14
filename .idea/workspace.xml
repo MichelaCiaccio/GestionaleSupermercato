@@ -7,9 +7,13 @@
     <option name="rewriteBookmarkType" value="true" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7c4caa73-20ab-4765-9784-19538829fb77" name="Changes" comment="Add updateDealStatus in DealServiceTest">
+    <list default="true" id="7c4caa73-20ab-4765-9784-19538829fb77" name="Changes" comment="Add createDeal in DealServiceTest">
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/example/supermarket/service/ReceiptServiceTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/repo/ReceiptRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/repo/ReceiptRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/service/SaleService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/service/SaleService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/com/example/supermarket/service/DealServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/example/supermarket/service/DealServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/supermarket/service/SaleServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/example/supermarket/service/SaleServiceTest.java" afterDir="false" />
     </list>
     <list id="6499c595-af5e-4d71-8893-8354dc300f9f" name="No commit" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -86,6 +90,7 @@
   "keyToString": {
     "Application.Unnamed.executor": "Run",
     "JUnit.DealServiceTest.createDeal.executor": "Run",
+    "JUnit.DealServiceTest.executor": "Run",
     "JUnit.DealServiceTest.findAllDealSorted.executor": "Run",
     "JUnit.DealServiceTest.testFindAllDealSorted_NoDeals.executor": "Run",
     "JUnit.DealServiceTest.updateDealStatus.executor": "Run",
@@ -108,6 +113,8 @@
     "JUnit.ProductServiceTest.testSaveProduct_Success.executor": "Run",
     "JUnit.ProductServiceTest.testSaveWhenProductAlreadyExist.executor": "Run",
     "JUnit.ProductServiceTest.testUpdate.executor": "Run",
+    "JUnit.ReceiptServiceTest.executor": "Run",
+    "JUnit.ReceiptServiceTest.findAllReceiptSorted.executor": "Run",
     "JUnit.SaleServiceTest,findAllSalesSorted and 7 more.executor": "Run",
     "JUnit.SaleServiceTest.createNewSale.executor": "Run",
     "JUnit.SaleServiceTest.createNewSaleEntityNotFoundException.executor": "Run",
@@ -170,23 +177,7 @@
       <recent name="com.example.supermarket.service" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.DealServiceTest.createDeal">
-    <configuration name="DealServiceTest.createDeal" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="supermarket" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.example.supermarket.service.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.example.supermarket.service" />
-      <option name="MAIN_CLASS_NAME" value="com.example.supermarket.service.DealServiceTest" />
-      <option name="METHOD_NAME" value="createDeal" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="JUnit.ReceiptServiceTest.findAllReceiptSorted">
     <configuration name="DealServiceTest.findAllDealSorted" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="supermarket" />
       <extension name="coverage">
@@ -203,7 +194,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="DealServiceTest.testFindAllDealSorted_NoDeals" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ReceiptServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="supermarket" />
       <extension name="coverage">
         <pattern>
@@ -212,40 +203,55 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="com.example.supermarket.service" />
-      <option name="MAIN_CLASS_NAME" value="com.example.supermarket.service.DealServiceTest" />
-      <option name="METHOD_NAME" value="testFindAllDealSorted_NoDeals" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="DealServiceTest.updateDealStatus" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="supermarket" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.example.supermarket.service.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.example.supermarket.service" />
-      <option name="MAIN_CLASS_NAME" value="com.example.supermarket.service.DealServiceTest" />
-      <option name="METHOD_NAME" value="updateDealStatus" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="StockServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="supermarket" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.example.supermarket.service.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.example.supermarket.service" />
-      <option name="MAIN_CLASS_NAME" value="com.example.supermarket.service.StockServiceTest" />
+      <option name="MAIN_CLASS_NAME" value="com.example.supermarket.service.ReceiptServiceTest" />
       <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ReceiptServiceTest.findAllReceiptSorted" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="supermarket" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.supermarket.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.example.supermarket.service" />
+      <option name="MAIN_CLASS_NAME" value="com.example.supermarket.service.ReceiptServiceTest" />
+      <option name="METHOD_NAME" value="findAllReceiptSorted" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SaleServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="supermarket" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.supermarket.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.example.supermarket.service" />
+      <option name="MAIN_CLASS_NAME" value="com.example.supermarket.service.SaleServiceTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SaleServiceTest.createNewSale" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="supermarket" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.supermarket.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.example.supermarket.service" />
+      <option name="MAIN_CLASS_NAME" value="com.example.supermarket.service.SaleServiceTest" />
+      <option name="METHOD_NAME" value="createNewSale" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -263,11 +269,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.DealServiceTest.createDeal" />
-        <item itemvalue="JUnit.DealServiceTest.updateDealStatus" />
-        <item itemvalue="JUnit.DealServiceTest.testFindAllDealSorted_NoDeals" />
+        <item itemvalue="JUnit.ReceiptServiceTest.findAllReceiptSorted" />
+        <item itemvalue="JUnit.SaleServiceTest" />
+        <item itemvalue="JUnit.SaleServiceTest.createNewSale" />
+        <item itemvalue="JUnit.ReceiptServiceTest" />
         <item itemvalue="JUnit.DealServiceTest.findAllDealSorted" />
-        <item itemvalue="JUnit.StockServiceTest" />
       </list>
     </recent_temporary>
   </component>
@@ -280,14 +286,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1741276131044</updated>
-    </task>
-    <task id="LOCAL-00105" summary="Add DealDTO">
-      <option name="closed" value="true" />
-      <created>1744100538897</created>
-      <option name="number" value="00105" />
-      <option name="presentableId" value="LOCAL-00105" />
-      <option name="project" value="LOCAL" />
-      <updated>1744100538897</updated>
     </task>
     <task id="LOCAL-00106" summary="Add Javadoc to getDealStrategy">
       <option name="closed" value="true" />
@@ -673,7 +671,15 @@
       <option name="project" value="LOCAL" />
       <updated>1744635460110</updated>
     </task>
-    <option name="localTasksCounter" value="154" />
+    <task id="LOCAL-00154" summary="Add createDeal in DealServiceTest">
+      <option name="closed" value="true" />
+      <created>1744635967736</created>
+      <option name="number" value="00154" />
+      <option name="presentableId" value="LOCAL-00154" />
+      <option name="project" value="LOCAL" />
+      <updated>1744635967736</updated>
+    </task>
+    <option name="localTasksCounter" value="155" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -688,7 +694,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Add some Javadoc" />
     <MESSAGE value="Correct SaleController" />
     <MESSAGE value="Add StockRecord and StockReport DTO" />
     <MESSAGE value="Add getTotalUnit in StocksReportService" />
@@ -713,7 +718,8 @@
     <MESSAGE value="Add findAllDealSorted in DealServiceTest" />
     <MESSAGE value="Add testFindAllDealSorted_NoDeals in DealServiceTest" />
     <MESSAGE value="Add updateDealStatus in DealServiceTest" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add updateDealStatus in DealServiceTest" />
+    <MESSAGE value="Add createDeal in DealServiceTest" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add createDeal in DealServiceTest" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

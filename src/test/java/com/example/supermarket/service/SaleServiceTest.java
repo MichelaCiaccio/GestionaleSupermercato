@@ -22,6 +22,9 @@ import static org.mockito.Mockito.*;
 @ExtendWith(MockitoExtension.class)
 class SaleServiceTest {
 
+    @InjectMocks
+    private SaleService saleServ;
+
     @Mock
     private SaleRepository saleRepo;
 
@@ -36,10 +39,6 @@ class SaleServiceTest {
 
     @Mock
     private StockService stockServ;
-
-
-    @InjectMocks
-    private SaleService saleServ;
 
 
     @Test
