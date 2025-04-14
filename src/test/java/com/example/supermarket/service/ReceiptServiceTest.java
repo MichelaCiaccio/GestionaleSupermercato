@@ -38,7 +38,21 @@ class ReceiptServiceTest {
     @Test
     void createNewReceipt() {
 
+        // Given
+        List<ProductSale> productSales = new ArrayList<>();
+        Sale sale = new Sale(1, BigDecimal.valueOf(100), BigDecimal.valueOf(80),
+                             LocalDateTime.of(2024, 4, 14, 12, 30), productSales, null);
+        String input =
+                sale.getSaleDate().toString() + sale.getTotalPrice() + sale.getProductSales().size();
+        String expectedReceiptCode = receiptServ.createReceiptCode(input);
+        Receipt receipt = new Receipt(1, "Receipt code", sale);
 
+        // When
+        receiptServ.createNewReceipt(sale);
+
+        // Verify
+        verify(receiptRepo, times(1)).save(any(Receipt.class));
+        assertNotNull(receipt);
     }
 
     @Test

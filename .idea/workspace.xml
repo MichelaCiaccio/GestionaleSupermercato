@@ -7,9 +7,8 @@
     <option name="rewriteBookmarkType" value="true" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7c4caa73-20ab-4765-9784-19538829fb77" name="Changes" comment="Add findAllReceiptSorted in ReceiptServiceTest">
+    <list default="true" id="7c4caa73-20ab-4765-9784-19538829fb77" name="Changes" comment="Add createReceiptCode&#10; in ReceiptServiceTest">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/service/ReceiptService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/service/ReceiptService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/com/example/supermarket/service/ReceiptServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/example/supermarket/service/ReceiptServiceTest.java" afterDir="false" />
     </list>
     <list id="6499c595-af5e-4d71-8893-8354dc300f9f" name="No commit" comment="" />
@@ -110,6 +109,7 @@
     "JUnit.ProductServiceTest.testSaveProduct_Success.executor": "Run",
     "JUnit.ProductServiceTest.testSaveWhenProductAlreadyExist.executor": "Run",
     "JUnit.ProductServiceTest.testUpdate.executor": "Run",
+    "JUnit.ReceiptServiceTest.createNewReceipt.executor": "Run",
     "JUnit.ReceiptServiceTest.createReceiptCode.executor": "Run",
     "JUnit.ReceiptServiceTest.executor": "Run",
     "JUnit.ReceiptServiceTest.findAllReceiptSorted.executor": "Run",
@@ -175,8 +175,8 @@
       <recent name="com.example.supermarket.service" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.ReceiptServiceTest.createReceiptCode">
-    <configuration name="ReceiptServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.ReceiptServiceTest.createNewReceipt">
+    <configuration name="ReceiptServiceTest.createNewReceipt" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="supermarket" />
       <extension name="coverage">
         <pattern>
@@ -186,7 +186,8 @@
       </extension>
       <option name="PACKAGE_NAME" value="com.example.supermarket.service" />
       <option name="MAIN_CLASS_NAME" value="com.example.supermarket.service.ReceiptServiceTest" />
-      <option name="TEST_OBJECT" value="class" />
+      <option name="METHOD_NAME" value="createNewReceipt" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -267,11 +268,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.ReceiptServiceTest.createNewReceipt" />
         <item itemvalue="JUnit.ReceiptServiceTest.createReceiptCode" />
         <item itemvalue="JUnit.ReceiptServiceTest.findAllReceiptSorted" />
         <item itemvalue="JUnit.SaleServiceTest" />
         <item itemvalue="JUnit.SaleServiceTest.createNewSale" />
-        <item itemvalue="JUnit.ReceiptServiceTest" />
       </list>
     </recent_temporary>
   </component>
@@ -284,14 +285,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1741276131044</updated>
-    </task>
-    <task id="LOCAL-00107" summary="Correct SaleServiceTest">
-      <option name="closed" value="true" />
-      <created>1744103794380</created>
-      <option name="number" value="00107" />
-      <option name="presentableId" value="LOCAL-00107" />
-      <option name="project" value="LOCAL" />
-      <updated>1744103794380</updated>
     </task>
     <task id="LOCAL-00108" summary="Add findBetweenDate method in SaleService">
       <option name="closed" value="true" />
@@ -677,7 +670,15 @@
       <option name="project" value="LOCAL" />
       <updated>1744639421835</updated>
     </task>
-    <option name="localTasksCounter" value="156" />
+    <task id="LOCAL-00156" summary="Add createReceiptCode&#10; in ReceiptServiceTest">
+      <option name="closed" value="true" />
+      <created>1744641540246</created>
+      <option name="number" value="00156" />
+      <option name="presentableId" value="LOCAL-00156" />
+      <option name="project" value="LOCAL" />
+      <updated>1744641540246</updated>
+    </task>
+    <option name="localTasksCounter" value="157" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -692,7 +693,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Add StockRecord and StockReport DTO" />
     <MESSAGE value="Add getTotalUnit in StocksReportService" />
     <MESSAGE value="Add getStocksRecords in StocksReportService" />
     <MESSAGE value="Add generateStockReport in StocksReportService" />
@@ -717,7 +717,8 @@
     <MESSAGE value="Add updateDealStatus in DealServiceTest" />
     <MESSAGE value="Add createDeal in DealServiceTest" />
     <MESSAGE value="Add findAllReceiptSorted in ReceiptServiceTest" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add findAllReceiptSorted in ReceiptServiceTest" />
+    <MESSAGE value="Add createReceiptCode&#10; in ReceiptServiceTest" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add createReceiptCode&#10; in ReceiptServiceTest" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
