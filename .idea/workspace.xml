@@ -7,8 +7,14 @@
     <option name="rewriteBookmarkType" value="true" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7c4caa73-20ab-4765-9784-19538829fb77" name="Changes" comment="Update SaleMapper">
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/entity/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/entity/Product.java" afterDir="false" />
+    <list default="true" id="7c4caa73-20ab-4765-9784-19538829fb77" name="Changes" comment="Update Product Entity">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/DTO/StockSummaryDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/DTO/Mapper/StockMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/DTO/Mapper/StockMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/DTO/StockDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/DTO/StockDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/controller/StockController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/controller/StockController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/service/StockService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/service/StockService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/service/StocksReportService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/service/StocksReportService.java" afterDir="false" />
     </list>
     <list id="6499c595-af5e-4d71-8893-8354dc300f9f" name="No commit" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -165,7 +171,7 @@
       <recent name="com.example.supermarket.service" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.ProductServiceTest">
+  <component name="RunManager" selected="JUnit.StockServiceTest">
     <configuration name="ProductServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="supermarket" />
       <extension name="coverage">
@@ -192,22 +198,6 @@
       <option name="PACKAGE_NAME" value="com.example.supermarket.service" />
       <option name="MAIN_CLASS_NAME" value="com.example.supermarket.service.SaleServiceTest" />
       <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="SaleServiceTest.getBestSellingDiscount" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="supermarket" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.example.supermarket.service.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.example.supermarket.service" />
-      <option name="MAIN_CLASS_NAME" value="com.example.supermarket.service.SaleServiceTest" />
-      <option name="METHOD_NAME" value="getBestSellingDiscount" />
-      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -243,6 +233,21 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="StockServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="supermarket" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.supermarket.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.example.supermarket.service" />
+      <option name="MAIN_CLASS_NAME" value="com.example.supermarket.service.StockServiceTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration default="true" type="JetRunConfigurationType">
       <module name="GestionaleSupermercato" />
       <method v="2">
@@ -256,11 +261,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.StockServiceTest" />
         <item itemvalue="JUnit.ProductServiceTest" />
         <item itemvalue="JUnit.SalesReportServiceTest" />
         <item itemvalue="JUnit.SalesReportServiceTest.getTotalProductSoldBetween" />
         <item itemvalue="JUnit.SaleServiceTest" />
-        <item itemvalue="JUnit.SaleServiceTest.getBestSellingDiscount" />
       </list>
     </recent_temporary>
   </component>
@@ -273,14 +278,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1741276131044</updated>
-    </task>
-    <task id="LOCAL-00100" summary="Add StockDTO and SupplierDTO">
-      <option name="closed" value="true" />
-      <created>1744033688540</created>
-      <option name="number" value="00100" />
-      <option name="presentableId" value="LOCAL-00100" />
-      <option name="project" value="LOCAL" />
-      <updated>1744033688540</updated>
     </task>
     <task id="LOCAL-00101" summary="Add ProductDTO">
       <option name="closed" value="true" />
@@ -666,7 +663,15 @@
       <option name="project" value="LOCAL" />
       <updated>1744626745234</updated>
     </task>
-    <option name="localTasksCounter" value="149" />
+    <task id="LOCAL-00149" summary="Update Product Entity">
+      <option name="closed" value="true" />
+      <created>1744626873914</created>
+      <option name="number" value="00149" />
+      <option name="presentableId" value="LOCAL-00149" />
+      <option name="project" value="LOCAL" />
+      <updated>1744626873914</updated>
+    </task>
+    <option name="localTasksCounter" value="150" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -681,7 +686,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Add SalesReportServiceTest" />
     <MESSAGE value="Correct SalesReportServiceTest" />
     <MESSAGE value="Add generateReport in SalesReportService" />
     <MESSAGE value="Add SalesReportController" />
@@ -706,7 +710,8 @@
     <MESSAGE value="Update ProductMapper" />
     <MESSAGE value="Update ReceiptMapper" />
     <MESSAGE value="Update SaleMapper" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update SaleMapper" />
+    <MESSAGE value="Update Product Entity" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update Product Entity" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

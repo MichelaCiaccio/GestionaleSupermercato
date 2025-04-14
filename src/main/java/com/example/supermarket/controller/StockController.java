@@ -1,5 +1,6 @@
 package com.example.supermarket.controller;
 
+import com.example.supermarket.DTO.StockSummaryDTO;
 import com.example.supermarket.entity.Stock;
 import com.example.supermarket.service.StockService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,7 @@ public class StockController {
     private StockService stockServ;
 
     @GetMapping("/all")
-    public List<Stock> getAllStocks() {
+    public List<StockSummaryDTO> getAllStocks() {
         return stockServ.findAll();
     }
 

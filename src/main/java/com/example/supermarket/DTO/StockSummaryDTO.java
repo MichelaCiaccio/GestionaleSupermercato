@@ -9,10 +9,12 @@ import java.time.LocalDate;
 @Data
 @AllArgsConstructor
 @RequiredArgsConstructor
-public class StockDTO {
+public class StockSummaryDTO {
 
     private int quantity;
     private LocalDate deliveryDate;
     private LocalDate expirationDate;
+    private ProductDTO product;
     private SupplierDTO supplier;
+
 }

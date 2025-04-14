@@ -1,5 +1,7 @@
 package com.example.supermarket.service;
 
+import com.example.supermarket.DTO.Mapper.StockMapper;
+import com.example.supermarket.DTO.StockSummaryDTO;
 import com.example.supermarket.entity.Stock;
 import com.example.supermarket.repo.StockRepository;
 import jakarta.persistence.EntityNotFoundException;
@@ -10,6 +12,9 @@ import java.util.List;
 
 @Service
 public class StockService {
+
+    @Autowired
+    private StockMapper stockMapper;
 
     @Autowired
     private StockRepository stockRepo;
@@ -71,7 +76,15 @@ public class StockService {
      *
      * @return The found stocks
      */
-    public List<Stock> findAll() {
+    public List<StockSummaryDTO> findAll() {
+        List<Stock> stocks = stockRepo.findAll();
+        if (stocks.isEmpty()) {
+            throw new EntityNotFoundException("There are no stocks");
+        }
+        return stockMapper.toStockSummaryDTOs(stocks);
+    }
+
+    public List<Stock> findAllStocks() {
         List<Stock> stocks = stockRepo.findAll();
         if (stocks.isEmpty()) {
             throw new EntityNotFoundException("There are no stocks");

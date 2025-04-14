@@ -32,7 +32,7 @@ public class StocksReportService {
     private int getTotalUnit() {
 
         // Recupero tutti gli stock
-        List<Stock> stocks = stockServ.findAll();
+        List<Stock> stocks = stockServ.findAllStocks();
 
         // Recupero le quantità e le sommo
         return stocks.stream().mapToInt(Stock::getQuantity).sum();
@@ -47,7 +47,7 @@ public class StocksReportService {
     private List<StocksRecord> getStocksRecords() {
 
         // Recupero tutti gli stock
-        List<Stock> stocks = stockServ.findAll();
+        List<Stock> stocks = stockServ.findAllStocks();
 
         // Recupero le informazioni dallo stock e creo i record per ciascun prodotto
         return stocks.stream().map(stock -> {
