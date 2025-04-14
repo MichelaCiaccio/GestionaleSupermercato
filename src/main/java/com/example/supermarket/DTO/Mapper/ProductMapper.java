@@ -1,48 +1,21 @@
 package com.example.supermarket.DTO.Mapper;
 
-import com.example.supermarket.DTO.*;
+import com.example.supermarket.DTO.ProductDTO;
+import com.example.supermarket.DTO.ProductReportDTO;
+import com.example.supermarket.DTO.ProductSummaryDTO;
 import com.example.supermarket.entity.Product;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 
-import java.util.List;
-
-@Component
-public class ProductMapper {
-
-    @Autowired
-    private StockMapper stockMapper;
-
-    @Autowired
-    private SupplierMapper supplierMapper;
-
-    @Autowired
-    private CategoryMapper categoryMapper;
-
-    public ProductSummaryDTO toProductSummaryDTO(Product product) {
-        return new ProductSummaryDTO(product.getId(),
-                                     product.getName());
-    }
-
-    public ProductDTO toProductDTO(Product product) {
+@Mapper(componentModel = "spring", uses = {StockMapper.class, SupplierMapper.class,
+        CategoryMapper.class})
+public interface ProductMapper {
 
 
-        List<StockDTO> stockDTOS =
-                product.getStocks().stream().map(stock -> new StockDTO(stock.getQuantity(),
-                                                                       stock.getDeliveryDate(),
-                                                                       stock.getExpirationDate(),
-                                                                       supplierMapper.toSupplierDTO(stock.getSupplier()))).toList();
+    ProductSummaryDTO toProductSummaryDTO(Product product);
 
-        CategoryDTO categoryDTO = categoryMapper.categoryToCategoryDTO(product.getCategory());
+    @Mapping(source = "stocks", target = "stockDTOS")
+    ProductDTO toProductDTO(Product product);
 
-        return new ProductDTO(product.getName(), product.getSellingPrice(),
-                              product.getDiscountedSellingPrice(), categoryDTO,
-                              stockDTOS, product.getDiscount());
-    }
-
-    public ProductReportDTO toProductReportDTO(ProductDTO productDTO) {
-        return new ProductReportDTO(productDTO.getName(), productDTO.getSellingPrice(),
-                                    productDTO.getDiscountedSellingPrice(),
-                                    productDTO.getCategory());
-    }
+    ProductReportDTO toProductReportDTO(ProductDTO productDTO);
 }
