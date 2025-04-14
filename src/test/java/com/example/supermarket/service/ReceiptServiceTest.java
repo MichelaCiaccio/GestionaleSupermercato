@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
@@ -36,10 +37,23 @@ class ReceiptServiceTest {
 
     @Test
     void createNewReceipt() {
+
+
     }
 
     @Test
     void createReceiptCode() {
+
+        // Given
+        String input = "test-input";
+
+        // When
+        String result = receiptServ.createReceiptCode(input);
+
+        // Verify
+        assertNotNull(result);
+        assertEquals(40, result.length());
+        assertEquals("3c23153d3fac5d603848031ee14dff8e4ed7876b", result);
     }
 
     @Test

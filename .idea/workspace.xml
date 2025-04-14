@@ -7,13 +7,10 @@
     <option name="rewriteBookmarkType" value="true" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7c4caa73-20ab-4765-9784-19538829fb77" name="Changes" comment="Add createDeal in DealServiceTest">
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/example/supermarket/service/ReceiptServiceTest.java" afterDir="false" />
+    <list default="true" id="7c4caa73-20ab-4765-9784-19538829fb77" name="Changes" comment="Add findAllReceiptSorted in ReceiptServiceTest">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/repo/ReceiptRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/repo/ReceiptRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/service/SaleService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/service/SaleService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/supermarket/service/DealServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/example/supermarket/service/DealServiceTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/supermarket/service/SaleServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/example/supermarket/service/SaleServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/service/ReceiptService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/service/ReceiptService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/supermarket/service/ReceiptServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/example/supermarket/service/ReceiptServiceTest.java" afterDir="false" />
     </list>
     <list id="6499c595-af5e-4d71-8893-8354dc300f9f" name="No commit" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -113,6 +110,7 @@
     "JUnit.ProductServiceTest.testSaveProduct_Success.executor": "Run",
     "JUnit.ProductServiceTest.testSaveWhenProductAlreadyExist.executor": "Run",
     "JUnit.ProductServiceTest.testUpdate.executor": "Run",
+    "JUnit.ReceiptServiceTest.createReceiptCode.executor": "Run",
     "JUnit.ReceiptServiceTest.executor": "Run",
     "JUnit.ReceiptServiceTest.findAllReceiptSorted.executor": "Run",
     "JUnit.SaleServiceTest,findAllSalesSorted and 7 more.executor": "Run",
@@ -177,23 +175,7 @@
       <recent name="com.example.supermarket.service" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.ReceiptServiceTest.findAllReceiptSorted">
-    <configuration name="DealServiceTest.findAllDealSorted" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="supermarket" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.example.supermarket.service.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.example.supermarket.service" />
-      <option name="MAIN_CLASS_NAME" value="com.example.supermarket.service.DealServiceTest" />
-      <option name="METHOD_NAME" value="findAllDealSorted" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="JUnit.ReceiptServiceTest.createReceiptCode">
     <configuration name="ReceiptServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="supermarket" />
       <extension name="coverage">
@@ -205,6 +187,22 @@
       <option name="PACKAGE_NAME" value="com.example.supermarket.service" />
       <option name="MAIN_CLASS_NAME" value="com.example.supermarket.service.ReceiptServiceTest" />
       <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ReceiptServiceTest.createReceiptCode" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="supermarket" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.supermarket.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.example.supermarket.service" />
+      <option name="MAIN_CLASS_NAME" value="com.example.supermarket.service.ReceiptServiceTest" />
+      <option name="METHOD_NAME" value="createReceiptCode" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -269,11 +267,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.ReceiptServiceTest.createReceiptCode" />
         <item itemvalue="JUnit.ReceiptServiceTest.findAllReceiptSorted" />
         <item itemvalue="JUnit.SaleServiceTest" />
         <item itemvalue="JUnit.SaleServiceTest.createNewSale" />
         <item itemvalue="JUnit.ReceiptServiceTest" />
-        <item itemvalue="JUnit.DealServiceTest.findAllDealSorted" />
       </list>
     </recent_temporary>
   </component>
@@ -286,14 +284,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1741276131044</updated>
-    </task>
-    <task id="LOCAL-00106" summary="Add Javadoc to getDealStrategy">
-      <option name="closed" value="true" />
-      <created>1744101089658</created>
-      <option name="number" value="00106" />
-      <option name="presentableId" value="LOCAL-00106" />
-      <option name="project" value="LOCAL" />
-      <updated>1744101089658</updated>
     </task>
     <task id="LOCAL-00107" summary="Correct SaleServiceTest">
       <option name="closed" value="true" />
@@ -679,7 +669,15 @@
       <option name="project" value="LOCAL" />
       <updated>1744635967736</updated>
     </task>
-    <option name="localTasksCounter" value="155" />
+    <task id="LOCAL-00155" summary="Add findAllReceiptSorted in ReceiptServiceTest">
+      <option name="closed" value="true" />
+      <created>1744639421835</created>
+      <option name="number" value="00155" />
+      <option name="presentableId" value="LOCAL-00155" />
+      <option name="project" value="LOCAL" />
+      <updated>1744639421835</updated>
+    </task>
+    <option name="localTasksCounter" value="156" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -694,7 +692,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Correct SaleController" />
     <MESSAGE value="Add StockRecord and StockReport DTO" />
     <MESSAGE value="Add getTotalUnit in StocksReportService" />
     <MESSAGE value="Add getStocksRecords in StocksReportService" />
@@ -719,7 +716,8 @@
     <MESSAGE value="Add testFindAllDealSorted_NoDeals in DealServiceTest" />
     <MESSAGE value="Add updateDealStatus in DealServiceTest" />
     <MESSAGE value="Add createDeal in DealServiceTest" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add createDeal in DealServiceTest" />
+    <MESSAGE value="Add findAllReceiptSorted in ReceiptServiceTest" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add findAllReceiptSorted in ReceiptServiceTest" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

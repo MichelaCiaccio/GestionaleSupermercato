@@ -40,11 +40,8 @@ public class ReceiptService {
         Receipt receipt = new Receipt();
         String input =
                 sale.getSaleDate().toString() + sale.getTotalPrice() + sale.getProductSales().size();
-        try {
-            receipt.setReceiptCode(this.createReceiptCode(input));
-        } catch (NoSuchAlgorithmException e) {
-            throw new RuntimeException("Errore nel generare il codice scontrino", e);
-        }
+        receipt.setReceiptCode(this.createReceiptCode(input));
+
         receipt.setSale(sale);
         receiptRepository.save(receipt);
     }
@@ -58,8 +55,13 @@ public class ReceiptService {
      * @param input The input string to be hashed
      * @return The generated receipt code
      */
-    public String createReceiptCode(String input) throws NoSuchAlgorithmException {
-        MessageDigest md = MessageDigest.getInstance("SHA-1");
+    public String createReceiptCode(String input) {
+        MessageDigest md = null;
+        try {
+            md = MessageDigest.getInstance("SHA-1");
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException("SHA-1 algorithm not available", e);
+        }
         md.update(input.getBytes(StandardCharsets.UTF_8));
         byte[] digest = md.digest();
 
