@@ -74,6 +74,14 @@ public class ReceiptService {
     }
 
 
+    /**
+     * Retrieves a paginated and sorted list of Receipt.
+     * If no receipts are found, it throws an EntityNotFoundException.
+     *
+     * @param page          The page number to retrieve
+     * @param sortDirection The sorting direction
+     * @return a Page of Receipt sorted by sale date
+     */
     public Page<ReceiptDTO> findAllReceiptSorted(Integer page, String sortDirection) {
         page = page == null ? 0 : page;
 

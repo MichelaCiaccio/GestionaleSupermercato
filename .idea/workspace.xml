@@ -7,9 +7,9 @@
     <option name="rewriteBookmarkType" value="true" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7c4caa73-20ab-4765-9784-19538829fb77" name="Changes" comment="Add createReceiptCode&#10; in ReceiptServiceTest">
+    <list default="true" id="7c4caa73-20ab-4765-9784-19538829fb77" name="Changes" comment="Add createNewReceipt&#10; in ReceiptServiceTest">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/supermarket/service/ReceiptServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/example/supermarket/service/ReceiptServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/service/ReceiptService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/service/ReceiptService.java" afterDir="false" />
     </list>
     <list id="6499c595-af5e-4d71-8893-8354dc300f9f" name="No commit" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -285,14 +285,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1741276131044</updated>
-    </task>
-    <task id="LOCAL-00108" summary="Add findBetweenDate method in SaleService">
-      <option name="closed" value="true" />
-      <created>1744105018832</created>
-      <option name="number" value="00108" />
-      <option name="presentableId" value="LOCAL-00108" />
-      <option name="project" value="LOCAL" />
-      <updated>1744105018832</updated>
     </task>
     <task id="LOCAL-00109" summary="Add getSaleBetweenDate in SaleController">
       <option name="closed" value="true" />
@@ -678,7 +670,15 @@
       <option name="project" value="LOCAL" />
       <updated>1744641540246</updated>
     </task>
-    <option name="localTasksCounter" value="157" />
+    <task id="LOCAL-00157" summary="Add createNewReceipt&#10; in ReceiptServiceTest">
+      <option name="closed" value="true" />
+      <created>1744642326639</created>
+      <option name="number" value="00157" />
+      <option name="presentableId" value="LOCAL-00157" />
+      <option name="project" value="LOCAL" />
+      <updated>1744642326639</updated>
+    </task>
+    <option name="localTasksCounter" value="158" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -693,7 +693,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Add getTotalUnit in StocksReportService" />
     <MESSAGE value="Add getStocksRecords in StocksReportService" />
     <MESSAGE value="Add generateStockReport in StocksReportService" />
     <MESSAGE value="Add StockReportController" />
@@ -718,7 +717,8 @@
     <MESSAGE value="Add createDeal in DealServiceTest" />
     <MESSAGE value="Add findAllReceiptSorted in ReceiptServiceTest" />
     <MESSAGE value="Add createReceiptCode&#10; in ReceiptServiceTest" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add createReceiptCode&#10; in ReceiptServiceTest" />
+    <MESSAGE value="Add createNewReceipt&#10; in ReceiptServiceTest" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add createNewReceipt&#10; in ReceiptServiceTest" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
